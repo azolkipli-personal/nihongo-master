@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #38bdf8;
+  --color-secondary: #2c3e50;
+  --color-light: #e0f2fe;
+  --color-background: #f0fdf4;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+.font-jp {
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+/* Furigana styling */
+ruby {
+  ruby-position: over;
+}
+
+rt {
+  font-size: 0.5em;
+  color: #6b7280;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
