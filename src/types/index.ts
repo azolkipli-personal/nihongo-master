@@ -2,8 +2,9 @@ export interface AppConfig {
   wanikaniApiKey: string;
   geminiApiKey: string;
   openrouterApiKey: string;
-  cohereApiKey: string;
-  selectedService: 'gemini' | 'openrouter' | 'cohere' | 'ollama';
+  selectedService: 'gemini' | 'openrouter' | 'ollama';
+  geminiModel: string;
+  ollamaModel: string;
   ollamaUrl: string;
   theme: 'light' | 'dark' | 'emerald' | 'ocean';
   showFurigana: boolean;

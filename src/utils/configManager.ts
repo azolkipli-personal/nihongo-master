@@ -6,10 +6,11 @@ const DEFAULT_CONFIG: AppConfig = {
   wanikaniApiKey: '',
   geminiApiKey: '',
   openrouterApiKey: '',
-  cohereApiKey: '',
   selectedService: 'gemini',
-  ollamaUrl: 'http://localhost:11434',
-  theme: 'light',
+  geminiModel: 'gemini-3-flash-preview',
+  ollamaModel: '',
+  ollamaUrl: 'http://100.102.113.83:11434',
+  theme: 'dark',
   showFurigana: true,
   showRomaji: true,
   showEnglish: true,
@@ -71,7 +72,6 @@ export function sanitizeConfig(config: AppConfig): Record<string, unknown> {
     wanikaniApiKey: config.wanikaniApiKey ? '***' : '',
     geminiApiKey: config.geminiApiKey ? '***' : '',
     openrouterApiKey: config.openrouterApiKey ? '***' : '',
-    cohereApiKey: config.cohereApiKey ? '***' : '',
   };
 }
 
@@ -81,8 +81,6 @@ export function hasApiKey(config: AppConfig, service: string): boolean {
       return !!config.geminiApiKey;
     case 'openrouter':
       return !!config.openrouterApiKey;
-    case 'cohere':
-      return !!config.cohereApiKey;
     case 'ollama':
       return true;
     default:
@@ -96,8 +94,6 @@ export function getActiveApiKey(config: AppConfig): string | null {
       return config.geminiApiKey || null;
     case 'openrouter':
       return config.openrouterApiKey || null;
-    case 'cohere':
-      return config.cohereApiKey || null;
     case 'ollama':
       return 'ollama';
     default:

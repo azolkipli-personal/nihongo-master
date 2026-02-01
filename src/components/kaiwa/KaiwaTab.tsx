@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Send, Download, Trash2, Loader2, ChevronDown, Upload, FileText, Key } from 'lucide-react';
-import { generateConversation, FREE_GEMINI_MODELS, loadPuterJS } from '../../services/llm';
+import { Send, Download, Trash2, Loader2, ChevronDown, Upload, FileText, Key, RefreshCw } from 'lucide-react';
+import { generateConversation, GEMINI_MODELS, getOllamaModels } from '../../services/llm';
 import { loadConfig, saveConfig, importApiKeyFromFile } from '../../utils/configManager';
 import { saveSession } from '../../utils/sessionStorage';
 import { Conversation } from '../../types';
@@ -18,13 +18,21 @@ export function KaiwaTab() {
   const [showEnglish, setShowEnglish] = useState(true);
   const [selectedModel, setSelectedModel] = useState('gemini-3-flash-preview');
   const [modelDropdownOpen, setModelDropdownOpen] = useState(false);
+  const [ollamaModels, setOllamaModels] = useState<string[]>([]);
+  const [currentService, setCurrentService] = useState('gemini'); // Default, updated on mount
+  const [refreshingModels, setRefreshingModels] = useState(false);
+
   const [exportDropdownOpen, setExportDropdownOpen] = useState(false);
   const [fileInputRef] = useState<React.RefObject<HTMLInputElement>>(() => React.createRef());
   const [apiKeyFileInputRef] = useState<React.RefObject<HTMLInputElement>>(() => React.createRef());
 
   useEffect(() => {
-    // Load Puter.js script when component mounts
-    loadPuterJS().catch(console.error);
+    // Load initial config state
+    const config = loadConfig();
+    setCurrentService(config.selectedService);
+    if (config.selectedService === 'ollama') {
+      fetchOllamaModels(config.ollamaUrl);
+    }
 
     // Check for pending practice word from Tango tab
     const practiceWord = sessionStorage.getItem('kaiwa_practice_word');
@@ -34,11 +42,25 @@ export function KaiwaTab() {
     }
   }, []);
 
+  const fetchOllamaModels = async (url?: string) => {
+    setRefreshingModels(true);
+    try {
+      const models = await getOllamaModels(url);
+      setOllamaModels(models);
+      if (models.length > 0 && !models.includes(selectedModel)) {
+        setSelectedModel(models[0]);
+      }
+    } catch (e) {
+      console.error('Failed to fetch Ollama models', e);
+    } finally {
+      setRefreshingModels(false);
+    }
+  };
+
   const handleGenerate = async () => {
     const config = loadConfig();
     const apiKey = config.selectedService === 'gemini' ? config.geminiApiKey :
-                   config.selectedService === 'openrouter' ? config.openrouterApiKey :
-                   config.selectedService === 'cohere' ? config.cohereApiKey : 'ollama';
+                   config.selectedService === 'openrouter' ? config.openrouterApiKey : 'ollama';
 
     if (!apiKey && config.selectedService !== 'ollama') {
       setError(`Please set your ${config.selectedService} API key in settings`);
@@ -61,8 +83,8 @@ export function KaiwaTab() {
       
       console.log('Received result:', result);
       
-      // Handle the new response format with word details and meanings
-      const newConversations: Conversation[] = result.conversations.map((conv, idx) => ({
+      // Handle the response format
+      const newConversations: Conversation[] = result.conversations.map((conv: any, idx: number) => ({
         id: Date.now().toString() + idx,
         title: conv.title || `${wordList[0]} - Business Context`,
         words: wordList,
@@ -71,8 +93,8 @@ export function KaiwaTab() {
         createdAt: new Date(),
         dialogue: conv.dialogue || [],
         // Store word details and meaning if available
-        wordDetails: (conv as any).wordDetails,
-        meaning: (conv as any).meaning || `${wordList.join(', ')} in IT engineering context - Professional business terminology and usage patterns in software development environments.`,
+        wordDetails: conv.wordDetails,
+        meaning: conv.meaning || `${wordList.join(', ')} in IT engineering context - Professional business terminology and usage patterns in software development environments.`,
       }));
 
       // Validate the response
@@ -81,11 +103,11 @@ export function KaiwaTab() {
       }
 
       // Check if we have proper word explanations
-      newConversations.forEach(conv => {
-        if (!(conv as any).meaning || !(conv as any).wordDetails) {
+      newConversations.forEach((conv: any) => {
+        if (!conv.meaning || !conv.wordDetails) {
           console.warn('Missing word explanation for conversation:', conv.title);
-          (conv as any).meaning = (conv as any).meaning || `${wordList.join(', ')} - Professional IT terminology and business usage in engineering contexts.`;
-          (conv as any).wordDetails = (conv as any).wordDetails || {
+          conv.meaning = conv.meaning || `${wordList.join(', ')} - Professional IT terminology and business usage in engineering contexts.`;
+          conv.wordDetails = conv.wordDetails || {
             kanji: wordList[0] || '',
             kana: '',
             romaji: ''
@@ -368,48 +390,84 @@ export function KaiwaTab() {
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              AI Model
+              AI Model ({currentService === 'ollama' ? 'Local Ollama' : 'Google Gemini'})
             </label>
             <div className="relative">
               <button
-                onClick={() => setModelDropdownOpen(!modelDropdownOpen)}
+                onClick={() => {
+                  const cfg = loadConfig();
+                  if (cfg.selectedService !== currentService) {
+                    setCurrentService(cfg.selectedService);
+                    if (cfg.selectedService === 'ollama') fetchOllamaModels(cfg.ollamaUrl);
+                  }
+                  setModelDropdownOpen(!modelDropdownOpen);
+                }}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent flex items-center justify-between text-left"
               >
-                <span>{FREE_GEMINI_MODELS.find(m => m.id === selectedModel)?.name || selectedModel}</span>
+                <span>
+                  {currentService === 'ollama' 
+                    ? (selectedModel || 'Select a model...') 
+                    : (GEMINI_MODELS.find(m => m.id === selectedModel)?.name || selectedModel)
+                  }
+                </span>
                 <ChevronDown className={`w-5 h-5 transition-transform ${modelDropdownOpen ? 'rotate-180' : ''}`} />
               </button>
               
               {modelDropdownOpen && (
                 <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-y-auto">
-                  {FREE_GEMINI_MODELS.filter(m => m.provider === 'puter').map((model) => (
-                    <button
-                      key={model.id}
-                      onClick={() => {
-                        setSelectedModel(model.id);
-                        setModelDropdownOpen(false);
-                      }}
-                      className={`w-full px-4 py-2 text-left hover:bg-gray-100 ${selectedModel === model.id ? 'bg-blue-50 text-blue-700' : 'text-gray-900'}`}
-                    >
-                      <div className="font-medium">{model.name}</div>
-                      <div className="text-xs text-gray-500">Free via Puter.js</div>
-                    </button>
-                  ))}
-                  <div className="border-t border-gray-200 pt-2 mt-2">
-                    <div className="px-4 py-2 text-xs text-gray-500 font-medium">API Models (Requires Key)</div>
-                    {FREE_GEMINI_MODELS.filter(m => m.provider === 'gemini').map((model) => (
-                      <button
-                        key={model.id}
-                        onClick={() => {
-                          setSelectedModel(model.id);
-                          setModelDropdownOpen(false);
-                        }}
-                        className={`w-full px-4 py-2 text-left hover:bg-gray-100 ${selectedModel === model.id ? 'bg-blue-50 text-blue-700' : 'text-gray-900'}`}
-                      >
-                        <div className="font-medium">{model.name}</div>
-                        <div className="text-xs text-gray-500">Requires API key</div>
-                      </button>
-                    ))}
-                  </div>
+                  {currentService === 'ollama' ? (
+                    <div className="py-1">
+                      <div className="px-2 pb-2 border-b border-gray-100 flex justify-between items-center">
+                        <span className="text-xs font-medium text-gray-500 px-2">Local Models</span>
+                        <button 
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            const cfg = loadConfig();
+                            fetchOllamaModels(cfg.ollamaUrl);
+                          }}
+                          className="p-1 hover:bg-gray-100 rounded text-blue-500"
+                          title="Refresh Models"
+                        >
+                          <RefreshCw className={`w-4 h-4 ${refreshingModels ? 'animate-spin' : ''}`} />
+                        </button>
+                      </div>
+                      
+                      {ollamaModels.length === 0 ? (
+                        <div className="px-4 py-3 text-sm text-gray-500 text-center">
+                          {refreshingModels ? 'Loading...' : 'No models found. Is Ollama running?'}
+                        </div>
+                      ) : (
+                        ollamaModels.map((model) => (
+                          <button
+                            key={model}
+                            onClick={() => {
+                              setSelectedModel(model);
+                              setModelDropdownOpen(false);
+                            }}
+                            className={`w-full px-4 py-2 text-left hover:bg-gray-100 ${selectedModel === model ? 'bg-blue-50 text-blue-700' : 'text-gray-900'}`}
+                          >
+                            <div className="font-medium">{model}</div>
+                          </button>
+                        ))
+                      )}
+                    </div>
+                  ) : (
+                    <div className="py-1">
+                      <div className="px-4 py-2 text-xs text-gray-500 font-medium">Gemini Models</div>
+                      {GEMINI_MODELS.map((model) => (
+                        <button
+                          key={model.id}
+                          onClick={() => {
+                            setSelectedModel(model.id);
+                            setModelDropdownOpen(false);
+                          }}
+                          className={`w-full px-4 py-2 text-left hover:bg-gray-100 ${selectedModel === model.id ? 'bg-blue-50 text-blue-700' : 'text-gray-900'}`}
+                        >
+                          <div className="font-medium">{model.name}</div>
+                        </button>
+                      ))}
+                    </div>
+                  )}
                 </div>
               )}
             </div>

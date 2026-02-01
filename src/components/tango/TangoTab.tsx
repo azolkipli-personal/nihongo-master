@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { RefreshCw, BookOpen, CheckCircle } from 'lucide-react';
+import { RefreshCw, BookOpen, CheckCircle, ExternalLink } from 'lucide-react';
 import { syncVocabulary, getReadyForPractice, getPrimaryReading, getPrimaryMeaning } from '../../services/wanikani';
 import { loadConfig } from '../../utils/configManager';
 import { WaniKaniItem } from '../../types';
@@ -86,7 +86,18 @@ export function TangoTab() {
       {/* Sync Tab */}
       {activeSubTab === 'sync' && (
         <div className="bg-white rounded-lg shadow p-6">
-          <h2 className="text-xl font-bold text-gray-800 mb-4">WaniKani Sync</h2>
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-xl font-bold text-gray-800">WaniKani Sync</h2>
+            <a
+              href="https://www.wanikani.com/dashboard"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-pink-600 bg-pink-50 rounded-lg hover:bg-pink-100 transition-colors"
+            >
+              <ExternalLink className="w-4 h-4" />
+              Open WaniKani
+            </a>
+          </div>
           
           <div className="space-y-4">
             <div>
