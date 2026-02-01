@@ -33,25 +33,33 @@ export async function getUserInfo(apiKey: string): Promise<WaniKaniUser> {
 }
 
 export async function getAssignments(apiKey: string, started = true): Promise<{ id: number; subjectId: number; srsStage: number }[]> {
-  const params = new URLSearchParams();
-  if (started) params.append('started', 'true');
+  const allAssignments = [];
+  let nextUrl: string | null = `${BASE_URL}/assignments?${started ? 'started=true' : ''}`;
 
-  const response = await fetch(`${BASE_URL}/assignments?${params}`, {
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-    },
-  });
+  while (nextUrl) {
+    const response: Response = await fetch(nextUrl, {
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+      },
+    });
 
-  if (!response.ok) {
-    throw new Error(`WaniKani API error: ${response.status}`);
+    if (!response.ok) {
+      throw new Error(`WaniKani API error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    
+    const pageAssignments = data.data.map((item: { id: number; data: { subject_id: number; srs_stage: number } }) => ({
+      id: item.id,
+      subjectId: item.data.subject_id,
+      srsStage: item.data.srs_stage,
+    }));
+    
+    allAssignments.push(...pageAssignments);
+    nextUrl = data.pages?.next_url || null;
   }
 
-  const data = await response.json();
-  return data.data.map((item: { id: number; data: { subject_id: number; srs_stage: number } }) => ({
-    id: item.id,
-    subjectId: item.data.subject_id,
-    srsStage: item.data.srs_stage,
-  }));
+  return allAssignments;
 }
 
 export async function getSubjects(apiKey: string, subjectIds: number[]): Promise<WaniKaniItem[]> {
@@ -66,10 +74,8 @@ export async function getSubjects(apiKey: string, subjectIds: number[]): Promise
   const allSubjects: WaniKaniItem[] = [];
 
   for (const batch of batches) {
-    const params = new URLSearchParams();
-    batch.forEach(id => params.append('ids', id.toString()));
-
-    const response = await fetch(`${BASE_URL}/subjects?${params}`, {
+    const idsString = batch.join(',');
+    const response = await fetch(`${BASE_URL}/subjects?ids=${idsString}`, {
       headers: {
         Authorization: `Bearer ${apiKey}`,
       },

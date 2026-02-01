@@ -9,7 +9,7 @@ export interface AppConfig {
   showFurigana: boolean;
   showRomaji: boolean;
   showEnglish: boolean;
-  userLevel: 'B1' | 'B2' | 'C1' | 'C2' | null;
+  userLevel: 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2' | null;
 }
 
 export interface GrammarPattern {
@@ -18,7 +18,7 @@ export interface GrammarPattern {
   patternWithFurigana: string;
   reading: string;
   meaning: string;
-  cefr: 'B1' | 'B2' | 'C1' | 'C2';
+  cefr: 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2';
   category: string;
   formality: 'casual' | 'neutral' | 'formal' | 'very-formal';
   examples: {
