@@ -4,7 +4,7 @@ import grammarPatterns from '../../data/grammar-patterns.json';
 import { GrammarPattern, BunpoSubTab } from '../../types';
 import { Furigana } from '../common/Furigana';
 import { ToggleButton } from '../common/ToggleButton';
-import { generateSentenceUpgrade, FREE_GEMINI_MODELS, loadPuterJS } from '../../services/llm';
+import { generateSentenceUpgrade, GEMINI_MODELS } from '../../services/llm';
 import { loadConfig } from '../../utils/configManager';
 
 export function BunpoTab() {
@@ -32,8 +32,7 @@ export function BunpoTab() {
   const [modelDropdownOpen, setModelDropdownOpen] = useState(false);
 
   useEffect(() => {
-    // Load Puter.js script when component mounts
-    loadPuterJS().catch(console.error);
+    // Component initialization
   }, []);
 
   // Challenge mode state
@@ -70,8 +69,7 @@ export function BunpoTab() {
     
     const config = loadConfig();
     const apiKey = config.selectedService === 'gemini' ? config.geminiApiKey :
-                   config.selectedService === 'openrouter' ? config.openrouterApiKey :
-                   config.selectedService === 'cohere' ? config.cohereApiKey : 'ollama';
+                   config.selectedService === 'openrouter' ? config.openrouterApiKey : 'ollama';
 
     if (!apiKey && config.selectedService !== 'ollama') {
       alert(`Please set your ${config.selectedService} API key in settings`);
@@ -299,28 +297,15 @@ export function BunpoTab() {
                   onClick={() => setModelDropdownOpen(!modelDropdownOpen)}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent flex items-center justify-between text-left"
                 >
-                  <span>{FREE_GEMINI_MODELS.find(m => m.id === selectedModel)?.name || selectedModel}</span>
+                  <span>{GEMINI_MODELS.find(m => m.id === selectedModel)?.name || selectedModel}</span>
                   <ChevronDownIcon className={`w-5 h-5 transition-transform ${modelDropdownOpen ? 'rotate-180' : ''}`} />
                 </button>
                 
                 {modelDropdownOpen && (
                   <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-y-auto">
-                    {FREE_GEMINI_MODELS.filter(m => m.provider === 'puter').map((model) => (
-                      <button
-                        key={model.id}
-                        onClick={() => {
-                          setSelectedModel(model.id);
-                          setModelDropdownOpen(false);
-                        }}
-                        className={`w-full px-4 py-2 text-left hover:bg-gray-100 ${selectedModel === model.id ? 'bg-blue-50 text-blue-700' : 'text-gray-900'}`}
-                      >
-                        <div className="font-medium">{model.name}</div>
-                        <div className="text-xs text-gray-500">Free via Puter.js</div>
-                      </button>
-                    ))}
-                    <div className="border-t border-gray-200 pt-2 mt-2">
-                      <div className="px-4 py-2 text-xs text-gray-500 font-medium">API Models (Requires Key)</div>
-                      {FREE_GEMINI_MODELS.filter(m => m.provider === 'gemini').map((model) => (
+                    <div className="py-1">
+                      <div className="px-4 py-2 text-xs text-gray-500 font-medium">Gemini Models</div>
+                      {GEMINI_MODELS.map((model) => (
                         <button
                           key={model.id}
                           onClick={() => {
@@ -330,7 +315,6 @@ export function BunpoTab() {
                           className={`w-full px-4 py-2 text-left hover:bg-gray-100 ${selectedModel === model.id ? 'bg-blue-50 text-blue-700' : 'text-gray-900'}`}
                         >
                           <div className="font-medium">{model.name}</div>
-                          <div className="text-xs text-gray-500">Requires API key</div>
                         </button>
                       ))}
                     </div>
