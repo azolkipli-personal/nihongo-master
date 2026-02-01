@@ -56,6 +56,12 @@ export interface Conversation {
     romaji: string;
     english: string;
   }[];
+  wordDetails?: {
+    kanji: string;
+    kana: string;
+    romaji: string;
+  };
+  meaning?: string;
 }
 
 export interface StudySession {

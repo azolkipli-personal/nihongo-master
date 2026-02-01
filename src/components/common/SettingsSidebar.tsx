@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
-import { X, Eye, EyeOff, Save, Check } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { X, Eye, EyeOff, Save, Check, Upload, Download, Key } from 'lucide-react';
 import { AppConfig } from '../../types';
-import { loadConfig, saveConfig } from '../../utils/configManager';
+import { loadConfig, saveConfig, importApiKeyFromFile } from '../../utils/configManager';
+import { useThemeContext } from '../../utils/ThemeContext';
 
 interface SettingsSidebarProps {
   isOpen: boolean;
@@ -9,6 +10,7 @@ interface SettingsSidebarProps {
 }
 
 export function SettingsSidebar({ isOpen, onClose }: SettingsSidebarProps) {
+  const { themeClasses } = useThemeContext();
   const [config, setConfig] = useState<AppConfig>(loadConfig());
   const [showKeys, setShowKeys] = useState({
     wanikani: false,
@@ -17,6 +19,8 @@ export function SettingsSidebar({ isOpen, onClose }: SettingsSidebarProps) {
     cohere: false,
   });
   const [saved, setSaved] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const apiKeyFileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (isOpen) {
@@ -32,6 +36,113 @@ export function SettingsSidebar({ isOpen, onClose }: SettingsSidebarProps) {
 
   const updateConfig = (updates: Partial<AppConfig>) => {
     setConfig(prev => ({ ...prev, ...updates }));
+  };
+
+  const handleExportSettings = () => {
+    try {
+      const settingsToExport = {
+        ...config,
+        // Sanitize API keys for export
+        wanikaniApiKey: config.wanikaniApiKey ? '***CONFIGURED***' : '',
+        geminiApiKey: config.geminiApiKey ? '***CONFIGURED***' : '',
+        openrouterApiKey: config.openrouterApiKey ? '***CONFIGURED***' : '',
+        cohereApiKey: config.cohereApiKey ? '***CONFIGURED***' : '',
+      };
+      
+      // Generate timestamp in YYYYMMDDHHMM format
+      const now = new Date();
+      const timestamp = now.getFullYear().toString() +
+                       (now.getMonth() + 1).toString().padStart(2, '0') +
+                       now.getDate().toString().padStart(2, '0') +
+                       now.getHours().toString().padStart(2, '0') +
+                       now.getMinutes().toString().padStart(2, '0');
+      
+      const dataStr = JSON.stringify(settingsToExport, null, 2);
+      const dataBlob = new Blob([dataStr], { type: 'application/json' });
+      const url = URL.createObjectURL(dataBlob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `${timestamp}-nihongo-master-settings.json`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('Failed to export settings:', error);
+      alert('Failed to export settings. Please try again.');
+    }
+  };
+
+  const handleImportSettings = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleImportApiKey = () => {
+    apiKeyFileInputRef.current?.click();
+  };
+
+  const handleApiKeyFileImport = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    const result = await importApiKeyFromFile(file);
+    if (result.success) {
+      alert(`Successfully imported Gemini API key!`);
+      // Update the config with the new key
+      updateConfig({ geminiApiKey: result.key! });
+      saveConfig({ ...config, geminiApiKey: result.key! });
+    } else {
+      alert(`Failed to import API key: ${result.error}`);
+    }
+    
+    // Reset file input
+    event.target.value = '';
+  };
+
+  const handleFileImport = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      try {
+        const importedConfig = JSON.parse(e.target?.result as string);
+        
+        // Validate the imported config
+        const requiredFields = ['selectedService', 'theme', 'showFurigana', 'showRomaji', 'showEnglish'];
+        const hasRequiredFields = requiredFields.every(field => field in importedConfig);
+        
+        if (!hasRequiredFields) {
+          alert('Invalid settings file. Please select a valid Nihongo Master settings file.');
+          return;
+        }
+
+        // Preserve existing API keys if the imported ones are masked
+        const finalConfig = { ...importedConfig };
+        if (importedConfig.wanikaniApiKey === '***CONFIGURED***') {
+          finalConfig.wanikaniApiKey = config.wanikaniApiKey;
+        }
+        if (importedConfig.geminiApiKey === '***CONFIGURED***') {
+          finalConfig.geminiApiKey = config.geminiApiKey;
+        }
+        if (importedConfig.openrouterApiKey === '***CONFIGURED***') {
+          finalConfig.openrouterApiKey = config.openrouterApiKey;
+        }
+        if (importedConfig.cohereApiKey === '***CONFIGURED***') {
+          finalConfig.cohereApiKey = config.cohereApiKey;
+        }
+
+        setConfig(finalConfig);
+        alert('Settings imported successfully! Click "Save Settings" to apply the changes.');
+      } catch (error) {
+        console.error('Failed to import settings:', error);
+        alert('Failed to import settings. Please check the file format.');
+      }
+    };
+    reader.readAsText(file);
+    
+    // Reset file input
+    event.target.value = '';
   };
 
   const services = [
@@ -59,26 +170,26 @@ export function SettingsSidebar({ isOpen, onClose }: SettingsSidebarProps) {
       />
       
       {/* Sidebar */}
-      <div className="fixed right-0 top-0 h-full w-full max-w-md bg-white shadow-2xl z-50 overflow-y-auto">
+      <div className={`fixed right-0 top-0 h-full w-full max-w-md ${themeClasses.sidebar} shadow-2xl z-50 overflow-y-auto`}>
         <div className="p-6">
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-2xl font-bold text-gray-800">Settings</h2>
+            <h2 className={`text-2xl font-bold ${themeClasses.text}`}>Settings</h2>
             <button
               onClick={onClose}
-              className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+              className={`p-2 rounded-lg ${themeClasses.hover} transition-colors`}
             >
-              <X className="w-6 h-6 text-gray-600" />
+              <X className={`w-6 h-6 ${themeClasses.textSecondary}`} />
             </button>
           </div>
 
           {/* API Keys Section */}
           <section className="mb-8">
-            <h3 className="text-lg font-semibold text-gray-700 mb-4">API Keys</h3>
+            <h3 className={`text-lg font-semibold ${themeClasses.textSecondary} mb-4`}>API Keys</h3>
             
             <div className="space-y-4">
               {/* WaniKani */}
               <div>
-                <label className="block text-sm font-medium text-gray-600 mb-1">
+                <label className={`block text-sm font-medium ${themeClasses.textSecondary} mb-1`}>
                   WaniKani API Key
                 </label>
                 <div className="relative">
@@ -87,7 +198,7 @@ export function SettingsSidebar({ isOpen, onClose }: SettingsSidebarProps) {
                     value={config.wanikaniApiKey}
                     onChange={(e) => updateConfig({ wanikaniApiKey: e.target.value })}
                     placeholder="Enter your WaniKani API key"
-                    className="w-full px-4 py-2 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className={`w-full px-4 py-2 pr-10 border ${themeClasses.input} rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent`}
                   />
                   <button
                     onClick={() => setShowKeys(prev => ({ ...prev, wanikani: !prev.wanikani }))}
@@ -100,7 +211,7 @@ export function SettingsSidebar({ isOpen, onClose }: SettingsSidebarProps) {
 
               {/* Gemini */}
               <div>
-                <label className="block text-sm font-medium text-gray-600 mb-1">
+                <label className={`block text-sm font-medium ${themeClasses.textSecondary} mb-1`}>
                   Google Gemini API Key
                 </label>
                 <div className="relative">
@@ -109,13 +220,22 @@ export function SettingsSidebar({ isOpen, onClose }: SettingsSidebarProps) {
                     value={config.geminiApiKey}
                     onChange={(e) => updateConfig({ geminiApiKey: e.target.value })}
                     placeholder="Enter your Gemini API key"
-                    className="w-full px-4 py-2 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className={`w-full px-4 py-2 pr-10 border ${themeClasses.input} rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent`}
                   />
                   <button
                     onClick={() => setShowKeys(prev => ({ ...prev, gemini: !prev.gemini }))}
                     className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
                   >
                     {showKeys.gemini ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                  </button>
+                </div>
+                <div className="mt-2">
+                  <button
+                    onClick={handleImportApiKey}
+                    className={`flex items-center gap-2 px-3 py-1 text-xs ${themeClasses.textSecondary} hover:${themeClasses.text} transition-colors`}
+                  >
+                    <Key className="w-3 h-3" />
+                    Import from File
                   </button>
                 </div>
               </div>
@@ -184,7 +304,7 @@ export function SettingsSidebar({ isOpen, onClose }: SettingsSidebarProps) {
 
           {/* Service Selection */}
           <section className="mb-8">
-            <h3 className="text-lg font-semibold text-gray-700 mb-4">AI Service</h3>
+            <h3 className={`text-lg font-semibold ${themeClasses.textSecondary} mb-4`}>AI Service</h3>
             <div className="space-y-2">
               {services.map((service) => (
                 <label
@@ -214,7 +334,7 @@ export function SettingsSidebar({ isOpen, onClose }: SettingsSidebarProps) {
 
           {/* Theme Selection */}
           <section className="mb-8">
-            <h3 className="text-lg font-semibold text-gray-700 mb-4">Theme</h3>
+            <h3 className={`text-lg font-semibold ${themeClasses.textSecondary} mb-4`}>Theme</h3>
             <div className="grid grid-cols-2 gap-3">
               {themes.map((theme) => (
                 <button
@@ -223,7 +343,7 @@ export function SettingsSidebar({ isOpen, onClose }: SettingsSidebarProps) {
                   className={`flex items-center p-3 rounded-lg border transition-colors ${
                     config.theme === theme.id
                       ? 'border-blue-500 bg-blue-50'
-                      : 'border-gray-200 hover:bg-gray-50'
+                      : `${themeClasses.border} ${themeClasses.hover}`
                   }`}
                 >
                   <div className={`w-6 h-6 rounded-full ${theme.color} mr-3`} />
@@ -235,7 +355,7 @@ export function SettingsSidebar({ isOpen, onClose }: SettingsSidebarProps) {
 
           {/* Display Options */}
           <section className="mb-8">
-            <h3 className="text-lg font-semibold text-gray-700 mb-4">Display Options</h3>
+            <h3 className={`text-lg font-semibold ${themeClasses.textSecondary} mb-4`}>Display Options</h3>
             <div className="space-y-3">
               <label className="flex items-center">
                 <input
@@ -267,13 +387,41 @@ export function SettingsSidebar({ isOpen, onClose }: SettingsSidebarProps) {
             </div>
           </section>
 
+          {/* Import/Export Settings */}
+          <section className="mb-6">
+            <h3 className={`text-lg font-semibold ${themeClasses.textSecondary} mb-4`}>Settings Management</h3>
+            <div className="grid grid-cols-2 gap-3">
+              <button
+                onClick={handleExportSettings}
+                className={`flex items-center justify-center gap-2 p-3 border ${themeClasses.border} rounded-lg ${themeClasses.hover} transition-colors`}
+              >
+                <Download className={`w-5 h-5 ${themeClasses.textSecondary}`} />
+                <span>Export Settings</span>
+              </button>
+              <button
+                onClick={handleImportSettings}
+                className={`flex items-center justify-center gap-2 p-3 border ${themeClasses.border} rounded-lg ${themeClasses.hover} transition-colors`}
+              >
+                <Upload className={`w-5 h-5 ${themeClasses.textSecondary}`} />
+                <span>Import Settings</span>
+              </button>
+            </div>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept=".json"
+              onChange={handleFileImport}
+              className="hidden"
+            />
+          </section>
+
           {/* Save Button */}
           <button
             onClick={handleSave}
             className={`w-full py-3 rounded-lg font-semibold flex items-center justify-center gap-2 transition-colors ${
               saved
                 ? 'bg-green-500 text-white'
-                : 'bg-blue-500 text-white hover:bg-blue-600'
+                : `${themeClasses.button} ${themeClasses.buttonText}`
             }`}
           >
             {saved ? (
@@ -290,6 +438,24 @@ export function SettingsSidebar({ isOpen, onClose }: SettingsSidebarProps) {
           </button>
         </div>
       </div>
+      
+      {/* Hidden file input for importing conversations */}
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept=".json"
+        onChange={handleFileImport}
+        className="hidden"
+      />
+      
+      {/* Hidden file input for importing API keys */}
+      <input
+        ref={apiKeyFileInputRef}
+        type="file"
+        accept=".json,.txt,.env"
+        onChange={handleApiKeyFileImport}
+        className="hidden"
+      />
     </>
   );
 }
