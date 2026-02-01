@@ -1,9 +1,6 @@
 import { AppConfig } from '../types';
-import { join } from 'path';
-import { homedir } from 'os';
 
-const CONFIG_DIR = join(homedir(), '.nihongo-master');
-const CONFIG_FILE = join(CONFIG_DIR, 'config.json');
+const CONFIG_FILE = '/.nihongo-master/config.json'; // Simplified for browser environment
 
 const DEFAULT_CONFIG: AppConfig = {
   wanikaniApiKey: '',
@@ -24,7 +21,7 @@ export function getConfigPath(): string {
 }
 
 export function getConfigDir(): string {
-  return CONFIG_DIR;
+  return '/.nihongo-master';
 }
 
 export function loadConfig(): AppConfig {
@@ -33,6 +30,12 @@ export function loadConfig(): AppConfig {
       const stored = localStorage.getItem('nihongo-master-config');
       if (stored) {
         return { ...DEFAULT_CONFIG, ...JSON.parse(stored) };
+      }
+      
+      // Check if we have a locally stored API key from file import
+      const localGeminiKey = localStorage.getItem('nihongo-master-gemini-key');
+      if (localGeminiKey) {
+        return { ...DEFAULT_CONFIG, geminiApiKey: localGeminiKey };
       }
     }
     return DEFAULT_CONFIG;
@@ -46,6 +49,8 @@ export function saveConfig(config: AppConfig): void {
   try {
     if (typeof window !== 'undefined') {
       localStorage.setItem('nihongo-master-config', JSON.stringify(config));
+      // Emit event for theme updates
+      window.dispatchEvent(new CustomEvent('configUpdated'));
     }
   } catch (error) {
     console.error('Error saving config:', error);
@@ -98,4 +103,38 @@ export function getActiveApiKey(config: AppConfig): string | null {
     default:
       return null;
   }
+}
+
+export async function importApiKeyFromFile(file: File): Promise<{ success: boolean; key?: string; error?: string }> {
+  try {
+    const text = await file.text();
+    
+    // Try to parse as JSON first (for our config/gemini-key.json format)
+    try {
+      const jsonData = JSON.parse(text);
+      if (jsonData.gemini_api_key) {
+        localStorage.setItem('nihongo-master-gemini-key', jsonData.gemini_api_key);
+        return { success: true, key: jsonData.gemini_api_key };
+      }
+    } catch {
+      // Not JSON, try to extract as plain text
+      const keyMatch = text.match(/AIzaSy[\w-]{35}/);
+      if (keyMatch) {
+        localStorage.setItem('nihongo-master-gemini-key', keyMatch[0]);
+        return { success: true, key: keyMatch[0] };
+      }
+    }
+    
+    return { success: false, error: 'No valid Gemini API key found in file' };
+  } catch (error) {
+    return { success: false, error: 'Failed to read file: ' + (error as Error).message };
+  }
+}
+
+export function getStoredGeminiKey(): string | null {
+  return localStorage.getItem('nihongo-master-gemini-key');
+}
+
+export function storeGeminiKey(key: string): void {
+  localStorage.setItem('nihongo-master-gemini-key', key);
 }
