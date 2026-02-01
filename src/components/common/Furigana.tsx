@@ -1,4 +1,4 @@
-import { parseFurigana } from '../utils/furigana';
+import { parseFurigana } from '../../utils/furigana';
 
 interface FuriganaProps {
   text: string;
@@ -16,7 +16,7 @@ export function Furigana({ text, className = '', showFurigana = true }: Furigana
 
   return (
     <span className={className}>
-      {parts.map((part, index) => {
+      {parts.map((part: any, index: number) => {
         if (part.type === 'ruby') {
           return (
             <ruby key={index} className="furigana-text">
