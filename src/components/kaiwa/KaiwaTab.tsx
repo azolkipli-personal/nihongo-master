@@ -25,6 +25,13 @@ export function KaiwaTab() {
   useEffect(() => {
     // Load Puter.js script when component mounts
     loadPuterJS().catch(console.error);
+
+    // Check for pending practice word from Tango tab
+    const practiceWord = sessionStorage.getItem('kaiwa_practice_word');
+    if (practiceWord) {
+      setWords(practiceWord);
+      sessionStorage.removeItem('kaiwa_practice_word');
+    }
   }, []);
 
   const handleGenerate = async () => {

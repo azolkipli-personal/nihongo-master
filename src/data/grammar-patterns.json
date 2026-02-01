@@ -1,950 +1,285 @@
 [
   {
-    "id": "b1-001",
-    "pattern": "～なければならない",
-    "patternWithFurigana": "～なければならない",
-    "reading": "nakereba naranai",
-    "meaning": "must, have to (obligation)",
-    "cefr": "B1",
-    "category": "obligation",
+    "id": "g-a1-01",
+    "pattern": "〜は〜です",
+    "patternWithFurigana": "〜は〜です",
+    "reading": "wa desu",
+    "meaning": "A is B",
+    "cefr": "A1",
+    "category": "Basic Sentence",
     "formality": "neutral",
     "examples": [
       {
-        "japanese": "明日までに報告書を出さなければならない。",
-        "japaneseWithFurigana": "明日[あした]までに報告書[ほうこくしょ]を出[だ]さなければならない。",
-        "romaji": "Ashita made ni houkokusho wo dasanakereba naranai.",
-        "english": "I must submit the report by tomorrow."
+        "japanese": "私は学生です。",
+        "japaneseWithFurigana": "私[わたし]は 学生[がくせい]です。",
+        "romaji": "Watashi wa gakusei desu.",
+        "english": "I am a student."
       }
     ],
     "mastered": false
   },
   {
-    "id": "b1-002",
-    "pattern": "～てもいい",
-    "patternWithFurigana": "～てもいい",
-    "reading": "temo ii",
-    "meaning": "it's okay to, may (permission)",
-    "cefr": "B1",
-    "category": "permission",
-    "formality": "casual",
-    "examples": [
-      {
-        "japanese": "ここで写真を撮ってもいいですか。",
-        "japaneseWithFurigana": "ここで写真[しゃしん]を撮[と]ってもいいですか。",
-        "romaji": "Koko de shashin wo totte mo ii desu ka.",
-        "english": "Is it okay to take photos here?"
-      }
-    ],
-    "mastered": false
-  },
-  {
-    "id": "b1-003",
-    "pattern": "～てはいけない",
-    "patternWithFurigana": "～てはいけない",
-    "reading": "te wa ikenai",
-    "meaning": "must not, cannot (prohibition)",
-    "cefr": "B1",
-    "category": "prohibition",
+    "id": "g-a1-02",
+    "pattern": "〜か",
+    "patternWithFurigana": "〜か",
+    "reading": "ka",
+    "meaning": "Question particle",
+    "cefr": "A1",
+    "category": "Particle",
     "formality": "neutral",
     "examples": [
       {
-        "japanese": "ここでタバコを吸ってはいけません。",
-        "japaneseWithFurigana": "ここでタバコを吸[す]ってはいけません。",
-        "romaji": "Koko de tabako wo sutte wa ikemasen.",
-        "english": "You must not smoke here."
+        "japanese": "これは本ですか。",
+        "japaneseWithFurigana": "これは 本[ほん]ですか。",
+        "romaji": "Kore wa hon desu ka.",
+        "english": "Is this a book?"
       }
     ],
     "mastered": false
   },
   {
-    "id": "b1-004",
-    "pattern": "～たことがある",
-    "patternWithFurigana": "～たことがある",
-    "reading": "ta koto ga aru",
-    "meaning": "have done before (experience)",
-    "cefr": "B1",
-    "category": "experience",
-    "formality": "casual",
-    "examples": [
-      {
-        "japanese": "日本に行ったことがあります。",
-        "japaneseWithFurigana": "日本[にほん]に行[い]ったことがあります。",
-        "romaji": "Nihon ni itta koto ga arimasu.",
-        "english": "I have been to Japan before."
-      }
-    ],
-    "mastered": false
-  },
-  {
-    "id": "b1-005",
-    "pattern": "～は～より～",
-    "patternWithFurigana": "～は～より～",
-    "reading": "wa yori",
-    "meaning": "A is more ~ than B (comparison)",
-    "cefr": "B1",
-    "category": "comparison",
+    "id": "g-a1-03",
+    "pattern": "〜の〜",
+    "patternWithFurigana": "〜の〜",
+    "reading": "no",
+    "meaning": "Possessive / Modifier",
+    "cefr": "A1",
+    "category": "Particle",
     "formality": "neutral",
     "examples": [
       {
-        "japanese": "東京は大阪より大きいです。",
-        "japaneseWithFurigana": "東京[とうきょう]は大阪[おおさか]より大[おお]きいです。",
-        "romaji": "Toukyou wa Oosaka yori ookii desu.",
-        "english": "Tokyo is bigger than Osaka."
+        "japanese": "私のペンです。",
+        "japaneseWithFurigana": "私[わたし]のペンです。",
+        "romaji": "Watashi no pen desu.",
+        "english": "It is my pen."
       }
     ],
     "mastered": false
   },
   {
-    "id": "b1-006",
-    "pattern": "～やすい",
-    "patternWithFurigana": "～やすい",
-    "reading": "yasui",
-    "meaning": "easy to ~",
-    "cefr": "B1",
-    "category": "ease",
+    "id": "g-a1-04",
+    "pattern": "〜に〜がある/いる",
+    "patternWithFurigana": "〜に〜がある/いる",
+    "reading": "ni aru/iru",
+    "meaning": "There is/are (Existence)",
+    "cefr": "A1",
+    "category": "Existence",
     "formality": "neutral",
     "examples": [
       {
-        "japanese": "この本は読みやすいです。",
-        "japaneseWithFurigana": "この本[ほん]は読[よ]みやすいです。",
-        "romaji": "Kono hon wa yomiyasui desu.",
-        "english": "This book is easy to read."
+        "japanese": "部屋に猫がいます。",
+        "japaneseWithFurigana": "部屋[へや]に 猫[ねこ]がいます。",
+        "romaji": "Heya ni neko ga imasu.",
+        "english": "There is a cat in the room."
       }
     ],
     "mastered": false
   },
   {
-    "id": "b1-007",
-    "pattern": "～にくい",
-    "patternWithFurigana": "～にくい",
-    "reading": "nikui",
-    "meaning": "difficult to ~",
-    "cefr": "B1",
-    "category": "difficulty",
+    "id": "g-a2-01",
+    "pattern": "〜たい",
+    "patternWithFurigana": "〜たい",
+    "reading": "tai",
+    "meaning": "Want to do",
+    "cefr": "A2",
+    "category": "Desire",
     "formality": "neutral",
     "examples": [
       {
-        "japanese": "この漢字は書きにくいです。",
-        "japaneseWithFurigana": "この漢字[かんじ]は書[か]きにくいです。",
-        "romaji": "Kono kanji wa kakinikui desu.",
-        "english": "This kanji is difficult to write."
+        "japanese": "寿司が食べたいです。",
+        "japaneseWithFurigana": "寿司[すし]が 食[た]べたいです。",
+        "romaji": "Sushi ga tabetai desu.",
+        "english": "I want to eat sushi."
       }
     ],
     "mastered": false
   },
   {
-    "id": "b1-008",
-    "pattern": "～ておく",
-    "patternWithFurigana": "～ておく",
-    "reading": "te oku",
-    "meaning": "do something in advance",
-    "cefr": "B1",
-    "category": "preparation",
+    "id": "g-a2-02",
+    "pattern": "〜たり〜たりする",
+    "patternWithFurigana": "〜たり〜たりする",
+    "reading": "tari tari suru",
+    "meaning": "Do things like A and B",
+    "cefr": "A2",
+    "category": "Listing",
     "formality": "neutral",
     "examples": [
       {
-        "japanese": "事前に予約しておきました。",
-        "japaneseWithFurigana": "事前[じぜん]に予約[よやく]しておきました。",
-        "romaji": "Jizen ni yoyaku shite okimashita.",
-        "english": "I made a reservation in advance."
+        "japanese": "日曜日は本を読んだり、テレビを見たりします。",
+        "japaneseWithFurigana": "日曜日[にちようび]は 本[ほん]を 読[よ]んだり、テレビを 見[み]たりします。",
+        "romaji": "Nichiyoubi wa hon o yondari, terebi o mitari shimasu.",
+        "english": "On Sundays, I do things like reading books and watching TV."
       }
     ],
     "mastered": false
   },
   {
-    "id": "b1-009",
-    "pattern": "～方",
-    "patternWithFurigana": "～方[かた]",
-    "reading": "kata",
-    "meaning": "way of doing, how to",
-    "cefr": "B1",
-    "category": "method",
-    "formality": "neutral",
-    "examples": [
-      {
-        "japanese": "この単語の読み方を教えてください。",
-        "japaneseWithFurigana": "この単語[たんご]の読[よ]み方[かた]を教[おし]えてください。",
-        "romaji": "Kono tango no yomikata wo oshiete kudasai.",
-        "english": "Please tell me how to read this word."
-      }
-    ],
-    "mastered": false
-  },
-  {
-    "id": "b1-010",
-    "pattern": "～だけ",
-    "patternWithFurigana": "～だけ",
-    "reading": "dake",
-    "meaning": "only, just",
-    "cefr": "B1",
-    "category": "limitation",
-    "formality": "neutral",
-    "examples": [
-      {
-        "japanese": "あと5分だけ待ってください。",
-        "japaneseWithFurigana": "あと5分[ふん]だけ待[ま]ってください。",
-        "romaji": "Ato gofun dake matte kudasai.",
-        "english": "Please wait just 5 more minutes."
-      }
-    ],
-    "mastered": false
-  },
-  {
-    "id": "b1-011",
-    "pattern": "～しか～ない",
-    "patternWithFurigana": "～しか～ない",
-    "reading": "shika nai",
-    "meaning": "only, nothing but (negative)",
-    "cefr": "B1",
-    "category": "limitation",
-    "formality": "neutral",
-    "examples": [
-      {
-        "japanese": "お金が1000円しかありません。",
-        "japaneseWithFurigana": "お金[かね]が1000円[えん]しかありません。",
-        "romaji": "Okane ga sen en shika arimasen.",
-        "english": "I only have 1000 yen."
-      }
-    ],
-    "mastered": false
-  },
-  {
-    "id": "b1-012",
-    "pattern": "～ながら",
-    "patternWithFurigana": "～ながら",
-    "reading": "nagara",
-    "meaning": "while, during",
-    "cefr": "B1",
-    "category": "simultaneous",
-    "formality": "neutral",
-    "examples": [
-      {
-        "japanese": "音楽を聞きながら勉強します。",
-        "japaneseWithFurigana": "音楽[おんがく]を聞[き]きながら勉強[べんきょう]します。",
-        "romaji": "Ongaku wo kikinagara benkyou shimasu.",
-        "english": "I study while listening to music."
-      }
-    ],
-    "mastered": false
-  },
-  {
-    "id": "b2-001",
-    "pattern": "～次第です",
-    "patternWithFurigana": "～次第[しだい]です",
-    "reading": "shidai desu",
-    "meaning": "as soon as, depend on",
-    "cefr": "B2",
-    "category": "timing",
+    "id": "g-a2-03",
+    "pattern": "〜てもいいですか",
+    "patternWithFurigana": "〜てもいいですか",
+    "reading": "temo ii desu ka",
+    "meaning": "May I...? (Permission)",
+    "cefr": "A2",
+    "category": "Permission",
     "formality": "formal",
     "examples": [
       {
-        "japanese": "資料を確認次第、ご連絡いたします。",
-        "japaneseWithFurigana": "資料[しりょう]を確認[かくにん]次第[しだい]、ご連絡[れんらく]いたします。",
-        "romaji": "Shiryou wo kakunin shidai, gorenraku itashimasu.",
-        "english": "I will contact you as soon as I check the documents."
+        "japanese": "写真を撮ってもいいですか。",
+        "japaneseWithFurigana": "写真[しゃしん]を 撮[と]ってもいいですか。",
+        "romaji": "Shashin o tottemo ii desu ka.",
+        "english": "May I take a photo?"
       }
     ],
     "mastered": false
   },
   {
-    "id": "b2-002",
-    "pattern": "～つつある",
-    "patternWithFurigana": "～つつある",
-    "reading": "tsutsu aru",
-    "meaning": "in the process of, gradually",
-    "cefr": "B2",
-    "category": "progress",
+    "id": "g-a2-04",
+    "pattern": "〜ないでください",
+    "patternWithFurigana": "〜ないでください",
+    "reading": "naide kudasai",
+    "meaning": "Please don't...",
+    "cefr": "A2",
+    "category": "Prohibition",
     "formality": "formal",
     "examples": [
       {
-        "japanese": "状況は改善しつつある。",
-        "japaneseWithFurigana": "状況[じょうきょう]は改善[かいぜん]しつつある。",
-        "romaji": "Joukyou wa kaizen shitsutsu aru.",
-        "english": "The situation is gradually improving."
+        "japanese": "ここでタバコを吸わないでください。",
+        "japaneseWithFurigana": "ここでタバコを 吸[す]わないでください。",
+        "romaji": "Koko de tabako o suwanai de kudasai.",
+        "english": "Please don't smoke here."
       }
     ],
     "mastered": false
   },
   {
-    "id": "b2-003",
-    "pattern": "～わけにはいかない",
-    "patternWithFurigana": "～わけにはいかない",
-    "reading": "wake ni wa ikanai",
-    "meaning": "cannot afford to, must not",
-    "cefr": "B2",
-    "category": "obligation",
-    "formality": "formal",
-    "examples": [
-      {
-        "japanese": "仕事があるので、休むわけにはいかない。",
-        "japaneseWithFurigana": "仕事[しごと]があるので、休[やす]むわけにはいかない。",
-        "romaji": "Shigoto ga aru node, yasumu wake ni wa ikanai.",
-        "english": "I have work, so I cannot afford to take a break."
-      }
-    ],
-    "mastered": false
-  },
-  {
-    "id": "b2-004",
-    "pattern": "～かねない",
-    "patternWithFurigana": "～かねない",
-    "reading": "kanenai",
-    "meaning": "might, there's a possibility",
-    "cefr": "B2",
-    "category": "possibility",
-    "formality": "formal",
-    "examples": [
-      {
-        "japanese": "このままでは遅刻しかねない。",
-        "japaneseWithFurigana": "このままでは遅刻[ちこく]しかねない。",
-        "romaji": "Kono mama de wa chikoku shikanenai.",
-        "english": "At this rate, I might be late."
-      }
-    ],
-    "mastered": false
-  },
-  {
-    "id": "b2-005",
-    "pattern": "～ものだ",
-    "patternWithFurigana": "～ものだ",
-    "reading": "mono da",
-    "meaning": "should, it's natural to (general truth)",
-    "cefr": "B2",
-    "category": "generalization",
+    "id": "g-b1-01",
+    "pattern": "〜といい",
+    "patternWithFurigana": "〜といい",
+    "reading": "to ii",
+    "meaning": "I hope/It would be nice if...",
+    "cefr": "B1",
+    "category": "Suggestion/Hope",
     "formality": "neutral",
     "examples": [
       {
-        "japanese": "年を取ると忘れやすくなるものだ。",
-        "japaneseWithFurigana": "年[とし]を取[と]ると忘[わす]れやすくなるものだ。",
-        "romaji": "Toshi wo toru to wasureyasuku naru mono da.",
-        "english": "It's natural to become more forgetful as you age."
+        "japanese": "明日晴れるといいですね。",
+        "japaneseWithFurigana": "明日[あした] 晴[は]れるといいですね。",
+        "romaji": "Ashita hareru to ii desu ne.",
+        "english": "I hope it clears up tomorrow."
       }
     ],
     "mastered": false
   },
   {
-    "id": "b2-006",
-    "pattern": "～というものだ",
-    "patternWithFurigana": "～というものだ",
-    "reading": "to iu mono da",
-    "meaning": "is what we call, means",
-    "cefr": "B2",
-    "category": "definition",
+    "id": "g-b1-02",
+    "pattern": "〜ようになる",
+    "patternWithFurigana": "〜ようになる",
+    "reading": "you ni naru",
+    "meaning": "Come to be that/Become able to",
+    "cefr": "B1",
+    "category": "Change",
     "formality": "neutral",
     "examples": [
       {
-        "japanese": "これがプロというものだ。",
-        "japaneseWithFurigana": "これがプロというものだ。",
-        "romaji": "Kore ga puro to iu mono da.",
-        "english": "This is what we call professional."
+        "japanese": "日本語が話せるようになりました。",
+        "japaneseWithFurigana": "日本語[にほんご]が 話[はな]せるようになりました。",
+        "romaji": "Nihongo ga hanaseru you ni narimashita.",
+        "english": "I have become able to speak Japanese."
       }
     ],
     "mastered": false
   },
   {
-    "id": "b2-007",
-    "pattern": "～つもりだ",
-    "patternWithFurigana": "～つもりだ",
-    "reading": "tsumori da",
-    "meaning": "intend to, plan to",
-    "cefr": "B2",
-    "category": "intention",
-    "formality": "casual",
+    "id": "g-b1-03",
+    "pattern": "〜し〜し",
+    "patternWithFurigana": "〜し〜し",
+    "reading": "shi shi",
+    "meaning": "And, and (listing reasons)",
+    "cefr": "B1",
+    "category": "Reason",
+    "formality": "neutral",
     "examples": [
       {
-        "japanese": "来月から禁煙するつもりだ。",
-        "japaneseWithFurigana": "来月[らいげつ]から禁煙[きんえん]するつもりだ。",
-        "romaji": "Raigetsu kara kinen suru tsumori da.",
-        "english": "I intend to quit smoking from next month."
+        "japanese": "この店は安いし、美味しいです。",
+        "japaneseWithFurigana": "この 店[みせ]は 安[やす]いし、 美味[おい]しいです。",
+        "romaji": "Kono mise wa yasui shi, oishii desu.",
+        "english": "This shop is cheap and (also) delicious."
       }
     ],
     "mastered": false
   },
   {
-    "id": "b2-008",
-    "pattern": "～ことになっている",
-    "patternWithFurigana": "～ことになっている",
-    "reading": "koto ni natte iru",
-    "meaning": "it is arranged that, supposed to",
+    "id": "g-b2-01",
+    "pattern": "〜に違いない",
+    "patternWithFurigana": "〜に 違[ちが]いない",
+    "reading": "ni chigai nai",
+    "meaning": "Must be / Without a doubt",
     "cefr": "B2",
-    "category": "arrangement",
-    "formality": "formal",
-    "examples": [
-      {
-        "japanese": "会議は3時から始まることになっている。",
-        "japaneseWithFurigana": "会議[かいぎ]は3時[じ]から始[はじ]まることになっている。",
-        "romaji": "Kaigi wa sanji kara hajimaru koto ni natte iru.",
-        "english": "The meeting is scheduled to start at 3 o'clock."
-      }
-    ],
-    "mastered": false
-  },
-  {
-    "id": "b2-009",
-    "pattern": "～こととなる",
-    "patternWithFurigana": "～こととなる",
-    "reading": "koto to naru",
-    "meaning": "it has been decided that (formal)",
-    "cefr": "B2",
-    "category": "arrangement",
-    "formality": "very-formal",
-    "examples": [
-      {
-        "japanese": "来月より新しい制度が導入されることとなる。",
-        "japaneseWithFurigana": "来月[らいげつ]より新[あたら]しい制度[せいど]が導入[どうにゅう]されることとなる。",
-        "romaji": "Raigetsu yori atarashii seido ga dounyuu sareru koto to naru.",
-        "english": "It has been decided that a new system will be introduced from next month."
-      }
-    ],
-    "mastered": false
-  },
-  {
-    "id": "b2-010",
-    "pattern": "～に違いない",
-    "patternWithFurigana": "～に違[ちが]いない",
-    "reading": "ni chigainai",
-    "meaning": "must be, no doubt",
-    "cefr": "B2",
-    "category": "certainty",
+    "category": "Conjecture",
     "formality": "neutral",
     "examples": [
       {
         "japanese": "彼は知っているに違いない。",
-        "japaneseWithFurigana": "彼[かれ]は知[し]っているに違[ちが]いない。",
-        "romaji": "Kare wa shitte iru ni chigainai.",
-        "english": "He must know."
+        "japaneseWithFurigana": "彼[かれ]は 知[し]っているに 違[ちが]いない。",
+        "romaji": "Kare wa shitteiru ni chigai nai.",
+        "english": "He must know about it."
       }
     ],
     "mastered": false
   },
   {
-    "id": "b2-011",
-    "pattern": "～に決まっている",
-    "patternWithFurigana": "～に決[き]まっている",
-    "reading": "ni kimatte iru",
-    "meaning": "definitely, bound to",
+    "id": "g-b2-02",
+    "pattern": "〜かけ",
+    "patternWithFurigana": "〜かけ",
+    "reading": "kake",
+    "meaning": "Half-finished / In the middle of",
     "cefr": "B2",
-    "category": "certainty",
-    "formality": "casual",
-    "examples": [
-      {
-        "japanese": "彼女は合格するに決まっている。",
-        "japaneseWithFurigana": "彼女[かのじょ]は合格[ごうかく]するに決[き]まっている。",
-        "romaji": "Kanojo wa goukaku suru ni kimatte iru.",
-        "english": "She is bound to pass."
-      }
-    ],
-    "mastered": false
-  },
-  {
-    "id": "b2-012",
-    "pattern": "～向け",
-    "patternWithFurigana": "～向[む]け",
-    "reading": "muke",
-    "meaning": "intended for, aimed at",
-    "cefr": "B2",
-    "category": "target",
+    "category": "State",
     "formality": "neutral",
     "examples": [
       {
-        "japanese": "これは初心者向けの本です。",
-        "japaneseWithFurigana": "これは初心者[しょしんしゃ]向[む]けの本[ほん]です。",
-        "romaji": "Kore wa shoshinsha muke no hon desu.",
-        "english": "This is a book for beginners."
+        "japanese": "飲みかけのコーヒー。",
+        "japaneseWithFurigana": "飲[の]みかけのコーヒー。",
+        "romaji": "Nomikake no koohii.",
+        "english": "Half-drunk coffee."
       }
     ],
     "mastered": false
   },
   {
-    "id": "b2-013",
-    "pattern": "～に応じて",
-    "patternWithFurigana": "～に応[おう]じて",
-    "reading": "ni oujite",
-    "meaning": "according to, depending on",
-    "cefr": "B2",
-    "category": "adjustment",
+    "id": "g-c1-01",
+    "pattern": "〜ごとき/ごとく",
+    "patternWithFurigana": "〜ごとき/ごとく",
+    "reading": "gotoki/gotoku",
+    "meaning": "Like / As if (Simile)",
+    "cefr": "C1",
+    "category": "Comparison",
     "formality": "formal",
     "examples": [
       {
-        "japanese": "経験に応じて給料が決まります。",
-        "japaneseWithFurigana": "経験[けいけん]に応[おう]じて給料[きゅうりょう]が決[き]まります。",
-        "romaji": "Keiken ni oujite kyuuryou ga kimarimasu.",
-        "english": "Salary is decided according to experience."
+        "japanese": "時間は矢のごとく過ぎる。",
+        "japaneseWithFurigana": "時間[じかん]は 矢[や]のごとく 過[す]ぎる。",
+        "romaji": "Jikan wa ya no gotoku sugiru.",
+        "english": "Time flies like an arrow."
       }
     ],
     "mastered": false
   },
   {
-    "id": "c1-001",
-    "pattern": "～ざるを得ない",
-    "patternWithFurigana": "～ざるを得[え]ない",
-    "reading": "zaru wo enai",
-    "meaning": "cannot help but, have no choice but",
-    "cefr": "C1",
-    "category": "necessity",
-    "formality": "formal",
-    "examples": [
-      {
-        "japanese": "このままでは辞職せざるを得ない状況だ。",
-        "japaneseWithFurigana": "このままでは辞職[じしょく]せざるを得[え]ない状況[じょうきょう]だ。",
-        "romaji": "Kono mama de wa jishoku sezaru wo enai joukyou da.",
-        "english": "I am in a situation where I have no choice but to resign."
-      }
-    ],
-    "mastered": false
-  },
-  {
-    "id": "c1-002",
-    "pattern": "～やいなや",
-    "patternWithFurigana": "～やいなや",
-    "reading": "ya inaya",
-    "meaning": "as soon as, the moment (literary)",
-    "cefr": "C1",
-    "category": "timing",
+    "id": "g-c2-01",
+    "pattern": "〜禁じ得ない",
+    "patternWithFurigana": "〜 禁[きん]じ 得[え]ない",
+    "reading": "kinji enai",
+    "meaning": "Cannot help but feel / Cannot suppress",
+    "cefr": "C2",
+    "category": "Emotion",
     "formality": "very-formal",
     "examples": [
       {
-        "japanese": "ベルが鳴るやいなや、学生たちは教室を飛び出した。",
-        "japaneseWithFurigana": "ベルが鳴[な]るやいなや、学生[がくせい]たちは教室[きょうしつ]を飛[と]び出[だ]した。",
-        "romaji": "Beru ga naru ya inaya, gakuseitachi wa kyoushitsu wo tobidashita.",
-        "english": "The moment the bell rang, the students rushed out of the classroom."
-      }
-    ],
-    "mastered": false
-  },
-  {
-    "id": "c1-003",
-    "pattern": "～ながらも",
-    "patternWithFurigana": "～ながらも",
-    "reading": "nagara mo",
-    "meaning": "despite, although (formal)",
-    "cefr": "C1",
-    "category": "concession",
-    "formality": "formal",
-    "examples": [
-      {
-        "japanese": "彼は知りながらも黙っていた。",
-        "japaneseWithFurigana": "彼[かれ]は知[し]りながらも黙[だま]っていた。",
-        "romaji": "Kare wa shirinagara mo damatte ita.",
-        "english": "He remained silent despite knowing."
-      }
-    ],
-    "mastered": false
-  },
-  {
-    "id": "c1-004",
-    "pattern": "～とはいえ",
-    "patternWithFurigana": "～とはいえ",
-    "reading": "to wa ie",
-    "meaning": "although, that said",
-    "cefr": "C1",
-    "category": "concession",
-    "formality": "formal",
-    "examples": [
-      {
-        "japanese": "春とはいえ、まだ寒い日が続いている。",
-        "japaneseWithFurigana": "春[はる]とはいえ、まだ寒[さむ]い日[ひ]が続[つづ]いている。",
-        "romaji": "Haru to wa ie, mada samui hi ga tsuzuite iru.",
-        "english": "Although it's spring, cold days continue."
-      }
-    ],
-    "mastered": false
-  },
-  {
-    "id": "c1-005",
-    "pattern": "～きりがない",
-    "patternWithFurigana": "～きりがない",
-    "reading": "kiri ga nai",
-    "meaning": "there's no end to, endless",
-    "cefr": "C1",
-    "category": "limitation",
-    "formality": "neutral",
-    "examples": [
-      {
-        "japanese": "文句を言い出したらきりがない。",
-        "japaneseWithFurigana": "文句[もんく]を言[い]い出[だ]したらきりがない。",
-        "romaji": "Monku wo iidashitara kiri ga nai.",
-        "english": "Once you start complaining, there's no end to it."
-      }
-    ],
-    "mastered": false
-  },
-  {
-    "id": "c1-006",
-    "pattern": "～を禁じ得ない",
-    "patternWithFurigana": "～を禁[きん]じ得[え]ない",
-    "reading": "wo kinji enai",
-    "meaning": "cannot help but feel, overwhelming",
-    "cefr": "C1",
-    "category": "emotion",
-    "formality": "very-formal",
-    "examples": [
-      {
-        "japanese": "その結果には驚きを禁じ得ない。",
-        "japaneseWithFurigana": "その結果[けっか]には驚[おどろ]きを禁[きん]じ得[え]ない。",
-        "romaji": "Sono kekka ni wa odoroki wo kinji enai.",
-        "english": "I cannot help but be surprised at that result."
-      }
-    ],
-    "mastered": false
-  },
-  {
-    "id": "c1-007",
-    "pattern": "～までだ",
-    "patternWithFurigana": "～までだ",
-    "reading": "made da",
-    "meaning": "that's all, merely (resignation)",
-    "cefr": "C1",
-    "category": "resignation",
-    "formality": "neutral",
-    "examples": [
-      {
-        "japanese": "ダメなら諦めるまでだ。",
-        "japaneseWithFurigana": "ダメなら諦[あきら]めるまでだ。",
-        "romaji": "Dame nara akirameru made da.",
-        "english": "If it doesn't work, I'll just give up, that's all."
-      }
-    ],
-    "mastered": false
-  },
-  {
-    "id": "c1-008",
-    "pattern": "～までのことだ",
-    "patternWithFurigana": "～までのことだ",
-    "reading": "made no koto da",
-    "meaning": "it's just a matter of (simple resolution)",
-    "cefr": "C1",
-    "category": "resolution",
-    "formality": "neutral",
-    "examples": [
-      {
-        "japanese": "できるだけ努力するまでのことだ。",
-        "japaneseWithFurigana": "できるだけ努力[どりょく]するまでのことだ。",
-        "romaji": "Dekiru dake doryoku suru made no koto da.",
-        "english": "It's just a matter of trying my best."
-      }
-    ],
-    "mastered": false
-  },
-  {
-    "id": "c1-009",
-    "pattern": "～を余儀なくされる",
-    "patternWithFurigana": "～を余儀[よぎ]なくされる",
-    "reading": "wo yogi naku sareru",
-    "meaning": "be forced to, compelled to (passive)",
-    "cefr": "C1",
-    "category": "compulsion",
-    "formality": "very-formal",
-    "examples": [
-      {
-        "japanese": "悪天候により中止を余儀なくされた。",
-        "japaneseWithFurigana": "悪天候[あくてんこう]により中止[ちゅうし]を余儀[よぎ]なくされた。",
-        "romaji": "Akutenkou ni yori chuushi wo yogi naku sareta.",
-        "english": "The event was forced to be cancelled due to bad weather."
-      }
-    ],
-    "mastered": false
-  },
-  {
-    "id": "c1-010",
-    "pattern": "～に至っては",
-    "patternWithFurigana": "～に至[いた]っては",
-    "reading": "ni itatte wa",
-    "meaning": "as for, when it comes to (extreme)",
-    "cefr": "C1",
-    "category": "emphasis",
-    "formality": "formal",
-    "examples": [
-      {
-        "japanese": "彼に至っては何も知らない。",
-        "japaneseWithFurigana": "彼[かれ]に至[いた]っては何[なに]も知[し]らない。",
-        "romaji": "Kare ni itatte wa nani mo shiranai.",
-        "english": "As for him, he knows nothing at all."
-      }
-    ],
-    "mastered": false
-  },
-  {
-    "id": "c1-011",
-    "pattern": "～が最後",
-    "patternWithFurigana": "～が最後[さいご]",
-    "reading": "ga saigo",
-    "meaning": "once ~, it's over",
-    "cefr": "C1",
-    "category": "condition",
-    "formality": "neutral",
-    "examples": [
-      {
-        "japanese": "あいつが来たが最後、大騒ぎになる。",
-        "japaneseWithFurigana": "あいつが来[き]たが最後[さいご]、大騒[おおさわ]ぎになる。",
-        "romaji": "Aitsu ga kita ga saigo, oosawagi ni naru.",
-        "english": "Once he arrives, it's going to be chaos."
-      }
-    ],
-    "mastered": false
-  },
-  {
-    "id": "c1-012",
-    "pattern": "～たら最後",
-    "patternWithFurigana": "～たら最後[さいご]",
-    "reading": "tara saigo",
-    "meaning": "once ~ happens, it's the end",
-    "cefr": "C1",
-    "category": "condition",
-    "formality": "neutral",
-    "examples": [
-      {
-        "japanese": "彼に言ったら最後、会社中に知れ渡る。",
-        "japaneseWithFurigana": "彼[かれ]に言[い]ったら最後[さいご]、会社中[かいしゃじゅう]に知[し]れ渡[わた]る。",
-        "romaji": "Kare ni ittara saigo, kaishajuu ni shirewataru.",
-        "english": "Once you tell him, the whole company will know."
-      }
-    ],
-    "mastered": false
-  },
-  {
-    "id": "c1-013",
-    "pattern": "～そばから",
-    "patternWithFurigana": "～そばから",
-    "reading": "soba kara",
-    "meaning": "as soon as, no sooner than",
-    "cefr": "C1",
-    "category": "timing",
-    "formality": "neutral",
-    "examples": [
-      {
-        "japanese": "覚えるそばから忘れてしまう。",
-        "japaneseWithFurigana": "覚[おぼ]えるそばから忘[わす]れてしまう。",
-        "romaji": "Oboeru soba kara wasurete shimau.",
-        "english": "I forget things no sooner than I learn them."
-      }
-    ],
-    "mastered": false
-  },
-  {
-    "id": "c2-001",
-    "pattern": "～ごとき",
-    "patternWithFurigana": "～ごとき",
-    "reading": "gotoki",
-    "meaning": "like, such as (literary)",
-    "cefr": "C2",
-    "category": "example",
-    "formality": "very-formal",
-    "examples": [
-      {
-        "japanese": "彼ごとき才能を持つ者は稀だ。",
-        "japaneseWithFurigana": "彼[かれ]ごとき才能[さいのう]を持[も]つ者[もの]は稀[まれ]だ。",
-        "romaji": "Kare gotoki sainou wo motsu mono wa mare da.",
-        "english": "Those with talent such as his are rare."
-      }
-    ],
-    "mastered": false
-  },
-  {
-    "id": "c2-002",
-    "pattern": "～ともなく",
-    "patternWithFurigana": "～ともなく",
-    "reading": "tomo naku",
-    "meaning": "without thinking, absentmindedly",
-    "cefr": "C2",
-    "category": "manner",
-    "formality": "formal",
-    "examples": [
-      {
-        "japanese": "窓の外を見るともなく見ていた。",
-        "japaneseWithFurigana": "窓[まど]の外[そと]を見[み]るともなく見[み]ていた。",
-        "romaji": "Mado no soto wo miru tomo naku mite ita.",
-        "english": "I was looking out the window absentmindedly."
-      }
-    ],
-    "mastered": false
-  },
-  {
-    "id": "c2-003",
-    "pattern": "～にもほどがある",
-    "patternWithFurigana": "～にもほどがある",
-    "reading": "ni mo hodo ga aru",
-    "meaning": "there's a limit to",
-    "cefr": "C2",
-    "category": "limitation",
-    "formality": "neutral",
-    "examples": [
-      {
-        "japanese": "怠けにもほどがある。",
-        "japaneseWithFurigana": "怠[なま]けにもほどがある。",
-        "romaji": "Namake ni mo hodo ga aru.",
-        "english": "There's a limit to laziness."
-      }
-    ],
-    "mastered": false
-  },
-  {
-    "id": "c2-004",
-    "pattern": "～そこにあらず",
-    "patternWithFurigana": "～そこにあらず",
-    "reading": "soko ni arazu",
-    "meaning": "lies not in, is not about",
-    "cefr": "C2",
-    "category": "essence",
-    "formality": "very-formal",
-    "examples": [
-      {
-        "japanese": "問題は能力にあらず、態度そこにあらず。",
-        "japaneseWithFurigana": "問題[もんだい]は能力[のうりょく]にあらず、態度[たいど]そこにあらず。",
-        "romaji": "Mondai wa nouryoku ni arazu, taido soko ni arazu.",
-        "english": "The problem lies not in ability, but in attitude."
-      }
-    ],
-    "mastered": false
-  },
-  {
-    "id": "c2-005",
-    "pattern": "～を皮切りに",
-    "patternWithFurigana": "～を皮切[かわき]りに",
-    "reading": "wo kawakiri ni",
-    "meaning": "starting with, beginning with",
-    "cefr": "C2",
-    "category": "sequence",
-    "formality": "formal",
-    "examples": [
-      {
-        "japanese": "東京を皮切りに、全国でイベントを開催する。",
-        "japaneseWithFurigana": "東京[とうきょう]を皮切[かわき]りに、全国[ぜんこく]でイベントを開催[かいさい]する。",
-        "romaji": "Toukyou wo kawakiri ni, zenkoku de ibento wo kaisai suru.",
-        "english": "Starting with Tokyo, we will hold events nationwide."
-      }
-    ],
-    "mastered": false
-  },
-  {
-    "id": "c2-006",
-    "pattern": "～を禁じ得ない",
-    "patternWithFurigana": "～を禁[きん]じ得[え]ない",
-    "reading": "wo kinji enai",
-    "meaning": "cannot help but feel (stronger)",
-    "cefr": "C2",
-    "category": "emotion",
-    "formality": "very-formal",
-    "examples": [
-      {
-        "japanese": "彼の情熱には感服せざるを得ない。",
-        "japaneseWithFurigana": "彼[かれ]の情熱[じょうねつ]には感服[かんぷく]せざるを得[え]ない。",
-        "romaji": "Kare no jounetsu ni wa kanpuku sezaru wo enai.",
-        "english": "I cannot help but admire his passion."
-      }
-    ],
-    "mastered": false
-  },
-  {
-    "id": "c2-007",
-    "pattern": "～と相まって",
-    "patternWithFurigana": "～と相[あい]まって",
-    "reading": "to aimatte",
-    "meaning": "combined with, together with",
-    "cefr": "C2",
-    "category": "combination",
-    "formality": "formal",
-    "examples": [
-      {
-        "japanese": "技術の進歩と相まって、新しい可能性が生まれた。",
-        "japaneseWithFurigana": "技術[ぎじゅつ]の進歩[しんぽ]と相[あい]まって、新[あたら]しい可能性[かのうせい]が生[う]まれた。",
-        "romaji": "Gijutsu no shinpo to aimatte, atarashii kanousei ga umareta.",
-        "english": "Combined with technological advances, new possibilities have emerged."
-      }
-    ],
-    "mastered": false
-  },
-  {
-    "id": "c2-008",
-    "pattern": "～をものともせず",
-    "patternWithFurigana": "～をものともせず",
-    "reading": "wo mono to mo sezu",
-    "meaning": "without being deterred by",
-    "cefr": "C2",
-    "category": "determination",
-    "formality": "very-formal",
-    "examples": [
-      {
-        "japanese": "彼は困難をものともせず前進した。",
-        "japaneseWithFurigana": "彼[かれ]は困難[こんなん]をものともせず前進[ぜんしん]した。",
-        "romaji": "Kare wa konnan wo mono to mo sezu zenshin shita.",
-        "english": "He advanced without being deterred by difficulties."
-      }
-    ],
-    "mastered": false
-  },
-  {
-    "id": "c2-009",
-    "pattern": "～なりとも",
-    "patternWithFurigana": "～なりとも",
-    "reading": "nari to mo",
-    "meaning": "at least, even if only",
-    "cefr": "C2",
-    "category": "minimum",
-    "formality": "formal",
-    "examples": [
-      {
-        "japanese": "一言なりともお礼を申し上げたい。",
-        "japaneseWithFurigana": "一言[ひとこと]なりともお礼[れい]を申[もう]し上[あ]げたい。",
-        "romaji": "Hitokoto nari to mo orei wo moushiagetai.",
-        "english": "I would like to express my gratitude, even if only a word."
-      }
-    ],
-    "mastered": false
-  },
-  {
-    "id": "c2-010",
-    "pattern": "～と思われる",
-    "patternWithFurigana": "～と思[おも]われる",
-    "reading": "to omowareru",
-    "meaning": "is considered/thought to be (passive)",
-    "cefr": "C2",
-    "category": "speculation",
-    "formality": "very-formal",
-    "examples": [
-      {
-        "japanese": "この現象は自然的変化と思われる。",
-        "japaneseWithFurigana": "この現象[げんしょう]は自然[しぜん]的[てき]変化[へんか]と思[おも]われる。",
-        "romaji": "Kono genshou wa shizenteki henka to omowareru.",
-        "english": "This phenomenon is considered to be a natural change."
-      }
-    ],
-    "mastered": false
-  },
-  {
-    "id": "c2-011",
-    "pattern": "～とは思わない",
-    "patternWithFurigana": "～とは思[おも]わない",
-    "reading": "to wa omowanai",
-    "meaning": "don't think that (emphatic denial)",
-    "cefr": "C2",
-    "category": "denial",
-    "formality": "neutral",
-    "examples": [
-      {
-        "japanese": "彼が裏切るとは思わなかった。",
-        "japaneseWithFurigana": "彼[かれ]が裏切[うらぎ]るとは思[おも]わなかった。",
-        "romaji": "Kare ga uragiru to wa omowanakatta.",
-        "english": "I never thought he would betray us."
-      }
-    ],
-    "mastered": false
-  },
-  {
-    "id": "c2-012",
-    "pattern": "～けれども",
-    "patternWithFurigana": "～けれども",
-    "reading": "keredomo",
-    "meaning": "however, although (very formal)",
-    "cefr": "C2",
-    "category": "concession",
-    "formality": "very-formal",
-    "examples": [
-      {
-        "japanese": "努力はしたけれども、結果は出なかった。",
-        "japaneseWithFurigana": "努力[どりょく]はしたけれども、結果[けっか]は出[で]なかった。",
-        "romaji": "Doryoku wa shita keredomo, kekka wa denakatta.",
-        "english": "Although I made efforts, the results did not come."
+        "japanese": "怒りを禁じ得ない。",
+        "japaneseWithFurigana": "怒[いか]りを 禁[きん]じ 得[え]ない。",
+        "romaji": "Ikari o kinji enai.",
+        "english": "I cannot suppress my anger."
       }
     ],
     "mastered": false

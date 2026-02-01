@@ -46,6 +46,20 @@ export function ShinchokuTab() {
     }
   };
 
+  const [masteryData, setMasteryData] = useState({ grammar: 0, vocab: 0 });
+
+  useEffect(() => {
+    // Load Grammar Mastery
+    const grammarSaved = localStorage.getItem('nihongo-master-grammar-mastered');
+    const grammarCount = grammarSaved ? JSON.parse(grammarSaved).length : 0;
+
+    // Load Vocabulary Count
+    const vocabSaved = localStorage.getItem('nihongo-master-vocabulary');
+    const vocabCount = vocabSaved ? JSON.parse(vocabSaved).length : 0;
+
+    setMasteryData({ grammar: grammarCount, vocab: vocabCount });
+  }, []);
+
   const loadRecentSessions = async () => {
     try {
       // Load recent sessions from storage
@@ -132,8 +146,17 @@ export function ShinchokuTab() {
           <div className="flex items-center">
             <Target className="h-8 w-8 text-green-600" />
             <div className="ml-4">
-              <p className="text-sm font-medium text-gray-600">Overall Progress</p>
-              <p className="text-2xl font-bold text-gray-900">{progressData.overallProgress}%</p>
+              <p className="text-sm font-medium text-gray-600">Mastery</p>
+              <div className="flex gap-4">
+                <div>
+                  <span className="text-2xl font-bold text-gray-900">{masteryData.vocab}</span>
+                  <span className="text-xs text-gray-500 block">Vocab</span>
+                </div>
+                <div>
+                  <span className="text-2xl font-bold text-gray-900">{masteryData.grammar}</span>
+                  <span className="text-xs text-gray-500 block">Grammar</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>

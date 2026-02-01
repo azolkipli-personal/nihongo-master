@@ -12,12 +12,19 @@ export function BunpoTab() {
   const [selectedLevel, setSelectedLevel] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [expandedPattern, setExpandedPattern] = useState<string | null>(null);
-  const [masteredPatterns, setMasteredPatterns] = useState<Set<string>>(new Set());
+  const [masteredPatterns, setMasteredPatterns] = useState<Set<string>>(() => {
+    const saved = localStorage.getItem('nihongo-master-grammar-mastered');
+    return saved ? new Set(JSON.parse(saved)) : new Set();
+  });
+
+  useEffect(() => {
+    localStorage.setItem('nihongo-master-grammar-mastered', JSON.stringify(Array.from(masteredPatterns)));
+  }, [masteredPatterns]);
   const [showEnglish, setShowEnglish] = useState(true);
 
   // Level Upgrader state
   const [sentence, setSentence] = useState('');
-  const [targetLevel, setTargetLevel] = useState<'B1' | 'B2' | 'C1' | 'C2'>('B2');
+  const [targetLevel, setTargetLevel] = useState<'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2'>('B2');
   const [upgradedSentence, setUpgradedSentence] = useState('');
   const [explanation, setExplanation] = useState('');
   const [upgrading, setUpgrading] = useState(false);
@@ -84,6 +91,8 @@ export function BunpoTab() {
   };
 
   const progress = {
+    A1: { total: patterns.filter(p => p.cefr === 'A1').length, mastered: patterns.filter(p => p.cefr === 'A1' && masteredPatterns.has(p.id)).length },
+    A2: { total: patterns.filter(p => p.cefr === 'A2').length, mastered: patterns.filter(p => p.cefr === 'A2' && masteredPatterns.has(p.id)).length },
     B1: { total: patterns.filter(p => p.cefr === 'B1').length, mastered: patterns.filter(p => p.cefr === 'B1' && masteredPatterns.has(p.id)).length },
     B2: { total: patterns.filter(p => p.cefr === 'B2').length, mastered: patterns.filter(p => p.cefr === 'B2' && masteredPatterns.has(p.id)).length },
     C1: { total: patterns.filter(p => p.cefr === 'C1').length, mastered: patterns.filter(p => p.cefr === 'C1' && masteredPatterns.has(p.id)).length },
@@ -115,11 +124,11 @@ export function BunpoTab() {
       {activeSubTab === 'library' && (
         <>
           {/* Progress Overview */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {(['B1', 'B2', 'C1', 'C2'] as const).map((level) => (
+          <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
+            {(['A1', 'A2', 'B1', 'B2', 'C1', 'C2'] as const).map((level) => (
               <div key={level} className="bg-white rounded-lg shadow p-4">
-                <div className="text-sm text-gray-500">{level} Progress</div>
-                <div className="text-2xl font-bold text-gray-800">
+                <div className="text-sm text-gray-500">{level}</div>
+                <div className="text-xl font-bold text-gray-800">
                   {progress[level].mastered}/{progress[level].total}
                 </div>
                 <div className="w-full bg-gray-200 rounded-full h-2 mt-2">
@@ -152,6 +161,8 @@ export function BunpoTab() {
                   className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 >
                   <option value="all">All Levels</option>
+                  <option value="A1">A1</option>
+                  <option value="A2">A2</option>
                   <option value="B1">B1</option>
                   <option value="B2">B2</option>
                   <option value="C1">C1</option>
@@ -267,9 +278,11 @@ export function BunpoTab() {
               </label>
               <select
                 value={targetLevel}
-                onChange={(e) => setTargetLevel(e.target.value as 'B1' | 'B2' | 'C1' | 'C2')}
+                onChange={(e) => setTargetLevel(e.target.value as 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2')}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               >
+                <option value="A1">A1 - Beginner</option>
+                <option value="A2">A2 - Elementary</option>
                 <option value="B1">B1 - Threshold</option>
                 <option value="B2">B2 - Vantage</option>
                 <option value="C1">C1 - Advanced</option>
