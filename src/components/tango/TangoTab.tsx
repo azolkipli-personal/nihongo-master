@@ -228,9 +228,10 @@ export function TangoTab() {
                   </div>
                   <button
                     onClick={() => {
-                      // Switch to KAIWA tab with this word
-                      // This would require state lifting or context
-                      alert(`Practice "${item.characters}" in KAIWA tab!`);
+                      // Save word to session storage for KAIWA tab to pick up
+                      sessionStorage.setItem('kaiwa_practice_word', item.characters);
+                      // Switch to KAIWA tab
+                      window.dispatchEvent(new CustomEvent('switch-tab', { detail: 'kaiwa' }));
                     }}
                     className="w-full mt-2 py-1 bg-blue-500 text-white text-sm rounded hover:bg-blue-600"
                   >

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Header } from './components/common/Header';
 import { TabNavigation } from './components/common/TabNavigation';
 import { SettingsSidebar } from './components/common/SettingsSidebar';
@@ -14,6 +14,18 @@ function App() {
   const [activeTab, setActiveTab] = useState<TabType>('kaiwa');
   const [settingsOpen, setSettingsOpen] = useState(false);
   const { themeClasses } = useThemeContext();
+
+  // Listen for tab switch requests from child components
+  useEffect(() => {
+    const handleTabSwitch = (e: CustomEvent<TabType>) => {
+      setActiveTab(e.detail);
+    };
+
+    window.addEventListener('switch-tab', handleTabSwitch as EventListener);
+    return () => {
+      window.removeEventListener('switch-tab', handleTabSwitch as EventListener);
+    };
+  }, []);
 
   return (
     <div className={`min-h-screen ${themeClasses.background}`}>
