@@ -1,4 +1,10 @@
 export interface LLMResponse {
+  wordDetails: {
+    kanji: string;
+    kana: string;
+    romaji: string;
+  };
+  meaning: string;
   conversations: Array<{
     title: string;
     dialogue: Array<{
@@ -85,6 +91,7 @@ function buildConversationPrompt(words: string[], scenario: string): string {
 Scenario/Context: ${scenario || 'Daily conversation'}
 
 Requirements:
+- First, provide the word details for the main focus word (${words[0]})
 - Generate 5 different conversations, each with 6-8 exchanges
 - Use the vocabulary words naturally in context
 - Include both casual and formal speech where appropriate
@@ -94,6 +101,12 @@ Requirements:
 
 Return ONLY valid JSON in this exact format:
 {
+  "wordDetails": {
+    "kanji": "The main kanji",
+    "kana": "Reading in hiragana/katakana",
+    "romaji": "Romaji reading"
+  },
+  "meaning": "Brief explanation of the word's meaning and usage context",
   "conversations": [
     {
       "title": "Brief title in English",
