@@ -45,6 +45,7 @@ export interface WaniKaniItem {
 
 export interface Conversation {
   id: string;
+  batchId?: string;
   title: string;
   words: string[];
   scenario: string;
