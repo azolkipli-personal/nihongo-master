@@ -1,25 +1,14 @@
-import React from 'react';
-import { Send, Loader2, Upload, Key } from 'lucide-react';
-import { ModelSelector } from './ModelSelector';
+import { Send, Loader2, Upload } from 'lucide-react';
 
 interface KaiwaInputSectionProps {
     words: string;
     scenario: string;
     loading: boolean;
     error: string;
-    currentService: string;
-    selectedModel: string;
-    ollamaModels: string[];
-    modelDropdownOpen: boolean;
-    refreshingModels: boolean;
     onWordsChange: (value: string) => void;
     onScenarioChange: (value: string) => void;
-    onModelDropdownToggle: () => void;
-    onModelSelect: (model: string) => void;
-    onRefreshOllamaModels: () => void;
     onGenerate: () => void;
     onImportConversations: () => void;
-    onImportApiKey: () => void;
 }
 
 export function KaiwaInputSection({
@@ -27,19 +16,10 @@ export function KaiwaInputSection({
     scenario,
     loading,
     error,
-    currentService,
-    selectedModel,
-    ollamaModels,
-    modelDropdownOpen,
-    refreshingModels,
     onWordsChange,
     onScenarioChange,
-    onModelDropdownToggle,
-    onModelSelect,
-    onRefreshOllamaModels,
     onGenerate,
     onImportConversations,
-    onImportApiKey,
 }: KaiwaInputSectionProps) {
     return (
         <div className="bg-white rounded-lg shadow p-6">
@@ -71,17 +51,6 @@ export function KaiwaInputSection({
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     />
                 </div>
-
-                <ModelSelector
-                    currentService={currentService}
-                    selectedModel={selectedModel}
-                    ollamaModels={ollamaModels}
-                    modelDropdownOpen={modelDropdownOpen}
-                    refreshingModels={refreshingModels}
-                    onModelDropdownToggle={onModelDropdownToggle}
-                    onModelSelect={onModelSelect}
-                    onRefreshOllamaModels={onRefreshOllamaModels}
-                />
 
                 {error && (
                     <div className="p-3 bg-red-50 text-red-700 rounded-lg text-sm">
@@ -117,16 +86,9 @@ export function KaiwaInputSection({
                         <Upload className="w-4 h-4" />
                         Import
                     </button>
-                    <button
-                        onClick={onImportApiKey}
-                        className="flex items-center gap-2 px-4 py-2 bg-purple-100 text-purple-700 rounded-lg hover:bg-purple-200"
-                        title="Import API key from file"
-                    >
-                        <Key className="w-4 h-4" />
-                        Import Key
-                    </button>
                 </div>
             </div>
         </div>
     );
 }
+

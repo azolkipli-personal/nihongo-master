@@ -1,11 +1,9 @@
-import { useState, useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { X } from 'lucide-react';
-import { AppConfig } from '../../types';
-import { loadConfig, saveConfig } from '../../utils/configManager';
-import { getOllamaModels } from '../../services/llm';
 import { AppearanceSection } from './AppearanceSection';
 import { LLMConfigSection } from './LLMConfigSection';
 import { SettingsActionButtons } from './SettingsActionButtons';
+import { useSettingsState } from './useSettingsState';
 
 interface SettingsSidebarProps {
   isOpen: boolean;
@@ -13,81 +11,23 @@ interface SettingsSidebarProps {
 }
 
 export function SettingsSidebar({ isOpen, onClose }: SettingsSidebarProps) {
-  const [config, setConfig] = useState<AppConfig>(loadConfig());
-  const [saved, setSaved] = useState(false);
-  const [ollamaModels, setOllamaModels] = useState<string[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const {
+    config,
+    saved,
+    ollamaModels,
+    updateConfig,
+    handleSave,
+    handleExportSettings,
+    handleImportSettings,
+    fetchOllamaModels,
+  } = useSettingsState(isOpen, onClose);
 
-  useEffect(() => {
-    if (isOpen) {
-      setConfig(loadConfig());
-      if (config.selectedService === 'ollama') {
-        fetchOllamaModels();
-      }
-    }
-  }, [isOpen]);
-
-  const fetchOllamaModels = async () => {
-    const models = await getOllamaModels(config.ollamaUrl);
-    setOllamaModels(models);
-  };
-
-  const handleSave = () => {
-    saveConfig(config);
-    setSaved(true);
-    setTimeout(() => {
-      setSaved(false);
-      onClose();
-    }, 1500);
-  };
-
-  const updateConfig = (updates: Partial<AppConfig>) => {
-    setConfig(prev => ({ ...prev, ...updates }));
-  };
-
-  const handleExportSettings = () => {
-    try {
-      const now = new Date();
-      const timestamp = now.getFullYear().toString() +
-        (now.getMonth() + 1).toString().padStart(2, '0') +
-        now.getDate().toString().padStart(2, '0') +
-        now.getHours().toString().padStart(2, '0') +
-        now.getMinutes().toString().padStart(2, '0');
-
-      const dataStr = JSON.stringify(config, null, 2);
-      const dataBlob = new Blob([dataStr], { type: 'application/json' });
-      const url = URL.createObjectURL(dataBlob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = `${timestamp}-nihongo-master-settings.json`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(url);
-    } catch (error) {
-      console.error('Failed to export settings:', error);
-    }
-  };
-
-  const handleImportSettings = () => {
-    fileInputRef.current?.click();
-  };
-
-  const handleFileImport = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      try {
-        const importedConfig = JSON.parse(e.target?.result as string);
-        setConfig({ ...config, ...importedConfig });
-        alert('Settings imported! Click Save to apply.');
-      } catch (error) {
-        alert('Failed to import settings.');
-      }
-    };
-    reader.readAsText(file);
+    if (file) {
+      handleImportSettings(file);
+    }
     event.target.value = '';
   };
 
@@ -128,13 +68,13 @@ export function SettingsSidebar({ isOpen, onClose }: SettingsSidebarProps) {
             )}
             onApiKeyChange={(key) => updateConfig({ geminiApiKey: key })}
             onOllamaUrlChange={(url) => updateConfig({ ollamaUrl: url })}
-            onRefreshOllamaModels={fetchOllamaModels}
+            onRefreshOllamaModels={() => fetchOllamaModels()}
           />
 
           <SettingsActionButtons
             saved={saved}
             onSave={handleSave}
-            onImport={handleImportSettings}
+            onImport={() => fileInputRef.current?.click()}
             onExport={handleExportSettings}
           />
         </div>
@@ -144,9 +84,10 @@ export function SettingsSidebar({ isOpen, onClose }: SettingsSidebarProps) {
         ref={fileInputRef}
         type="file"
         accept=".json"
-        onChange={handleFileImport}
+        onChange={onFileChange}
         className="hidden"
       />
     </>
   );
 }
+
