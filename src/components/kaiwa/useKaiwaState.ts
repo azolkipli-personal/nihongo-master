@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Conversation } from '../../types';
-import { generateConversation, getOllamaModels } from '../../services/llm';
-import { loadConfig, saveConfig, importApiKeyFromFile } from '../../utils/configManager';
+import { generateConversation } from '../../services/llm';
+import { loadConfig } from '../../utils/configManager';
 import { saveSession } from '../../utils/sessionStorage';
 
 export function useKaiwaState() {
@@ -13,41 +13,15 @@ export function useKaiwaState() {
     const [showFurigana, setShowFurigana] = useState(true);
     const [showRomaji, setShowRomaji] = useState(true);
     const [showEnglish, setShowEnglish] = useState(true);
-    const [selectedModel, setSelectedModel] = useState('gemini-3-flash-preview');
-    const [modelDropdownOpen, setModelDropdownOpen] = useState(false);
-    const [ollamaModels, setOllamaModels] = useState<string[]>([]);
-    const [currentService, setCurrentService] = useState('gemini');
-    const [refreshingModels, setRefreshingModels] = useState(false);
     const [exportDropdownOpen, setExportDropdownOpen] = useState(false);
 
-    const fetchOllamaModels = useCallback(async (url?: string) => {
-        setRefreshingModels(true);
-        try {
-            const models = await getOllamaModels(url);
-            setOllamaModels(models);
-            if (models.length > 0 && !models.includes(selectedModel)) {
-                setSelectedModel(models[0]);
-            }
-        } catch (e) {
-            console.error('Failed to fetch Ollama models', e);
-        } finally {
-            setRefreshingModels(false);
-        }
-    }, [selectedModel]);
-
     useEffect(() => {
-        const config = loadConfig();
-        setCurrentService(config.selectedService);
-        if (config.selectedService === 'ollama') {
-            fetchOllamaModels(config.ollamaUrl);
-        }
-
         const practiceWord = sessionStorage.getItem('kaiwa_practice_word');
         if (practiceWord) {
             setWords(practiceWord);
             sessionStorage.removeItem('kaiwa_practice_word');
         }
-    }, [fetchOllamaModels]);
+    }, []);
 
     const handleGenerate = useCallback(async () => {
         const config = loadConfig();
@@ -70,7 +44,10 @@ export function useKaiwaState() {
                 return;
             }
 
-            const result = await generateConversation(wordList, scenario, config.selectedService, apiKey, config.ollamaUrl, selectedModel);
+            // Use the config directly for model selection instead of local state
+            const model = config.selectedService === 'gemini' ? config.geminiModel : config.ollamaModel;
+
+            const result = await generateConversation(wordList, scenario, config.selectedService, apiKey, config.ollamaUrl, model);
 
             const newConversations: Conversation[] = result.conversations.map((conv: any, idx: number) => ({
                 id: Date.now().toString() + idx,
@@ -109,7 +86,7 @@ export function useKaiwaState() {
         } finally {
             setLoading(false);
         }
-    }, [words, scenario, selectedModel]);
+    }, [words, scenario]);
 
     const handleDelete = useCallback((id: string) => {
         setConversations(prev => prev.filter(c => c.id !== id));
@@ -222,25 +199,6 @@ export function useKaiwaState() {
         return importedConversations.length;
     }, []);
 
-    const handleImportApiKey = useCallback(async (file: File) => {
-        const result = await importApiKeyFromFile(file);
-        if (result.success) {
-            const config = loadConfig();
-            saveConfig({ ...config, geminiApiKey: result.key! });
-            return { success: true };
-        }
-        return { success: false, error: result.error };
-    }, []);
-
-    const handleModelDropdownToggle = useCallback(() => {
-        const cfg = loadConfig();
-        if (cfg.selectedService !== currentService) {
-            setCurrentService(cfg.selectedService);
-            if (cfg.selectedService === 'ollama') fetchOllamaModels(cfg.ollamaUrl);
-        }
-        setModelDropdownOpen(!modelDropdownOpen);
-    }, [currentService, modelDropdownOpen, fetchOllamaModels]);
-
     return {
         // State
         words,
@@ -251,11 +209,6 @@ export function useKaiwaState() {
         showFurigana,
         showRomaji,
         showEnglish,
-        selectedModel,
-        modelDropdownOpen,
-        ollamaModels,
-        currentService,
-        refreshingModels,
         exportDropdownOpen,
         // Setters
         setWords,
@@ -263,16 +216,12 @@ export function useKaiwaState() {
         setShowFurigana,
         setShowRomaji,
         setShowEnglish,
-        setSelectedModel,
-        setModelDropdownOpen,
         setExportDropdownOpen,
         // Actions
         handleGenerate,
         handleDelete,
         handleExport,
         handleImportConversations,
-        handleImportApiKey,
-        handleModelDropdownToggle,
-        fetchOllamaModels,
     };
 }
+
