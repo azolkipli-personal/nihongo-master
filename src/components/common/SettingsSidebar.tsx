@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { X } from 'lucide-react';
 import { AppearanceSection } from './AppearanceSection';
 import { LLMConfigSection } from './LLMConfigSection';
+import { IntegrationsSection } from './IntegrationsSection';
 import { SettingsActionButtons } from './SettingsActionButtons';
 import { useSettingsState } from './useSettingsState';
 
@@ -71,6 +72,11 @@ export function SettingsSidebar({ isOpen, onClose }: SettingsSidebarProps) {
             onRefreshOllamaModels={() => fetchOllamaModels()}
           />
 
+          <IntegrationsSection
+            wanikaniApiKey={config.wanikaniApiKey}
+            onWaniKaniApiKeyChange={(key) => updateConfig({ wanikaniApiKey: key })}
+          />
+
           <SettingsActionButtons
             saved={saved}
             onSave={handleSave}
@@ -79,6 +85,7 @@ export function SettingsSidebar({ isOpen, onClose }: SettingsSidebarProps) {
           />
         </div>
       </div>
+
 
       <input
         ref={fileInputRef}

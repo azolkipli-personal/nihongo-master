@@ -5,7 +5,6 @@ import { loadConfig } from '../../utils/configManager';
 import { WaniKaniItem } from '../../types';
 
 export function TangoTab() {
-  const [apiKey, setApiKey] = useState('');
   const [vocabulary, setVocabulary] = useState<WaniKaniItem[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -13,11 +12,6 @@ export function TangoTab() {
   const [activeSubTab, setActiveSubTab] = useState<'sync' | 'vocabulary' | 'suggestions'>('sync');
 
   useEffect(() => {
-    const config = loadConfig();
-    if (config.wanikaniApiKey) {
-      setApiKey(config.wanikaniApiKey);
-    }
-    
     // Load cached vocabulary from localStorage
     const cached = localStorage.getItem('nihongo-master-vocabulary');
     const cachedTime = localStorage.getItem('nihongo-master-vocabulary-time');
@@ -30,8 +24,11 @@ export function TangoTab() {
   }, []);
 
   const handleSync = async () => {
-    if (!apiKey.trim()) {
-      setError('Please enter your WaniKani API key');
+    const config = loadConfig();
+    const apiKey = config.wanikaniApiKey;
+
+    if (!apiKey || !apiKey.trim()) {
+      setError('Please set your WaniKani API key in Settings');
       return;
     }
 
@@ -42,16 +39,11 @@ export function TangoTab() {
       const items = await syncVocabulary(apiKey);
       setVocabulary(items);
       setLastSync(new Date());
-      
+
       // Cache the results
       localStorage.setItem('nihongo-master-vocabulary', JSON.stringify(items));
       localStorage.setItem('nihongo-master-vocabulary-time', new Date().toISOString());
-      
-      // Save API key to config
-      const config = loadConfig();
-      config.wanikaniApiKey = apiKey;
-      localStorage.setItem('nihongo-master-config', JSON.stringify(config));
-      
+
       setActiveSubTab('vocabulary');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to sync vocabulary');
@@ -70,11 +62,10 @@ export function TangoTab() {
           <button
             key={tab}
             onClick={() => setActiveSubTab(tab)}
-            className={`flex-1 py-2 px-4 rounded-md font-medium transition-colors ${
-              activeSubTab === tab
+            className={`flex-1 py-2 px-4 rounded-md font-medium transition-colors ${activeSubTab === tab
                 ? 'bg-blue-500 text-white'
                 : 'text-gray-600 hover:bg-gray-100'
-            }`}
+              }`}
           >
             {tab === 'sync' && 'Sync'}
             {tab === 'vocabulary' && `Vocabulary (${vocabulary.length})`}
@@ -98,29 +89,12 @@ export function TangoTab() {
               Open WaniKani
             </a>
           </div>
-          
+
           <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                WaniKani API Key
-              </label>
-              <input
-                type="password"
-                value={apiKey}
-                onChange={(e) => setApiKey(e.target.value)}
-                placeholder="Enter your WaniKani API key"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              />
-              <p className="text-sm text-gray-500 mt-1">
-                You can find your API key in your{' '}
-                <a 
-                  href="https://www.wanikani.com/settings/account" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-blue-500 hover:underline"
-                >
-                  WaniKani account settings
-                </a>
+            <div className="p-4 bg-gray-50 rounded-lg border border-gray-100">
+              <p className="text-sm text-gray-600">
+                Click the button below to sync your vocabulary progress from WaniKani.
+                Make sure your API key is configured in the <strong>Settings</strong>.
               </p>
             </div>
 
@@ -157,6 +131,7 @@ export function TangoTab() {
         </div>
       )}
 
+
       {/* Vocabulary Tab */}
       {activeSubTab === 'vocabulary' && (
         <div className="bg-white rounded-lg shadow p-6">
@@ -185,11 +160,10 @@ export function TangoTab() {
                     {getPrimaryMeaning(item)}
                   </div>
                   <div className="flex justify-center mt-2">
-                    <span className={`px-2 py-0.5 text-xs rounded-full ${
-                      item.srsStage >= 5 ? 'bg-green-100 text-green-700' :
-                      item.srsStage >= 1 ? 'bg-blue-100 text-blue-700' :
-                      'bg-gray-100 text-gray-600'
-                    }`}>
+                    <span className={`px-2 py-0.5 text-xs rounded-full ${item.srsStage >= 5 ? 'bg-green-100 text-green-700' :
+                        item.srsStage >= 1 ? 'bg-blue-100 text-blue-700' :
+                          'bg-gray-100 text-gray-600'
+                      }`}>
                       SRS {item.srsStage}
                     </span>
                   </div>
