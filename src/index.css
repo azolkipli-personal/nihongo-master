@@ -20,11 +20,14 @@ body {
 /* Furigana styling */
 ruby {
   ruby-position: over;
+  ruby-align: center;
 }
 
 rt {
   font-size: 0.5em;
   color: #6b7280;
+  text-align: center;
+  line-height: 1;
 }
 
 /* Custom scrollbar */
