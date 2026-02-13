@@ -1,4 +1,3 @@
-import React from 'react';
 import { Download, ChevronDown, FileText } from 'lucide-react';
 
 interface ExportDropdownProps {

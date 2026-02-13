@@ -1,0 +1,16 @@
+
+> nihongo-master@1.0.0 test
+> vitest run
+
+
+[1m[46m RUN [49m[22m [36mv4.0.18 [39m[90m/home/azolkipli/clawd/nihongo-master[39m
+
+ [32m✓[39m src/services/__tests__/llm.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 19[2mms[22m[39m
+ [32m✓[39m src/utils/__tests__/furigana.test.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+ [32m✓[39m src/utils/__tests__/configManager.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m3 passed[39m[22m[90m (3)[39m
+[2m      Tests [22m [1m[32m36 passed[39m[22m[90m (36)[39m
+[2m   Start at [22m 23:31:22
+[2m   Duration [22m 1.00s[2m (transform 173ms, setup 219ms, import 144ms, tests 41ms, environment 1.85s)[22m
+

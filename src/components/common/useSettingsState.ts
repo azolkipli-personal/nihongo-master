@@ -43,18 +43,16 @@ export function useSettingsState(isOpen: boolean, onClose: () => void) {
     const handleExportSettings = useCallback(() => {
         try {
             const now = new Date();
-            const timestamp = now.getFullYear().toString() +
+            const dateStr = now.getFullYear().toString() +
                 (now.getMonth() + 1).toString().padStart(2, '0') +
-                now.getDate().toString().padStart(2, '0') +
-                now.getHours().toString().padStart(2, '0') +
-                now.getMinutes().toString().padStart(2, '0');
+                now.getDate().toString().padStart(2, '0');
 
             const dataStr = JSON.stringify(config, null, 2);
             const dataBlob = new Blob([dataStr], { type: 'application/json' });
             const url = URL.createObjectURL(dataBlob);
             const link = document.createElement('a');
             link.href = url;
-            link.download = `${timestamp}-nihongo-master-settings.json`;
+            link.download = `${dateStr}-Nihongo-Master-Settings.json`;
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);

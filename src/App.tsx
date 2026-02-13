@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Header } from './components/common/Header';
 import { TabNavigation } from './components/common/TabNavigation';
 import { SettingsSidebar } from './components/common/SettingsSidebar';
-import { KaiwaTab } from './components/kaiwa/KaiwaTab';
+import { KaiwaTab } from './components/kaiwa_v2/KaiwaTab';
 import { BunpoTab } from './components/bunpo/BunpoTab';
 import { TangoTab } from './components/tango/TangoTab';
 import { ShinchokuTab } from './components/shinchoku/ShinchokuTab';

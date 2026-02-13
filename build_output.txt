@@ -1,0 +1,13 @@
+
+> nihongo-master@1.0.0 build
+> tsc && vite build
+
+src/components/common/AppearanceSection.tsx(1,1): error TS6133: 'React' is declared but its value is never read.
+src/components/common/LLMConfigSection.tsx(1,1): error TS6133: 'React' is declared but its value is never read.
+src/components/common/SettingsActionButtons.tsx(1,1): error TS6133: 'React' is declared but its value is never read.
+src/components/kaiwa_v2/ExportDropdown.tsx(1,1): error TS6133: 'React' is declared but its value is never read.
+src/components/kaiwa_v2/FinalCard.tsx(1,8): error TS6133: 'React' is declared but its value is never read.
+src/components/kaiwa_v2/KaiwaResults.tsx(1,8): error TS6133: 'React' is declared but its value is never read.
+src/components/kaiwa_v2/KaiwaResults.tsx(126,34): error TS18048: 'conv.wordDetails' is possibly 'undefined'.
+src/components/kaiwa_v2/KaiwaResults.tsx(129,82): error TS18048: 'conv.wordDetails' is possibly 'undefined'.
+src/components/kaiwa_v2/ModelSelector.tsx(1,1): error TS6133: 'React' is declared but its value is never read.

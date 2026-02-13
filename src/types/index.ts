@@ -6,7 +6,9 @@ export interface AppConfig {
   geminiModel: string;
   ollamaModel: string;
   ollamaUrl: string;
-  theme: 'light' | 'dark' | 'emerald' | 'ocean';
+  appearance: 'light' | 'dark';
+  colorTheme: 'default' | 'ocean' | 'emerald' | 'purple' | 'pink' | 'yellow' | 'violet';
+  theme: 'light' | 'dark' | 'emerald' | 'ocean'; // Kept for backward compatibility during migration
   showFurigana: boolean;
   showRomaji: boolean;
   showEnglish: boolean;
@@ -60,7 +62,8 @@ export interface Conversation {
   }[];
   wordDetails?: {
     kanji: string;
-    kana: string;
+    kana?: string;
+    hiragana?: string;
     romaji: string;
   };
   meaning?: string;

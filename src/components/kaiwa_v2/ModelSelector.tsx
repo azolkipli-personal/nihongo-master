@@ -1,4 +1,3 @@
-import React from 'react';
 import { ChevronDown, RefreshCw } from 'lucide-react';
 import { GEMINI_MODELS } from '../../services/llm';
 

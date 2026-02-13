@@ -37,7 +37,7 @@ export function useKaiwaState() {
         setError('');
 
         try {
-            const wordList = words.split(',').map(w => w.trim()).filter(Boolean);
+            const wordList = words.split(/[,\n]/).map(w => w.trim()).filter(Boolean);
 
             if (wordList.length === 0) {
                 setError('Please enter at least one vocabulary word');
@@ -49,28 +49,29 @@ export function useKaiwaState() {
 
             const result = await generateConversation(wordList, scenario, config.selectedService, apiKey, config.ollamaUrl, model);
 
-            const newConversations: Conversation[] = result.conversations.map((conv: any, idx: number) => ({
-                id: Date.now().toString() + idx,
-                title: conv.title || `${wordList[0]} - Business Context`,
-                words: wordList,
-                scenario: scenario || 'IT engineering work conversation',
-                service: config.selectedService,
-                createdAt: new Date(),
-                dialogue: conv.dialogue || [],
-                wordDetails: conv.wordDetails,
-                meaning: conv.meaning || `${wordList.join(', ')} in IT engineering context`,
-            }));
+            const newConversations: Conversation[] = [];
+
+            // Flatten the results:Each wordResult has a list of conversations
+            result.results.forEach((wordResult: any, wordIdx: number) => {
+                const conversationsForWord = wordResult.conversations || [];
+                conversationsForWord.forEach((conv: any, convIdx: number) => {
+                    newConversations.push({
+                        id: `${Date.now()}-${wordIdx}-${convIdx}`,
+                        title: conv.title || `${wordResult.wordDetails.kanji} - Practice`,
+                        words: [wordResult.wordDetails.kanji], // Specific word for this block
+                        scenario: scenario || 'Japanese conversation practice',
+                        service: config.selectedService,
+                        createdAt: new Date(),
+                        dialogue: conv.dialogue || [],
+                        wordDetails: wordResult.wordDetails,
+                        meaning: wordResult.meaning,
+                    });
+                });
+            });
 
             if (!newConversations || newConversations.length === 0) {
                 throw new Error('No conversations generated');
             }
-
-            newConversations.forEach((conv: any) => {
-                if (!conv.meaning || !conv.wordDetails) {
-                    conv.meaning = conv.meaning || `${wordList.join(', ')} - Professional IT terminology.`;
-                    conv.wordDetails = conv.wordDetails || { kanji: wordList[0] || '', kana: '', romaji: '' };
-                }
-            });
 
             setConversations(prev => [...newConversations, ...prev]);
 
@@ -160,34 +161,41 @@ export function useKaiwaState() {
         const importedConversations: Conversation[] = [];
 
         data.forEach((item: any, index: number) => {
+            // Case 1: Conversations Array format (from old export)
             if (item.wordDetails && item.conversations) {
                 item.conversations.forEach((conv: any, convIndex: number) => {
-                    if (conv.title && conv.dialogue) {
-                        importedConversations.push({
-                            id: `${Date.now()}-${index}-${convIndex}`,
-                            title: conv.title,
-                            words: item.wordDetails?.kanji ? [item.wordDetails.kanji] : [],
-                            scenario: 'Imported',
-                            service: 'imported',
-                            createdAt: new Date(),
-                            dialogue: conv.dialogue.map((d: any) => ({
-                                speaker: d.speaker || 'A',
-                                japanese: d.japanese || '',
-                                japaneseWithFurigana: d.japanese || '',
-                                romaji: d.romaji || '',
-                                english: d.english || ''
-                            }))
-                        });
-                    }
+                    importedConversations.push({
+                        id: `${Date.now()}-${index}-${convIndex}`,
+                        title: conv.title || 'Imported Conversation',
+                        words: item.wordDetails?.kanji ? [item.wordDetails.kanji] : [],
+                        scenario: 'Imported',
+                        service: 'imported',
+                        createdAt: new Date(),
+                        // Map Word Details and Meaning so MergedInfoBox works
+                        wordDetails: item.wordDetails,
+                        meaning: item.meaning,
+                        dialogue: conv.dialogue.map((d: any) => ({
+                            speaker: d.speaker || 'A',
+                            japanese: d.japanese || d.japaneseWithFurigana || '',
+                            japaneseWithFurigana: d.japaneseWithFurigana || d.japanese || '',
+                            romaji: d.romaji || '',
+                            english: d.english || ''
+                        }))
+                    });
                 });
-            } else if (item.id && item.title && item.dialogue) {
+            }
+            // Case 2: Direct Conversation Object format (current app state)
+            else if (item.id && item.dialogue) {
                 importedConversations.push({
                     id: item.id || Date.now().toString() + index,
-                    title: item.title,
+                    title: item.title || 'Imported',
                     words: item.words || [],
                     scenario: item.scenario || 'Imported',
                     service: item.service || 'imported',
                     createdAt: item.createdAt ? new Date(item.createdAt) : new Date(),
+                    // Ensure these are preserved
+                    wordDetails: item.wordDetails,
+                    meaning: item.meaning,
                     dialogue: item.dialogue || []
                 });
             }

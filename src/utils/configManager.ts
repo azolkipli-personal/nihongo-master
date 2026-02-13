@@ -10,6 +10,8 @@ const DEFAULT_CONFIG: AppConfig = {
   geminiModel: 'gemini-3-flash-preview',
   ollamaModel: '',
   ollamaUrl: 'http://100.102.113.83:11434',
+  appearance: 'dark',
+  colorTheme: 'default',
   theme: 'dark',
   showFurigana: true,
   showRomaji: true,
@@ -30,9 +32,32 @@ export function loadConfig(): AppConfig {
     if (typeof window !== 'undefined') {
       const stored = localStorage.getItem('nihongo-master-config');
       if (stored) {
-        return { ...DEFAULT_CONFIG, ...JSON.parse(stored) };
+        const parsed = JSON.parse(stored);
+        const config = { ...DEFAULT_CONFIG, ...parsed };
+
+        // MIGRATION LOGIC: If appearance/colorTheme are missing, derive from old 'theme'
+        if (!parsed.appearance || !parsed.colorTheme) {
+          if (parsed.theme === 'light') {
+            config.appearance = 'light';
+            config.colorTheme = 'default';
+          } else if (parsed.theme === 'emerald') {
+            config.appearance = 'light';
+            config.colorTheme = 'emerald';
+          } else if (parsed.theme === 'ocean') {
+            config.appearance = 'light';
+            config.colorTheme = 'ocean';
+          } else {
+            // Default to dark
+            config.appearance = 'dark';
+            config.colorTheme = 'default';
+          }
+          // Save the migrated config immediately
+          localStorage.setItem('nihongo-master-config', JSON.stringify(config));
+        }
+
+        return config;
       }
-      
+
       // Check if we have a locally stored API key from file import
       const localGeminiKey = localStorage.getItem('nihongo-master-gemini-key');
       if (localGeminiKey) {
@@ -104,7 +129,7 @@ export function getActiveApiKey(config: AppConfig): string | null {
 export async function importApiKeyFromFile(file: File): Promise<{ success: boolean; key?: string; error?: string }> {
   try {
     const text = await file.text();
-    
+
     // Try to parse as JSON first (for our config/gemini-key.json format)
     try {
       const jsonData = JSON.parse(text);
@@ -120,7 +145,7 @@ export async function importApiKeyFromFile(file: File): Promise<{ success: boole
         return { success: true, key: keyMatch[0] };
       }
     }
-    
+
     return { success: false, error: 'No valid Gemini API key found in file' };
   } catch (error) {
     return { success: false, error: 'Failed to read file: ' + (error as Error).message };

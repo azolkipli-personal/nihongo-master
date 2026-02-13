@@ -1,4 +1,3 @@
-import React from 'react';
 import { GEMINI_MODELS } from '../../services/llm';
 
 interface LLMConfigSectionProps {
