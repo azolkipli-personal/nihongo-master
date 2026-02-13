@@ -50,8 +50,10 @@ export function SettingsSidebar({ isOpen, onClose }: SettingsSidebarProps) {
           </div>
 
           <AppearanceSection
-            theme={config.theme}
-            onThemeChange={(theme) => updateConfig({ theme: theme as any })}
+            appearance={config.appearance}
+            colorTheme={config.colorTheme}
+            onAppearanceChange={(app) => updateConfig({ appearance: app })}
+            onColorThemeChange={(theme) => updateConfig({ colorTheme: theme as any })}
           />
 
           <LLMConfigSection

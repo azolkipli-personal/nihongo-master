@@ -4,16 +4,17 @@ import { loadConfig } from './configManager';
 import { useTheme } from './theme';
 
 interface ThemeContextType {
-  theme: AppConfig['theme'];
+  appearance: 'light' | 'dark';
+  colorTheme: AppConfig['colorTheme'];
   themeClasses: ReturnType<typeof useTheme>;
-  updateTheme: (theme: AppConfig['theme']) => void;
+  updateTheme: (appearance: 'light' | 'dark', colorTheme: AppConfig['colorTheme']) => void;
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [config, setConfig] = useState(loadConfig());
-  const themeClasses = useTheme(config.theme);
+  const themeClasses = useTheme(config.appearance, config.colorTheme);
 
   useEffect(() => {
     const handleConfigUpdate = () => {
@@ -24,13 +25,14 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     return () => window.removeEventListener('configUpdated', handleConfigUpdate);
   }, []);
 
-  const updateTheme = (_newTheme: AppConfig['theme']) => {
+  const updateTheme = (_appearance: 'light' | 'dark', _colorTheme: AppConfig['colorTheme']) => {
     // This will be handled by the config system
   };
 
   return (
     <ThemeContext.Provider value={{
-      theme: config.theme,
+      appearance: config.appearance,
+      colorTheme: config.colorTheme,
       themeClasses,
       updateTheme,
     }}>
