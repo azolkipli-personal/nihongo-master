@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Trash2, Play, Pause, Volume2 } from 'lucide-react';
+import { Trash2, Play, Pause, ChevronDown, ChevronRight } from 'lucide-react';
 import { Conversation } from '../../types';
 import { ToggleButton } from '../common/ToggleButton';
 import { ExportDropdown } from './ExportDropdown';
@@ -32,7 +32,7 @@ function MergedInfoBox({ conversation: conv }: { conversation: Conversation }) {
     const contextLines = meaningLines.slice(1);
 
     return (
-        <div className="mb-10 p-8 bg-indigo-50 rounded-3xl border-4 border-indigo-200 shadow-xl overflow-hidden relative">
+        <div className="mb-6 p-8 bg-indigo-50 rounded-3xl border-4 border-indigo-200 shadow-xl overflow-hidden relative">
             <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-600"></div>
 
             <div className="text-center font-black text-indigo-900 mb-8 border-b-2 border-indigo-100 pb-4 text-2xl uppercase tracking-widest">
@@ -93,8 +93,6 @@ function FinalCard({
     showEnglish,
     onDelete,
 }: ConversationCardProps) {
-    console.log("🚀 INLINED FINAL CARD LOADED 🚀", conv);
-
     const [playingLine, setPlayingLine] = useState<number | null>(null);
     const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
     const [loading, setLoading] = useState<number | null>(null);
@@ -113,25 +111,17 @@ function FinalCard({
         setLoading(lineIndex);
 
         try {
-            // Ensure we use the stripped text for TTS
             const cleanText = stripFurigana(text);
-            console.log('TTS playing text:', cleanText);
-
             const response = await fetch('http://localhost:8001/tts', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ text: cleanText }),
             });
 
-            if (!response.ok) {
-                throw new Error('TTS request failed');
-            }
+            if (!response.ok) throw new Error('TTS request failed');
 
             const data = await response.json();
             const audioUrl = `http://localhost:8001${data.audio_url}`;
-
             const newAudio = new Audio(audioUrl);
             newAudio.play();
 
@@ -143,7 +133,6 @@ function FinalCard({
             setAudio(newAudio);
             setPlayingLine(lineIndex);
             setLoading(null);
-
         } catch (error) {
             console.error('TTS Error:', error);
             setLoading(null);
@@ -161,59 +150,101 @@ function FinalCard({
     };
 
     return (
-        <div className="border border-gray-200 rounded-lg p-4 relative bg-white shadow-sm">
-
+        <div className="border border-gray-200 rounded-xl p-4 relative bg-gray-50/50 shadow-sm">
             <div className="flex justify-between items-start mb-4">
-                <h3 className="font-bold text-xl text-gray-800">{conv.title}</h3>
+                <h3 className="font-bold text-lg text-gray-800">{conv.title}</h3>
                 <button
                     onClick={() => onDelete(conv.id)}
-                    className="text-red-500 hover:text-red-700 p-1 hover:bg-red-50 rounded"
+                    className="text-red-400 hover:text-red-600 p-1 hover:bg-red-50 rounded-full transition-colors"
                 >
-                    <Trash2 className="w-5 h-5" />
+                    <Trash2 className="w-4 h-4" />
                 </button>
             </div>
 
             <div className="space-y-4">
                 {conv.dialogue.map((line, idx) => (
-                    <div key={idx} className="flex gap-4 items-start group hover:bg-gray-50 p-2 rounded-lg transition-colors">
-                        <span className="font-bold text-blue-600 min-w-[60px] pt-1">{line.speaker}:</span>
+                    <div key={idx} className="flex gap-4 items-start group hover:bg-white p-2 rounded-lg transition-colors shadow-none hover:shadow-sm">
+                        <span className="font-bold text-blue-600 min-w-[60px] pt-1 text-sm">{line.speaker}:</span>
                         <div className="flex-1">
-                            <div className="text-lg text-gray-900 mb-1">
+                            <div className="text-gray-900 mb-1 leading-relaxed">
                                 <Furigana text={line.japaneseWithFurigana} showFurigana={showFurigana} />
                             </div>
                             {showRomaji && (
-                                <div className="text-sm text-gray-500 italic mb-0.5">{line.romaji}</div>
+                                <div className="text-xs text-gray-400 italic mb-0.5 tracking-tight">{line.romaji}</div>
                             )}
                             {showEnglish && (
-                                <div className="text-sm text-gray-600">{line.english}</div>
+                                <div className="text-xs text-gray-500 leading-tight">{line.english}</div>
                             )}
                         </div>
                         <button
                             onClick={() => playingLine === idx ? stopAudio() : playAudio(line.japaneseWithFurigana, idx)}
-                            className={`p-2.5 rounded-full transition-all shadow-sm ${playingLine === idx
-                                ? 'bg-red-100 text-red-600 hover:bg-red-200 ring-2 ring-red-100'
-                                : 'bg-white text-blue-600 hover:bg-blue-50 border border-gray-200 hover:border-blue-200'
+                            className={`p-2 rounded-full transition-all ${playingLine === idx
+                                ? 'bg-red-100 text-red-600'
+                                : 'bg-white text-blue-500 border border-gray-100 hover:border-blue-200'
                                 }`}
                         >
                             {loading === idx ? (
-                                <div className="w-5 h-5 animate-spin rounded-full border-2 border-blue-600 border-t-transparent" />
+                                <div className="w-4 h-4 animate-spin rounded-full border-2 border-blue-500 border-t-transparent" />
                             ) : playingLine === idx ? (
-                                <Pause className="w-5 h-5" />
+                                <Pause className="w-4 h-4" />
                             ) : (
-                                <Play className="w-5 h-5 ml-0.5" />
+                                <Play className="w-4 h-4 ml-0.5" />
                             )}
                         </button>
                     </div>
                 ))}
             </div>
+        </div>
+    );
+}
 
-            <div className="mt-4 pt-4 border-t border-gray-100 text-xs text-gray-400 flex justify-between items-center">
-                <span>Generated with {conv.service} • {conv.createdAt.toLocaleString()}</span>
-                <div className="flex items-center gap-1.5 text-blue-600 font-medium px-2 py-1 bg-blue-50 rounded-full">
-                    <Volume2 className="w-3 h-3" />
-                    <span>Japanese TTS</span>
+interface WordBlockProps {
+    word: string;
+    conversations: Conversation[];
+    showFurigana: boolean;
+    showRomaji: boolean;
+    showEnglish: boolean;
+    onDelete: (id: string) => void;
+}
+
+function WordBlock({ word, conversations, showFurigana, showRomaji, showEnglish, onDelete }: WordBlockProps) {
+    const [isCollapsed, setIsCollapsed] = useState(false);
+    const firstConv = conversations[0];
+
+    return (
+        <div className="border border-gray-200 rounded-3xl overflow-hidden bg-white shadow-sm mb-8">
+            <button
+                onClick={() => setIsCollapsed(!isCollapsed)}
+                className="w-full px-6 py-4 bg-gray-50 flex items-center justify-between hover:bg-gray-100 transition-colors border-b border-gray-100"
+            >
+                <div className="flex items-center gap-3">
+                    <span className="bg-indigo-600 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
+                        Word Block
+                    </span>
+                    <h3 className="text-xl font-black text-indigo-900">
+                        {word} <span className="text-indigo-400 font-medium ml-2 text-sm">({conversations.length} examples)</span>
+                    </h3>
                 </div>
-            </div>
+                {isCollapsed ? <ChevronRight className="text-indigo-400" /> : <ChevronDown className="text-indigo-400" />}
+            </button>
+
+            {!isCollapsed && (
+                <div className="p-6 space-y-8 animate-in fade-in slide-in-from-top-2 duration-300">
+                    <MergedInfoBox conversation={firstConv} />
+                    <div className="grid grid-cols-1 gap-6">
+                        {conversations.map((conv) => (
+                            <FinalCard
+                                key={conv.id}
+                                conversation={conv}
+                                showFurigana={showFurigana}
+                                showRomaji={showRomaji}
+                                showEnglish={showEnglish}
+                                onDelete={onDelete}
+                            />
+                        ))}
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
@@ -245,12 +276,24 @@ export function KaiwaResults({
     onExport,
     onDelete,
 }: KaiwaResultsProps) {
+    if (conversations.length === 0) return null;
+
+    // Group conversations by word (kanji)
+    const wordGroups: Record<string, Conversation[]> = {};
+    conversations.forEach(conv => {
+        const kanji = conv.wordDetails?.kanji || 'Vocabulary';
+        if (!wordGroups[kanji]) wordGroups[kanji] = [];
+        wordGroups[kanji].push(conv);
+    });
+
+    const words = Object.keys(wordGroups);
+
     return (
-        <div className="bg-white rounded-lg shadow-lg p-8 border border-gray-200 relative">
-            <div className="flex justify-between items-center mb-8">
-                <h2 className="text-2xl font-bold text-gray-800">Conversation Practice</h2>
+        <div className="bg-transparent relative space-y-8">
+            <div className="bg-white rounded-3xl shadow-lg p-6 border border-gray-100 flex justify-between items-center mb-10">
+                <h2 className="text-2xl font-black text-gray-800 tracking-tight">Practice Dashboard</h2>
                 <div className="flex items-center gap-4">
-                    <div className="flex gap-2 bg-gray-100 p-1 rounded-lg">
+                    <div className="hidden sm:flex gap-2 bg-gray-50 p-1.5 rounded-2xl border border-gray-100">
                         <ToggleButton label="Furigana" active={showFurigana} onClick={onToggleFurigana} />
                         <ToggleButton label="Romaji" active={showRomaji} onClick={onToggleRomaji} />
                         <ToggleButton label="English" active={showEnglish} onClick={onToggleEnglish} />
@@ -266,25 +309,18 @@ export function KaiwaResults({
                 </div>
             </div>
 
-            <div className="space-y-12">
-                {conversations.map((conv, idx) => {
-                    // Show info box for the first conversation, or if the focus word has changed
-                    const showInfoBox = idx === 0 ||
-                        conv.wordDetails?.kanji !== conversations[idx - 1].wordDetails?.kanji;
-
-                    return (
-                        <div key={conv.id} className="space-y-6">
-                            {showInfoBox && <MergedInfoBox conversation={conv} />}
-                            <FinalCard
-                                conversation={conv}
-                                showFurigana={showFurigana}
-                                showRomaji={showRomaji}
-                                showEnglish={showEnglish}
-                                onDelete={onDelete}
-                            />
-                        </div>
-                    );
-                })}
+            <div className="space-y-6">
+                {words.map((word) => (
+                    <WordBlock
+                        key={word}
+                        word={word}
+                        conversations={wordGroups[word]}
+                        showFurigana={showFurigana}
+                        showRomaji={showRomaji}
+                        showEnglish={showEnglish}
+                        onDelete={onDelete}
+                    />
+                ))}
             </div>
         </div>
     );
