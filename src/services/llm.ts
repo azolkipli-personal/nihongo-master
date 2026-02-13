@@ -102,7 +102,7 @@ Requirements for EACH word/phrase results entry:
     - English meaning on the FIRST line.
     - Detailed context/scenario explanation in a subsequent paragraph (use \\n\\n).
 - "conversations":
-    - Generate 1-2 different conversations focusing on this specific word.
+    - Generate 3 different conversations focusing on this specific word.
     - Each conversation should have 6-8 exchanges.
     - Use the vocabulary word naturally in context.
     - Use ONLY 漢字[ふりがな] format for furigana (e.g. 日本[にほん]).

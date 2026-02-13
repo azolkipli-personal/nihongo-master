@@ -71,10 +71,16 @@ export function KaiwaInputSection({
                     ) : (
                         <>
                             <Send className="w-5 h-5" />
-                            Generate Conversation
+                            Generate
                         </>
                     )}
                 </button>
+
+                {loading && (
+                    <div className="text-center text-sm text-blue-600 animate-pulse font-medium">
+                        Generating learning focus blocks...
+                    </div>
+                )}
 
                 {/* Import/Export Section - Always Available */}
                 <div className="flex gap-2 pt-4 border-t border-gray-200">
