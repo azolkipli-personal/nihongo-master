@@ -1,0 +1,52 @@
+* Host localhost:5173 was resolved.
+* IPv6: ::1
+* IPv4: 127.0.0.1
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*   Trying [::1]:5173...
+* connect to ::1 port 5173 from ::1 port 53654 failed: Connection refused
+*   Trying 127.0.0.1:5173...
+* Connected to localhost (127.0.0.1) port 5173
+* using HTTP/1.x
+> GET / HTTP/1.1
+> Host: localhost:5173
+> User-Agent: curl/8.15.0
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/1.1 200 OK
+< Vary: Origin
+< Content-Type: text/html
+< Cache-Control: no-cache
+< Etag: W/"397-3xaAs1c16UZprnIeoUaxEC9UaOU"
+< Date: Fri, 13 Feb 2026 14:45:13 GMT
+< Connection: keep-alive
+< Keep-Alive: timeout=5
+< Content-Length: 919
+< 
+{ [919 bytes data]
+100   919  100   919    0     0  72101      0 --:--:-- --:--:-- --:--:-- 76583
+* Connection #0 to host localhost left intact
+<!doctype html>
+<html lang="en">
+  <head>
+    <script type="module">import { injectIntoGlobalHook } from "/@react-refresh";
+injectIntoGlobalHook(window);
+window.$RefreshReg$ = () => {};
+window.$RefreshSig$ = () => (type) => type;</script>
+
+    <script type="module" src="/@vite/client"></script>
+
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nihongo Master</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

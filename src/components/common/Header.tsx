@@ -9,15 +9,15 @@ export function Header({ onOpenSettings }: HeaderProps) {
   const { themeClasses } = useThemeContext();
 
   return (
-    <header className={`${themeClasses.card} border-b ${themeClasses.border} sticky top-0 z-40`}>
+    <header className={`${themeClasses.banner} border-b border-white/10 sticky top-0 z-40 shadow-xl transition-colors duration-500`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center gap-3">
-            <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              日本語 Master
+            <span className="text-2xl font-black text-white tracking-tight drop-shadow-md">
+              日本語 MASTER
             </span>
           </div>
-          
+
           <button
             onClick={onOpenSettings}
             className={`p-2 rounded-lg ${themeClasses.hover} transition-colors`}

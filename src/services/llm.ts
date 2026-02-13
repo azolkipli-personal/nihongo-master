@@ -1,7 +1,7 @@
-export interface LLMResponse {
+export interface WordResult {
   wordDetails: {
     kanji: string;
-    kana: string;
+    hiragana: string;
     romaji: string;
   };
   meaning: string;
@@ -17,16 +17,17 @@ export interface LLMResponse {
   }>;
 }
 
+export interface LLMResponse {
+  results: WordResult[];
+}
+
 export const GEMINI_MODELS = [
-  { id: 'gemini-3-flash-preview', name: 'Gemini 3 Flash Preview' },
-  { id: 'gemini-3-pro-preview', name: 'Gemini 3 Pro Preview' },
-  { id: 'gemini-2.0-flash', name: 'Gemini 2.0 Flash' },
-  { id: 'gemini-2.0-pro-exp-02-05', name: 'Gemini 2.0 Pro Experimental' },
-  { id: 'gemini-1.5-pro', name: 'Gemini 1.5 Pro' },
-  { id: 'gemini-1.5-flash', name: 'Gemini 1.5 Flash' },
-  { id: 'gemini-1.5-flash-8b', name: 'Gemini 1.5 Flash-8B' },
-  { id: 'gemini-2.5-flash-native-audio-preview-12-2025', name: 'Gemini 2.5 Flash Native Audio Preview' },
-  { id: 'gemini-flash-lite-latest', name: 'Gemini Flash Lite Latest' },
+  { id: 'gemini-3-pro-preview', name: 'Gemini-3-Pro' },
+  { id: 'gemini-3-flash-preview', name: 'Gemini-3-Flash' },
+  { id: 'gemini-2.5-pro-preview', name: 'Gemini-2.5-Pro' },
+  { id: 'gemini-2.5-flash-native-audio-preview', name: 'Gemini-2.5-Flash' },
+  { id: 'gemini-flash-lite-latest', name: 'Gemini-2.5-Flash-Lite' },
+  { id: 'gemini-2.0-flash', name: 'Gemini-2-Flash' },
 ];
 
 export async function getOllamaModels(url: string = 'http://localhost:11434'): Promise<string[]> {
@@ -86,37 +87,50 @@ export async function generateSentenceUpgrade(
 }
 
 function buildConversationPrompt(words: string[], scenario: string): string {
-  return `Generate 5 Japanese conversations using the following vocabulary words: ${words.join(', ')}
-
+  return `Act as a professional Japanese language instructor.
 Scenario/Context: ${scenario || 'Daily conversation'}
 
-Requirements:
-- First, provide the word details for the main focus word (${words[0]})
-- Generate 5 different conversations, each with 6-8 exchanges
-- Use the vocabulary words naturally in context
-- Include both casual and formal speech where appropriate
-- Add furigana in format: 漢字[かんじ]
-- Include romaji transliteration
-- Provide English translations
+For EACH of the following vocabulary words or phrases: ${words.join(', ')}
+You MUST generate a dedicated study block.
+
+Requirements for EACH word/phrase results entry:
+- "wordDetails":
+    - "kanji": The word in proper Japanese KANJI (e.g. if input is 'renkei', return '連携'). MUST NOT be Romaji.
+    - "hiragana": The word in proper HIRAGANA (e.g. if input is 'renkei', return 'れんけい').
+    - "romaji": The word in Romaji (e.g. 'renkei').
+- "meaning":
+    - English meaning on the FIRST line.
+    - Detailed context/scenario explanation in a subsequent paragraph (use \\n\\n).
+- "conversations":
+    - Generate 1-2 different conversations focusing on this specific word.
+    - Each conversation should have 6-8 exchanges.
+    - Use the vocabulary word naturally in context.
+    - Use ONLY 漢字[ふりがな] format for furigana (e.g. 日本[にほん]).
+    - Provide Romaji transliteration.
+    - Provide English translations.
 
 Return ONLY valid JSON in this exact format:
 {
-  "wordDetails": {
-    "kanji": "The main kanji",
-    "kana": "Reading in hiragana/katakana",
-    "romaji": "Romaji reading"
-  },
-  "meaning": "Brief explanation of the word's meaning and usage context",
-  "conversations": [
+  "results": [
     {
-      "title": "Brief title in English",
-      "dialogue": [
+      "wordDetails": {
+        "kanji": "...",
+        "hiragana": "...",
+        "romaji": "..."
+      },
+      "meaning": "Meaning of the word\\n\\nDetailed context and scenario explanation",
+      "conversations": [
         {
-          "speaker": "A",
-          "japanese": "Natural Japanese sentence",
-          "japaneseWithFurigana": "Japanese with 漢字[かんじ] furigana format",
-          "romaji": "Romaji transliteration",
-          "english": "English translation"
+          "title": "...",
+          "dialogue": [
+            {
+              "speaker": "...",
+              "japanese": "...",
+              "japaneseWithFurigana": "...",
+              "romaji": "...",
+              "english": "..."
+            }
+          ]
         }
       ]
     }
