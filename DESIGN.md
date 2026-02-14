@@ -108,8 +108,7 @@ interface SettingsProps {
 interface AppConfig {
   wanikaniApiKey: string;
   geminiApiKey: string;
-  openrouterApiKey: string;
-  selectedService: 'gemini' | 'openrouter' | 'ollama';
+  selectedService: 'gemini' | 'ollama';
   geminiModel: string;
   ollamaModel: string;
   ollamaUrl: string;
