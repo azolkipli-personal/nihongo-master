@@ -17,19 +17,19 @@ export function Furigana({ text = '', className = '', showFurigana = true }: Fur
   const parts = parseFurigana(text);
 
   return (
-    <span className={`${className} inline-flex items-baseline flex-wrap gap-x-0.5`}>
+    <span className={`${className} leading-relaxed`}>
       {parts.map((part: any, index: number) => {
         if (part.type === 'ruby') {
           return (
-            <ruby key={index} className="inline-flex flex-col-reverse items-center align-bottom px-1 group">
-              <span className="text-gray-900 leading-none">{part.content}</span>
-              <rt className="text-[10px] text-blue-600 font-bold leading-none mb-1 select-none text-center w-full block">
+            <ruby key={index} className="ruby-base">
+              {part.content}
+              <rt className="text-[10px] text-blue-600 font-bold select-none text-center">
                 {part.furigana}
               </rt>
             </ruby>
           );
         }
-        return <span key={index} className="text-gray-900">{part.content}</span>;
+        return <span key={index}>{part.content}</span>;
       })}
     </span>
   );

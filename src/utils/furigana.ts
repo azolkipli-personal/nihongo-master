@@ -1,6 +1,6 @@
 export function parseFurigana(text: string): Array<{ type: 'text' | 'ruby'; content: string; furigana?: string }> {
   const result: Array<{ type: 'text' | 'ruby'; content: string; furigana?: string }> = [];
-  const regex = /([^\[]+)\[([^\]]+)\]/g;
+  const regex = /([々〇〻\u4e00-\u9faf\u30f5\u30f6]+)\[([^\]]+)\]/g;
   let lastIndex = 0;
   let match;
 
