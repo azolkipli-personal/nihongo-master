@@ -5,6 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:full": "node -e \"require('child_process').exec('python3 server/tts_server.py &'); setTimeout(() => require('child_process').exec('npm run dev -- --host 0.0.0.0 --port 5173'), 1000)\"",
+    "start": "bash start.sh",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "test": "vitest run",
