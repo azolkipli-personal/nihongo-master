@@ -106,24 +106,21 @@ interface SettingsProps {
 }
 
 interface AppConfig {
-  // API Keys (stored in ~/.nihongo-master/config.json)
   wanikaniApiKey: string;
   geminiApiKey: string;
-  ollamaUrl: string;
-  
-  // LLM Service
-  llmService: 'gemini' | 'ollama';
+  openrouterApiKey: string;
+  selectedService: 'gemini' | 'openrouter' | 'ollama';
   geminiModel: string;
   ollamaModel: string;
+  ollamaUrl: string;
   
-  // Display
-  defaultShowFurigana: boolean;
-  defaultShowRomaji: boolean;
-  defaultShowEnglish: boolean;
-  theme: 'sky' | 'emerald' | 'violet' | 'rose' | 'amber';
-  
-  // Study
-  targetCefrLevel: 'B1' | 'B2' | 'C1' | 'C2';
+  // Display & UI
+  appearance: 'light' | 'dark';
+  colorTheme: 'default' | 'ocean' | 'emerald' | 'purple' | 'pink' | 'yellow' | 'violet';
+  showFurigana: boolean;
+  showRomaji: boolean;
+  showEnglish: boolean;
+  userLevel: 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2' | null;
 }
 ```
 
@@ -184,11 +181,11 @@ interface InputSectionProps {
 ```
 
 **Features:**
-- Word input textarea (comma/newline separated)
-- File upload (.txt vocabulary lists)
-- Scenario/context input
-- "Suggested from WaniKani" chips
-- Generate button with loading state
+- Word input textarea (comma/newline separated for **Batch Generation**)
+- Merged "Learning Focus" blocks (Kanji, Hiragana, Romaji, Meaning, Context)
+- Collapsible word blocks for organized display
+- "Generate" button with "Generating..." loading notice
+- Suggested from WaniKani chips
 
 **ResultsDisplay Component:**
 ```typescript
@@ -452,30 +449,24 @@ interface Session {
 **Endpoint:** `https://generativelanguage.googleapis.com/v1beta`
 
 **Models:**
-- `gemini-3-flash-preview` (default, free tier)
-- `gemini-3-pro-preview` (higher quality)
+- `Gemini-3-Pro`, `Gemini-3-Flash`
+- `Gemini-2.5-Pro`, `Gemini-2.5-Flash`, `Gemini-2.5-Flash-Lite`
+- `Gemini-2-Flash`
 
 **Prompts:**
 
 **Conversation Generation:**
 ```
-Generate 5 contextual Japanese conversations for the word "{word}".
-Scenario: {scenario}
+Act as a professional Japanese language instructor.
+For EACH of the following vocabulary words or phrases: {words}
+You MUST generate a dedicated study block.
 
-For each conversation:
-1. Title (in English)
-2. 3-5 dialogue lines with:
-   - Speaker name
-   - Japanese text with furigana in format: 漢字[かんじ]
-   - Romaji
-   - English translation
-
-Requirements:
-- Use natural business Japanese
-- Include B2-level grammar patterns
-- Make conversations practical for daily use
-
-Return as JSON.
+Requirements for EACH word/phrase results entry:
+- "wordDetails": Kanji, Hiragana, Romaji
+- "meaning": English meaning + detailed context
+- "conversations": Generate 3 different conversations
+- Format: "results": [ { ... } ]
+Return ONLY valid JSON.
 ```
 
 **Sentence Upgrade:**
