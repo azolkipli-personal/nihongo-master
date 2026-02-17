@@ -1,10 +1,10 @@
 import { useState, useMemo, useEffect } from 'react';
-import { Search, Check, ChevronDown, ChevronUp, Sparkles, Trophy, ChevronDown as ChevronDownIcon } from 'lucide-react';
+import { Search, Check, ChevronDown, ChevronUp, Sparkles, Trophy } from 'lucide-react';
 import grammarPatterns from '../../data/grammar-patterns.json';
 import { GrammarPattern, BunpoSubTab } from '../../types';
 import { Furigana } from '../common/Furigana';
 import { ToggleButton } from '../common/ToggleButton';
-import { generateSentenceUpgrade, GEMINI_MODELS } from '../../services/llm';
+import { generateSentenceUpgrade } from '../../services/llm';
 import { loadConfig } from '../../utils/configManager';
 
 export function BunpoTab() {
@@ -28,8 +28,6 @@ export function BunpoTab() {
   const [upgradedSentence, setUpgradedSentence] = useState('');
   const [explanation, setExplanation] = useState('');
   const [upgrading, setUpgrading] = useState(false);
-  const [selectedModel, setSelectedModel] = useState('gemini-3-flash-preview');
-  const [modelDropdownOpen, setModelDropdownOpen] = useState(false);
 
   useEffect(() => {
     // Component initialization
@@ -44,7 +42,7 @@ export function BunpoTab() {
   const filteredPatterns = useMemo(() => {
     return patterns.filter((p) => {
       const matchesLevel = selectedLevel === 'all' || p.cefr === selectedLevel;
-      const matchesSearch = 
+      const matchesSearch =
         p.pattern.toLowerCase().includes(searchQuery.toLowerCase()) ||
         p.meaning.toLowerCase().includes(searchQuery.toLowerCase()) ||
         p.reading.toLowerCase().includes(searchQuery.toLowerCase());
@@ -66,10 +64,10 @@ export function BunpoTab() {
 
   const handleUpgrade = async () => {
     if (!sentence.trim()) return;
-    
+
     const config = loadConfig();
     const apiKey = config.selectedService === 'gemini' ? config.geminiApiKey :
-                   config.selectedService === 'openrouter' ? config.openrouterApiKey : 'ollama';
+      config.selectedService === 'openrouter' ? config.openrouterApiKey : 'ollama';
 
     if (!apiKey && config.selectedService !== 'ollama') {
       alert(`Please set your ${config.selectedService} API key in settings`);
@@ -78,7 +76,8 @@ export function BunpoTab() {
 
     setUpgrading(true);
     try {
-      const result = await generateSentenceUpgrade(sentence, targetLevel, config.selectedService, apiKey, config.ollamaUrl, selectedModel);
+      const model = config.selectedService === 'gemini' ? config.geminiModel : config.ollamaModel;
+      const result = await generateSentenceUpgrade(sentence, targetLevel, config.selectedService, apiKey, config.ollamaUrl, model);
       setUpgradedSentence(result.upgraded);
       setExplanation(result.explanation);
     } catch (err) {
@@ -105,11 +104,10 @@ export function BunpoTab() {
           <button
             key={tab}
             onClick={() => setActiveSubTab(tab)}
-            className={`flex-1 py-2 px-4 rounded-md font-medium transition-colors ${
-              activeSubTab === tab
-                ? 'bg-blue-500 text-white'
-                : 'text-gray-600 hover:bg-gray-100'
-            }`}
+            className={`flex-1 py-2 px-4 rounded-md font-medium transition-colors ${activeSubTab === tab
+              ? 'bg-blue-500 text-white'
+              : 'text-gray-600 hover:bg-gray-100'
+              }`}
           >
             {tab === 'library' && 'Library'}
             {tab === 'upgrader' && 'Upgrader'}
@@ -180,9 +178,8 @@ export function BunpoTab() {
             {filteredPatterns.map((pattern) => (
               <div
                 key={pattern.id}
-                className={`bg-white rounded-lg shadow p-4 border-l-4 ${
-                  masteredPatterns.has(pattern.id) ? 'border-green-500' : 'border-gray-300'
-                }`}
+                className={`bg-white rounded-lg shadow p-4 border-l-4 ${masteredPatterns.has(pattern.id) ? 'border-green-500' : 'border-gray-300'
+                  }`}
               >
                 <div className="flex justify-between items-start">
                   <div className="flex-1">
@@ -204,11 +201,10 @@ export function BunpoTab() {
                   <div className="flex gap-2">
                     <button
                       onClick={() => toggleMastered(pattern.id)}
-                      className={`p-2 rounded-lg transition-colors ${
-                        masteredPatterns.has(pattern.id)
-                          ? 'bg-green-100 text-green-600'
-                          : 'bg-gray-100 text-gray-400 hover:bg-gray-200'
-                      }`}
+                      className={`p-2 rounded-lg transition-colors ${masteredPatterns.has(pattern.id)
+                        ? 'bg-green-100 text-green-600'
+                        : 'bg-gray-100 text-gray-400 hover:bg-gray-200'
+                        }`}
                     >
                       <Check className="w-5 h-5" />
                     </button>
@@ -255,7 +251,7 @@ export function BunpoTab() {
             <Sparkles className="w-6 h-6 text-yellow-500" />
             Sentence Upgrader
           </h2>
-          
+
           <div className="space-y-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -271,9 +267,19 @@ export function BunpoTab() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Target Level
-              </label>
+              <div className="flex items-center gap-2 mb-1">
+                <label className="block text-sm font-medium text-gray-700">
+                  CEFR Target Level
+                </label>
+                <div className="group relative">
+                  <div className="cursor-help text-gray-400 hover:text-gray-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" /></svg>
+                  </div>
+                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 p-2 bg-gray-800 text-white text-xs rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-20">
+                    Adjusts the complexity of the upgraded sentence to match the specified European framework level.
+                  </div>
+                </div>
+              </div>
               <select
                 value={targetLevel}
                 onChange={(e) => setTargetLevel(e.target.value as 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2')}
@@ -286,41 +292,6 @@ export function BunpoTab() {
                 <option value="C1">C1 - Advanced</option>
                 <option value="C2">C2 - Mastery</option>
               </select>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                AI Model
-              </label>
-              <div className="relative">
-                <button
-                  onClick={() => setModelDropdownOpen(!modelDropdownOpen)}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent flex items-center justify-between text-left"
-                >
-                  <span>{GEMINI_MODELS.find(m => m.id === selectedModel)?.name || selectedModel}</span>
-                  <ChevronDownIcon className={`w-5 h-5 transition-transform ${modelDropdownOpen ? 'rotate-180' : ''}`} />
-                </button>
-                
-                {modelDropdownOpen && (
-                  <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-y-auto">
-                    <div className="py-1">
-                      <div className="px-4 py-2 text-xs text-gray-500 font-medium">Gemini Models</div>
-                      {GEMINI_MODELS.map((model) => (
-                        <button
-                          key={model.id}
-                          onClick={() => {
-                            setSelectedModel(model.id);
-                            setModelDropdownOpen(false);
-                          }}
-                          className={`w-full px-4 py-2 text-left hover:bg-gray-100 ${selectedModel === model.id ? 'bg-blue-50 text-blue-700' : 'text-gray-900'}`}
-                        >
-                          <div className="font-medium">{model.name}</div>
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
             </div>
 
             <button

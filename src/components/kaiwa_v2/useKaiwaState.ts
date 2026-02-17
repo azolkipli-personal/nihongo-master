@@ -14,6 +14,7 @@ export function useKaiwaState() {
     const [showRomaji, setShowRomaji] = useState(true);
     const [showEnglish, setShowEnglish] = useState(true);
     const [exportDropdownOpen, setExportDropdownOpen] = useState(false);
+    const [cefrLevel, setCefrLevel] = useState('B1');
 
     useEffect(() => {
         const practiceWord = sessionStorage.getItem('kaiwa_practice_word');
@@ -47,7 +48,7 @@ export function useKaiwaState() {
             // Use the config directly for model selection instead of local state
             const model = config.selectedService === 'gemini' ? config.geminiModel : config.ollamaModel;
 
-            const result = await generateConversation(wordList, scenario, config.selectedService, apiKey, config.ollamaUrl, model);
+            const result = await generateConversation(wordList, scenario, config.selectedService, apiKey, config.ollamaUrl, model, cefrLevel);
 
             const newConversations: Conversation[] = [];
 
@@ -225,6 +226,7 @@ export function useKaiwaState() {
         setShowRomaji,
         setShowEnglish,
         setExportDropdownOpen,
+        setCefrLevel,
         // Actions
         handleGenerate,
         handleDelete,
