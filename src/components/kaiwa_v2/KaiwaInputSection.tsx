@@ -5,8 +5,10 @@ interface KaiwaInputSectionProps {
     scenario: string;
     loading: boolean;
     error: string;
+    cefrLevel: string;
     onWordsChange: (value: string) => void;
     onScenarioChange: (value: string) => void;
+    onCefrLevelChange: (value: string) => void;
     onGenerate: () => void;
     onImportConversations: () => void;
 }
@@ -16,8 +18,10 @@ export function KaiwaInputSection({
     scenario,
     loading,
     error,
+    cefrLevel,
     onWordsChange,
     onScenarioChange,
+    onCefrLevelChange,
     onGenerate,
     onImportConversations,
 }: KaiwaInputSectionProps) {
@@ -39,17 +43,36 @@ export function KaiwaInputSection({
                     />
                 </div>
 
-                <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Scenario (optional)
-                    </label>
-                    <input
-                        type="text"
-                        value={scenario}
-                        onChange={(e) => onScenarioChange(e.target.value)}
-                        placeholder="e.g., Code review meeting, Daily standup, Client presentation"
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    />
+                <div className="flex gap-4">
+                    <div className="flex-[2]">
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                            Scenario (optional)
+                        </label>
+                        <input
+                            type="text"
+                            value={scenario}
+                            onChange={(e) => onScenarioChange(e.target.value)}
+                            placeholder="e.g., Code review meeting, Daily standup, Client presentation"
+                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        />
+                    </div>
+                    <div className="flex-1">
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                            CEFR Level
+                        </label>
+                        <select
+                            value={cefrLevel}
+                            onChange={(e) => onCefrLevelChange(e.target.value)}
+                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        >
+                            <option value="A1">A1</option>
+                            <option value="A2">A2</option>
+                            <option value="B1">B1</option>
+                            <option value="B2">B2</option>
+                            <option value="C1">C1</option>
+                            <option value="C2">C2</option>
+                        </select>
+                    </div>
                 </div>
 
                 {error && (

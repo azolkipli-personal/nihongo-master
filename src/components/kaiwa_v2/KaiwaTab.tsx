@@ -16,12 +16,14 @@ export function KaiwaTab() {
     showRomaji,
     showEnglish,
     exportDropdownOpen,
+    cefrLevel,
     setWords,
     setScenario,
     setShowFurigana,
     setShowRomaji,
     setShowEnglish,
     setExportDropdownOpen,
+    setCefrLevel,
     handleGenerate,
     handleDelete,
     handleExport,
@@ -63,10 +65,12 @@ export function KaiwaTab() {
       <KaiwaInputSection
         words={words}
         scenario={scenario}
+        cefrLevel={cefrLevel}
         loading={loading}
         error={error}
         onWordsChange={setWords}
         onScenarioChange={setScenario}
+        onCefrLevelChange={setCefrLevel}
         onGenerate={handleGenerate}
         onImportConversations={() => fileInputRef.current?.click()}
       />

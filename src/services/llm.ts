@@ -48,9 +48,10 @@ export async function generateConversation(
   service: string,
   apiKey: string,
   ollamaUrl?: string,
-  model?: string
+  model?: string,
+  cefrLevel: string = 'B1'
 ): Promise<LLMResponse> {
-  const prompt = buildConversationPrompt(words, scenario);
+  const prompt = buildConversationPrompt(words, scenario, cefrLevel);
 
   switch (service) {
     case 'gemini':
@@ -86,14 +87,17 @@ export async function generateSentenceUpgrade(
   }
 }
 
-function buildConversationPrompt(words: string[], scenario: string): string {
+function buildConversationPrompt(words: string[], scenario: string, cefrLevel: string): string {
   return `Act as a professional Japanese language instructor.
 Scenario/Context: ${scenario || 'Daily conversation'}
+
+CEFR Target Level: ${cefrLevel}
 
 For EACH of the following vocabulary words or phrases: ${words.join(', ')}
 You MUST generate a dedicated study block.
 
 Requirements for EACH word/phrase results entry:
+- The conversation complexity, grammar, and vocabulary should strictly match the ${cefrLevel} CEFR level.
 - "wordDetails":
     - "kanji": The word in proper Japanese KANJI (e.g. if input is 'renkei', return '連携'). MUST NOT be Romaji.
     - "hiragana": The word in proper HIRAGANA (e.g. if input is 'renkei', return 'れんけい').
