@@ -283,5 +283,62 @@
       }
     ],
     "mastered": false
+  },
+  {
+    "id": "g-a2-05",
+    "pattern": "〜ので",
+    "patternWithFurigana": "〜ので",
+    "reading": "node",
+    "meaning": "Because / Since (indicates a cause or reason, often used for polite explanations)",
+    "cefr": "A2",
+    "category": "Reason",
+    "formality": "neutral",
+    "examples": [
+      {
+        "japanese": "雨が降っているので、傘を持っていきます。",
+        "japaneseWithFurigana": "雨[あめ]が 降[ふ]っているので、 傘[かさ]を 持[も]っていきます。",
+        "romaji": "Ame ga futte iru node, kasa o motte ikimasu.",
+        "english": "Because it's raining, I'll take an umbrella."
+      }
+    ],
+    "mastered": false
+  },
+  {
+    "id": "g-a1-05",
+    "pattern": "〜ですが",
+    "patternWithFurigana": "〜ですが",
+    "reading": "desuga",
+    "meaning": "But / However (polite way to connect contrasting sentences or soften an opening)",
+    "cefr": "A1",
+    "category": "Conjunction",
+    "formality": "formal",
+    "examples": [
+      {
+        "japanese": "すみませんが、トイレはどこですか。",
+        "japaneseWithFurigana": "すみませんが、トイレはどこですか。",
+        "romaji": "Sumimasen ga, toire wa doko desu ka.",
+        "english": "Excuse me, but where is the toilet?"
+      }
+    ],
+    "mastered": false
+  },
+  {
+    "id": "g-a2-06",
+    "pattern": "〜なければならない",
+    "patternWithFurigana": "〜なければならない",
+    "reading": "nakereba naranai",
+    "meaning": "Must do / Have to (indicates obligation or necessity)",
+    "cefr": "A2",
+    "category": "Obligation",
+    "formality": "neutral",
+    "examples": [
+      {
+        "japanese": "宿題をしなければなりません。",
+        "japaneseWithFurigana": "宿題[しゅくだい]をしなければなりません。",
+        "romaji": "Shukudai o nakereba narimasen.",
+        "english": "I must do my homework."
+      }
+    ],
+    "mastered": false
   }
 ]
