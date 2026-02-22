@@ -112,7 +112,7 @@ function FinalCard({
 
         try {
             const cleanText = stripFurigana(text);
-            const response = await fetch('http://localhost:8001/tts', {
+            const response = await fetch('http://100.84.210.22:8001/tts', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ text: cleanText }),
@@ -121,7 +121,7 @@ function FinalCard({
             if (!response.ok) throw new Error('TTS request failed');
 
             const data = await response.json();
-            const audioUrl = `http://localhost:8001${data.audio_url}`;
+            const audioUrl = `http://100.84.210.22:8001${data.audio_url}`;
             const newAudio = new Audio(audioUrl);
             newAudio.play();
 

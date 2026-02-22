@@ -43,7 +43,7 @@ export function FinalCard({
         setLoading(lineIndex);
 
         try {
-            const response = await fetch('http://localhost:8001/tts', {
+            const response = await fetch('http://100.84.210.22:8001/tts', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -56,7 +56,7 @@ export function FinalCard({
             }
 
             const data = await response.json();
-            const audioUrl = `http://localhost:8001${data.audio_url}`;
+            const audioUrl = `http://100.84.210.22:8001${data.audio_url}`;
 
             const newAudio = new Audio(audioUrl);
             newAudio.play();
