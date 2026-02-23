@@ -23,6 +23,8 @@ export interface GrammarPattern {
   meaning: string;
   cefr: 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2';
   category: string;
+  hub: string;
+  detailedExplanation?: string;
   formality: 'casual' | 'neutral' | 'formal' | 'very-formal';
   examples: {
     japanese: string;
@@ -94,6 +96,6 @@ export interface TestResult {
 }
 
 export type TabType = 'kaiwa' | 'bunpo' | 'tango' | 'shinchoku';
-export type BunpoSubTab = 'library' | 'upgrader' | 'challenge';
+export type BunpoSubTab = 'path' | 'library' | 'upgrader' | 'challenge';
 export type TangoSubTab = 'sync' | 'vocabulary' | 'suggestions' | 'sets';
 export type ShinchokuSubTab = 'overview' | 'activity' | 'mastery' | 'cefr';

@@ -16,7 +16,9 @@
         "english": "I am a student."
       }
     ],
-    "mastered": false
+    "mastered": false,
+    "hub": "Building Sentences and Clauses",
+    "detailedExplanation": "This is the most basic sentence structure in Japanese. **は (wa)** marks the topic of the sentence, and **です (desu)** is the polite copula (meaning \"is/am/are\").\n\n> [!NOTE]\n> Even though it is written with the hiragana character **は (ha)**, when used as a topic marker, it is pronounced as **わ (wa)**.\n\nStructure: `[Topic] は [Noun/Adjective] です。`"
   },
   {
     "id": "g-a1-02",
@@ -35,7 +37,8 @@
         "english": "Is this a book?"
       }
     ],
-    "mastered": false
+    "mastered": false,
+    "hub": "Particles"
   },
   {
     "id": "g-a1-03",
@@ -54,7 +57,8 @@
         "english": "It is my pen."
       }
     ],
-    "mastered": false
+    "mastered": false,
+    "hub": "Particles"
   },
   {
     "id": "g-a1-04",
@@ -73,7 +77,8 @@
         "english": "There is a cat in the room."
       }
     ],
-    "mastered": false
+    "mastered": false,
+    "hub": "Verbs"
   },
   {
     "id": "g-a2-01",
@@ -92,7 +97,9 @@
         "english": "I want to eat sushi."
       }
     ],
-    "mastered": false
+    "mastered": false,
+    "hub": "Verb Conjugation",
+    "detailedExplanation": "Adding **〜たい (tai)** to the stem of a verb expresses the speaker's desire to do that action (\"I want to...\").\n\n> [!IMPORTANT]\n> You can only use **〜たい** to express *your own* desires (or asking someone directly if they want to do something). You cannot use it to say \"He wants to...\" without modifications like **〜たがる**.\n\nTo conjugate, remove the **ます (masu)** from the polite form and add **たい (tai)**. For example, **食べます** (tabemasu) -> **食べたい** (tabetai)."
   },
   {
     "id": "g-a2-02",
@@ -111,7 +118,8 @@
         "english": "On Sundays, I do things like reading books and watching TV."
       }
     ],
-    "mastered": false
+    "mastered": false,
+    "hub": "Building Sentences and Clauses"
   },
   {
     "id": "g-a2-03",
@@ -130,7 +138,8 @@
         "english": "May I take a photo?"
       }
     ],
-    "mastered": false
+    "mastered": false,
+    "hub": "Verb Conjugation"
   },
   {
     "id": "g-a2-04",
@@ -149,7 +158,8 @@
         "english": "Please don't smoke here."
       }
     ],
-    "mastered": false
+    "mastered": false,
+    "hub": "Verb Conjugation"
   },
   {
     "id": "g-b1-01",
@@ -168,7 +178,8 @@
         "english": "I hope it clears up tomorrow."
       }
     ],
-    "mastered": false
+    "mastered": false,
+    "hub": "Building Sentences and Clauses"
   },
   {
     "id": "g-b1-02",
@@ -187,7 +198,8 @@
         "english": "I have become able to speak Japanese."
       }
     ],
-    "mastered": false
+    "mastered": false,
+    "hub": "Verbs"
   },
   {
     "id": "g-b1-03",
@@ -206,7 +218,8 @@
         "english": "This shop is cheap and (also) delicious."
       }
     ],
-    "mastered": false
+    "mastered": false,
+    "hub": "Conjunctive Particles"
   },
   {
     "id": "g-b2-01",
@@ -225,7 +238,8 @@
         "english": "He must know about it."
       }
     ],
-    "mastered": false
+    "mastered": false,
+    "hub": "Building Sentences and Clauses"
   },
   {
     "id": "g-b2-02",
@@ -244,7 +258,8 @@
         "english": "Half-drunk coffee."
       }
     ],
-    "mastered": false
+    "mastered": false,
+    "hub": "Verb Conjugation"
   },
   {
     "id": "g-c1-01",
@@ -263,7 +278,8 @@
         "english": "Time flies like an arrow."
       }
     ],
-    "mastered": false
+    "mastered": false,
+    "hub": "Building Sentences and Clauses"
   },
   {
     "id": "g-c2-01",
@@ -282,7 +298,8 @@
         "english": "I cannot suppress my anger."
       }
     ],
-    "mastered": false
+    "mastered": false,
+    "hub": "Verbs"
   },
   {
     "id": "g-a2-05",
@@ -301,7 +318,8 @@
         "english": "Because it's raining, I'll take an umbrella."
       }
     ],
-    "mastered": false
+    "mastered": false,
+    "hub": "Conjunctive Particles"
   },
   {
     "id": "g-a1-05",
@@ -320,7 +338,8 @@
         "english": "Excuse me, but where is the toilet?"
       }
     ],
-    "mastered": false
+    "mastered": false,
+    "hub": "Conjunctive Particles"
   },
   {
     "id": "g-a2-06",
@@ -339,6 +358,7 @@
         "english": "I must do my homework."
       }
     ],
-    "mastered": false
+    "mastered": false,
+    "hub": "Verb Conjugation"
   }
 ]
