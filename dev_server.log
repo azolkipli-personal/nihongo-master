@@ -1,0 +1,28 @@
+🚀 Starting Nihongo Master...
+================================
+🎙️  Starting Japanese TTS server (port 8001)...
+   TTS server PID: 6094
+INFO:     Started server process [6094]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8001 (Press CTRL+C to quit)
+🌐 Starting Vite dev server (port 5173)...
+   Vite server PID: 6096
+================================
+✅ Nihongo Master is running!
+   - App: http://localhost:5173
+   - TTS: http://localhost:8001
+   - Tailnet: http://100.84.210.22:5173
+
+Press Ctrl+C to stop both servers
+================================
+
+> nihongo-master@1.0.0 dev
+> vite --host 0.0.0.0 --port 5173
+
+
+  VITE v4.5.14  ready in 240 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: http://192.168.1.240:5173/
+  ➜  Network: http://100.84.210.22:5173/
