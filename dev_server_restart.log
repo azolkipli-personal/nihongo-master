@@ -1,0 +1,12 @@
+
+> nihongo-master@1.0.0 dev
+> vite
+
+
+  VITE v4.5.14  ready in 234 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: http://192.168.1.240:5173/
+  ➜  Network: http://100.84.210.22:5173/
+  ➜  press h to show help
+12:03:20 AM [vite] hmr update /src/index.css, /src/components/kaiwa_v2/KaiwaTab.tsx
