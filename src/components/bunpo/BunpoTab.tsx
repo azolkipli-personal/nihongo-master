@@ -1,27 +1,43 @@
 import { useState, useMemo, useEffect, useCallback } from 'react';
-import { Search, Check, ChevronDown, ChevronUp, Sparkles, Trophy } from 'lucide-react';
+import { Search, Check, ChevronDown, ChevronUp, Sparkles, Trophy, Clock } from 'lucide-react';
 import grammarPatterns from '../../data/grammar-patterns.json';
 import { GrammarPattern, BunpoSubTab } from '../../types';
 import { Furigana } from '../common/Furigana';
 import { ToggleButton } from '../common/ToggleButton';
 import { generateSentenceUpgrade } from '../../services/llm';
 import { loadConfig } from '../../utils/configManager';
+import { isDueForReview, calculateNextReview } from '../../services/srsService';
 
 export function BunpoTab() {
-  const [activeSubTab, setActiveSubTab] = useState<BunpoSubTab>('library');
+  const [activeSubTab, setActiveSubTab] = useState<BunpoSubTab | 'review'>('library');
   const [selectedLevel, setSelectedLevel] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [groupBy, setGroupBy] = useState<'level' | 'hub'>('level');
   const [challengeLevel, setChallengeLevel] = useState<string>('all');
   const [expandedPattern, setExpandedPattern] = useState<string | null>(null);
-  const [masteredPatterns, setMasteredPatterns] = useState<Set<string>>(() => {
-    const saved = localStorage.getItem('nihongo-master-grammar-mastered');
-    return saved ? new Set(JSON.parse(saved)) : new Set();
+  
+  // SRS state
+  const [grammarData, setGrammarData] = useState<Record<string, Partial<GrammarPattern>>>(() => {
+    const saved = localStorage.getItem('nihongo-master-grammar-srs');
+    if (saved) return JSON.parse(saved);
+    
+    // Fallback/Migration: convert old mastered list to SRS stage 8
+    const oldMastered = localStorage.getItem('nihongo-master-grammar-mastered');
+    if (oldMastered) {
+      const ids = JSON.parse(oldMastered) as string[];
+      const initial: Record<string, Partial<GrammarPattern>> = {};
+      ids.forEach(id => {
+        initial[id] = { mastered: true, srsStage: 8 };
+      });
+      return initial;
+    }
+    return {};
   });
 
   useEffect(() => {
-    localStorage.setItem('nihongo-master-grammar-mastered', JSON.stringify(Array.from(masteredPatterns)));
-  }, [masteredPatterns]);
+    localStorage.setItem('nihongo-master-grammar-srs', JSON.stringify(grammarData));
+  }, [grammarData]);
+
   const [showEnglish, setShowEnglish] = useState(true);
 
   // Level Upgrader state
@@ -37,7 +53,12 @@ export function BunpoTab() {
 
   // Challenge mode state is now handled inside the ChallengeMode component
 
-  const patterns = grammarPatterns as GrammarPattern[];
+  const patterns = useMemo(() => {
+    return (grammarPatterns as GrammarPattern[]).map(p => ({
+      ...p,
+      ...grammarData[p.id]
+    }));
+  }, [grammarData]);
 
   const filteredPatterns = useMemo(() => {
     return patterns.filter((p) => {
@@ -51,14 +72,33 @@ export function BunpoTab() {
   }, [patterns, selectedLevel, searchQuery]);
 
   const toggleMastered = (id: string) => {
-    setMasteredPatterns(prev => {
-      const newSet = new Set(prev);
-      if (newSet.has(id)) {
-        newSet.delete(id);
-      } else {
-        newSet.add(id);
-      }
-      return newSet;
+    setGrammarData(prev => {
+      const current = prev[id] || {};
+      const isMastered = !current.mastered;
+      return {
+        ...prev,
+        [id]: {
+          ...current,
+          mastered: isMastered,
+          srsStage: isMastered ? 8 : 0,
+          nextReviewDate: undefined
+        }
+      };
+    });
+  };
+
+  const handleSrsUpdate = (id: string, isCorrect: boolean) => {
+    setGrammarData(prev => {
+      const current = prev[id] || { srsStage: 0 };
+      const update = calculateNextReview(current.srsStage || 0, isCorrect);
+      return {
+        ...prev,
+        [id]: {
+          ...current,
+          ...update,
+          mastered: update.srsStage === 8
+        }
+      };
     });
   };
 
@@ -88,12 +128,12 @@ export function BunpoTab() {
   };
 
   const progress = {
-    A1: { total: patterns.filter(p => p.cefr === 'A1').length, mastered: patterns.filter(p => p.cefr === 'A1' && masteredPatterns.has(p.id)).length },
-    A2: { total: patterns.filter(p => p.cefr === 'A2').length, mastered: patterns.filter(p => p.cefr === 'A2' && masteredPatterns.has(p.id)).length },
-    B1: { total: patterns.filter(p => p.cefr === 'B1').length, mastered: patterns.filter(p => p.cefr === 'B1' && masteredPatterns.has(p.id)).length },
-    B2: { total: patterns.filter(p => p.cefr === 'B2').length, mastered: patterns.filter(p => p.cefr === 'B2' && masteredPatterns.has(p.id)).length },
-    C1: { total: patterns.filter(p => p.cefr === 'C1').length, mastered: patterns.filter(p => p.cefr === 'C1' && masteredPatterns.has(p.id)).length },
-    C2: { total: patterns.filter(p => p.cefr === 'C2').length, mastered: patterns.filter(p => p.cefr === 'C2' && masteredPatterns.has(p.id)).length },
+    A1: { total: patterns.filter(p => p.cefr === 'A1').length, mastered: patterns.filter(p => p.cefr === 'A1' && p.mastered).length },
+    A2: { total: patterns.filter(p => p.cefr === 'A2').length, mastered: patterns.filter(p => p.cefr === 'A2' && p.mastered).length },
+    B1: { total: patterns.filter(p => p.cefr === 'B1').length, mastered: patterns.filter(p => p.cefr === 'B1' && p.mastered).length },
+    B2: { total: patterns.filter(p => p.cefr === 'B2').length, mastered: patterns.filter(p => p.cefr === 'B2' && p.mastered).length },
+    C1: { total: patterns.filter(p => p.cefr === 'C1').length, mastered: patterns.filter(p => p.cefr === 'C1' && p.mastered).length },
+    C2: { total: patterns.filter(p => p.cefr === 'C2').length, mastered: patterns.filter(p => p.cefr === 'C2' && p.mastered).length },
   };
 
   const libraryGroups = useMemo(() => {
@@ -120,22 +160,53 @@ export function BunpoTab() {
     <div className="space-y-6">
       {/* Sub-tab Navigation */}
       <div className="flex gap-2 bg-white rounded-lg shadow p-1 overflow-x-auto">
-        {(['path', 'library', 'upgrader', 'challenge'] as BunpoSubTab[]).map((tab) => (
+        {(['path', 'review', 'library', 'upgrader', 'challenge'] as Array<BunpoSubTab | 'review'>).map((tab) => (
           <button
             key={tab}
-            onClick={() => setActiveSubTab(tab)}
+            onClick={() => setActiveSubTab(tab as any)}
             className={`flex-1 min-w-[100px] py-2 px-4 rounded-md font-medium transition-colors ${activeSubTab === tab
               ? 'bg-blue-500 text-white'
               : 'text-gray-600 hover:bg-gray-100'
               }`}
           >
             {tab === 'path' && 'Learning Path'}
+            {tab === 'review' && 'Reviews'}
             {tab === 'library' && 'Library'}
             {tab === 'upgrader' && 'Upgrader'}
             {tab === 'challenge' && 'Challenge'}
           </button>
         ))}
       </div>
+
+      {/* Reviews Tab */}
+      {activeSubTab === ('review' as any) && (
+        <div className="bg-white rounded-lg shadow p-6">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-xl font-bold text-gray-800 flex items-center gap-2">
+              <Clock className="w-6 h-6 text-orange-500" />
+              SRS Reviews
+            </h2>
+            <div className="text-sm text-gray-500">
+              Due Now: {patterns.filter(p => isDueForReview(p.nextReviewDate)).length}
+            </div>
+          </div>
+
+          <ChallengeMode
+            patterns={patterns.filter(p => isDueForReview(p.nextReviewDate))}
+            masteredPatternIds={new Set(patterns.filter(p => p.mastered).map(p => p.id))}
+            challengeLevel="all"
+            onSrsUpdate={handleSrsUpdate}
+          />
+          
+          {patterns.filter(p => isDueForReview(p.nextReviewDate)).length === 0 && (
+            <div className="text-center py-12 text-gray-500">
+              <Check className="w-12 h-12 text-green-500 mx-auto mb-4" />
+              <p className="text-lg font-medium">No reviews due right now!</p>
+              <p className="text-sm">Come back later or explore the Library.</p>
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Library Tab */}
       {activeSubTab === 'library' && (
@@ -211,7 +282,7 @@ export function BunpoTab() {
                   {groupPatterns.map((pattern) => (
                     <div
                       key={pattern.id}
-                      className={`bg-white rounded-lg shadow p-4 border-l-4 ${masteredPatterns.has(pattern.id) ? 'border-green-500' : 'border-gray-300'
+                      className={`bg-white rounded-lg shadow p-4 border-l-4 ${pattern.mastered ? 'border-green-500' : 'border-gray-300'
                         }`}
                     >
                       <div className="flex justify-between items-start">
@@ -223,6 +294,11 @@ export function BunpoTab() {
                             <span className="px-2 py-1 bg-blue-100 text-blue-700 text-xs rounded-full">
                               {pattern.cefr}
                             </span>
+                            {pattern.srsStage !== undefined && (
+                              <span className="px-2 py-1 bg-orange-100 text-orange-700 text-xs rounded-full flex items-center gap-1">
+                                Stage {pattern.srsStage}
+                              </span>
+                            )}
                             {groupBy === 'level' && pattern.hub && (
                               <span className="px-2 py-1 bg-purple-100 text-purple-700 text-xs rounded-full">
                                 {pattern.hub}
@@ -239,7 +315,7 @@ export function BunpoTab() {
                         <div className="flex gap-2">
                           <button
                             onClick={() => toggleMastered(pattern.id)}
-                            className={`p-2 rounded-lg transition-colors flex-shrink-0 ${masteredPatterns.has(pattern.id)
+                            className={`p-2 rounded-lg transition-colors flex-shrink-0 ${pattern.mastered
                               ? 'bg-green-100 text-green-600'
                               : 'bg-gray-100 text-gray-400 hover:bg-gray-200'
                               }`}
@@ -407,8 +483,9 @@ export function BunpoTab() {
 
           <ChallengeMode
             patterns={patterns}
-            masteredPatternIds={masteredPatterns}
+            masteredPatternIds={new Set(patterns.filter(p => p.mastered).map(p => p.id))}
             challengeLevel={challengeLevel}
+            onSrsUpdate={handleSrsUpdate}
           />
         </div>
       )}
@@ -430,7 +507,7 @@ export function BunpoTab() {
                 return acc;
               }, {} as Record<string, GrammarPattern[]>)
             ).sort(([a], [b]) => a.localeCompare(b)).map(([hub, hubPatterns], idx) => {
-              const masteredInHub = hubPatterns.filter(p => masteredPatterns.has(p.id)).length;
+              const masteredInHub = hubPatterns.filter(p => p.mastered).length;
               const isHubMastered = masteredInHub === hubPatterns.length && hubPatterns.length > 0;
 
               return (
@@ -480,7 +557,7 @@ export function BunpoTab() {
 }
 
 // --- Challenge Mode Implementation ---
-function ChallengeMode({ patterns, masteredPatternIds, challengeLevel }: { patterns: GrammarPattern[], masteredPatternIds: Set<string>, challengeLevel: string }) {
+function ChallengeMode({ patterns, masteredPatternIds, challengeLevel, onSrsUpdate }: { patterns: GrammarPattern[], masteredPatternIds: Set<string>, challengeLevel: string, onSrsUpdate?: (id: string, isCorrect: boolean) => void }) {
   const [questions, setQuestions] = useState<any[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
@@ -576,8 +653,12 @@ function ChallengeMode({ patterns, masteredPatternIds, challengeLevel }: { patte
     if (selectedAnswer !== null) return; // Prevent multiple clicks
 
     setSelectedAnswer(option);
-    if (option === currentQ.correctAnswer) {
+    const isCorrect = option === currentQ.correctAnswer;
+    if (isCorrect) {
       setScore(s => s + 1);
+    }
+    if (onSrsUpdate) {
+      onSrsUpdate(currentQ.patternId, isCorrect);
     }
   };
 

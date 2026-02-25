@@ -33,7 +33,10 @@ export interface GrammarPattern {
     english: string;
   }[];
   mastered: boolean;
-  lastReviewed?: Date;
+  srsStage?: number;
+  nextReviewDate?: string | null;
+  lastReviewDate?: string;
+  interval?: number;
 }
 
 export interface WaniKaniItem {
