@@ -78,6 +78,8 @@ describe('configManager utilities', () => {
                 showRomaji: true,
                 showEnglish: true,
                 userLevel: null,
+                appearance: 'dark',
+                colorTheme: 'default',
             };
 
             saveConfig(config);
@@ -109,6 +111,8 @@ describe('configManager utilities', () => {
             showRomaji: true,
             showEnglish: true,
             userLevel: null,
+            appearance: 'dark',
+            colorTheme: 'default',
         };
 
         it('returns true for gemini when key exists', () => {
@@ -143,6 +147,8 @@ describe('configManager utilities', () => {
                 showRomaji: true,
                 showEnglish: true,
                 userLevel: null,
+                appearance: 'dark',
+                colorTheme: 'default',
             };
             expect(getActiveApiKey(config)).toBe('my-gemini-key');
         });
@@ -161,6 +167,8 @@ describe('configManager utilities', () => {
                 showRomaji: true,
                 showEnglish: true,
                 userLevel: null,
+                appearance: 'dark',
+                colorTheme: 'default',
             };
             expect(getActiveApiKey(config)).toBe('ollama');
         });
@@ -179,6 +187,8 @@ describe('configManager utilities', () => {
                 showRomaji: true,
                 showEnglish: true,
                 userLevel: null,
+                appearance: 'dark',
+                colorTheme: 'default',
             };
             expect(getActiveApiKey(config)).toBe(null);
         });
@@ -199,6 +209,8 @@ describe('configManager utilities', () => {
                 showRomaji: true,
                 showEnglish: true,
                 userLevel: null,
+                appearance: 'dark',
+                colorTheme: 'default',
             };
 
             const sanitized = sanitizeConfig(config);
@@ -222,6 +234,8 @@ describe('configManager utilities', () => {
                 showRomaji: true,
                 showEnglish: true,
                 userLevel: null,
+                appearance: 'dark',
+                colorTheme: 'default',
             };
 
             const sanitized = sanitizeConfig(config);
