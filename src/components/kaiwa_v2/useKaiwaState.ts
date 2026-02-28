@@ -219,6 +219,7 @@ export function useKaiwaState() {
         showRomaji,
         showEnglish,
         exportDropdownOpen,
+        cefrLevel,
         // Setters
         setWords,
         setScenario,
