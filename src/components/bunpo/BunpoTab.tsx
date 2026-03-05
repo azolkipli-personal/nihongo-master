@@ -629,7 +629,8 @@ function ChallengeMode({ patterns, masteredPatternIds, challengeLevel, onSrsUpda
   // Start on mount or when level changes
   useEffect(() => {
     startQuiz();
-  }, [startQuiz, challengeLevel]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [challengeLevel]);
 
   if (questions.length === 0) return <div>Loading challenge...</div>;
 
