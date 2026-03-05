@@ -9,7 +9,9 @@ export function Header({ onOpenSettings }: HeaderProps) {
   const { themeClasses } = useThemeContext();
 
   return (
-    <header className={`${themeClasses.banner} border-b border-white/10 sticky top-0 z-40 shadow-xl transition-colors duration-500`}>
+    <header
+      className={`${themeClasses.banner} border-b border-white/10 sticky top-0 z-40 shadow-xl transition-colors duration-500`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center gap-3">

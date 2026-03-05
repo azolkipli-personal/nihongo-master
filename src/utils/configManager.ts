@@ -126,7 +126,9 @@ export function getActiveApiKey(config: AppConfig): string | null {
   }
 }
 
-export async function importApiKeyFromFile(file: File): Promise<{ success: boolean; key?: string; error?: string }> {
+export async function importApiKeyFromFile(
+  file: File
+): Promise<{ success: boolean; key?: string; error?: string }> {
   try {
     const text = await file.text();
 

@@ -1,4 +1,6 @@
-export function parseFurigana(text: string): Array<{ type: 'text' | 'ruby'; content: string; furigana?: string }> {
+export function parseFurigana(
+  text: string
+): Array<{ type: 'text' | 'ruby'; content: string; furigana?: string }> {
   const result: Array<{ type: 'text' | 'ruby'; content: string; furigana?: string }> = [];
   const regex = /([々〇〻\u4e00-\u9faf\u30f5\u30f6]+)\[([^\]]+)\]/g;
   let lastIndex = 0;
@@ -35,7 +37,7 @@ export function parseFurigana(text: string): Array<{ type: 'text' | 'ruby'; cont
 }
 
 export function renderWithFurigana(text: string): string {
-  return text.replace(/([^\[]+)\[([^\]]+)\]/g, '<ruby>$1<rt>$2</rt></ruby>');
+  return text.replace(/([^[]+)\[([^\]]+)\]/g, '<ruby>$1<rt>$2</rt></ruby>');
 }
 
 export function stripFurigana(text: string): string {

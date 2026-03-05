@@ -87,7 +87,11 @@ export async function generateSentenceUpgrade(
   }
 }
 
-export function buildConversationPrompt(words: string[], scenario: string, cefrLevel: string): string {
+export function buildConversationPrompt(
+  words: string[],
+  scenario: string,
+  cefrLevel: string
+): string {
   return `Act as a professional Japanese language instructor.
 Scenario/Context: ${scenario || 'Daily conversation'}
 
@@ -190,7 +194,7 @@ async function callOpenRouter(prompt: string, apiKey: string): Promise<LLMRespon
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${apiKey}`,
+      Authorization: `Bearer ${apiKey}`,
       'HTTP-Referer': 'https://nihongo-master.app',
       'X-Title': 'Nihongo Master',
     },
@@ -211,7 +215,11 @@ async function callOpenRouter(prompt: string, apiKey: string): Promise<LLMRespon
   return parseLLMResponse(text);
 }
 
-async function callOllama(prompt: string, url: string, model: string = 'llama3.2'): Promise<LLMResponse> {
+async function callOllama(
+  prompt: string,
+  url: string,
+  model: string = 'llama3.2'
+): Promise<LLMResponse> {
   const response = await fetch(`${url}/api/generate`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -267,7 +275,7 @@ async function callOpenRouterForUpgrade(
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${apiKey}`,
+      Authorization: `Bearer ${apiKey}`,
     },
     body: JSON.stringify({
       model: 'anthropic/claude-3.5-sonnet',
@@ -316,7 +324,7 @@ function parseLLMResponse(text: string): LLMResponse {
     const jsonMatch = text.match(/```(?:json)?\s*([\s\S]*?)```/);
     const jsonStr = jsonMatch ? jsonMatch[1] : text;
     return JSON.parse(jsonStr);
-  } catch (error) {
+  } catch (_error) {
     console.error('Failed to parse LLM response:', text);
     throw new Error('Failed to parse AI response. Please try again.');
   }
@@ -327,7 +335,7 @@ function parseUpgradeResponse(text: string): { upgraded: string; explanation: st
     const jsonMatch = text.match(/```(?:json)?\s*([\s\S]*?)```/);
     const jsonStr = jsonMatch ? jsonMatch[1] : text;
     return JSON.parse(jsonStr);
-  } catch (error) {
+  } catch (_error) {
     console.error('Failed to parse upgrade response:', text);
     throw new Error('Failed to parse AI response. Please try again.');
   }
