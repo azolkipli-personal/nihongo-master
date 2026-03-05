@@ -6,8 +6,8 @@ import {
     getReadyForPractice,
     getPrimaryReading,
     getPrimaryMeaning,
-} from '../../wanikani';
-import { WaniKaniItem } from '../../../types';
+} from '../wanikani';
+import { WaniKaniItem } from '../../types';
 
 // Mock global fetch
 const mockFetch = vi.fn();
