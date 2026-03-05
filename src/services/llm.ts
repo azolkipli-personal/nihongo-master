@@ -87,7 +87,7 @@ export async function generateSentenceUpgrade(
   }
 }
 
-function buildConversationPrompt(words: string[], scenario: string, cefrLevel: string): string {
+export function buildConversationPrompt(words: string[], scenario: string, cefrLevel: string): string {
   return `Act as a professional Japanese language instructor.
 Scenario/Context: ${scenario || 'Daily conversation'}
 
@@ -142,7 +142,7 @@ Return ONLY valid JSON in this exact format:
 }`;
 }
 
-function buildUpgradePrompt(sentence: string, targetLevel: string): string {
+export function buildUpgradePrompt(sentence: string, targetLevel: string): string {
   return `Upgrade the following Japanese sentence to ${targetLevel} CEFR level business Japanese:
 
 Original sentence: ${sentence}
