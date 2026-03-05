@@ -24,11 +24,11 @@ export function loadSessions(): StudySession[] {
 }
 
 export function getSessionsByType(type: StudySession['type']): StudySession[] {
-  return loadSessions().filter(s => s.type === type);
+  return loadSessions().filter((s) => s.type === type);
 }
 
 export function getSessionsByDateRange(start: Date, end: Date): StudySession[] {
-  return loadSessions().filter(s => s.date >= start && s.date <= end);
+  return loadSessions().filter((s) => s.date >= start && s.date <= end);
 }
 
 export function getTotalStudyTime(): number {
@@ -43,7 +43,7 @@ export function getStudyStreak(): number {
   today.setHours(0, 0, 0, 0);
 
   const studyDates = new Set(
-    sessions.map(s => {
+    sessions.map((s) => {
       const d = new Date(s.date);
       d.setHours(0, 0, 0, 0);
       return d.getTime();
@@ -86,7 +86,7 @@ export function getWeeklyActivity(): Array<{ date: string; minutes: number; coun
     const nextDate = new Date(date);
     nextDate.setDate(nextDate.getDate() + 1);
 
-    const daySessions = sessions.filter(s => {
+    const daySessions = sessions.filter((s) => {
       const sDate = new Date(s.date);
       return sDate >= date && sDate < nextDate;
     });
