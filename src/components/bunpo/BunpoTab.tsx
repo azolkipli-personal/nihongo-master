@@ -15,12 +15,12 @@ export function BunpoTab() {
   const [groupBy, setGroupBy] = useState<'level' | 'hub'>('level');
   const [challengeLevel, setChallengeLevel] = useState<string>('all');
   const [expandedPattern, setExpandedPattern] = useState<string | null>(null);
-  
+
   // SRS state
   const [grammarData, setGrammarData] = useState<Record<string, Partial<GrammarPattern>>>(() => {
     const saved = localStorage.getItem('nihongo-master-grammar-srs');
     if (saved) return JSON.parse(saved);
-    
+
     // Fallback/Migration: convert old mastered list to SRS stage 8
     const oldMastered = localStorage.getItem('nihongo-master-grammar-mastered');
     if (oldMastered) {
@@ -197,7 +197,7 @@ export function BunpoTab() {
             challengeLevel="all"
             onSrsUpdate={handleSrsUpdate}
           />
-          
+
           {patterns.filter(p => isDueForReview(p.nextReviewDate)).length === 0 && (
             <div className="text-center py-12 text-gray-500">
               <Check className="w-12 h-12 text-green-500 mx-auto mb-4" />
@@ -315,6 +315,7 @@ export function BunpoTab() {
                         <div className="flex gap-2">
                           <button
                             onClick={() => toggleMastered(pattern.id)}
+                            aria-label={pattern.mastered ? "Mark as unmastered" : "Mark as mastered"}
                             className={`p-2 rounded-lg transition-colors flex-shrink-0 ${pattern.mastered
                               ? 'bg-green-100 text-green-600'
                               : 'bg-gray-100 text-gray-400 hover:bg-gray-200'
@@ -324,6 +325,7 @@ export function BunpoTab() {
                           </button>
                           <button
                             onClick={() => setExpandedPattern(expandedPattern === pattern.id ? null : pattern.id)}
+                            aria-label={expandedPattern === pattern.id ? "Show less" : "Show more"}
                             className="p-2 bg-gray-100 rounded-lg hover:bg-gray-200 flex-shrink-0"
                           >
                             {expandedPattern === pattern.id ? (
