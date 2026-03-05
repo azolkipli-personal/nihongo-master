@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { calculateNextReview, isDueForReview, SRS_INTERVALS } from '../../srsService';
+import { calculateNextReview, isDueForReview, SRS_INTERVALS } from '../srsService';
 
 describe('srsService', () => {
     describe('SRS_INTERVALS', () => {
