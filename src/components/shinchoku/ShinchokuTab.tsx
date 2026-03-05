@@ -8,7 +8,7 @@ export function ShinchokuTab() {
     weeklyGoal: 0,
     streakCount: 0,
     totalStudyTime: 0,
-    achievements: [] as string[]
+    achievements: [] as string[],
   });
 
   const [recentSessions, setRecentSessions] = useState<any[]>([]);
@@ -19,6 +19,7 @@ export function ShinchokuTab() {
     setConfig(cfg as any);
     loadProgressData();
     loadRecentSessions();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadProgressData = async () => {
@@ -26,7 +27,7 @@ export function ShinchokuTab() {
       // Load sessions from session storage
       const { loadSessions } = await import('../../utils/sessionStorage');
       const sessions = loadSessions();
-      
+
       // Calculate metrics
       const overallProgress = calculateOverallProgress(sessions);
       const weeklyGoal = config?.weeklyGoal || 7;
@@ -39,7 +40,7 @@ export function ShinchokuTab() {
         weeklyGoal,
         streakCount,
         totalStudyTime,
-        achievements
+        achievements,
       });
     } catch (error) {
       console.error('Failed to load progress data:', error);
@@ -80,28 +81,30 @@ export function ShinchokuTab() {
 
   const calculateStreak = (sessions: any[]) => {
     if (!sessions || sessions.length === 0) return 0;
-    
+
     let streak = 0;
     const today = new Date();
-    
+
     // Simple streak calculation (would be more sophisticated in real implementation)
     for (let i = sessions.length - 1; i >= 0; i--) {
       const sessionDate = new Date(sessions[i].date || sessions[i].timestamp);
-      const daysDiff = Math.floor((today.getTime() - sessionDate.getTime()) / (1000 * 60 * 60 * 24));
-      
+      const daysDiff = Math.floor(
+        (today.getTime() - sessionDate.getTime()) / (1000 * 60 * 60 * 24)
+      );
+
       if (daysDiff <= streak + 1) {
         streak++;
       } else {
         break;
       }
     }
-    
+
     return streak;
   };
 
   const calculateTotalStudyTime = (sessions: any[]) => {
     if (!sessions || sessions.length === 0) return 0;
-    
+
     return sessions.reduce((total, session) => {
       return total + (session.duration || session.studyTime || 0);
     }, 0);
@@ -109,12 +112,12 @@ export function ShinchokuTab() {
 
   const calculateAchievements = (sessions: any[]) => {
     const achievements = [];
-    
+
     if (sessions.length >= 1) achievements.push('First Steps');
     if (sessions.length >= 7) achievements.push('Week Warrior');
     if (sessions.length >= 30) achievements.push('Monthly Master');
     if (sessions.length >= 100) achievements.push('Century Club');
-    
+
     return achievements;
   };
 
@@ -176,7 +179,9 @@ export function ShinchokuTab() {
             <User className="h-8 w-8 text-purple-600" />
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Total Study Time</p>
-              <p className="text-2xl font-bold text-gray-900">{formatStudyTime(progressData.totalStudyTime)}</p>
+              <p className="text-2xl font-bold text-gray-900">
+                {formatStudyTime(progressData.totalStudyTime)}
+              </p>
             </div>
           </div>
         </div>
@@ -198,11 +203,13 @@ export function ShinchokuTab() {
           <BookOpen className="h-6 w-6 text-blue-600" />
           <h2 className="text-xl font-bold text-gray-900">Recent Sessions</h2>
         </div>
-        
+
         {recentSessions.length === 0 ? (
           <div className="text-center py-8">
             <BookOpen className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-            <p className="text-gray-600">No recent sessions found. Start learning to see your progress!</p>
+            <p className="text-gray-600">
+              No recent sessions found. Start learning to see your progress!
+            </p>
           </div>
         ) : (
           <div className="space-y-3">
@@ -210,9 +217,7 @@ export function ShinchokuTab() {
               <div key={index} className="border-l-4 border-blue-500 pl-4 py-2">
                 <div className="flex justify-between items-start">
                   <div>
-                    <p className="font-medium text-gray-900">
-                      {session.type || 'Study Session'}
-                    </p>
+                    <p className="font-medium text-gray-900">{session.type || 'Study Session'}</p>
                     <p className="text-sm text-gray-600">
                       {new Date(session.date || session.timestamp).toLocaleDateString()}
                     </p>
@@ -241,15 +246,13 @@ export function ShinchokuTab() {
             <span>{Math.min(progressData.overallProgress, 100)}% Complete</span>
           </div>
           <div className="w-full bg-gray-200 rounded-full h-2">
-            <div 
+            <div
               className="bg-blue-600 h-2 rounded-full transition-all duration-300"
               style={{ width: `${Math.min(progressData.overallProgress, 100)}%` }}
             ></div>
           </div>
         </div>
-        <p className="text-sm text-gray-600">
-          Goal: {progressData.weeklyGoal} sessions this week
-        </p>
+        <p className="text-sm text-gray-600">Goal: {progressData.weeklyGoal} sessions this week</p>
       </div>
 
       {/* Achievements */}

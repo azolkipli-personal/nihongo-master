@@ -52,7 +52,7 @@ export function KaiwaTab() {
         } else {
           alert('No valid conversations found.');
         }
-      } catch (error) {
+      } catch (_error) {
         alert('Failed to import conversations.');
       }
     };
@@ -100,4 +100,3 @@ export function KaiwaTab() {
     </div>
   );
 }
-

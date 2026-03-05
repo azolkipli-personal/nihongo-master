@@ -32,7 +32,10 @@ export async function getUserInfo(apiKey: string): Promise<WaniKaniUser> {
   };
 }
 
-export async function getAssignments(apiKey: string, started = true): Promise<{ id: number; subjectId: number; srsStage: number }[]> {
+export async function getAssignments(
+  apiKey: string,
+  started = true
+): Promise<{ id: number; subjectId: number; srsStage: number }[]> {
   const allAssignments = [];
   let nextUrl: string | null = `${BASE_URL}/assignments?${started ? 'started=true' : ''}`;
 
@@ -48,13 +51,15 @@ export async function getAssignments(apiKey: string, started = true): Promise<{ 
     }
 
     const data = await response.json();
-    
-    const pageAssignments = data.data.map((item: { id: number; data: { subject_id: number; srs_stage: number } }) => ({
-      id: item.id,
-      subjectId: item.data.subject_id,
-      srsStage: item.data.srs_stage,
-    }));
-    
+
+    const pageAssignments = data.data.map(
+      (item: { id: number; data: { subject_id: number; srs_stage: number } }) => ({
+        id: item.id,
+        subjectId: item.data.subject_id,
+        srsStage: item.data.srs_stage,
+      })
+    );
+
     allAssignments.push(...pageAssignments);
     nextUrl = data.pages?.next_url || null;
   }
@@ -86,16 +91,27 @@ export async function getSubjects(apiKey: string, subjectIds: number[]): Promise
     }
 
     const data = await response.json();
-    const subjects = data.data.map((item: { id: number; object: string; data: { characters: string; meanings: { meaning: string; primary: boolean }[]; readings: { reading: string; primary: boolean; type: string }[]; level: number } }) => ({
-      id: item.id,
-      object: item.object,
-      characters: item.data.characters,
-      meanings: item.data.meanings || [],
-      readings: item.data.readings || [],
-      level: item.data.level,
-      srsStage: 0,
-      spacedRepetitionSystemId: 0,
-    }));
+    const subjects = data.data.map(
+      (item: {
+        id: number;
+        object: string;
+        data: {
+          characters: string;
+          meanings: { meaning: string; primary: boolean }[];
+          readings: { reading: string; primary: boolean; type: string }[];
+          level: number;
+        };
+      }) => ({
+        id: item.id,
+        object: item.object,
+        characters: item.data.characters,
+        meanings: item.data.meanings || [],
+        readings: item.data.readings || [],
+        level: item.data.level,
+        srsStage: 0,
+        spacedRepetitionSystemId: 0,
+      })
+    );
 
     allSubjects.push(...subjects);
   }
@@ -108,7 +124,7 @@ export async function syncVocabulary(apiKey: string): Promise<WaniKaniItem[]> {
   const assignments = await getAssignments(apiKey, true);
 
   // Filter to vocabulary only and get subject IDs
-  const subjectIds = assignments.map(a => a.subjectId);
+  const subjectIds = assignments.map((a) => a.subjectId);
 
   if (subjectIds.length === 0) return [];
 
@@ -116,11 +132,11 @@ export async function syncVocabulary(apiKey: string): Promise<WaniKaniItem[]> {
   const subjects = await getSubjects(apiKey, subjectIds);
 
   // Merge SRS stage data
-  const assignmentsMap = new Map(assignments.map(a => [a.subjectId, a.srsStage]));
+  const assignmentsMap = new Map(assignments.map((a) => [a.subjectId, a.srsStage]));
 
   return subjects
-    .filter(s => s.object === 'vocabulary')
-    .map(s => ({
+    .filter((s) => s.object === 'vocabulary')
+    .map((s) => ({
       ...s,
       srsStage: assignmentsMap.get(s.id) || 0,
     }));
@@ -128,7 +144,7 @@ export async function syncVocabulary(apiKey: string): Promise<WaniKaniItem[]> {
 
 export function getReadyForPractice(items: WaniKaniItem[], minSrsStage = 4): WaniKaniItem[] {
   return items
-    .filter(item => item.srsStage >= minSrsStage)
+    .filter((item) => item.srsStage >= minSrsStage)
     .sort((a, b) => {
       // Prioritize lower SRS stages (Apprentice over Guru)
       if (a.srsStage !== b.srsStage) return a.srsStage - b.srsStage;
@@ -138,19 +154,19 @@ export function getReadyForPractice(items: WaniKaniItem[], minSrsStage = 4): Wan
 }
 
 export function getByLevel(items: WaniKaniItem[], level: number): WaniKaniItem[] {
-  return items.filter(item => item.level === level);
+  return items.filter((item) => item.level === level);
 }
 
 export function getBySrsStage(items: WaniKaniItem[], stage: number): WaniKaniItem[] {
-  return items.filter(item => item.srsStage === stage);
+  return items.filter((item) => item.srsStage === stage);
 }
 
 export function getPrimaryReading(item: WaniKaniItem): string | null {
-  const primary = item.readings?.find(r => r.primary);
+  const primary = item.readings?.find((r) => r.primary);
   return primary?.reading || item.readings?.[0]?.reading || null;
 }
 
 export function getPrimaryMeaning(item: WaniKaniItem): string | null {
-  const primary = item.meanings?.find(m => m.primary);
+  const primary = item.meanings?.find((m) => m.primary);
   return primary?.meaning || item.meanings?.[0]?.meaning || null;
 }

@@ -20,7 +20,7 @@ export const appearanceConfig = {
     hover: 'hover:bg-gray-700',
     sidebar: 'bg-[#1E2538]',
     input: 'bg-gray-700 border-gray-600 text-gray-100',
-  }
+  },
 };
 
 export const colorThemeConfig = {
@@ -58,7 +58,7 @@ export const colorThemeConfig = {
     button: 'bg-violet-600 hover:bg-violet-700',
     accent: 'text-violet-600 dark:text-violet-400',
     banner: 'bg-gradient-to-r from-violet-800 to-purple-950',
-  }
+  },
 };
 
 export function getThemeClasses(appearance: 'light' | 'dark', colorTheme: AppConfig['colorTheme']) {

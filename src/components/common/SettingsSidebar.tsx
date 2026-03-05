@@ -44,7 +44,10 @@ export function SettingsSidebar({ isOpen, onClose }: SettingsSidebarProps) {
         <div className="p-6">
           <div className="flex justify-between items-center mb-8">
             <h2 className="text-xl font-semibold">Settings</h2>
-            <button onClick={onClose} className="p-1 hover:bg-white/10 rounded-full transition-colors">
+            <button
+              onClick={onClose}
+              className="p-1 hover:bg-white/10 rounded-full transition-colors"
+            >
               <X className="w-6 h-6 text-gray-400" />
             </button>
           </div>
@@ -64,11 +67,13 @@ export function SettingsSidebar({ isOpen, onClose }: SettingsSidebarProps) {
             ollamaUrl={config.ollamaUrl}
             ollamaModels={ollamaModels}
             onServiceChange={(service) => updateConfig({ selectedService: service })}
-            onModelChange={(model) => updateConfig(
-              config.selectedService === 'gemini'
-                ? { geminiModel: model }
-                : { ollamaModel: model }
-            )}
+            onModelChange={(model) =>
+              updateConfig(
+                config.selectedService === 'gemini'
+                  ? { geminiModel: model }
+                  : { ollamaModel: model }
+              )
+            }
             onApiKeyChange={(key) => updateConfig({ geminiApiKey: key })}
             onOllamaUrlChange={(url) => updateConfig({ ollamaUrl: url })}
             onRefreshOllamaModels={() => fetchOllamaModels()}
@@ -88,7 +93,6 @@ export function SettingsSidebar({ isOpen, onClose }: SettingsSidebarProps) {
         </div>
       </div>
 
-
       <input
         ref={fileInputRef}
         type="file"
@@ -99,4 +103,3 @@ export function SettingsSidebar({ isOpen, onClose }: SettingsSidebarProps) {
     </>
   );
 }
-

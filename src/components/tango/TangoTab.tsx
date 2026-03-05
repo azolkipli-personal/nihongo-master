@@ -1,6 +1,11 @@
 import { useState, useMemo, useEffect } from 'react';
 import { RefreshCw, BookOpen, CheckCircle, ExternalLink, Search, Filter } from 'lucide-react';
-import { syncVocabulary, getReadyForPractice, getPrimaryReading, getPrimaryMeaning } from '../../services/wanikani';
+import {
+  syncVocabulary,
+  getReadyForPractice,
+  getPrimaryReading,
+  getPrimaryMeaning,
+} from '../../services/wanikani';
 import { loadConfig } from '../../utils/configManager';
 import { WaniKaniItem } from '../../types';
 
@@ -67,30 +72,32 @@ export function TangoTab() {
     if (srsFilter !== 'all') {
       const stage = parseInt(srsFilter, 10);
       if (!isNaN(stage)) {
-        result = result.filter(item => item.srsStage === stage);
+        result = result.filter((item) => item.srsStage === stage);
       } else if (srsFilter === 'apprentice') {
-        result = result.filter(item => item.srsStage >= 1 && item.srsStage <= 4);
+        result = result.filter((item) => item.srsStage >= 1 && item.srsStage <= 4);
       } else if (srsFilter === 'guru') {
-        result = result.filter(item => item.srsStage >= 5 && item.srsStage <= 6);
+        result = result.filter((item) => item.srsStage >= 5 && item.srsStage <= 6);
       } else if (srsFilter === 'master') {
-        result = result.filter(item => item.srsStage === 7);
+        result = result.filter((item) => item.srsStage === 7);
       } else if (srsFilter === 'enlightened') {
-        result = result.filter(item => item.srsStage === 8);
+        result = result.filter((item) => item.srsStage === 8);
       } else if (srsFilter === 'burned') {
-        result = result.filter(item => item.srsStage === 9);
+        result = result.filter((item) => item.srsStage === 9);
       }
     }
 
     // Apply Search Query
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase();
-      result = result.filter(item => {
+      result = result.filter((item) => {
         const reading = getPrimaryReading(item);
         const meaning = getPrimaryMeaning(item);
 
-        return item.characters.toLowerCase().includes(q) ||
+        return (
+          item.characters.toLowerCase().includes(q) ||
           (reading && reading.toLowerCase().includes(q)) ||
-          (meaning && meaning.toLowerCase().includes(q));
+          (meaning && meaning.toLowerCase().includes(q))
+        );
       });
     }
 
@@ -110,10 +117,9 @@ export function TangoTab() {
           <button
             key={tab}
             onClick={() => setActiveSubTab(tab)}
-            className={`flex-1 py-2 px-4 rounded-md font-medium transition-colors ${activeSubTab === tab
-              ? 'bg-blue-500 text-white'
-              : 'text-gray-600 hover:bg-gray-100'
-              }`}
+            className={`flex-1 py-2 px-4 rounded-md font-medium transition-colors ${
+              activeSubTab === tab ? 'bg-blue-500 text-white' : 'text-gray-600 hover:bg-gray-100'
+            }`}
           >
             {tab === 'sync' && 'Sync'}
             {tab === 'vocabulary' && `Vocabulary (${vocabulary.length})`}
@@ -141,16 +147,12 @@ export function TangoTab() {
           <div className="space-y-4">
             <div className="p-4 bg-gray-50 rounded-lg border border-gray-100">
               <p className="text-sm text-gray-600">
-                Click the button below to sync your vocabulary progress from WaniKani.
-                Make sure your API key is configured in the <strong>Settings</strong>.
+                Click the button below to sync your vocabulary progress from WaniKani. Make sure
+                your API key is configured in the <strong>Settings</strong>.
               </p>
             </div>
 
-            {error && (
-              <div className="p-3 bg-red-50 text-red-700 rounded-lg text-sm">
-                {error}
-              </div>
-            )}
+            {error && <div className="p-3 bg-red-50 text-red-700 rounded-lg text-sm">{error}</div>}
 
             {lastSync && (
               <div className="p-3 bg-blue-50 text-blue-700 rounded-lg text-sm">
@@ -179,13 +181,15 @@ export function TangoTab() {
         </div>
       )}
 
-
       {/* Vocabulary Tab */}
       {activeSubTab === 'vocabulary' && (
         <div className="bg-white rounded-lg shadow p-6">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
             <h2 className="text-xl font-bold text-gray-800">
-              Your Vocabulary <span className="text-gray-500 font-normal text-lg">({filteredVocabulary.length} items)</span>
+              Your Vocabulary{' '}
+              <span className="text-gray-500 font-normal text-lg">
+                ({filteredVocabulary.length} items)
+              </span>
             </h2>
 
             <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
@@ -227,7 +231,15 @@ export function TangoTab() {
             <div className="text-center py-12 text-gray-500">
               <Search className="w-12 h-12 mx-auto mb-4 opacity-30 cursor-none" />
               <p>No vocabulary matches your search.</p>
-              <button onClick={() => { setSearchQuery(''); setSrsFilter('all'); }} className="text-blue-500 text-sm hover:underline mt-2">Clear filters</button>
+              <button
+                onClick={() => {
+                  setSearchQuery('');
+                  setSrsFilter('all');
+                }}
+                className="text-blue-500 text-sm hover:underline mt-2"
+              >
+                Clear filters
+              </button>
             </div>
           ) : (
             <>
@@ -245,13 +257,21 @@ export function TangoTab() {
                       {getPrimaryMeaning(item)}
                     </div>
                     <div className="mt-3">
-                      <span className={`px-2.5 py-1 text-[10px] uppercase tracking-wider font-bold rounded-full ${item.srsStage >= 9 ? 'bg-gray-800 text-white' :
-                        item.srsStage >= 8 ? 'bg-blue-600 text-white' :
-                          item.srsStage >= 7 ? 'bg-blue-500 text-white' :
-                            item.srsStage >= 5 ? 'bg-purple-500 text-white' :
-                              item.srsStage >= 1 ? 'bg-pink-500 text-white' :
-                                'bg-gray-200 text-gray-600'
-                        }`}>
+                      <span
+                        className={`px-2.5 py-1 text-[10px] uppercase tracking-wider font-bold rounded-full ${
+                          item.srsStage >= 9
+                            ? 'bg-gray-800 text-white'
+                            : item.srsStage >= 8
+                              ? 'bg-blue-600 text-white'
+                              : item.srsStage >= 7
+                                ? 'bg-blue-500 text-white'
+                                : item.srsStage >= 5
+                                  ? 'bg-purple-500 text-white'
+                                  : item.srsStage >= 1
+                                    ? 'bg-pink-500 text-white'
+                                    : 'bg-gray-200 text-gray-600'
+                        }`}
+                      >
                         SRS {item.srsStage}
                       </span>
                     </div>
@@ -265,7 +285,7 @@ export function TangoTab() {
                     Showing {displayCount} of {filteredVocabulary.length} items
                   </p>
                   <button
-                    onClick={() => setDisplayCount(prev => prev + 50)}
+                    onClick={() => setDisplayCount((prev) => prev + 50)}
                     className="px-6 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium rounded-lg transition-colors"
                   >
                     Load More
@@ -285,7 +305,8 @@ export function TangoTab() {
           </h2>
 
           <p className="text-gray-600 mb-4">
-            These are vocabulary items from your WaniKani studies that are ready to be used in conversations.
+            These are vocabulary items from your WaniKani studies that are ready to be used in
+            conversations.
           </p>
 
           {readyForPractice.length === 0 ? (
@@ -302,9 +323,7 @@ export function TangoTab() {
                   className="border border-blue-200 bg-blue-50 rounded-lg p-3 hover:shadow-md transition-shadow"
                 >
                   <div className="text-2xl text-center mb-2">{item.characters}</div>
-                  <div className="text-sm text-gray-600 text-center">
-                    {getPrimaryReading(item)}
-                  </div>
+                  <div className="text-sm text-gray-600 text-center">{getPrimaryReading(item)}</div>
                   <div className="text-xs text-gray-500 text-center mt-1">
                     {getPrimaryMeaning(item)}
                   </div>

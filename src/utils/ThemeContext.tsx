@@ -30,12 +30,14 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <ThemeContext.Provider value={{
-      appearance: config.appearance,
-      colorTheme: config.colorTheme,
-      themeClasses,
-      updateTheme,
-    }}>
+    <ThemeContext.Provider
+      value={{
+        appearance: config.appearance,
+        colorTheme: config.colorTheme,
+        themeClasses,
+        updateTheme,
+      }}
+    >
       {children}
     </ThemeContext.Provider>
   );

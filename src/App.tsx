@@ -31,7 +31,7 @@ function App() {
     <div className={`min-h-screen ${themeClasses.background}`}>
       <Header onOpenSettings={() => setSettingsOpen(true)} />
       <TabNavigation activeTab={activeTab} onTabChange={setActiveTab} />
-      
+
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {activeTab === 'kaiwa' && <KaiwaTab />}
         {activeTab === 'bunpo' && <BunpoTab />}
@@ -39,10 +39,7 @@ function App() {
         {activeTab === 'shinchoku' && <ShinchokuTab />}
       </main>
 
-      <SettingsSidebar 
-        isOpen={settingsOpen} 
-        onClose={() => setSettingsOpen(false)} 
-      />
+      <SettingsSidebar isOpen={settingsOpen} onClose={() => setSettingsOpen(false)} />
     </div>
   );
 }
