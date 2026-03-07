@@ -8,3 +8,6 @@ dist-ssr
 # Data files (User Progress)
 data/**/*.json
 !data/**/.gitkeep
+
+*storybook.log
+storybook-static

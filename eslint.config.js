@@ -6,7 +6,7 @@ import reactHooks from 'eslint-plugin-react-hooks';
 import prettier from 'eslint-config-prettier';
 
 export default tseslint.config(
-  { ignores: ['dist', 'node_modules', '*.config.js', '*.config.ts'] },
+  { ignores: ['dist', 'node_modules', '*.config.js', '*.config.ts', '.storybook'] },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
     files: ['**/*.{ts,tsx}'],
@@ -37,7 +37,7 @@ export default tseslint.config(
       '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
       '@typescript-eslint/no-explicit-any': 'warn',
       'no-useless-escape': 'warn',
-      
+
       // Additional code quality rules
       'prefer-const': 'warn',
       'no-var': 'error',
@@ -46,7 +46,7 @@ export default tseslint.config(
       'prefer-template': 'warn',
       'object-shorthand': ['warn', 'always'],
       'no-return-await': 'warn',
-      
+
       ...prettier.rules,
     },
   }
