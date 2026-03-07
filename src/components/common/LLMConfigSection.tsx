@@ -120,18 +120,31 @@ export function LLMConfigSection({
               <input
                 type="text"
                 value={ollamaUrl}
-                onChange={(e) => onOllamaUrlChange(e.target.value)}
+                onChange={(e) => {
+                  console.log('=== URL Input changed to:', e.target.value);
+                  onOllamaUrlChange(e.target.value);
+                }}
                 placeholder="http://localhost:11434"
                 className="w-full bg-[#2A344D] border border-[#3E4A6D] text-white text-sm rounded-md px-3 py-2.5 focus:outline-none focus:ring-1 focus:ring-[#7C89FF] cursor-text"
                 style={{ minWidth: '200px' }}
               />
-              <button
-                onClick={onRefreshOllamaModels}
-                disabled={loadingModels}
-                className="mt-2 text-xs text-[#7C89FF] hover:underline cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {loadingModels ? 'Loading models...' : 'Refresh Models'}
-              </button>
+              <div className="mt-2 flex items-center gap-2">
+                <button
+                  onClick={() => {
+                    console.log('=== Refresh Models clicked ===');
+                    console.log('Current URL from input:', ollamaUrl);
+                    console.log('Current URL from config:', config.ollamaUrl);
+                    onRefreshOllamaModels(ollamaUrl);
+                  }}
+                  disabled={loadingModels}
+                  className="text-xs text-[#7C89FF] hover:underline cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {loadingModels ? 'Loading models...' : 'Refresh Models'}
+                </button>
+                {loadingModels && (
+                  <span className="text-xs text-gray-400">Fetching from: {ollamaUrl}...</span>
+                )}
+              </div>
             </div>
           )}
         </div>
