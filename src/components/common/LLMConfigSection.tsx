@@ -121,7 +121,6 @@ export function LLMConfigSection({
                 type="text"
                 value={ollamaUrl}
                 onChange={(e) => {
-                  console.log('=== URL Input changed to:', e.target.value);
                   onOllamaUrlChange(e.target.value);
                 }}
                 placeholder="http://localhost:11434"
@@ -131,8 +130,6 @@ export function LLMConfigSection({
               <div className="mt-2 flex items-center gap-2">
                 <button
                   onClick={() => {
-                    console.log('=== Refresh Models clicked ===');
-                    console.log('Current URL from input:', ollamaUrl);
                     onRefreshOllamaModels();
                   }}
                   disabled={loadingModels}

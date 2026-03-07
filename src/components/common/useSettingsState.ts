@@ -12,12 +12,10 @@ export function useSettingsState(isOpen: boolean, onClose: () => void) {
   const fetchOllamaModels = useCallback(
     async (url?: string) => {
       const targetUrl = url || config.ollamaUrl;
-      console.log('Fetching models from:', targetUrl);
       setLoadingModels(true);
       try {
         const models = await getOllamaModels(targetUrl);
         setOllamaModels(models);
-        console.log('Models loaded:', models);
       } catch (error) {
         console.error('Failed to fetch Ollama models:', error);
         setOllamaModels([]);

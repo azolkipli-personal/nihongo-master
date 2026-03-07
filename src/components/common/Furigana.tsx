@@ -1,5 +1,7 @@
 import { parseFurigana } from '../../utils/furigana';
 
+type FuriganaPart = { type: 'text' | 'ruby'; content: string; furigana?: string };
+
 interface FuriganaProps {
   text: string;
   className?: string;
@@ -18,7 +20,7 @@ export function Furigana({ text = '', className = '', showFurigana = true }: Fur
 
   return (
     <span className={`${className} leading-relaxed`}>
-      {parts.map((part: any, index: number) => {
+      {parts.map((part: FuriganaPart, index: number) => {
         if (part.type === 'ruby') {
           return (
             <ruby key={index} className="ruby-base">
