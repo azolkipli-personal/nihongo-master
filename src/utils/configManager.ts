@@ -150,7 +150,7 @@ export async function importApiKeyFromFile(
 
     return { success: false, error: 'No valid Gemini API key found in file' };
   } catch (error) {
-    return { success: false, error: 'Failed to read file: ' + (error as Error).message };
+    return { success: false, error: `Failed to read file: ${(error as Error).message}` };
   }
 }
 

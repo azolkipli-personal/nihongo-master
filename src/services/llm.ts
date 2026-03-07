@@ -30,6 +30,11 @@ export const GEMINI_MODELS = [
   { id: 'gemini-2.0-flash', name: 'Gemini-2-Flash' },
 ];
 
+/**
+ * Fetches available models from an Ollama instance
+ * @param url - The URL of the Ollama server (defaults to localhost:11434)
+ * @returns Promise resolving to an array of model names
+ */
 export async function getOllamaModels(url: string = 'http://localhost:11434'): Promise<string[]> {
   try {
     const response = await fetch(`${url}/api/tags`);
@@ -224,7 +229,7 @@ async function callOllama(
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      model: model,
+      model,
       prompt,
       stream: false,
     }),
@@ -303,7 +308,7 @@ async function callOllamaForUpgrade(
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      model: model,
+      model,
       prompt,
       stream: false,
     }),

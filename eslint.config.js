@@ -37,6 +37,16 @@ export default tseslint.config(
       '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
       '@typescript-eslint/no-explicit-any': 'warn',
       'no-useless-escape': 'warn',
+      
+      // Additional code quality rules
+      'prefer-const': 'warn',
+      'no-var': 'error',
+      'prefer-arrow-callback': 'warn',
+      'no-console': ['warn', { allow: ['warn', 'error'] }],
+      'prefer-template': 'warn',
+      'object-shorthand': ['warn', 'always'],
+      'no-return-await': 'warn',
+      
       ...prettier.rules,
     },
   }
