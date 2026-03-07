@@ -17,6 +17,7 @@ export function SettingsSidebar({ isOpen, onClose }: SettingsSidebarProps) {
     config,
     saved,
     ollamaModels,
+    loadingModels,
     updateConfig,
     handleSave,
     handleExportSettings,
@@ -66,6 +67,7 @@ export function SettingsSidebar({ isOpen, onClose }: SettingsSidebarProps) {
             geminiApiKey={config.geminiApiKey}
             ollamaUrl={config.ollamaUrl}
             ollamaModels={ollamaModels}
+            loadingModels={loadingModels}
             onServiceChange={(service) => updateConfig({ selectedService: service })}
             onModelChange={(model) =>
               updateConfig(
@@ -76,7 +78,7 @@ export function SettingsSidebar({ isOpen, onClose }: SettingsSidebarProps) {
             }
             onApiKeyChange={(key) => updateConfig({ geminiApiKey: key })}
             onOllamaUrlChange={(url) => updateConfig({ ollamaUrl: url })}
-            onRefreshOllamaModels={() => fetchOllamaModels()}
+            onRefreshOllamaModels={() => fetchOllamaModels(config.ollamaUrl)}
           />
 
           <IntegrationsSection
