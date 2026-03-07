@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { User, BookOpen, Target, TrendingUp, Award, Calendar } from 'lucide-react';
-import { loadConfig } from '../../utils/configManager';
-import { AppConfig, StudySession } from '../../types';
+import { StudySession } from '../../types';
 
 export function ShinchokuTab() {
   const [progressData, setProgressData] = useState({
@@ -13,11 +12,8 @@ export function ShinchokuTab() {
   });
 
   const [recentSessions, setRecentSessions] = useState<StudySession[]>([]);
-  const [config, setConfig] = useState<AppConfig | null>(null);
 
   useEffect(() => {
-    const cfg = loadConfig();
-    setConfig(cfg);
     loadProgressData();
     loadRecentSessions();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -31,7 +27,7 @@ export function ShinchokuTab() {
 
       // Calculate metrics
       const overallProgress = calculateOverallProgress(sessions);
-      const weeklyGoal = config?.weeklyGoal || 7;
+      const weeklyGoal = 7;
       const streakCount = calculateStreak(sessions);
       const totalStudyTime = calculateTotalStudyTime(sessions);
       const achievements = calculateAchievements(sessions);
@@ -220,16 +216,14 @@ export function ShinchokuTab() {
                   <div>
                     <p className="font-medium text-gray-900">{session.type || 'Study Session'}</p>
                     <p className="text-sm text-gray-600">
-                      {new Date(session.date || session.timestamp).toLocaleDateString()}
+                      {new Date(session.date).toLocaleDateString()}
                     </p>
                   </div>
                   <div className="text-right">
                     <p className="text-sm font-medium text-gray-900">
-                      {formatStudyTime(session.duration || session.studyTime || 0)}
+                      {formatStudyTime(session.duration || 0)}
                     </p>
-                    <p className="text-xs text-gray-500">
-                      {session.score || session.accuracy || 'No score'}%
-                    </p>
+                    <p className="text-xs text-gray-500">{session.score || 'No score'}%</p>
                   </div>
                 </div>
               </div>
