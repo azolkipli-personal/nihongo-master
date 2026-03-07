@@ -37,12 +37,37 @@ export const GEMINI_MODELS = [
  */
 export async function getOllamaModels(url: string = 'http://localhost:11434'): Promise<string[]> {
   try {
-    const response = await fetch(`${url}/api/tags`);
-    if (!response.ok) throw new Error('Failed to fetch models');
+    console.log('Fetching Ollama models from:', url);
+    const response = await fetch(`${url}/api/tags`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    }
+
     const data = await response.json();
-    return data.models.map((m: { name: string }) => m.name);
+    console.log('Ollama response:', data);
+
+    if (!data.models || !Array.isArray(data.models)) {
+      console.warn('Invalid response format from Ollama:', data);
+      return [];
+    }
+
+    const models = data.models.map((m: { name: string }) => m.name);
+    console.log(`Found ${models.length} models:`, models);
+    return models;
   } catch (error) {
-    console.warn('Failed to fetch Ollama models:', error);
+    if (error instanceof TypeError && error.message.includes('fetch')) {
+      console.error('CORS or Network error - cannot reach Ollama server at', url);
+      console.error('Make sure Ollama is running and CORS is enabled.');
+      console.error('For remote servers, set: OLLAMA_ORIGINS=*');
+    } else {
+      console.error('Failed to fetch Ollama models:', error);
+    }
     return [];
   }
 }
