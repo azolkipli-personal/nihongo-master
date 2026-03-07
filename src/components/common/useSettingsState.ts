@@ -7,14 +7,22 @@ export function useSettingsState(isOpen: boolean, onClose: () => void) {
   const [config, setConfig] = useState<AppConfig>(loadConfig());
   const [saved, setSaved] = useState(false);
   const [ollamaModels, setOllamaModels] = useState<string[]>([]);
+  const [loadingModels, setLoadingModels] = useState(false);
 
   const fetchOllamaModels = useCallback(
     async (url?: string) => {
+      const targetUrl = url || config.ollamaUrl;
+      console.log('Fetching models from:', targetUrl);
+      setLoadingModels(true);
       try {
-        const models = await getOllamaModels(url || config.ollamaUrl);
+        const models = await getOllamaModels(targetUrl);
         setOllamaModels(models);
+        console.log('Models loaded:', models);
       } catch (error) {
         console.error('Failed to fetch Ollama models:', error);
+        setOllamaModels([]);
+      } finally {
+        setLoadingModels(false);
       }
     },
     [config.ollamaUrl]
@@ -86,6 +94,7 @@ export function useSettingsState(isOpen: boolean, onClose: () => void) {
     config,
     saved,
     ollamaModels,
+    loadingModels,
     updateConfig,
     handleSave,
     handleExportSettings,

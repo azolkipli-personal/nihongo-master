@@ -7,6 +7,7 @@ interface LLMConfigSectionProps {
   geminiApiKey: string;
   ollamaUrl: string;
   ollamaModels: string[];
+  loadingModels?: boolean;
   onServiceChange: (service: 'gemini' | 'openrouter' | 'ollama') => void;
   onModelChange: (model: string) => void;
   onApiKeyChange: (key: string) => void;
@@ -21,6 +22,7 @@ export function LLMConfigSection({
   geminiApiKey,
   ollamaUrl,
   ollamaModels,
+  loadingModels = false,
   onServiceChange,
   onModelChange,
   onApiKeyChange,
@@ -82,7 +84,13 @@ export function LLMConfigSection({
                 ))
               ) : (
                 <>
-                  <option value="">Select a model</option>
+                  <option value="">
+                    {loadingModels
+                      ? 'Loading models...'
+                      : ollamaModels.length === 0
+                        ? 'No models found'
+                        : 'Select a model'}
+                  </option>
                   {ollamaModels.map((m) => (
                     <option key={m} value={m}>
                       {m}
@@ -119,9 +127,10 @@ export function LLMConfigSection({
               />
               <button
                 onClick={onRefreshOllamaModels}
-                className="mt-2 text-xs text-[#7C89FF] hover:underline cursor-pointer"
+                disabled={loadingModels}
+                className="mt-2 text-xs text-[#7C89FF] hover:underline cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Refresh Models
+                {loadingModels ? 'Loading models...' : 'Refresh Models'}
               </button>
             </div>
           )}
