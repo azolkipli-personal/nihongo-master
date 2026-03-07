@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { User, BookOpen, Target, TrendingUp, Award, Calendar } from 'lucide-react';
 import { loadConfig } from '../../utils/configManager';
+import { AppConfig, StudySession } from '../../types';
 
 export function ShinchokuTab() {
   const [progressData, setProgressData] = useState({
@@ -11,12 +12,12 @@ export function ShinchokuTab() {
     achievements: [] as string[],
   });
 
-  const [recentSessions, setRecentSessions] = useState<any[]>([]);
-  const [config, setConfig] = useState<any>(null);
+  const [recentSessions, setRecentSessions] = useState<StudySession[]>([]);
+  const [config, setConfig] = useState<AppConfig | null>(null);
 
   useEffect(() => {
     const cfg = loadConfig();
-    setConfig(cfg as any);
+    setConfig(cfg);
     loadProgressData();
     loadRecentSessions();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -67,19 +68,19 @@ export function ShinchokuTab() {
       const { loadSessions } = await import('../../utils/sessionStorage');
       const sessions = loadSessions();
       const recent = sessions.slice(-10).reverse(); // Last 10 sessions
-      setRecentSessions(recent as any);
+      setRecentSessions(recent);
     } catch (error) {
       console.error('Failed to load recent sessions:', error);
     }
   };
 
-  const calculateOverallProgress = (sessions: any[]) => {
+  const calculateOverallProgress = (sessions: StudySession[]) => {
     // Simple progress calculation based on session count and consistency
     if (!sessions || sessions.length === 0) return 0;
     return Math.min(100, sessions.length * 2);
   };
 
-  const calculateStreak = (sessions: any[]) => {
+  const calculateStreak = (sessions: StudySession[]) => {
     if (!sessions || sessions.length === 0) return 0;
 
     let streak = 0;
@@ -87,7 +88,7 @@ export function ShinchokuTab() {
 
     // Simple streak calculation (would be more sophisticated in real implementation)
     for (let i = sessions.length - 1; i >= 0; i--) {
-      const sessionDate = new Date(sessions[i].date || sessions[i].timestamp);
+      const sessionDate = new Date(sessions[i].date);
       const daysDiff = Math.floor(
         (today.getTime() - sessionDate.getTime()) / (1000 * 60 * 60 * 24)
       );
@@ -102,16 +103,16 @@ export function ShinchokuTab() {
     return streak;
   };
 
-  const calculateTotalStudyTime = (sessions: any[]) => {
+  const calculateTotalStudyTime = (sessions: StudySession[]) => {
     if (!sessions || sessions.length === 0) return 0;
 
     return sessions.reduce((total, session) => {
-      return total + (session.duration || session.studyTime || 0);
+      return total + (session.duration || 0);
     }, 0);
   };
 
-  const calculateAchievements = (sessions: any[]) => {
-    const achievements = [];
+  const calculateAchievements = (sessions: StudySession[]) => {
+    const achievements: string[] = [];
 
     if (sessions.length >= 1) achievements.push('First Steps');
     if (sessions.length >= 7) achievements.push('Week Warrior');
