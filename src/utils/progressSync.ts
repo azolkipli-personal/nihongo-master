@@ -1,7 +1,17 @@
+import { GrammarPattern, StudySession, WaniKaniItem } from '../types';
+
 export interface UserProgress {
-  grammar: Record<string, Partial<any>>;
-  vocabulary: any[];
-  sessions: any[];
+  grammar: Record<
+    string,
+    Partial<
+      Pick<
+        GrammarPattern,
+        'srsStage' | 'nextReviewDate' | 'lastReviewDate' | 'interval' | 'mastered'
+      >
+    >
+  >;
+  vocabulary: WaniKaniItem[];
+  sessions: StudySession[];
   lastUpdated: string;
 }
 
