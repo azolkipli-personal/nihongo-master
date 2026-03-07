@@ -112,10 +112,7 @@ export function LLMConfigSection({
               <input
                 type="text"
                 value={ollamaUrl}
-                onChange={(e) => {
-                  console.log('Ollama URL changed:', e.target.value);
-                  onOllamaUrlChange(e.target.value);
-                }}
+                onChange={(e) => onOllamaUrlChange(e.target.value)}
                 placeholder="http://localhost:11434"
                 className="w-full bg-[#2A344D] border border-[#3E4A6D] text-white text-sm rounded-md px-3 py-2.5 focus:outline-none focus:ring-1 focus:ring-[#7C89FF] cursor-text"
                 style={{ minWidth: '200px' }}
