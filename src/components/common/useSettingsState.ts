@@ -28,7 +28,8 @@ export function useSettingsState(isOpen: boolean, onClose: () => void) {
         fetchOllamaModels(currentConfig.ollamaUrl);
       }
     }
-  }, [isOpen, fetchOllamaModels]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOpen]);
 
   const handleSave = useCallback(() => {
     saveConfig(config);
