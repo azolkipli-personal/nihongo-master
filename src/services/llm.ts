@@ -35,7 +35,7 @@ export async function getOllamaModels(url: string = 'http://localhost:11434'): P
     const response = await fetch(`${url}/api/tags`);
     if (!response.ok) throw new Error('Failed to fetch models');
     const data = await response.json();
-    return data.models.map((m: any) => m.name);
+    return data.models.map((m: { name: string }) => m.name);
   } catch (error) {
     console.warn('Failed to fetch Ollama models:', error);
     return [];

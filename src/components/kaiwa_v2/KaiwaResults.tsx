@@ -28,9 +28,9 @@ const stripFurigana = (text: string): string => {
 };
 
 function MergedInfoBox({ conversation: conv }: { conversation: Conversation }) {
-  if (!conv || (!(conv as any).wordDetails && !(conv as any).meaning)) return null;
+  if (!conv || (!conv.wordDetails && !conv.meaning)) return null;
 
-  const meaningText = (conv as any).meaning || '';
+  const meaningText = conv.meaning || '';
   const meaningLines = meaningText.split('\n').filter((l: string) => l.trim() !== '');
   const mainMeaning = meaningLines[0];
   const contextLines = meaningLines.slice(1);
@@ -40,7 +40,7 @@ function MergedInfoBox({ conversation: conv }: { conversation: Conversation }) {
       <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-600"></div>
 
       <div className="text-center font-black text-indigo-900 mb-8 border-b-2 border-indigo-100 pb-4 text-2xl uppercase tracking-widest">
-        📚 Learning Focus: {(conv as any).wordDetails?.kanji || conv.title}
+        📚 Learning Focus: {conv.wordDetails?.kanji || conv.title}
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -52,20 +52,18 @@ function MergedInfoBox({ conversation: conv }: { conversation: Conversation }) {
           <div className="grid grid-cols-3 gap-3">
             <div className="bg-white rounded-2xl p-4 border-2 border-blue-100 shadow-sm flex flex-col items-center justify-center min-h-[100px]">
               <span className="text-[10px] font-bold text-blue-400 uppercase mb-2">Kanji</span>
-              <span className="text-3xl font-black text-gray-900">
-                {(conv as any).wordDetails?.kanji}
-              </span>
+              <span className="text-3xl font-black text-gray-900">{conv.wordDetails?.kanji}</span>
             </div>
             <div className="bg-white rounded-2xl p-4 border-2 border-blue-100 shadow-sm flex flex-col items-center justify-center min-h-[100px]">
               <span className="text-[10px] font-bold text-blue-400 uppercase mb-2">Hiragana</span>
               <span className="text-2xl font-bold text-gray-800">
-                {(conv as any).wordDetails?.hiragana || (conv as any).wordDetails?.kana}
+                {conv.wordDetails?.hiragana || conv.wordDetails?.kana}
               </span>
             </div>
             <div className="bg-white rounded-2xl p-4 border-2 border-blue-100 shadow-sm flex flex-col items-center justify-center min-h-[100px]">
               <span className="text-[10px] font-bold text-blue-400 uppercase mb-2">Romaji</span>
               <span className="text-lg italic font-medium text-gray-700">
-                {(conv as any).wordDetails?.romaji}
+                {conv.wordDetails?.romaji}
               </span>
             </div>
           </div>

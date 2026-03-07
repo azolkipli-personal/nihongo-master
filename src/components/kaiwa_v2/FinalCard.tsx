@@ -102,63 +102,60 @@ export function FinalCard({
       </div>
 
       {/* MERGED BOX START */}
-      {((conv as any).wordDetails || (conv as any).meaning) && (
+      {(conv.wordDetails || conv.meaning) && (
         <div className="mb-6 p-4 bg-gradient-to-br from-indigo-50 to-blue-50 rounded-xl border border-blue-100 shadow-sm">
           {/* Word Details Section */}
-          {(conv as any).wordDetails &&
-            ((conv as any).wordDetails.kanji || (conv as any).wordDetails.kana) && (
-              <div className="mb-4">
-                <div className="flex items-center gap-2 font-bold text-blue-800 mb-3 text-sm uppercase tracking-wide">
-                  📚 Word Details
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                  {(conv as any).wordDetails.kanji && (
-                    <div className="bg-white/80 rounded-lg px-3 py-2 border border-blue-100">
-                      <span className="text-[10px] font-bold text-blue-400 uppercase tracking-wider block mb-0.5">
-                        Kanji
-                      </span>
-                      <span className="text-xl text-gray-900 font-medium">
-                        {(conv as any).wordDetails.kanji}
-                      </span>
-                    </div>
-                  )}
-                  {(conv as any).wordDetails.kana && (
-                    <div className="bg-white/80 rounded-lg px-3 py-2 border border-blue-100">
-                      <span className="text-[10px] font-bold text-blue-400 uppercase tracking-wider block mb-0.5">
-                        Hiragana
-                      </span>
-                      <span className="text-lg text-gray-900">
-                        {(conv as any).wordDetails.kana}
-                      </span>
-                    </div>
-                  )}
-                  {(conv as any).wordDetails.romaji && (
-                    <div className="bg-white/80 rounded-lg px-3 py-2 border border-blue-100">
-                      <span className="text-[10px] font-bold text-blue-400 uppercase tracking-wider block mb-0.5">
-                        Romaji
-                      </span>
-                      <span className="text-base italic text-gray-900">
-                        {(conv as any).wordDetails.romaji}
-                      </span>
-                    </div>
-                  )}
-                </div>
+          {conv.wordDetails && (conv.wordDetails.kanji || conv.wordDetails.kana) && (
+            <div className="mb-4">
+              <div className="flex items-center gap-2 font-bold text-blue-800 mb-3 text-sm uppercase tracking-wide">
+                📚 Word Details
               </div>
-            )}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                {conv.wordDetails.kanji && (
+                  <div className="bg-white/80 rounded-lg px-3 py-2 border border-blue-100">
+                    <span className="text-[10px] font-bold text-blue-400 uppercase tracking-wider block mb-0.5">
+                      Kanji
+                    </span>
+                    <span className="text-xl text-gray-900 font-medium">
+                      {conv.wordDetails.kanji}
+                    </span>
+                  </div>
+                )}
+                {conv.wordDetails.kana && (
+                  <div className="bg-white/80 rounded-lg px-3 py-2 border border-blue-100">
+                    <span className="text-[10px] font-bold text-blue-400 uppercase tracking-wider block mb-0.5">
+                      Hiragana
+                    </span>
+                    <span className="text-lg text-gray-900">{conv.wordDetails.kana}</span>
+                  </div>
+                )}
+                {conv.wordDetails.romaji && (
+                  <div className="bg-white/80 rounded-lg px-3 py-2 border border-blue-100">
+                    <span className="text-[10px] font-bold text-blue-400 uppercase tracking-wider block mb-0.5">
+                      Romaji
+                    </span>
+                    <span className="text-base italic text-gray-900">
+                      {conv.wordDetails.romaji}
+                    </span>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
 
           {/* Meaning & Context Section */}
-          {(conv as any).meaning && (
+          {conv.meaning && (
             <div className="border-t border-blue-100/50 pt-4 mt-2">
               <div className="flex items-center gap-2 font-bold text-purple-800 mb-2 text-sm uppercase tracking-wide">
                 💡 Meaning & Context
               </div>
               <div className="bg-white/80 rounded-lg px-4 py-3 border border-purple-100 text-gray-800">
                 <div className="font-semibold text-gray-900 mb-1">
-                  {(conv as any).meaning.split('\n')[0]}
+                  {conv.meaning.split('\n')[0]}
                 </div>
-                {(conv as any).meaning.split('\n').length > 1 && (
+                {conv.meaning.split('\n').length > 1 && (
                   <div className="text-sm text-gray-600 mt-2 leading-relaxed border-t border-gray-100 pt-2">
-                    {(conv as any).meaning.split('\n').slice(1).join('\n')}
+                    {conv.meaning.split('\n').slice(1).join('\n')}
                   </div>
                 )}
               </div>
