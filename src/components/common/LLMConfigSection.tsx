@@ -54,7 +54,7 @@ export function LLMConfigSection({
       </div>
 
       {/* Dynamic Configuration Container */}
-      <div className="bg-[#171C2B] border border-[#2D364D] rounded-lg p-5">
+      <div className="bg-[#171C2B] border border-[#2D364D] rounded-lg p-5 relative z-10">
         <h4 className="text-sm font-semibold text-white mb-4">
           {selectedService === 'gemini' ? 'Gemini Configuration' : 'Ollama Configuration'}
         </h4>
@@ -107,18 +107,19 @@ export function LLMConfigSection({
           )}
 
           {selectedService === 'ollama' && (
-            <div>
+            <div className="relative z-10">
               <label className="block text-xs font-medium text-gray-400 mb-2">Ollama URL</label>
               <input
                 type="text"
                 value={ollamaUrl}
                 onChange={(e) => onOllamaUrlChange(e.target.value)}
                 placeholder="http://localhost:11434"
-                className="w-full bg-[#2A344D] border border-[#3E4A6D] text-white text-sm rounded-md px-3 py-2.5 focus:outline-none focus:ring-1 focus:ring-[#7C89FF]"
+                className="w-full bg-[#2A344D] border border-[#3E4A6D] text-white text-sm rounded-md px-3 py-2.5 focus:outline-none focus:ring-1 focus:ring-[#7C89FF] cursor-text"
+                style={{ minWidth: '200px' }}
               />
               <button
                 onClick={onRefreshOllamaModels}
-                className="mt-2 text-xs text-[#7C89FF] hover:underline"
+                className="mt-2 text-xs text-[#7C89FF] hover:underline cursor-pointer"
               >
                 Refresh Models
               </button>
