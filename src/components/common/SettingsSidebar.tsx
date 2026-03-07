@@ -5,6 +5,9 @@ import { LLMConfigSection } from './LLMConfigSection';
 import { IntegrationsSection } from './IntegrationsSection';
 import { SettingsActionButtons } from './SettingsActionButtons';
 import { useSettingsState } from './useSettingsState';
+import type { AppConfig } from '../../types';
+
+type ColorTheme = AppConfig['colorTheme'];
 
 interface SettingsSidebarProps {
   isOpen: boolean;
@@ -57,7 +60,7 @@ export function SettingsSidebar({ isOpen, onClose }: SettingsSidebarProps) {
             appearance={config.appearance}
             colorTheme={config.colorTheme}
             onAppearanceChange={(app) => updateConfig({ appearance: app })}
-            onColorThemeChange={(theme) => updateConfig({ colorTheme: theme as any })}
+            onColorThemeChange={(theme) => updateConfig({ colorTheme: theme as ColorTheme })}
           />
 
           <LLMConfigSection

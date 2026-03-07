@@ -8,6 +8,16 @@ import { generateSentenceUpgrade } from '../../services/llm';
 import { loadConfig } from '../../utils/configManager';
 import { isDueForReview, calculateNextReview } from '../../services/srsService';
 
+type ChallengeQuestion = {
+  patternId: string;
+  sentence: string;
+  originalSentence: string;
+  english: string;
+  correctAnswer: string;
+  options: string[];
+  meaning: string;
+};
+
 export function BunpoTab() {
   const [activeSubTab, setActiveSubTab] = useState<BunpoSubTab | 'review'>('library');
   const [selectedLevel, setSelectedLevel] = useState<string>('all');
@@ -214,12 +224,10 @@ export function BunpoTab() {
     <div className="space-y-6">
       {/* Sub-tab Navigation */}
       <div className="flex gap-2 bg-white rounded-lg shadow p-1 overflow-x-auto">
-        {(
-          ['path', 'review', 'library', 'upgrader', 'challenge'] as Array<BunpoSubTab | 'review'>
-        ).map((tab) => (
+        {(['path', 'review', 'library', 'upgrader', 'challenge'] as const).map((tab) => (
           <button
             key={tab}
-            onClick={() => setActiveSubTab(tab as any)}
+            onClick={() => setActiveSubTab(tab)}
             className={`flex-1 min-w-[100px] py-2 px-4 rounded-md font-medium transition-colors ${
               activeSubTab === tab ? 'bg-blue-500 text-white' : 'text-gray-600 hover:bg-gray-100'
             }`}
@@ -234,7 +242,7 @@ export function BunpoTab() {
       </div>
 
       {/* Reviews Tab */}
-      {activeSubTab === ('review' as any) && (
+      {activeSubTab === 'review' && (
         <div className="bg-white rounded-lg shadow p-6">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-xl font-bold text-gray-800 flex items-center gap-2">
@@ -694,7 +702,7 @@ function ChallengeMode({
   challengeLevel: string;
   onSrsUpdate?: (id: string, isCorrect: boolean) => void;
 }) {
-  const [questions, setQuestions] = useState<any[]>([]);
+  const [questions, setQuestions] = useState<ChallengeQuestion[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
