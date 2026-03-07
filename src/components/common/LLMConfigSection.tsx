@@ -133,8 +133,7 @@ export function LLMConfigSection({
                   onClick={() => {
                     console.log('=== Refresh Models clicked ===');
                     console.log('Current URL from input:', ollamaUrl);
-                    console.log('Current URL from config:', config.ollamaUrl);
-                    onRefreshOllamaModels(ollamaUrl);
+                    onRefreshOllamaModels();
                   }}
                   disabled={loadingModels}
                   className="text-xs text-[#7C89FF] hover:underline cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
