@@ -11,3 +11,7 @@ data/**/*.json
 
 *storybook.log
 storybook-static
+
+# API Keys
+config/gemini-key.json
+*.key.json
