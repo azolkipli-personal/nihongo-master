@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Trash2, Play, Pause, ChevronDown, ChevronRight } from 'lucide-react';
+import { Trash2, Play, Pause, ChevronDown, ChevronRight, Trash } from 'lucide-react';
 import { Conversation } from '../../types';
 import { ToggleButton } from '../common/ToggleButton';
 import { ExportDropdown } from './ExportDropdown';
@@ -295,6 +295,7 @@ interface KaiwaResultsProps {
   onExportDropdownToggle: () => void;
   onExport: (format: 'json' | 'csv' | 'anki') => void;
   onDelete: (id: string) => void;
+  onClearAll?: () => void;
 }
 
 export function KaiwaResults({
@@ -309,6 +310,7 @@ export function KaiwaResults({
   onExportDropdownToggle,
   onExport,
   onDelete,
+  onClearAll,
 }: KaiwaResultsProps) {
   if (conversations.length === 0) return null;
 
@@ -340,6 +342,20 @@ export function KaiwaResults({
               onExportDropdownToggle();
             }}
           />
+          {onClearAll && (
+            <button
+              onClick={() => {
+                if (window.confirm('Clear all conversations? This cannot be undone.')) {
+                  onClearAll();
+                }
+              }}
+              className="flex items-center gap-2 px-3 py-2 text-sm text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors border border-red-200"
+              title="Clear all conversations and reset"
+            >
+              <Trash className="w-4 h-4" />
+              <span className="hidden sm:inline">Clear All</span>
+            </button>
+          )}
         </div>
       </div>
 

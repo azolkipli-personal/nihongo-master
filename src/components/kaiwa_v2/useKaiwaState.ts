@@ -4,6 +4,14 @@ import { generateConversation } from '../../services/llm';
 import { loadConfig } from '../../utils/configManager';
 import { saveSession } from '../../utils/sessionStorage';
 
+// LocalStorage keys for persisting kaiwa state
+const STORAGE_KEYS = {
+  CONVERSATIONS: 'kaiwa_conversations',
+  WORDS: 'kaiwa_words',
+  SCENARIO: 'kaiwa_scenario',
+  CEFR_LEVEL: 'kaiwa_cefr_level',
+};
+
 export function useKaiwaState() {
   const [words, setWords] = useState('');
   const [scenario, setScenario] = useState('work conversations in an IT engineering company');
@@ -15,14 +23,101 @@ export function useKaiwaState() {
   const [showEnglish, setShowEnglish] = useState(true);
   const [exportDropdownOpen, setExportDropdownOpen] = useState(false);
   const [cefrLevel, setCefrLevel] = useState('B1');
+  const [isLoaded, setIsLoaded] = useState(false);
 
+  // Load saved state from localStorage on mount
   useEffect(() => {
+    // Check for practice word from other tabs first (takes priority)
     const practiceWord = sessionStorage.getItem('kaiwa_practice_word');
     if (practiceWord) {
       setWords(practiceWord);
       sessionStorage.removeItem('kaiwa_practice_word');
+      setIsLoaded(true);
+      return;
     }
+
+    // Load persisted state from localStorage
+    try {
+      const savedConversations = localStorage.getItem(STORAGE_KEYS.CONVERSATIONS);
+      const savedWords = localStorage.getItem(STORAGE_KEYS.WORDS);
+      const savedScenario = localStorage.getItem(STORAGE_KEYS.SCENARIO);
+      const savedCefrLevel = localStorage.getItem(STORAGE_KEYS.CEFR_LEVEL);
+
+      if (savedConversations) {
+        const parsed = JSON.parse(savedConversations);
+        // Convert date strings back to Date objects
+        const conversationsWithDates = parsed.map((conv: any) => ({
+          ...conv,
+          createdAt: conv.createdAt ? new Date(conv.createdAt) : new Date(),
+        }));
+        setConversations(conversationsWithDates);
+      }
+
+      if (savedWords) {
+        setWords(savedWords);
+      }
+
+      if (savedScenario) {
+        setScenario(savedScenario);
+      }
+
+      if (savedCefrLevel) {
+        setCefrLevel(savedCefrLevel);
+      }
+    } catch (e) {
+      console.error('Failed to load kaiwa state from localStorage:', e);
+    }
+
+    setIsLoaded(true);
   }, []);
+
+  // Save conversations to localStorage whenever they change
+  useEffect(() => {
+    if (isLoaded) {
+      try {
+        localStorage.setItem(STORAGE_KEYS.CONVERSATIONS, JSON.stringify(conversations));
+      } catch (e) {
+        console.error('Failed to save conversations to localStorage:', e);
+      }
+    }
+  }, [conversations, isLoaded]);
+
+  // Save words to localStorage whenever they change
+  useEffect(() => {
+    if (isLoaded) {
+      try {
+        if (words) {
+          localStorage.setItem(STORAGE_KEYS.WORDS, words);
+        } else {
+          localStorage.removeItem(STORAGE_KEYS.WORDS);
+        }
+      } catch (e) {
+        console.error('Failed to save words to localStorage:', e);
+      }
+    }
+  }, [words, isLoaded]);
+
+  // Save scenario to localStorage whenever it changes
+  useEffect(() => {
+    if (isLoaded) {
+      try {
+        localStorage.setItem(STORAGE_KEYS.SCENARIO, scenario);
+      } catch (e) {
+        console.error('Failed to save scenario to localStorage:', e);
+      }
+    }
+  }, [scenario, isLoaded]);
+
+  // Save CEFR level to localStorage whenever it changes
+  useEffect(() => {
+    if (isLoaded) {
+      try {
+        localStorage.setItem(STORAGE_KEYS.CEFR_LEVEL, cefrLevel);
+      } catch (e) {
+        console.error('Failed to save CEFR level to localStorage:', e);
+      }
+    }
+  }, [cefrLevel, isLoaded]);
 
   const handleGenerate = useCallback(async () => {
     const config = loadConfig();
@@ -227,6 +322,18 @@ export function useKaiwaState() {
     return importedConversations.length;
   }, []);
 
+  // Clear all persisted data and reset state
+  const handleClearAll = useCallback(() => {
+    setConversations([]);
+    setWords('');
+    try {
+      localStorage.removeItem(STORAGE_KEYS.CONVERSATIONS);
+      localStorage.removeItem(STORAGE_KEYS.WORDS);
+    } catch (e) {
+      console.error('Failed to clear kaiwa state from localStorage:', e);
+    }
+  }, []);
+
   return {
     // State
     words,
@@ -252,5 +359,6 @@ export function useKaiwaState() {
     handleDelete,
     handleExport,
     handleImportConversations,
+    handleClearAll,
   };
 }
