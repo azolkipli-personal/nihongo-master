@@ -12,6 +12,19 @@ data/**/*.json
 *storybook.log
 storybook-static
 
-# API Keys
+# API Keys & Secrets
 config/gemini-key.json
 *.key.json
+*.key
+credentials.json
+service-account*.json
+*-credentials.json
+.env
+.env.*
+*.pem
+*.p12
+*.pfx
+*.jks
+
+# Config with secrets
+config/ollama.json
