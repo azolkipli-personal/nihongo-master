@@ -28,6 +28,7 @@ export function KaiwaTab() {
     handleDelete,
     handleExport,
     handleImportConversations,
+    handleClearAll,
   } = useKaiwaState();
 
   const handleFileImport = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -87,6 +88,7 @@ export function KaiwaTab() {
         onExportDropdownToggle={() => setExportDropdownOpen(!exportDropdownOpen)}
         onExport={handleExport}
         onDelete={handleDelete}
+        onClearAll={handleClearAll}
       />
 
       {/* Hidden file inputs */}
