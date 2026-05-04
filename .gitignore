@@ -28,3 +28,4 @@ service-account*.json
 
 # Config with secrets
 config/ollama.json
+.vite
