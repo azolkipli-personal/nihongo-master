@@ -22,12 +22,13 @@ export interface LLMResponse {
 }
 
 export const GEMINI_MODELS = [
-  { id: 'gemini-3-pro-preview', name: 'Gemini-3-Pro' },
-  { id: 'gemini-3-flash-preview', name: 'Gemini-3-Flash' },
-  { id: 'gemini-3.1-flash-lite-preview', name: 'Gemini-3.1-Flash-Lite' },
-  { id: 'gemini-2.5-pro-preview', name: 'Gemini-2.5-Pro' },
-  { id: 'gemini-2.5-flash-native-audio-preview', name: 'Gemini-2.5-Flash' },
-  { id: 'gemini-flash-lite-latest', name: 'Gemini-2.5-Flash-Lite' },
+  { id: 'gemini-3.1-flash-lite-preview', name: 'Gemini 3.1 Flash-Lite' },
+  { id: 'gemini-3.1-pro-preview', name: 'Gemini 3.1 Pro' },
+  { id: 'gemini-3-flash-preview', name: 'Gemini 3 Flash' },
+  { id: 'gemini-2.5-flash', name: 'Gemini 2.5 Flash (Stable)' },
+  { id: 'gemini-2.5-flash-lite', name: 'Gemini 2.5 Flash-Lite' },
+  { id: 'gemini-2.5-pro', name: 'Gemini 2.5 Pro (Stable)' },
+  { id: 'gemini-2.0-flash', name: 'Gemini 2.0 Flash (Legacy)' },
 ];
 
 /**
@@ -122,6 +123,7 @@ export function buildConversationPrompt(
   scenario: string,
   cefrLevel: string
 ): string {
+  // Adjust conversation count based on how many words were sent
   return `Act as a professional Japanese language instructor.
 Scenario/Context: ${scenario || 'Daily conversation'}
 
@@ -140,7 +142,7 @@ Requirements for EACH word/phrase results entry:
     - English meaning on the FIRST line.
     - Detailed context/scenario explanation in a subsequent paragraph (use \\n\\n).
 - "conversations":
-    - Generate 3 different conversations focusing on this specific word.
+    - Generate 5 different conversations focusing on this specific word.
     - Each conversation should have 6-8 exchanges.
     - Use the vocabulary word naturally in context.
     - Use ONLY 漢字[ふりがな] format for furigana (e.g. 日本[にほん]).
@@ -204,7 +206,7 @@ async function callGemini(prompt: string, apiKey: string, model: string): Promis
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         contents: [{ parts: [{ text: prompt }] }],
-        generationConfig: { temperature: 0.7, maxOutputTokens: 8192 },
+        generationConfig: { temperature: 0.7, maxOutputTokens: 65536 },
       }),
     }
   );
@@ -216,6 +218,13 @@ async function callGemini(prompt: string, apiKey: string, model: string): Promis
 
   const data = await response.json();
   const text = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+
+  if (!text) {
+    const blockReason = data?.promptFeedback?.blockReason || 'unknown';
+    console.error('Gemini returned empty response. Block reason:', blockReason, 'Full data:', JSON.stringify(data).slice(0, 500));
+    throw new Error(`AI returned empty response (blocked: ${blockReason}). Try a different model or check your prompt.`);
+  }
+
   return parseLLMResponse(text);
 }
 
@@ -282,7 +291,7 @@ async function callGeminiForUpgrade(
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         contents: [{ parts: [{ text: prompt }] }],
-        generationConfig: { temperature: 0.5, maxOutputTokens: 4096 },
+        generationConfig: { temperature: 0.5, maxOutputTokens: 65536 },
       }),
     }
   );
@@ -350,13 +359,32 @@ async function callOllamaForUpgrade(
 }
 
 function parseLLMResponse(text: string): LLMResponse {
+  if (!text || !text.trim()) {
+    throw new Error('AI returned empty response. The model may have blocked the request or the prompt is too complex. Try fewer words or a different model.');
+  }
   try {
-    const jsonMatch = text.match(/```(?:json)?\s*([\s\S]*?)```/);
-    const jsonStr = jsonMatch ? jsonMatch[1] : text;
-    return JSON.parse(jsonStr);
-  } catch (_error) {
-    console.error('Failed to parse LLM response:', text);
-    throw new Error('Failed to parse AI response. Please try again.');
+    return JSON.parse(text);
+  } catch {
+    try {
+      const blockMatch = text.match(/```(?:json)?\s*([\s\S]*?)```/);
+      if (blockMatch) return JSON.parse(blockMatch[1].trim());
+    } catch { /* empty */ }
+    try {
+      const resultsMatch = text.match(/\{[\s\S]*?"results"[\s\S]*?\}/);
+      if (resultsMatch) return JSON.parse(resultsMatch[0]);
+    } catch { /* empty */ }
+    try {
+      const objMatch = text.match(/\{[^{}]*"wordDetails"[\s\S]*?\}/);
+      if (objMatch) {
+        const parsed = JSON.parse(objMatch[0]);
+        if (parsed.wordDetails && !parsed.results) {
+          return { results: [parsed] };
+        }
+        return parsed;
+      }
+    } catch { /* empty */ }
+    console.error('RAW RESPONSE FROM AI (first 1000 chars):', text.slice(0, 1000));
+    throw new Error('Failed to parse AI response. The model returned unexpected content. Try with fewer words or a different model.');
   }
 }
 

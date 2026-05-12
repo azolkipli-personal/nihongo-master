@@ -326,14 +326,17 @@ export function KaiwaResults({
 
   return (
     <div className="bg-transparent relative space-y-8">
+      {/* Sticky toggle bar */}
+      <div className="sticky top-0 z-10 bg-white/95 backdrop-blur-sm rounded-2xl shadow-sm border border-gray-100 p-3 mb-6 flex items-center gap-3">
+        <span className="text-sm font-medium text-gray-500">Display:</span>
+        <ToggleButton label="Furigana" active={showFurigana} onClick={onToggleFurigana} />
+        <ToggleButton label="Romaji" active={showRomaji} onClick={onToggleRomaji} />
+        <ToggleButton label="English" active={showEnglish} onClick={onToggleEnglish} />
+      </div>
       <div className="bg-white rounded-3xl shadow-lg p-6 border border-gray-100 flex justify-between items-center mb-10">
         <h2 className="text-2xl font-black text-gray-800 tracking-tight">Practice Dashboard</h2>
         <div className="flex items-center gap-4">
-          <div className="hidden sm:flex gap-2 bg-gray-50 p-1.5 rounded-2xl border border-gray-100">
-            <ToggleButton label="Furigana" active={showFurigana} onClick={onToggleFurigana} />
-            <ToggleButton label="Romaji" active={showRomaji} onClick={onToggleRomaji} />
-            <ToggleButton label="English" active={showEnglish} onClick={onToggleEnglish} />
-          </div>
+          {/* Mobile: in header */}
           <ExportDropdown
             isOpen={exportDropdownOpen}
             onToggle={onExportDropdownToggle}
