@@ -28,6 +28,13 @@ export function useKaiwaState() {
   // Load saved state from localStorage on mount
   useEffect(() => {
     // Check for practice word from other tabs first (takes priority)
+    const practiceWords = sessionStorage.getItem('kaiwa_practice_words');
+    if (practiceWords) {
+      setWords(practiceWords);
+      sessionStorage.removeItem('kaiwa_practice_words');
+      setIsLoaded(true);
+      return;
+    }
     const practiceWord = sessionStorage.getItem('kaiwa_practice_word');
     if (practiceWord) {
       setWords(practiceWord);

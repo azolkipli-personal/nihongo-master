@@ -7,7 +7,7 @@ const DEFAULT_CONFIG: AppConfig = {
   geminiApiKey: '',
   openrouterApiKey: '',
   selectedService: 'gemini',
-  geminiModel: 'gemini-3-flash-preview',
+  geminiModel: 'gemini-2.5-flash',
   ollamaModel: '',
   ollamaUrl: 'http://100.102.113.83:11434',
   appearance: 'dark',
