@@ -10,6 +10,7 @@ const STORAGE_KEYS = {
   WORDS: 'kaiwa_words',
   SCENARIO: 'kaiwa_scenario',
   CEFR_LEVEL: 'kaiwa_cefr_level',
+  FOCUS_PATTERNS: 'kaiwa_focus_pattern_ids',
 };
 
 export function useKaiwaState() {
@@ -23,10 +24,21 @@ export function useKaiwaState() {
   const [showEnglish, setShowEnglish] = useState(true);
   const [exportDropdownOpen, setExportDropdownOpen] = useState(false);
   const [cefrLevel, setCefrLevel] = useState('B1');
+  const [focusPatternIds, setFocusPatternIds] = useState<string[]>([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
   // Load saved state from localStorage on mount
   useEffect(() => {
+    // Check for practice patterns from N3 Track first (takes highest priority)
+    const practicePatterns = sessionStorage.getItem('kaiwa_practice_patterns');
+    if (practicePatterns) {
+      try {
+        const ids = JSON.parse(practicePatterns);
+        setFocusPatternIds(ids);
+      } catch { /* ignore parse errors */ }
+      sessionStorage.removeItem('kaiwa_practice_patterns');
+    }
+
     // Check for practice word from other tabs first (takes priority)
     const practiceWords = sessionStorage.getItem('kaiwa_practice_words');
     if (practiceWords) {
@@ -70,6 +82,11 @@ export function useKaiwaState() {
 
       if (savedCefrLevel) {
         setCefrLevel(savedCefrLevel);
+      }
+
+      const savedFocusPatterns = localStorage.getItem(STORAGE_KEYS.FOCUS_PATTERNS);
+      if (savedFocusPatterns) {
+        setFocusPatternIds(JSON.parse(savedFocusPatterns));
       }
     } catch (e) {
       console.error('Failed to load kaiwa state from localStorage:', e);
@@ -126,6 +143,21 @@ export function useKaiwaState() {
     }
   }, [cefrLevel, isLoaded]);
 
+  // Save focus pattern IDs to localStorage whenever they change
+  useEffect(() => {
+    if (isLoaded) {
+      try {
+        if (focusPatternIds.length > 0) {
+          localStorage.setItem(STORAGE_KEYS.FOCUS_PATTERNS, JSON.stringify(focusPatternIds));
+        } else {
+          localStorage.removeItem(STORAGE_KEYS.FOCUS_PATTERNS);
+        }
+      } catch (e) {
+        console.error('Failed to save focus patterns to localStorage:', e);
+      }
+    }
+  }, [focusPatternIds, isLoaded]);
+
   const handleGenerate = useCallback(async () => {
     const config = loadConfig();
     const apiKey =
@@ -164,7 +196,8 @@ export function useKaiwaState() {
         apiKey,
         config.ollamaUrl,
         model,
-        cefrLevel
+        cefrLevel,
+        focusPatternIds.length > 0 ? focusPatternIds : undefined
       );
 
       const newConversations: Conversation[] = [];
@@ -205,7 +238,7 @@ export function useKaiwaState() {
     } finally {
       setLoading(false);
     }
-  }, [words, scenario, cefrLevel]);
+  }, [words, scenario, cefrLevel, focusPatternIds]);
 
   const handleDelete = useCallback((id: string) => {
     setConversations((prev) => prev.filter((c) => c.id !== id));
@@ -353,6 +386,7 @@ export function useKaiwaState() {
     showEnglish,
     exportDropdownOpen,
     cefrLevel,
+    focusPatternIds,
     // Setters
     setWords,
     setScenario,
@@ -361,6 +395,7 @@ export function useKaiwaState() {
     setShowEnglish,
     setExportDropdownOpen,
     setCefrLevel,
+    setFocusPatternIds,
     // Actions
     handleGenerate,
     handleDelete,

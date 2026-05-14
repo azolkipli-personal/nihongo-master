@@ -1300,5 +1300,824 @@
     "mastered": false,
     "hub": "Formal/Written Expression",
     "detailedExplanation": "A highly formal expression used to emphasize that even in a certain state or condition, something still applies. **Noun / Plain form** + **といえども**. Often used to introduce a caveat to a general statement."
+  },
+  {
+    "id": "g-b1-13",
+    "pattern": "〜てしまう",
+    "patternWithFurigana": "〜てしまう",
+    "reading": "te shimau",
+    "meaning": "Do something completely / accidentally (regrettably)",
+    "cefr": "B1",
+    "category": "Aspect",
+    "formality": "neutral",
+    "examples": [
+      {
+        "japanese": "宿題を忘れてしまいました。",
+        "japaneseWithFurigana": "宿題[しゅくだい]を忘[わす]れてしまいました。",
+        "romaji": "Shukudai o wasurete shimaimashita.",
+        "english": "I (regrettably) forgot my homework."
+      }
+    ],
+    "mastered": false,
+    "hub": "Verb Conjugation",
+    "detailedExplanation": "**〜てしまう** has two uses: (1) completing an action thoroughly, or (2) doing something regrettably/unintentionally. The contracted form **〜ちゃう** (〜じゃう for で) is used in casual speech."
+  },
+  {
+    "id": "g-b1-14",
+    "pattern": "〜てある",
+    "patternWithFurigana": "〜てある",
+    "reading": "te aru",
+    "meaning": "Has been done — state from intentional action",
+    "cefr": "B1",
+    "category": "Aspect",
+    "formality": "neutral",
+    "examples": [
+      {
+        "japanese": "予約してあります。",
+        "japaneseWithFurigana": "予約[よやく]してあります。",
+        "romaji": "Yoyaku shite arimasu.",
+        "english": "The reservation has been made."
+      }
+    ],
+    "mastered": false,
+    "hub": "Verb Conjugation",
+    "detailedExplanation": "**〜てある** describes a state resulting from someone's intentional action. Unlike 〜ている (which can be unintentional), 〜てある implies purpose: the object takes が instead of を."
+  },
+  {
+    "id": "g-b1-15",
+    "pattern": "〜ておく",
+    "patternWithFurigana": "〜ておく",
+    "reading": "te oku",
+    "meaning": "Do in advance / Do for future convenience",
+    "cefr": "B1",
+    "category": "Effort/Intention",
+    "formality": "neutral",
+    "examples": [
+      {
+        "japanese": "ホテルを予約しておきました。",
+        "japaneseWithFurigana": "ホテルを予約[よやく]しておきました。",
+        "romaji": "Hoteru o yoyaku shite okimashita.",
+        "english": "I booked the hotel in advance."
+      }
+    ],
+    "mastered": false,
+    "hub": "Verb Conjugation",
+    "detailedExplanation": "**〜ておく** expresses doing an action as preparation. Casual contracted form: **〜とく**. Key nuance: the action benefits some future situation."
+  },
+  {
+    "id": "g-b1-16",
+    "pattern": "受身形（〜れる/られる）",
+    "patternWithFurigana": "受身形（〜れる/られる）",
+    "reading": "ukemi-kei",
+    "meaning": "Passive voice — is done (by someone)",
+    "cefr": "B1",
+    "category": "Verb Conjugation",
+    "formality": "neutral",
+    "examples": [
+      {
+        "japanese": "この本は世界中で読まれています。",
+        "japaneseWithFurigana": "この本[ほん]は世界中[せかいじゅう]で読[よ]まれています。",
+        "romaji": "Kono hon wa sekaijuu de yomarete imasu.",
+        "english": "This book is read all over the world."
+      }
+    ],
+    "mastered": false,
+    "hub": "Verb Conjugation",
+    "detailedExplanation": "**受身形** shifts focus from doer to receiver. U-verbs → 〜される (書く→書かれる), ru-verbs → 〜られる (食べる→食べられる), する→される, 来る→来られる. Agent marked by **に**."
+  },
+  {
+    "id": "g-b1-17",
+    "pattern": "使役形（〜せる/させる）",
+    "patternWithFurigana": "使役形（〜せる/させる）",
+    "reading": "shieki-kei",
+    "meaning": "Causative — make/let someone do",
+    "cefr": "B1",
+    "category": "Verb Conjugation",
+    "formality": "neutral",
+    "examples": [
+      {
+        "japanese": "部長は私に出張させた。",
+        "japaneseWithFurigana": "部長[ぶちょう]は私[わたし]に出張[しゅっちょう]させた。",
+        "romaji": "Buchou wa watashi ni shutchou saseta.",
+        "english": "The manager made me go on a business trip."
+      }
+    ],
+    "mastered": false,
+    "hub": "Verb Conjugation",
+    "detailedExplanation": "**使役形** expresses making/letting someone do. U-verbs → 〜せる, ru-verbs → 〜させる, する→させる, 来る→来させる. The person made to act is marked by **に** (intransitive) or **を** (transitive)."
+  },
+  {
+    "id": "g-b1-18",
+    "pattern": "使役受身形（〜せられる/させられる）",
+    "patternWithFurigana": "使役受身形（〜せられる/させられる）",
+    "reading": "shieki-ukemi",
+    "meaning": "Causative-passive — is made to do (unwillingly)",
+    "cefr": "B1",
+    "category": "Verb Conjugation",
+    "formality": "neutral",
+    "examples": [
+      {
+        "japanese": "毎日残業させられています。",
+        "japaneseWithFurigana": "毎日[まいにち]残業[ざんぎょう]させられています。",
+        "romaji": "Mainichi zangyou saserarete imasu.",
+        "english": "I am being made to work overtime every day."
+      }
+    ],
+    "mastered": false,
+    "hub": "Verb Conjugation",
+    "detailedExplanation": "**使役受身形** = causative + passive: someone is made to do something unwillingly. 行かせられる → 行かされる (short). する→させられる. Common in workplace complaints."
+  },
+  {
+    "id": "g-b1-19",
+    "pattern": "〜らしい",
+    "patternWithFurigana": "〜らしい",
+    "reading": "rashii",
+    "meaning": "Seems like / Typical of / I hear that",
+    "cefr": "B1",
+    "category": "Conjecture",
+    "formality": "neutral",
+    "examples": [
+      {
+        "japanese": "彼は転職するらしいですよ。",
+        "japaneseWithFurigana": "彼[かれ]は転職[てんしょく]するらしいですよ。",
+        "romaji": "Kare wa tenshoku suru rashii desu yo.",
+        "english": "I heard that he's changing jobs."
+      }
+    ],
+    "mastered": false,
+    "hub": "Building Sentences and Clauses",
+    "detailedExplanation": "**〜らしい** has three uses: (1) hearsay — based on what you heard; (2) typical behavior — 男らしい (manly); (3) appearance-based judgment. Do not confuse with 〜ようだ (visual evidence) or 〜そうだ (hearsay or appearance)."
+  },
+  {
+    "id": "g-b1-20",
+    "pattern": "〜たびに",
+    "patternWithFurigana": "〜たびに",
+    "reading": "tabi ni",
+    "meaning": "Every time / Whenever",
+    "cefr": "B1",
+    "category": "Timing",
+    "formality": "neutral",
+    "examples": [
+      {
+        "japanese": "彼女に会うたびに、もっと好きになる。",
+        "japaneseWithFurigana": "彼女[かのじょ]に会[あ]うたびに、もっと好[す]きになる。",
+        "romaji": "Kanojo ni au tabi ni, motto suki ni naru.",
+        "english": "Every time I meet her, I like her more."
+      }
+    ],
+    "mastered": false,
+    "hub": "Building Sentences and Clauses",
+    "detailedExplanation": "**〜たびに** means 'every time something happens'. Dictionary form + たびに. Noun + の + たびに. Emphasizes that each occurrence produces a consistent result."
+  },
+  {
+    "id": "g-b1-21",
+    "pattern": "〜うちに",
+    "patternWithFurigana": "〜うちに",
+    "reading": "uchi ni",
+    "meaning": "While / During / Before (a state changes)",
+    "cefr": "B1",
+    "category": "Timing",
+    "formality": "neutral",
+    "examples": [
+      {
+        "japanese": "明るいうちに帰ったほうがいいよ。",
+        "japaneseWithFurigana": "明[あか]るいうちに帰[かえ]ったほうがいいよ。",
+        "romaji": "Akarui uchi ni kaetta hou ga ii yo.",
+        "english": "You should go home while it's still light."
+      }
+    ],
+    "mastered": false,
+    "hub": "Building Sentences and Clauses",
+    "detailedExplanation": "**〜うちに** expresses doing something while a state continues or before it changes. Dictionary form + うちに (while doing voluntarily), negative + うちに (before), adj + うちに (while X is Y). Key nuance: 'while this window is open'."
+  },
+  {
+    "id": "g-b1-22",
+    "pattern": "〜て以来",
+    "patternWithFurigana": "〜て以来",
+    "reading": "te irai",
+    "meaning": "Ever since (and still continuing)",
+    "cefr": "B1",
+    "category": "Timing",
+    "formality": "formal",
+    "examples": [
+      {
+        "japanese": "日本に来て以来、東京に住んでいます。",
+        "japaneseWithFurigana": "日本[にほん]に来[き]て以来[いらい]、東京[とうきょう]に住[す]んでいます。",
+        "romaji": "Nihon ni kite irai, Tokyo ni sunde imasu.",
+        "english": "Ever since I came to Japan, I've lived in Tokyo."
+      }
+    ],
+    "mastered": false,
+    "hub": "Verb Conjugation",
+    "detailedExplanation": "**〜て以来** means 'ever since a turning-point event'. The event must be one-time, after which the situation continues. Not for repeated or temporary events. More emphatic than 〜てから."
+  },
+  {
+    "id": "g-b1-23",
+    "pattern": "〜ところだ",
+    "patternWithFurigana": "〜ところだ",
+    "reading": "tokoro da",
+    "meaning": "About to / In the middle of / Just did",
+    "cefr": "B1",
+    "category": "Aspect",
+    "formality": "neutral",
+    "examples": [
+      {
+        "japanese": "ちょうど会議が終わったところです。",
+        "japaneseWithFurigana": "ちょうど会議[かいぎ]が終[お]わったところです。",
+        "romaji": "Choudo kaigi ga owatta tokoro desu.",
+        "english": "The meeting just finished."
+      }
+    ],
+    "mastered": false,
+    "hub": "Verbs",
+    "detailedExplanation": "**〜ところだ** expresses temporal proximity: (1) dictionary + ところ = about to; (2) ている + ところ = in progress; (3) た + ところ = just finished. One of the most common N3 patterns."
+  },
+  {
+    "id": "g-b1-24",
+    "pattern": "〜だけでなく",
+    "patternWithFurigana": "〜だけでなく",
+    "reading": "dake de naku",
+    "meaning": "Not only — but also",
+    "cefr": "B1",
+    "category": "Addition",
+    "formality": "neutral",
+    "examples": [
+      {
+        "japanese": "彼は日本語だけでなく、中国語も話せる。",
+        "japaneseWithFurigana": "彼[かれ]は日本語[にほんご]だけでなく、中国語[ちゅうごくご]も話[はな]せる。",
+        "romaji": "Kare wa nihongo dake de naku, chuugokugo mo hanaseru.",
+        "english": "He can speak not only Japanese but also Chinese."
+      }
+    ],
+    "mastered": false,
+    "hub": "Building Sentences and Clauses",
+    "detailedExplanation": "**〜だけでなく** means 'not only A, also B'. Nouns, na-adjectives (な), or plain forms. Second clause often has も. More formal: 〜のみならず."
+  },
+  {
+    "id": "g-b1-25",
+    "pattern": "〜せいで",
+    "patternWithFurigana": "〜せいで",
+    "reading": "sei de",
+    "meaning": "Because of (negative cause/result)",
+    "cefr": "B1",
+    "category": "Reason",
+    "formality": "neutral",
+    "examples": [
+      {
+        "japanese": "天気が悪いせいで売上が下がりました。",
+        "japaneseWithFurigana": "天気[てんき]が悪[わる]いせいで売上[うりあげ]が下[さ]がりました。",
+        "romaji": "Tenki ga warui sei de, uriage ga sagarimashita.",
+        "english": "Because of the bad weather, sales dropped."
+      }
+    ],
+    "mastered": false,
+    "hub": "Building Sentences and Clauses",
+    "detailedExplanation": "**〜せいで** attributes cause with negative connotation. Noun + の + せいで; plain form + せいで. Antonym: **〜おかげで** (thanks to). 〜せいか = maybe because of."
+  },
+  {
+    "id": "g-b1-26",
+    "pattern": "〜おかげで",
+    "patternWithFurigana": "〜おかげで",
+    "reading": "okage de",
+    "meaning": "Thanks to (positive cause/result)",
+    "cefr": "B1",
+    "category": "Reason",
+    "formality": "neutral",
+    "examples": [
+      {
+        "japanese": "あなたのおかげでプロジェクトが成功しました。",
+        "japaneseWithFurigana": "あなたのおかげでプロジェクトが成功[せいこう]しました。",
+        "romaji": "Anata no okage de, purojekuto ga seikou shimashita.",
+        "english": "Thanks to you, the project succeeded."
+      }
+    ],
+    "mastered": false,
+    "hub": "Building Sentences and Clauses",
+    "detailedExplanation": "**〜おかげで** expresses gratitude for a positive outcome. Noun + の + おかげで; plain form + おかげで. Can be used sarcastically: 君のおかげで遅れた (thanks to you, I'm late)."
+  },
+  {
+    "id": "g-b1-27",
+    "pattern": "〜にとって",
+    "patternWithFurigana": "〜にとって",
+    "reading": "ni totte",
+    "meaning": "For (from the perspective of)",
+    "cefr": "B1",
+    "category": "Perspective",
+    "formality": "neutral",
+    "examples": [
+      {
+        "japanese": "私にとって家族が一番大切です。",
+        "japaneseWithFurigana": "私[わたし]にとって家族[かぞく]が一番[いちばん]大切[たいせつ]です。",
+        "romaji": "Watashi ni totte kazoku ga ichiban taisetsu desu.",
+        "english": "For me, family is the most important."
+      }
+    ],
+    "mastered": false,
+    "hub": "Building Sentences and Clauses",
+    "detailedExplanation": "**〜にとって** means 'from X's point of view'. Noun + にとって. Often with 大切/重要/難しい. Not used for action targets (use 〜に対して instead)."
+  },
+  {
+    "id": "g-b1-28",
+    "pattern": "〜によって",
+    "patternWithFurigana": "〜によって",
+    "reading": "ni yotte",
+    "meaning": "By / Depending on / Due to",
+    "cefr": "B1",
+    "category": "Means/Cause",
+    "formality": "formal",
+    "examples": [
+      {
+        "japanese": "国によって習慣が違います。",
+        "japaneseWithFurigana": "国[くに]によって習慣[しゅうかん]が違[ちが]います。",
+        "romaji": "Kuni ni yotte shuukan ga chigaimasu.",
+        "english": "Customs differ by country."
+      }
+    ],
+    "mastered": false,
+    "hub": "Building Sentences and Clauses",
+    "detailedExplanation": "**〜によって** has four uses: (1) agent in passive; (2) 'depending on'; (3) means/method; (4) cause. Very common in formal writing. Noun + によって."
+  },
+  {
+    "id": "g-b1-29",
+    "pattern": "〜に加えて",
+    "patternWithFurigana": "〜に加えて",
+    "reading": "ni kuwaete",
+    "meaning": "In addition to",
+    "cefr": "B1",
+    "category": "Addition",
+    "formality": "formal",
+    "examples": [
+      {
+        "japanese": "給料に加えてボーナスも支給されます。",
+        "japaneseWithFurigana": "給料[きゅうりょう]に加[くわ]えてボーナスも支給[しきゅう]されます。",
+        "romaji": "Kyuuryou ni kuwaete boonasu mo shikyuu saremasu.",
+        "english": "In addition to salary, a bonus is also provided."
+      }
+    ],
+    "mastered": false,
+    "hub": "Building Sentences and Clauses",
+    "detailedExplanation": "**〜に加えて** means 'in addition to'. Noun + に加えて. More formal than 〜だけでなく. に加え (without て) is even more formal. Common in business writing."
+  },
+  {
+    "id": "g-b1-30",
+    "pattern": "〜に対して",
+    "patternWithFurigana": "〜に対して",
+    "reading": "ni taishite",
+    "meaning": "Toward / In contrast to / Per",
+    "cefr": "B1",
+    "category": "Direction/Contrast",
+    "formality": "formal",
+    "examples": [
+      {
+        "japanese": "お客様に対しては丁寧な言葉を使いましょう。",
+        "japaneseWithFurigana": "お客様[きゃくさま]に対しては丁寧[ていねい]な言葉[ことば]を使[つか]いましょう。",
+        "romaji": "Okyakusama ni taishite wa teinei na kotoba o tsukaimashou.",
+        "english": "Let's use polite language with customers."
+      }
+    ],
+    "mastered": false,
+    "hub": "Building Sentences and Clauses",
+    "detailedExplanation": "**〜に対して** has three uses: (1) action/feeling toward someone; (2) contrast 'unlike A, B'; (3) per unit. 〜に対し is the written form."
+  },
+  {
+    "id": "g-b1-31",
+    "pattern": "〜に関して",
+    "patternWithFurigana": "〜に関して",
+    "reading": "ni kanshite",
+    "meaning": "Regarding / Concerning",
+    "cefr": "B1",
+    "category": "Topic",
+    "formality": "formal",
+    "examples": [
+      {
+        "japanese": "この件に関しては後ほどご連絡します。",
+        "japaneseWithFurigana": "この件[けん]に関[かん]しては後[のち]ほどご連絡[れんらく]します。",
+        "romaji": "Kono ken ni kanshite wa nochihodo go-renraku shimasu.",
+        "english": "Regarding this matter, I'll contact you later."
+      }
+    ],
+    "mastered": false,
+    "hub": "Building Sentences and Clauses",
+    "detailedExplanation": "**〜に関して** means 'regarding'. Very common in business. Noun + に関して. Related forms: に関する + noun, に関しては. Less formal: 〜について."
+  },
+  {
+    "id": "g-b1-32",
+    "pattern": "〜に基づいて",
+    "patternWithFurigana": "〜に基づいて",
+    "reading": "ni motozuite",
+    "meaning": "Based on / In accordance with",
+    "cefr": "B1",
+    "category": "Foundation",
+    "formality": "formal",
+    "examples": [
+      {
+        "japanese": "事実に基づいて判断すべきです。",
+        "japaneseWithFurigana": "事実[じじつ]に基[もと]づいて判断[はんだん]すべきです。",
+        "romaji": "Jijitsu ni motozuite handan subeki desu.",
+        "english": "We should judge based on facts."
+      }
+    ],
+    "mastered": false,
+    "hub": "Building Sentences and Clauses",
+    "detailedExplanation": "**〜に基づいて** means 'based on' (law, rule, fact, experience). Noun + に基づいて. に基づく + noun: 法律に基づく判断."
+  },
+  {
+    "id": "g-b1-33",
+    "pattern": "〜に応じて",
+    "patternWithFurigana": "〜に応じて",
+    "reading": "ni oujite",
+    "meaning": "In response to / According to / Depending on",
+    "cefr": "B1",
+    "category": "Proportion",
+    "formality": "formal",
+    "examples": [
+      {
+        "japanese": "ご予算に応じてプランをご提案します。",
+        "japaneseWithFurigana": "ご予算[よさん]に応[おう]じてプランをご提案[ていあん]します。",
+        "romaji": "Go-yosan ni oujite puran o go-teian shimasu.",
+        "english": "We'll propose a plan according to your budget."
+      }
+    ],
+    "mastered": false,
+    "hub": "Building Sentences and Clauses",
+    "detailedExplanation": "**〜に応じて** expresses adjustment proportional to something. Noun + に応じて. に応じた + noun: 予算に応じたプラン."
+  },
+  {
+    "id": "g-b1-34",
+    "pattern": "〜に比べて",
+    "patternWithFurigana": "〜に比べて",
+    "reading": "ni kurabete",
+    "meaning": "Compared to / In comparison with",
+    "cefr": "B1",
+    "category": "Comparison",
+    "formality": "neutral",
+    "examples": [
+      {
+        "japanese": "去年に比べて売上が伸びています。",
+        "japaneseWithFurigana": "去年[きょねん]に比[くら]べて売上[うりあげ]が伸[の]びています。",
+        "romaji": "Kyonen ni kurabete uriage ga nobite imasu.",
+        "english": "Sales have grown compared to last year."
+      }
+    ],
+    "mastered": false,
+    "hub": "Building Sentences and Clauses",
+    "detailedExplanation": "**〜に比べて** compares two nouns. Noun + に比べて. に比べ is the written form. Same meaning as より but used as a topic at the start."
+  },
+  {
+    "id": "g-b1-35",
+    "pattern": "〜ほど〜ない",
+    "patternWithFurigana": "〜ほど〜ない",
+    "reading": "hodo nai",
+    "meaning": "Not as as",
+    "cefr": "B1",
+    "category": "Comparison",
+    "formality": "neutral",
+    "examples": [
+      {
+        "japanese": "東京は大阪ほど人が多くない。",
+        "japaneseWithFurigana": "東京[とうきょう]は大阪[おおさか]ほど人[ひと]が多[おお]くない。",
+        "romaji": "Tokyo wa Osaka hodo hito ga ookunai.",
+        "english": "Tokyo doesn't have as many people as Osaka."
+      }
+    ],
+    "mastered": false,
+    "hub": "Building Sentences and Clauses",
+    "detailedExplanation": "**〜ほど〜ない** expresses 'A is not as B'. Structure: B + ほど + A + negative. The item after ほど is the standard of comparison."
+  },
+  {
+    "id": "g-b1-36",
+    "pattern": "〜ば〜ほど",
+    "patternWithFurigana": "〜ば〜ほど",
+    "reading": "ba hodo",
+    "meaning": "The more the more",
+    "cefr": "B1",
+    "category": "Comparison",
+    "formality": "neutral",
+    "examples": [
+      {
+        "japanese": "日本語は勉強すればするほど面白くなります。",
+        "japaneseWithFurigana": "日本語[にほんご]は勉強[べんきょう]すればするほど面白[おもしろ]くなります。",
+        "romaji": "Nihongo wa benkyou sureba suru hodo omoshiroku narimasu.",
+        "english": "The more you study, the more interesting Japanese becomes."
+      }
+    ],
+    "mastered": false,
+    "hub": "Conditional Expressions",
+    "detailedExplanation": "**〜ば〜ほど** expresses proportional correlation. Verb-ば + same verb dictionary + ほど. I-adj: 安ければ安いほど (the cheaper). Na-adj: 便利であれば便利なほど."
+  },
+  {
+    "id": "g-b1-37",
+    "pattern": "〜べきだ",
+    "patternWithFurigana": "〜べきだ",
+    "reading": "beki da",
+    "meaning": "Should / Ought to (moral/social duty)",
+    "cefr": "B1",
+    "category": "Obligation",
+    "formality": "neutral",
+    "examples": [
+      {
+        "japanese": "上司に報告すべきです。",
+        "japaneseWithFurigana": "上司[じょうし]に報告[ほうこく]すべきです。",
+        "romaji": "Joushi ni houkoku subeki desu.",
+        "english": "You should report to your boss."
+      }
+    ],
+    "mastered": false,
+    "hub": "Verb Conjugation",
+    "detailedExplanation": "**〜べきだ** = strong suggestion/moral duty. Dictionary form + べきだ (する→すべき or するべき). Negative: べきではない. Weaker than なければならない, stronger than ほうがいい."
+  },
+  {
+    "id": "g-b1-38",
+    "pattern": "〜ということだ",
+    "patternWithFurigana": "〜ということだ",
+    "reading": "to iu koto da",
+    "meaning": "I heard that / Meaning that",
+    "cefr": "B1",
+    "category": "Hearsay/Explanation",
+    "formality": "neutral",
+    "examples": [
+      {
+        "japanese": "来月給料が上がるということです。",
+        "japaneseWithFurigana": "来月[らいげつ]給料[きゅうりょう]が上[あ]がるということです。",
+        "romaji": "Raigetsu kyuuryou ga agaru to iu koto desu.",
+        "english": "I've heard that salaries go up next month."
+      }
+    ],
+    "mastered": false,
+    "hub": "Building Sentences and Clauses",
+    "detailedExplanation": "**〜ということだ** = (1) hearsay — based on what you've been told; (2) explanatory — 'that is to say'. Casual: 〜ってことだ."
+  },
+  {
+    "id": "g-b1-39",
+    "pattern": "〜と言っても",
+    "patternWithFurigana": "〜と言っても",
+    "reading": "to itte mo",
+    "meaning": "Even though you say / But / Though I say",
+    "cefr": "B1",
+    "category": "Concession",
+    "formality": "neutral",
+    "examples": [
+      {
+        "japanese": "日本語ができると言っても日常会話だけです。",
+        "japaneseWithFurigana": "日本語[にほんご]ができると言[い]っても日常会話[にちじょうかいわ]だけです。",
+        "romaji": "Nihongo ga dekiru to itte mo nichijou kaiwa dake desu.",
+        "english": "Even though I can speak Japanese, it's only daily conversation."
+      }
+    ],
+    "mastered": false,
+    "hub": "Building Sentences and Clauses",
+    "detailedExplanation": "**〜と言っても** concedes a claim then qualifies it. Dictionary form + と言っても. Common: できると言っても = 'even though I say I can... (it's not much)'."
+  },
+  {
+    "id": "g-b1-40",
+    "pattern": "〜というより",
+    "patternWithFurigana": "〜というより",
+    "reading": "to iu yori",
+    "meaning": "Rather than / More like than",
+    "cefr": "B1",
+    "category": "Comparison",
+    "formality": "neutral",
+    "examples": [
+      {
+        "japanese": "彼は先生というよりコーチです。",
+        "japaneseWithFurigana": "彼[かれ]は先生[せんせい]というよりコーチです。",
+        "romaji": "Kare wa sensei to iu yori koochi desu.",
+        "english": "He's more of a coach than a teacher."
+      }
+    ],
+    "mastered": false,
+    "hub": "Building Sentences and Clauses",
+    "detailedExplanation": "**〜というより** corrects a statement. 'Rather than X, it's Y.' Dictionary form + というより. というよりも is emphatic."
+  },
+  {
+    "id": "g-b1-41",
+    "pattern": "〜こそ",
+    "patternWithFurigana": "〜こそ",
+    "reading": "koso",
+    "meaning": "Precisely / Indeed (emphasis particle)",
+    "cefr": "B1",
+    "category": "Emphasis",
+    "formality": "neutral",
+    "examples": [
+      {
+        "japanese": "今日こそこの仕事を終わらせます。",
+        "japaneseWithFurigana": "今日[きょう]こそこの仕事[しごと]を終[お]わらせます。",
+        "romaji": "Kyou koso kono shigoto o owarasemasu.",
+        "english": "Today I will finally finish this work."
+      }
+    ],
+    "mastered": false,
+    "hub": "Particles",
+    "detailedExplanation": "**〜こそ** emphasizes the preceding word. Replaces は/が. Common: 今日こそ (today of all days), だからこそ (precisely because), こちらこそ (likewise — in greetings)."
+  },
+  {
+    "id": "g-b1-42",
+    "pattern": "〜さえ〜ば",
+    "patternWithFurigana": "〜さえ〜ば",
+    "reading": "sae ba",
+    "meaning": "If only / As long as / Provided that",
+    "cefr": "B1",
+    "category": "Conditional",
+    "formality": "neutral",
+    "examples": [
+      {
+        "japanese": "時間さえあれば旅行したいです。",
+        "japaneseWithFurigana": "時間[じかん]さえあれば旅行[りょこう]したいです。",
+        "romaji": "Jikan sae areba ryokou shitai desu.",
+        "english": "If only I had the time, I'd travel."
+      }
+    ],
+    "mastered": false,
+    "hub": "Conditional Expressions",
+    "detailedExplanation": "**〜さえ〜ば** = minimum condition for an outcome. Noun + さえ + Verb-ば (お金さえあれば = if only I have money). Verb stem + さえすれば (努力しさえすれば = if you just try)."
+  },
+  {
+    "id": "g-b1-43",
+    "pattern": "〜について",
+    "patternWithFurigana": "〜について",
+    "reading": "ni tsuite",
+    "meaning": "About / Regarding",
+    "cefr": "B1",
+    "category": "Topic",
+    "formality": "neutral",
+    "examples": [
+      {
+        "japanese": "この問題について話し合いましょう。",
+        "japaneseWithFurigana": "この問題[もんだい]について話[はな]し合[あ]いましょう。",
+        "romaji": "Kono mondai ni tsuite hanashiaimashou.",
+        "english": "Let's discuss this issue."
+      }
+    ],
+    "mastered": false,
+    "hub": "Building Sentences and Clauses",
+    "detailedExplanation": "**〜について** means 'about/regarding'. Noun + について. についての + noun: 日本語についての本. Less formal than 〜に関して."
+  },
+  {
+    "id": "g-b1-44",
+    "pattern": "〜を問わず",
+    "patternWithFurigana": "〜を問わず",
+    "reading": "o towazu",
+    "meaning": "Regardless of / Irrespective of",
+    "cefr": "B1",
+    "category": "Condition/Scope",
+    "formality": "formal",
+    "examples": [
+      {
+        "japanese": "経験を問わずやる気のある方を募集します。",
+        "japaneseWithFurigana": "経験[けいけん]を問[と]わずやる気[き]のある方[かた]を募集[ぼしゅう]します。",
+        "romaji": "Keiken o towazu yaruki no aru kata o boshuu shimasu.",
+        "english": "We seek motivated people regardless of experience."
+      }
+    ],
+    "mastered": false,
+    "hub": "Building Sentences and Clauses",
+    "detailedExplanation": "**〜を問わず** means 'regardless of X'. Noun + を問わず. Common: 年齢/性別/経験を問わず. Formal; used in job posts and announcements."
+  },
+  {
+    "id": "g-b1-45",
+    "pattern": "〜限り（は）",
+    "patternWithFurigana": "〜限[かぎ]り（は）",
+    "reading": "kagiri wa",
+    "meaning": "As long as / Unless (negative) / As far as",
+    "cefr": "B1",
+    "category": "Condition",
+    "formality": "neutral",
+    "examples": [
+      {
+        "japanese": "知っている限り彼は信頼できる人物です。",
+        "japaneseWithFurigana": "知[し]っている限[かぎ]り彼[かれ]は信頼[しんらい]できる人物[じんぶつ]です。",
+        "romaji": "Shitte iru kagiri kare wa shinrai dekiru jinbutsu desu.",
+        "english": "As far as I know, he's trustworthy."
+      }
+    ],
+    "mastered": false,
+    "hub": "Conditional Expressions",
+    "detailedExplanation": "**〜限り** = (1) 'as long as' — dictionary + 限り; (2) 'as far as' — 知っている限り; (3) 'unless' — 〜ない限り (雨が降らない限り = unless it rains)."
+  },
+  {
+    "id": "g-b1-46",
+    "pattern": "〜ついでに",
+    "patternWithFurigana": "〜ついでに",
+    "reading": "tsuide ni",
+    "meaning": "While you're at it / On the way",
+    "cefr": "B1",
+    "category": "Concurrent Action",
+    "formality": "neutral",
+    "examples": [
+      {
+        "japanese": "スーパーに行くついでに郵便局に寄ってください。",
+        "japaneseWithFurigana": "スーパーに行[い]くついでに郵便局[ゆうびんきょく]に寄[よ]ってください。",
+        "romaji": "Suupaa ni iku tsuide ni yuubinkyoku ni yotte kudasai.",
+        "english": "While going to the supermarket, please stop by the post office too."
+      }
+    ],
+    "mastered": false,
+    "hub": "Building Sentences and Clauses",
+    "detailedExplanation": "**〜ついでに** uses A as an opportunity to also do B. Verb dictionary/た-form + ついでに; noun + の + ついでに. A = main purpose, B = bonus."
+  },
+  {
+    "id": "g-b1-47",
+    "pattern": "〜をきっかけに",
+    "patternWithFurigana": "〜をきっかけに",
+    "reading": "o kikkake ni",
+    "meaning": "Triggered by / As a turning point / Since",
+    "cefr": "B1",
+    "category": "Trigger/Opportunity",
+    "formality": "neutral",
+    "examples": [
+      {
+        "japanese": "友達の紹介をきっかけに今の会社に入りました。",
+        "japaneseWithFurigana": "友達[ともだち]の紹介[しょうかい]をきっかけに今[いま]の会社[かいしゃ]に入[はい]りました。",
+        "romaji": "Tomodachi no shoukai o kikkake ni ima no kaisha ni hairimashita.",
+        "english": "A friend's introduction led me to join my current company."
+      }
+    ],
+    "mastered": false,
+    "hub": "Building Sentences and Clauses",
+    "detailedExplanation": "**〜をきっかけに** marks an event as the trigger for change. Noun + をきっかけに. Similar to 〜を契機に but less formal."
+  },
+  {
+    "id": "g-b1-48",
+    "pattern": "〜というわけではない",
+    "patternWithFurigana": "〜というわけではない",
+    "reading": "to iu wake de wa nai",
+    "meaning": "It doesn't mean that / It's not that",
+    "cefr": "B1",
+    "category": "Negation/Explanation",
+    "formality": "neutral",
+    "examples": [
+      {
+        "japanese": "日本語がペラペラというわけではないが日常会話は大丈夫です。",
+        "japaneseWithFurigana": "日本語[にほんご]がペラペラというわけではないが日常会話[にちじょうかいわ]は大丈夫[だいじょうぶ]です。",
+        "romaji": "Nihongo ga perapera to iu wake de wa nai ga nichijou kaiwa wa daijoubu desu.",
+        "english": "It's not that I'm fluent, but daily conversation is fine."
+      }
+    ],
+    "mastered": false,
+    "hub": "Building Sentences and Clauses",
+    "detailedExplanation": "**〜というわけではない** denies an assumption without taking the opposite extreme. Plain form + というわけではない. Often with 〜が to lead into actual situation. Casual: ってわけじゃない."
+  },
+  {
+    "id": "g-b1-49",
+    "pattern": "〜かのように",
+    "patternWithFurigana": "〜かのように",
+    "reading": "ka no you ni",
+    "meaning": "As if / As though",
+    "cefr": "B1",
+    "category": "Manner",
+    "formality": "neutral",
+    "examples": [
+      {
+        "japanese": "彼は何も知らなかったかのように振る舞った。",
+        "japaneseWithFurigana": "彼[かれ]は何[なに]も知[し]らなかったかのように振[ふ]る舞[ま]った。",
+        "romaji": "Kare wa nani mo shiranakatta ka no you ni furumatta.",
+        "english": "He acted as if he knew nothing about it."
+      }
+    ],
+    "mastered": false,
+    "hub": "Building Sentences and Clauses",
+    "detailedExplanation": "**〜かのように** means 'as if it were so (but it isn't)'. Plain form + かのように. Noun/na-adj: 〜であるかのように. Implies the situation is contrary to reality."
+  },
+  {
+    "id": "g-b1-50",
+    "pattern": "〜気味",
+    "patternWithFurigana": "〜気味",
+    "reading": "gimi",
+    "meaning": "Slightly / A bit / Tends to be (negative nuance)",
+    "cefr": "B1",
+    "category": "Degree",
+    "formality": "neutral",
+    "examples": [
+      {
+        "japanese": "最近少し疲れ気味です。",
+        "japaneseWithFurigana": "最近[さいきん]少[すこ]し疲[つか]れ気味[ぎみ]です。",
+        "romaji": "Saikin sukoshi tsukare gimi desu.",
+        "english": "I've been feeling a bit tired lately."
+      }
+    ],
+    "mastered": false,
+    "hub": "Building Sentences and Clauses",
+    "detailedExplanation": "**〜気味** attaches to noun or verb stem, meaning 'slightly on the X side' (usually negative). Noun + 気味: 風邪気味 (slightly cold-like). Verb stem + 気味: 疲れ気味 (a bit tired). Does not attach to い-adjectives."
+  },
+  {
+    "id": "g-b1-51",
+    "pattern": "〜っぽい",
+    "patternWithFurigana": "〜っぽい",
+    "reading": "ppoi",
+    "meaning": "-ish / -like / Tends to (characteristic)",
+    "cefr": "B1",
+    "category": "Characteristic",
+    "formality": "casual",
+    "examples": [
+      {
+        "japanese": "彼はいつも怒っているっぽい。",
+        "japaneseWithFurigana": "彼[かれ]はいつも怒[おこ]っているっぽい。",
+        "romaji": "Kare wa itsumo okotte iru ppoi.",
+        "english": "He always seems angry."
+      }
+    ],
+    "mastered": false,
+    "hub": "Building Sentences and Clauses",
+    "detailedExplanation": "**〜っぽい** means 'has a strong tendency/characteristic of'. Noun + っぽい: 子供っぽい (childish). Verb stem + っぽい: 忘れっぽい (forgetful). I-adj stem + っぽい: 安っぽい (cheap-looking). Casual; used in daily conversation."
   }
 ]

@@ -2,7 +2,10 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 // https://vitejs.dev/config/
+const base = process.env.GH_PAGES ? '/nihongo-master/' : '/';
+
 export default defineConfig({
+  base,
   plugins: [react()],
   server: {
     host: '0.0.0.0',
@@ -19,6 +22,6 @@ export default defineConfig({
   preview: {
     host: '0.0.0.0',
     port: 3000,
-    allowedHosts: ['openclaw.tailc24d36.ts.net'],
+    allowedHosts: ['openclaw', 'openclaw.tailc24d36.ts.net', '.tailc24d36.ts.net', '.local'],
   },
 });
