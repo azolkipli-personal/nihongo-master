@@ -20,7 +20,7 @@ type ChallengeQuestion = {
 };
 
 export function BunpoTab() {
-  const [activeSubTab, setActiveSubTab] = useState<BunpoSubTab | 'review'>('library');
+  const [activeSubTab, setActiveSubTab] = useState<BunpoSubTab | 'review'>('path');
   const [selectedLevel, setSelectedLevel] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [groupBy, setGroupBy] = useState<'level' | 'hub'>('level');
@@ -597,6 +597,7 @@ export function BunpoTab() {
         <N3Track
           patterns={patterns}
           toggleMastered={toggleMastered}
+          setActiveSubTab={setActiveSubTab}
         />
       )}
     </div>
@@ -607,9 +608,11 @@ export function BunpoTab() {
 function N3Track({
   patterns,
   toggleMastered,
+  setActiveSubTab,
 }: {
   patterns: GrammarPattern[];
   toggleMastered: (id: string) => void;
+  setActiveSubTab: (tab: BunpoSubTab | 'review') => void;
 }) {
   const [expandedWeek, setExpandedWeek] = useState<number | null>(null);
 
@@ -647,12 +650,67 @@ function N3Track({
     return count;
   };
 
+  // --- Computed values for catch-up & progress ---
+  const dueCount = useMemo(() => {
+    return patterns.filter((p) => isDueForReview(p.nextReviewDate)).length;
+  }, [patterns]);
+
+  const [showCatchUp, setShowCatchUp] = useState(false);
+
+  // Overall progress across all syllabus patterns
+  const { totalSyllabusPatterns, masteredSyllabusPatterns, progressPct } = useMemo(() => {
+    const allIds = new Set<string>();
+    syllabus.weeks.forEach((w) => w.patternIds.forEach((id) => allIds.add(id)));
+    let mastered = 0;
+    allIds.forEach((id) => {
+      const p = patternMap.get(id);
+      if (p && p.mastered) mastered++;
+    });
+    const total = allIds.size;
+    return {
+      totalSyllabusPatterns: total,
+      masteredSyllabusPatterns: mastered,
+      progressPct: total > 0 ? Math.round((mastered / total) * 100) : 0,
+    };
+  }, [patternMap]);
+
+  // Past weeks catch-up: patterns from weeks before current that aren't mastered
+  const pastWeeksUnmastered = useMemo(() => {
+    const result: { week: number; weekTitle: string; patterns: GrammarPattern[] }[] = [];
+    for (let i = 0; i < currentWeekIndex; i++) {
+      const week = syllabus.weeks[i];
+      if (!week || week.isReview) continue;
+      const unmastered = week.patternIds
+        .map((id) => patternMap.get(id))
+        .filter((p): p is GrammarPattern => p !== undefined && !p.mastered);
+      if (unmastered.length > 0) {
+        result.push({ week: week.week, weekTitle: week.title, patterns: unmastered });
+      }
+    }
+    return result;
+  }, [currentWeekIndex, patternMap]);
+
+  // Total unmastered from past weeks
+  const pastWeeksUnmasteredCount = useMemo(() => {
+    return pastWeeksUnmastered.reduce((sum, w) => sum + w.patterns.length, 0);
+  }, [pastWeeksUnmastered]);
+
   const handlePracticeThisWeek = () => {
     const week = syllabus.weeks[currentWeekIndex];
     if (week && week.patternIds.length > 0) {
       sessionStorage.setItem('kaiwa_practice_patterns', JSON.stringify(week.patternIds));
       alert(`Go to Kaiwa tab and click 'This Week's Patterns' to practice Week ${currentWeekIndex + 1} patterns!`);
     }
+  };
+
+  // Week status helper
+  const getWeekStatus = (idx: number, patternIds: string[]) => {
+    if (idx === currentWeekIndex) return { label: '🟢 Active', color: '' };
+    if (idx > currentWeekIndex) return null; // future
+    const mastered = getMasteredCount(patternIds);
+    if (mastered === patternIds.length && patternIds.length > 0) return { label: '✅ Done', color: '' };
+    if (patternIds.length > 0) return { label: `⚠️ ${patternIds.length - mastered} remaining`, color: '' };
+    return null;
   };
 
   return (
@@ -662,6 +720,90 @@ function N3Track({
         <p className="text-gray-600">
           20-week structured syllabus — follow along with N3 grammar patterns.
         </p>
+      </div>
+
+      {/* Overall Progress Bar */}
+      <div className="mb-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
+        <div className="flex items-center justify-between mb-2">
+          <span className="text-sm font-semibold text-gray-700">Overall Progress</span>
+          <span className="text-sm font-bold text-gray-800">
+            {masteredSyllabusPatterns} / {totalSyllabusPatterns} patterns mastered ({progressPct}%)
+          </span>
+        </div>
+        <div className="w-full bg-gray-200 rounded-full h-3">
+          <div
+            className={`h-3 rounded-full transition-all duration-500 ${
+              progressPct > 80 ? 'bg-green-500' : progressPct > 50 ? 'bg-yellow-500' : 'bg-red-500'
+            }`}
+            style={{ width: `${progressPct}%` }}
+          />
+        </div>
+      </div>
+
+      {/* Catch-up & Review Summary */}
+      <div className="mb-4 space-y-2">
+        {/* Overdue SRS Review Badge */}
+        {dueCount > 0 && (
+          <button
+            onClick={() => setActiveSubTab('review')}
+            className="w-full p-3 bg-red-50 border border-red-200 rounded-lg hover:bg-red-100 transition-colors text-left flex items-center gap-3"
+          >
+            <span className="text-lg">🔴</span>
+            <span className="font-semibold text-red-800">{dueCount} due for review</span>
+            <span className="text-red-500 text-sm ml-auto">Go to Reviews →</span>
+          </button>
+        )}
+
+        {/* Past Weeks Catch-up */}
+        {pastWeeksUnmasteredCount > 0 && (
+          <div>
+            <button
+              onClick={() => setShowCatchUp(!showCatchUp)}
+              className="w-full p-3 bg-amber-50 border border-amber-200 rounded-lg hover:bg-amber-100 transition-colors text-left flex items-center gap-3"
+            >
+              <span className="text-lg">⚠️</span>
+              <span className="font-semibold text-amber-800">
+                {pastWeeksUnmasteredCount} patterns from past weeks not yet mastered
+              </span>
+              <span className="text-amber-500 ml-auto">
+                {showCatchUp ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
+              </span>
+            </button>
+            {showCatchUp && (
+              <div className="mt-2 space-y-2 animate-in fade-in slide-in-from-top-2">
+                {pastWeeksUnmastered.map((pw) => (
+                  <div key={pw.week} className="bg-white border border-gray-200 rounded-lg p-3">
+                    <div className="text-sm font-semibold text-gray-600 mb-2">
+                      Week {pw.week}: {pw.weekTitle}
+                    </div>
+                    <div className="space-y-1">
+                      {pw.patterns.map((pattern) => (
+                        <div
+                          key={pattern.id}
+                          className="flex items-center justify-between p-2 bg-gray-50 rounded border border-gray-100"
+                        >
+                          <div className="flex-1 min-w-0">
+                            <span className="text-sm font-medium text-gray-800">
+                              <Furigana text={pattern.patternWithFurigana} />
+                            </span>
+                            <span className="text-xs text-gray-500 ml-2">{pattern.meaning}</span>
+                          </div>
+                          <button
+                            onClick={() => toggleMastered(pattern.id)}
+                            aria-label="Mark as mastered"
+                            className="p-1.5 rounded-lg bg-gray-200 text-gray-400 hover:bg-green-500 hover:text-white transition-colors flex-shrink-0 ml-2"
+                          >
+                            <Check className="w-4 h-4" />
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
       </div>
 
       {/* Practice this Week button */}
@@ -721,6 +863,14 @@ function N3Track({
                           Review
                         </span>
                       )}
+                      {/* Week status badge */}
+                      {(() => {
+                        const status = getWeekStatus(idx, week.patternIds);
+                        if (!status) return null;
+                        return (
+                          <span className="ml-2 text-xs">{status.label}</span>
+                        );
+                      })()}
                     </div>
                     <div className="text-sm text-gray-500">
                       {week.start} – {week.end}

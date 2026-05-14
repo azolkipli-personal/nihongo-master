@@ -7,13 +7,27 @@
 [![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-A unified Japanese learning platform combining AI-powered conversation practice, CEFR B1-C2 grammar mastery, and WaniKani integration.
+## The Problem
+
+You've been grinding WaniKani for months. Your kanji and vocab recognition is solid. But when your 先輩 asks you a question in the daily standup, the words don't come out. You freeze. You default to English.
+
+**This is the gap almost every IT professional in Tokyo hits:** knowing individual words but not being able to assemble them into natural, workplace-appropriate Japanese. Grammar textbooks feel disconnected from the conversations you actually need to have. Anki decks pile up with no context. You're studying harder, not smarter.
+
+## What Nihongo Master Does
+
+Nihongo Master closes that gap. It connects three things that should never have been separate:
+
+1. **WaniKani vocabulary** you've already learned → pulled straight from your account
+2. **AI-powered conversation practice** → generates realistic workplace dialogues using your exact vocab words, so you practice *your* words in *your* context
+3. **Grammar mastery with SRS** → 100+ CEFR-graded patterns with spaced repetition so you don't just recognize grammar — you *use* it
+
+The result: instead of studying vocabulary, grammar, and conversation as three separate activities, you study them as one unified flow. Your WaniKani progress becomes real speaking ability.
 
 ## ✨ Features
 
 ### 🗣️ 会話 KAIWA (Conversation Practice)
 
-- AI-powered conversation generation with vocabulary words
+- AI-powered conversation generation using vocabulary you've learned
 - Furigana/romaji/English toggle support
 - Export to JSON/CSV/Anki format
 - Japanese text-to-speech with natural voice
@@ -21,6 +35,7 @@ A unified Japanese learning platform combining AI-powered conversation practice,
 
 ### 📚 文法 BUNPO (Grammar Mastery)
 
+- ✨ **N3 Track** — 20-week structured syllabus following a curated N3 grammar path. Week-by-week progression with catch-up reviews, progress tracking, and daily accountability
 - 100+ grammar patterns (CEFR B1-C2 levels)
 - Pattern library with search and filters
 - Level upgrader (transform sentences to higher CEFR levels)
@@ -162,12 +177,15 @@ Pre-commit hooks automatically:
 
 - [x] KAIWA Tab (Conversation Practice)
 - [x] BUNPO Tab (Grammar Library + SRS)
+- [x] N3 grammar expansion (51 patterns)
+- [x] N3 Track — 20-week structured syllabus
 - [x] TANGO Tab (WaniKani Integration)
 - [x] SHINCHOKU Tab (Progress Tracking)
 - [x] Multi-provider LLM support
 - [x] Error boundaries
 - [x] Toast notifications
 - [x] Pre-commit hooks
+- [x] Telegram integration for reminders (Saturday quiz)
 
 ### Planned 🔮
 
@@ -176,7 +194,6 @@ Pre-commit hooks automatically:
 - [ ] Mobile app (React Native)
 - [ ] Community features (share scenarios)
 - [ ] CEFR Testing system
-- [ ] Telegram integration for reminders
 
 ## 📝 License
 
