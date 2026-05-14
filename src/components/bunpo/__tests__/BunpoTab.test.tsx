@@ -30,14 +30,16 @@ vi.mock('../../../services/srsService', () => ({
 }));
 
 describe('BunpoTab', () => {
-  it('renders the Library sub-tab by default', () => {
+  it('renders the N3 Track sub-tab by default', () => {
     render(<BunpoTab />);
-    // Should show the pattern library
-    expect(screen.getByPlaceholderText(/search/i)).toBeInTheDocument();
+    // Should show the N3 Track view
+    expect(screen.getByText(/N3 Grammar Track/i)).toBeInTheDocument();
   });
 
   it('displays pattern cards from the grammar database', () => {
     render(<BunpoTab />);
+    // Click Library sub-tab first
+    fireEvent.click(screen.getByRole('button', { name: /^Library$/ }));
     // Grammar patterns should render as cards with expand buttons
     const cards = screen.getAllByRole('button', { name: /show more|show less/i });
     expect(cards.length).toBeGreaterThan(0);
@@ -49,6 +51,8 @@ describe('BunpoTab', () => {
 
   it('filters patterns by CEFR level', () => {
     render(<BunpoTab />);
+    // Click Library sub-tab first
+    fireEvent.click(screen.getByRole('button', { name: /^Library$/ }));
     // Select B2 from the dropdown
     const levelSelect = screen.getByDisplayValue(/all levels/i);
     fireEvent.change(levelSelect, { target: { value: 'B2' } });
@@ -58,6 +62,8 @@ describe('BunpoTab', () => {
 
   it('filters patterns by search query', () => {
     render(<BunpoTab />);
+    // Click Library sub-tab first
+    fireEvent.click(screen.getByRole('button', { name: /^Library$/ }));
     const searchInput = screen.getByPlaceholderText(/search/i);
     fireEvent.change(searchInput, { target: { value: 'obligation' } });
     // Should still render without crashing; obligation patterns e.g. なければならない
