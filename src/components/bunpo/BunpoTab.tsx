@@ -1,6 +1,7 @@
 import { useState, useMemo, useEffect, useCallback } from 'react';
-import { Search, Check, ChevronDown, ChevronUp, Sparkles, Trophy, Clock } from 'lucide-react';
+import { Search, Check, ChevronDown, ChevronUp, Sparkles, Trophy, Clock, Calendar } from 'lucide-react';
 import grammarPatterns from '../../data/grammar-patterns.json';
+import syllabus from '../../data/n3-syllabus.json';
 import { GrammarPattern, BunpoSubTab } from '../../types';
 import { Furigana } from '../common/Furigana';
 import { ToggleButton } from '../common/ToggleButton';
@@ -232,7 +233,7 @@ export function BunpoTab() {
               activeSubTab === tab ? 'bg-blue-500 text-white' : 'text-gray-600 hover:bg-gray-100'
             }`}
           >
-            {tab === 'path' && 'Learning Path'}
+            {tab === 'path' && 'N3 Track'}
             {tab === 'review' && 'Reviews'}
             {tab === 'library' && 'Library'}
             {tab === 'upgrader' && 'Upgrader'}
@@ -591,101 +592,239 @@ export function BunpoTab() {
         </div>
       )}
 
-      {/* Path Tab */}
+      {/* N3 Track Tab (replaces Learning Path) */}
       {activeSubTab === 'path' && (
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="mb-6">
-            <h2 className="text-xl font-bold text-gray-800 mb-2">Learning Path</h2>
-            <p className="text-gray-600">A structured path through Japanese grammar concepts.</p>
-          </div>
+        <N3Track
+          patterns={patterns}
+          toggleMastered={toggleMastered}
+        />
+      )}
+    </div>
+  );
+}
 
-          <div className="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-blue-200 before:to-transparent">
-            {Object.entries(
-              patterns.reduce(
-                (acc, p) => {
-                  const hub = p.hub || 'Other';
-                  if (!acc[hub]) acc[hub] = [];
-                  acc[hub].push(p);
-                  return acc;
-                },
-                {} as Record<string, GrammarPattern[]>
-              )
-            )
-              .sort(([a], [b]) => a.localeCompare(b))
-              .map(([hub, hubPatterns], idx) => {
-                const masteredInHub = hubPatterns.filter((p) => p.mastered).length;
-                const isHubMastered =
-                  masteredInHub === hubPatterns.length && hubPatterns.length > 0;
+// --- N3 Track Component ---
+function N3Track({
+  patterns,
+  toggleMastered,
+}: {
+  patterns: GrammarPattern[];
+  toggleMastered: (id: string) => void;
+}) {
+  const [expandedWeek, setExpandedWeek] = useState<number | null>(null);
 
-                return (
+  // Calculate current week from syllabus start date
+  const currentWeekIndex = useMemo(() => {
+    const startStr = syllabus.startDate || '2026-05-15';
+    const start = new Date(startStr);
+    const now = new Date();
+    const diffMs = now.getTime() - start.getTime();
+    const diffWeeks = Math.floor(diffMs / (7 * 24 * 60 * 60 * 1000));
+    return Math.max(0, Math.min(diffWeeks, syllabus.totalWeeks - 1));
+  }, []);
+
+  // Build a lookup map from pattern IDs to pattern objects
+  const patternMap = useMemo(() => {
+    const map = new Map<string, GrammarPattern>();
+    patterns.forEach((p) => map.set(p.id, p));
+    return map;
+  }, [patterns]);
+
+  // Get patterns for a specific week
+  const getWeekPatterns = (patternIds: string[]) => {
+    return patternIds
+      .map((id) => patternMap.get(id))
+      .filter((p): p is GrammarPattern => p !== undefined);
+  };
+
+  // Count mastered patterns in a week
+  const getMasteredCount = (patternIds: string[]) => {
+    let count = 0;
+    patternIds.forEach((id) => {
+      const p = patternMap.get(id);
+      if (p && p.mastered) count++;
+    });
+    return count;
+  };
+
+  const handlePracticeThisWeek = () => {
+    const week = syllabus.weeks[currentWeekIndex];
+    if (week && week.patternIds.length > 0) {
+      sessionStorage.setItem('kaiwa_practice_patterns', JSON.stringify(week.patternIds));
+      alert(`Go to Kaiwa tab and click 'This Week's Patterns' to practice Week ${currentWeekIndex + 1} patterns!`);
+    }
+  };
+
+  return (
+    <div className="bg-white rounded-lg shadow p-6">
+      <div className="mb-6">
+        <h2 className="text-xl font-bold text-gray-800 mb-2">N3 Grammar Track</h2>
+        <p className="text-gray-600">
+          20-week structured syllabus — follow along with N3 grammar patterns.
+        </p>
+      </div>
+
+      {/* Practice this Week button */}
+      <button
+        onClick={handlePracticeThisWeek}
+        className="w-full mb-6 py-3 bg-green-500 text-white rounded-lg font-medium hover:bg-green-600 transition-colors flex items-center justify-center gap-2"
+      >
+        <Calendar className="w-5 h-5" />
+        Practice this Week → (Week {currentWeekIndex + 1})
+      </button>
+
+      {/* Week cards */}
+      <div className="space-y-3 max-h-[600px] overflow-y-auto pr-1">
+        {syllabus.weeks.map((week, idx) => {
+          const isCurrent = idx === currentWeekIndex;
+          const isExpanded = expandedWeek === idx;
+          const masteredCount = getMasteredCount(week.patternIds);
+          const totalPatterns = week.patternIds.length;
+          const weekPatterns = getWeekPatterns(week.patternIds);
+
+          return (
+            <div
+              key={week.week}
+              className={`rounded-lg border-2 transition-colors ${
+                isCurrent
+                  ? 'border-blue-400 bg-blue-50'
+                  : 'border-gray-200 bg-white hover:border-gray-300'
+              }`}
+            >
+              {/* Week header */}
+              <button
+                onClick={() => setExpandedWeek(isExpanded ? null : idx)}
+                className="w-full p-4 flex items-center justify-between text-left"
+              >
+                <div className="flex items-center gap-3">
                   <div
-                    key={hub}
-                    className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group"
+                    className={`flex items-center justify-center w-10 h-10 rounded-full text-sm font-bold ${
+                      isCurrent
+                        ? 'bg-blue-500 text-white'
+                        : week.isReview
+                          ? 'bg-purple-100 text-purple-700'
+                          : 'bg-gray-100 text-gray-600'
+                    }`}
                   >
-                    <div
-                      className={`flex items-center justify-center w-10 h-10 rounded-full border-4 shadow shrink-0 md:order-1 md:group-odd:-ml-5 md:group-even:-mr-5 z-10 ${
-                        isHubMastered ? 'bg-green-500 border-white' : 'bg-blue-500 border-white'
-                      }`}
-                    >
-                      {isHubMastered ? (
-                        <Check className="w-5 h-5 text-white" />
-                      ) : (
-                        <span className="text-white text-sm font-bold">{idx + 1}</span>
+                    {week.week}
+                  </div>
+                  <div>
+                    <div className="font-semibold text-gray-800">
+                      {week.title}
+                      {isCurrent && (
+                        <span className="ml-2 px-2 py-0.5 bg-blue-500 text-white text-xs rounded-full">
+                          Current
+                        </span>
+                      )}
+                      {week.isReview && (
+                        <span className="ml-2 px-2 py-0.5 bg-purple-100 text-purple-700 text-xs rounded-full">
+                          Review
+                        </span>
                       )}
                     </div>
-
-                    <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-gray-50 p-4 rounded-xl border border-gray-100 shadow-sm transition-transform hover:-translate-y-1">
-                      <h3 className="text-lg font-bold text-gray-800 mb-2">{hub}</h3>
-                      <div className="flex justify-between items-center text-sm mb-3">
-                        <span className="text-gray-500">
-                          {masteredInHub} / {hubPatterns.length} Mastered
+                    <div className="text-sm text-gray-500">
+                      {week.start} – {week.end}
+                      {totalPatterns > 0 && (
+                        <span className="ml-2">
+                          {masteredCount}/{totalPatterns} mastered
                         </span>
-                        <div className="flex gap-1">
-                          {Array.from(new Set(hubPatterns.map((p) => p.cefr)))
-                            .sort()
-                            .map((level) => (
-                              <span
-                                key={level}
-                                className="px-1.5 py-0.5 bg-blue-100 text-blue-700 text-[10px] rounded font-medium"
-                              >
-                                {level}
-                              </span>
-                            ))}
-                        </div>
-                      </div>
-
-                      <div className="space-y-2">
-                        {hubPatterns.slice(0, 3).map((p) => (
-                          <div
-                            key={p.id}
-                            className="flex justify-between items-center text-sm py-1 border-b border-gray-100 last:border-0"
-                          >
-                            <span className="font-medium text-gray-700">{p.pattern}</span>
-                            <span className="text-gray-500 truncate ml-2 max-w-[60%]">
-                              {p.meaning}
-                            </span>
-                          </div>
-                        ))}
-                        {hubPatterns.length > 3 && (
-                          <div
-                            className="text-center text-xs text-blue-500 mt-2 font-medium cursor-pointer"
-                            onClick={() => {
-                              setSearchQuery('');
-                              setGroupBy('hub');
-                              setActiveSubTab('library');
-                            }}
-                          >
-                            + {hubPatterns.length - 3} more (View in Library)
-                          </div>
-                        )}
-                      </div>
+                      )}
                     </div>
                   </div>
-                );
-              })}
-          </div>
-        </div>
-      )}
+                </div>
+                <div className="flex items-center gap-2">
+                  {totalPatterns > 0 && (
+                    <div className="w-24 bg-gray-200 rounded-full h-2">
+                      <div
+                        className="bg-green-500 h-2 rounded-full"
+                        style={{ width: `${(masteredCount / totalPatterns) * 100}%` }}
+                      />
+                    </div>
+                  )}
+                  {isExpanded ? (
+                    <ChevronUp className="w-5 h-5 text-gray-400" />
+                  ) : (
+                    <ChevronDown className="w-5 h-5 text-gray-400" />
+                  )}
+                </div>
+              </button>
+
+              {/* Expanded pattern list */}
+              {isExpanded && (
+                <div className="px-4 pb-4 border-t border-gray-100 animate-in fade-in slide-in-from-top-2">
+                  {week.isReview ? (
+                    <div className="py-4 text-center text-gray-500">
+                      <p className="font-medium">Review Week</p>
+                      <p className="text-sm mt-1">
+                        Review all patterns from Weeks 1–15 using the Library or Challenge mode.
+                      </p>
+                    </div>
+                  ) : weekPatterns.length > 0 ? (
+                    <div className="space-y-3 pt-4">
+                      {weekPatterns.map((pattern) => (
+                        <div
+                          key={pattern.id}
+                          className={`p-3 rounded-lg border ${
+                            pattern.mastered
+                              ? 'bg-green-50 border-green-200'
+                              : 'bg-gray-50 border-gray-200'
+                          }`}
+                        >
+                          <div className="flex justify-between items-start">
+                            <div className="flex-1">
+                              <div className="flex items-center gap-2 mb-1 flex-wrap">
+                                <span className="text-lg font-medium text-gray-800">
+                                  <Furigana text={pattern.patternWithFurigana} />
+                                </span>
+                                <span className="px-2 py-0.5 bg-blue-100 text-blue-700 text-xs rounded-full">
+                                  {pattern.cefr}
+                                </span>
+                              </div>
+                              <p className="text-sm text-gray-600 mb-2">{pattern.meaning}</p>
+
+                              {/* First example with furigana */}
+                              {pattern.examples.length > 0 && (
+                                <div className="bg-white p-2 rounded border border-gray-100">
+                                  <div className="text-sm text-gray-800">
+                                    <Furigana text={pattern.examples[0].japaneseWithFurigana} />
+                                  </div>
+                                  <div className="text-xs text-gray-400 italic mt-0.5">
+                                    {pattern.examples[0].romaji}
+                                  </div>
+                                  <div className="text-xs text-gray-500 mt-0.5">
+                                    {pattern.examples[0].english}
+                                  </div>
+                                </div>
+                              )}
+                            </div>
+
+                            {/* Mastered checkbox */}
+                            <button
+                              onClick={() => toggleMastered(pattern.id)}
+                              aria-label={pattern.mastered ? 'Mark as unmastered' : 'Mark as mastered'}
+                              className={`p-2 rounded-lg transition-colors flex-shrink-0 ml-3 ${
+                                pattern.mastered
+                                  ? 'bg-green-500 text-white'
+                                  : 'bg-gray-200 text-gray-400 hover:bg-gray-300'
+                              }`}
+                            >
+                              <Check className="w-5 h-5" />
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="py-4 text-center text-gray-500">
+                      <p>No patterns assigned this week.</p>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

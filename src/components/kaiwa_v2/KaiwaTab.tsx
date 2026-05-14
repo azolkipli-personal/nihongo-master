@@ -17,6 +17,7 @@ export function KaiwaTab() {
     showEnglish,
     exportDropdownOpen,
     cefrLevel,
+    focusPatternIds,
     setWords,
     setScenario,
     setShowFurigana,
@@ -24,6 +25,7 @@ export function KaiwaTab() {
     setShowEnglish,
     setExportDropdownOpen,
     setCefrLevel,
+    setFocusPatternIds,
     handleGenerate,
     handleDelete,
     handleExport,
@@ -67,11 +69,13 @@ export function KaiwaTab() {
         words={words}
         scenario={scenario}
         cefrLevel={cefrLevel}
+        focusPatternIds={focusPatternIds}
         loading={loading}
         error={error}
         onWordsChange={setWords}
         onScenarioChange={setScenario}
         onCefrLevelChange={setCefrLevel}
+        onFocusPatternIdsChange={setFocusPatternIds}
         onGenerate={handleGenerate}
         onImportConversations={() => fileInputRef.current?.click()}
       />

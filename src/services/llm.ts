@@ -80,9 +80,10 @@ export async function generateConversation(
   apiKey: string,
   ollamaUrl?: string,
   model?: string,
-  cefrLevel: string = 'B1'
+  cefrLevel: string = 'B1',
+  focusGrammar?: string[]
 ): Promise<LLMResponse> {
-  const prompt = buildConversationPrompt(words, scenario, cefrLevel);
+  const prompt = buildConversationPrompt(words, scenario, cefrLevel, focusGrammar);
 
   switch (service) {
     case 'gemini':
@@ -121,11 +122,15 @@ export async function generateSentenceUpgrade(
 export function buildConversationPrompt(
   words: string[],
   scenario: string,
-  cefrLevel: string
+  cefrLevel: string,
+  focusGrammar?: string[]
 ): string {
-  // Adjust conversation count based on how many words were sent
+  const focusGrammarLine = focusGrammar && focusGrammar.length > 0
+    ? `Focus on using these grammar patterns naturally in the conversations: ${focusGrammar.join(', ')}
+`
+    : '';
   return `Act as a professional Japanese language instructor.
-Scenario/Context: ${scenario || 'Daily conversation'}
+${focusGrammarLine}Scenario/Context: ${scenario || 'Daily conversation'}
 
 CEFR Target Level: ${cefrLevel}
 
