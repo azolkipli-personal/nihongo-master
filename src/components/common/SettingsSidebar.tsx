@@ -3,6 +3,7 @@ import { X } from 'lucide-react';
 import { AppearanceSection } from './AppearanceSection';
 import { LLMConfigSection } from './LLMConfigSection';
 import { IntegrationsSection } from './IntegrationsSection';
+import { SyncSection } from './SyncSection';
 import { SettingsActionButtons } from './SettingsActionButtons';
 import { useSettingsState } from './useSettingsState';
 import type { AppConfig } from '../../types';
@@ -87,6 +88,13 @@ export function SettingsSidebar({ isOpen, onClose }: SettingsSidebarProps) {
           <IntegrationsSection
             wanikaniApiKey={config.wanikaniApiKey}
             onWaniKaniApiKeyChange={(key) => updateConfig({ wanikaniApiKey: key })}
+          />
+
+          <SyncSection
+            syncBackend={config.syncBackend}
+            syncNucUrl={config.syncNucUrl}
+            onSyncBackendChange={(backend) => updateConfig({ syncBackend: backend })}
+            onSyncNucUrlChange={(url) => updateConfig({ syncNucUrl: url })}
           />
 
           <SettingsActionButtons
