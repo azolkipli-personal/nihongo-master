@@ -17,6 +17,8 @@ const DEFAULT_CONFIG: AppConfig = {
   showRomaji: true,
   showEnglish: true,
   userLevel: null,
+  syncBackend: 'none',
+  syncNucUrl: 'http://localhost:9001',
 };
 
 export function getConfigPath(): string {

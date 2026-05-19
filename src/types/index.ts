@@ -13,6 +13,8 @@ export interface AppConfig {
   showRomaji: boolean;
   showEnglish: boolean;
   userLevel: 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2' | null;
+  syncBackend: 'none' | 'nuc' | 'gdrive';
+  syncNucUrl: string;
 }
 
 export interface GrammarPattern {

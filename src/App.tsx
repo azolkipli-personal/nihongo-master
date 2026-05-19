@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { Header } from './components/common/Header';
 import { TabNavigation } from './components/common/TabNavigation';
@@ -10,12 +10,24 @@ import { ShinchokuTab } from './components/shinchoku/ShinchokuTab';
 import { ErrorBoundary } from './components/common/ErrorBoundary';
 import { TabType } from './types';
 import { useThemeContext } from './utils/ThemeContext';
+import { loadConfig } from './utils/configManager';
+import { createBackend } from './services/syncBackend';
+import { useAutoSync } from './hooks/useAutoSync';
 import './index.css';
 
 function App() {
   const [activeTab, setActiveTab] = useState<TabType>('kaiwa');
   const [settingsOpen, setSettingsOpen] = useState(false);
   const { themeClasses } = useThemeContext();
+
+  // Initialize sync backend from config
+  const syncBackend = useMemo(() => {
+    const cfg = loadConfig();
+    return createBackend(cfg.syncBackend || 'none');
+  }, []);
+
+  // Auto-sync every 30s when backend is configured
+  useAutoSync(syncBackend, 30_000);
 
   // Listen for tab switch requests from child components
   useEffect(() => {

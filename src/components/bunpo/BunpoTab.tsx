@@ -1,5 +1,14 @@
 import { useState, useMemo, useEffect, useCallback } from 'react';
-import { Search, Check, ChevronDown, ChevronUp, Sparkles, Trophy, Clock, Calendar } from 'lucide-react';
+import {
+  Search,
+  Check,
+  ChevronDown,
+  ChevronUp,
+  Sparkles,
+  Trophy,
+  Clock,
+  Calendar,
+} from 'lucide-react';
 import grammarPatterns from '../../data/grammar-patterns.json';
 import syllabus from '../../data/n3-syllabus.json';
 import { GrammarPattern, BunpoSubTab } from '../../types';
@@ -24,7 +33,7 @@ export function BunpoTab() {
   const [selectedLevel, setSelectedLevel] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [groupBy, setGroupBy] = useState<'level' | 'hub'>('level');
-  const [challengeLevel, setChallengeLevel] = useState<string>('all');
+  const [challengeLevel] = useState<string>('all');
   const [expandedPattern, setExpandedPattern] = useState<string | null>(null);
 
   // SRS state
@@ -64,6 +73,16 @@ export function BunpoTab() {
 
   // Challenge mode state is now handled inside the ChallengeMode component
 
+  // Week-aware quiz state
+  const [quizWeekPatternIds, setQuizWeekPatternIds] = useState<string[] | null>(null);
+  const [quizWeekLabel, setQuizWeekLabel] = useState<string | null>(null);
+
+  const handleQuizWeek = (patternIds: string[], label: string) => {
+    setQuizWeekPatternIds(patternIds);
+    setQuizWeekLabel(label);
+    setActiveSubTab('challenge');
+  };
+
   const patterns = useMemo(() => {
     return (grammarPatterns as GrammarPattern[]).map((p) => ({
       ...p,
@@ -86,13 +105,21 @@ export function BunpoTab() {
     setGrammarData((prev) => {
       const current = prev[id] || {};
       const isMastered = !current.mastered;
+      if (isMastered) {
+        // Burning: mark as mastered, no further review needed
+        return {
+          ...prev,
+          [id]: { ...current, mastered: true, srsStage: 8, nextReviewDate: undefined },
+        };
+      }
+      // Un-mastering: put into SRS rotation starting from stage 0
+      const srsUpdate = calculateNextReview(0, false);
       return {
         ...prev,
         [id]: {
           ...current,
-          mastered: isMastered,
-          srsStage: isMastered ? 8 : 0,
-          nextReviewDate: undefined,
+          ...srsUpdate,
+          mastered: false,
         },
       };
     });
@@ -110,6 +137,23 @@ export function BunpoTab() {
           mastered: update.srsStage === 8,
         },
       };
+    });
+  };
+
+  // Patterns that have never been reviewed (no SRS data, not mastered)
+  const unreviewedPatterns = useMemo(() => {
+    return patterns.filter((p) => !p.mastered && p.srsStage === undefined);
+  }, [patterns]);
+
+  const startReviewingNew = (ids: string[]) => {
+    setGrammarData((prev) => {
+      const updated = { ...prev };
+      ids.forEach((id) => {
+        if (!updated[id]) {
+          updated[id] = { mastered: false, srsStage: 0, nextReviewDate: new Date().toISOString() };
+        }
+      });
+      return updated;
     });
   };
 
@@ -267,6 +311,41 @@ export function BunpoTab() {
               <Check className="w-12 h-12 text-green-500 mx-auto mb-4" />
               <p className="text-lg font-medium">No reviews due right now!</p>
               <p className="text-sm">Come back later or explore the Library.</p>
+            </div>
+          )}
+
+          {/* New Patterns — never reviewed, ready to start */}
+          {unreviewedPatterns.length > 0 && (
+            <div className="mt-6 pt-6 border-t border-gray-200">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-lg font-semibold text-gray-700 flex items-center gap-2">
+                  <span className="text-2xl">🆕</span>
+                  New Patterns
+                </h3>
+                <span className="text-sm text-blue-600 font-medium">
+                  {unreviewedPatterns.length} ready to start
+                </span>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+                {unreviewedPatterns.slice(0, 12).map((p) => (
+                  <div
+                    key={p.id}
+                    className="flex items-center gap-3 p-3 bg-blue-50 border border-blue-200 rounded-lg"
+                  >
+                    <span className="text-lg font-bold text-blue-700">{p.pattern}</span>
+                    <span className="text-xs text-gray-600">{p.meaning}</span>
+                    <span className="ml-auto text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded">
+                      {p.cefr}
+                    </span>
+                  </div>
+                ))}
+              </div>
+              <button
+                onClick={() => startReviewingNew(unreviewedPatterns.map((p) => p.id))}
+                className="px-6 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors"
+              >
+                Start Reviewing New Patterns
+              </button>
             </div>
           )}
         </div>
@@ -557,48 +636,36 @@ export function BunpoTab() {
         </div>
       )}
 
-      {/* Challenge Tab */}
-      {activeSubTab === 'challenge' && (
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
-            <h2 className="text-xl font-bold text-gray-800 flex items-center gap-2">
-              <Trophy className="w-6 h-6 text-yellow-500" />
-              Grammar Challenge
-            </h2>
-            <div className="flex items-center gap-2">
-              <label className="text-sm text-gray-600">Level:</label>
-              <select
-                value={challengeLevel}
-                onChange={(e) => setChallengeLevel(e.target.value)}
-                className="px-3 py-1.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              >
-                <option value="all">All Levels</option>
-                <option value="A1">A1</option>
-                <option value="A2">A2</option>
-                <option value="B1">B1</option>
-                <option value="B2">B2</option>
-                <option value="C1">C1</option>
-                <option value="C2">C2</option>
-              </select>
-            </div>
-          </div>
-
-          <ChallengeMode
-            patterns={patterns}
-            masteredPatternIds={new Set(patterns.filter((p) => p.mastered).map((p) => p.id))}
-            challengeLevel={challengeLevel}
-            onSrsUpdate={handleSrsUpdate}
-          />
-        </div>
-      )}
-
       {/* N3 Track Tab (replaces Learning Path) */}
       {activeSubTab === 'path' && (
         <N3Track
           patterns={patterns}
           toggleMastered={toggleMastered}
           setActiveSubTab={setActiveSubTab}
+          onQuizWeek={handleQuizWeek}
         />
+      )}
+
+      {/* Challenge Tab */}
+      {activeSubTab === 'challenge' && (
+        <div className="bg-white rounded-lg shadow p-6">
+          {quizWeekLabel && (
+            <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+              <span className="text-blue-800 font-semibold">📝 {quizWeekLabel}</span>
+              <span className="text-blue-600 text-sm ml-2">
+                {quizWeekPatternIds?.length || 0} patterns
+              </span>
+            </div>
+          )}
+          <ChallengeMode
+            patterns={patterns}
+            masteredPatternIds={new Set(patterns.filter((p) => p.mastered).map((p) => p.id))}
+            challengeLevel={challengeLevel}
+            onSrsUpdate={handleSrsUpdate}
+            weekPatternIds={quizWeekPatternIds}
+            weekLabel={quizWeekLabel}
+          />
+        </div>
       )}
     </div>
   );
@@ -609,10 +676,12 @@ function N3Track({
   patterns,
   toggleMastered,
   setActiveSubTab,
+  onQuizWeek,
 }: {
   patterns: GrammarPattern[];
   toggleMastered: (id: string) => void;
   setActiveSubTab: (tab: BunpoSubTab | 'review') => void;
+  onQuizWeek: (patternIds: string[], label: string) => void;
 }) {
   const [expandedWeek, setExpandedWeek] = useState<number | null>(null);
 
@@ -699,7 +768,9 @@ function N3Track({
     const week = syllabus.weeks[currentWeekIndex];
     if (week && week.patternIds.length > 0) {
       sessionStorage.setItem('kaiwa_practice_patterns', JSON.stringify(week.patternIds));
-      alert(`Go to Kaiwa tab and click 'This Week's Patterns' to practice Week ${currentWeekIndex + 1} patterns!`);
+      alert(
+        `Go to Kaiwa tab and click 'This Week's Patterns' to practice Week ${currentWeekIndex + 1} patterns!`
+      );
     }
   };
 
@@ -708,8 +779,10 @@ function N3Track({
     if (idx === currentWeekIndex) return { label: '🟢 Active', color: '' };
     if (idx > currentWeekIndex) return null; // future
     const mastered = getMasteredCount(patternIds);
-    if (mastered === patternIds.length && patternIds.length > 0) return { label: '✅ Done', color: '' };
-    if (patternIds.length > 0) return { label: `⚠️ ${patternIds.length - mastered} remaining`, color: '' };
+    if (mastered === patternIds.length && patternIds.length > 0)
+      return { label: '✅ Done', color: '' };
+    if (patternIds.length > 0)
+      return { label: `⚠️ ${patternIds.length - mastered} remaining`, color: '' };
     return null;
   };
 
@@ -766,7 +839,11 @@ function N3Track({
                 {pastWeeksUnmasteredCount} patterns from past weeks not yet mastered
               </span>
               <span className="text-amber-500 ml-auto">
-                {showCatchUp ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
+                {showCatchUp ? (
+                  <ChevronUp className="w-5 h-5" />
+                ) : (
+                  <ChevronDown className="w-5 h-5" />
+                )}
               </span>
             </button>
             {showCatchUp && (
@@ -809,11 +886,33 @@ function N3Track({
       {/* Practice this Week button */}
       <button
         onClick={handlePracticeThisWeek}
-        className="w-full mb-6 py-3 bg-green-500 text-white rounded-lg font-medium hover:bg-green-600 transition-colors flex items-center justify-center gap-2"
+        className="w-full mb-3 py-3 bg-green-500 text-white rounded-lg font-medium hover:bg-green-600 transition-colors flex items-center justify-center gap-2"
       >
         <Calendar className="w-5 h-5" />
         Practice this Week → (Week {currentWeekIndex + 1})
       </button>
+
+      {/* Quiz This Week button */}
+      {(() => {
+        const currentWeek = syllabus.weeks[currentWeekIndex];
+        if (currentWeek && !currentWeek.isReview && currentWeek.patternIds.length > 0) {
+          return (
+            <button
+              onClick={() =>
+                onQuizWeek(
+                  currentWeek.patternIds,
+                  `Week ${currentWeek.week} Quiz (${currentWeek.start} – ${currentWeek.end})`
+                )
+              }
+              className="w-full mb-6 py-3 bg-blue-500 text-white rounded-lg font-medium hover:bg-blue-600 transition-colors flex items-center justify-center gap-2"
+            >
+              <Trophy className="w-5 h-5" />
+              Start Weekly Quiz (Week {currentWeek.week})
+            </button>
+          );
+        }
+        return null;
+      })()}
 
       {/* Week cards */}
       <div className="space-y-3 max-h-[600px] overflow-y-auto pr-1">
@@ -867,9 +966,7 @@ function N3Track({
                       {(() => {
                         const status = getWeekStatus(idx, week.patternIds);
                         if (!status) return null;
-                        return (
-                          <span className="ml-2 text-xs">{status.label}</span>
-                        );
+                        return <span className="ml-2 text-xs">{status.label}</span>;
                       })()}
                     </div>
                     <div className="text-sm text-gray-500">
@@ -951,7 +1048,9 @@ function N3Track({
                             {/* Mastered checkbox */}
                             <button
                               onClick={() => toggleMastered(pattern.id)}
-                              aria-label={pattern.mastered ? 'Mark as unmastered' : 'Mark as mastered'}
+                              aria-label={
+                                pattern.mastered ? 'Mark as unmastered' : 'Mark as mastered'
+                              }
                               className={`p-2 rounded-lg transition-colors flex-shrink-0 ml-3 ${
                                 pattern.mastered
                                   ? 'bg-green-500 text-white'
@@ -963,6 +1062,21 @@ function N3Track({
                           </div>
                         </div>
                       ))}
+                      {/* Re-quiz button for past weeks */}
+                      {!isCurrent && (
+                        <button
+                          onClick={() =>
+                            onQuizWeek(
+                              week.patternIds,
+                              `Week ${week.week} Re-quiz (${week.start} – ${week.end})`
+                            )
+                          }
+                          className="w-full mt-2 py-2 bg-gray-100 text-gray-700 rounded-lg font-medium hover:bg-blue-50 hover:text-blue-700 transition-colors flex items-center justify-center gap-2 text-sm"
+                        >
+                          <Trophy className="w-4 h-4" />
+                          Re-quiz Week {week.week}
+                        </button>
+                      )}
                     </div>
                   ) : (
                     <div className="py-4 text-center text-gray-500">
@@ -985,11 +1099,15 @@ function ChallengeMode({
   masteredPatternIds,
   challengeLevel,
   onSrsUpdate,
+  weekPatternIds,
+  weekLabel,
 }: {
   patterns: GrammarPattern[];
   masteredPatternIds: Set<string>;
   challengeLevel: string;
   onSrsUpdate?: (id: string, isCorrect: boolean) => void;
+  weekPatternIds?: string[] | null;
+  weekLabel?: string | null;
 }) {
   const [questions, setQuestions] = useState<ChallengeQuestion[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -997,24 +1115,49 @@ function ChallengeMode({
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [isFinished, setIsFinished] = useState(false);
 
+  // Build lookup for week patterns
+  const weekPatternSet = useMemo(
+    () => (weekPatternIds ? new Set(weekPatternIds) : null),
+    [weekPatternIds]
+  );
+
   // Initialize quiz
   const startQuiz = useCallback(() => {
-    // 1. Pick pool of patterns to test based on mastered status and selected level
-    let pool = patterns.filter(
-      (p) =>
-        masteredPatternIds.has(p.id) &&
-        p.examples.length > 0 &&
-        (challengeLevel === 'all' || p.cefr === challengeLevel)
-    );
-    if (pool.length < 5) {
+    let pool: GrammarPattern[];
+
+    if (weekPatternSet) {
+      // Week-aware mode: pool = this week's patterns
+      pool = weekPatternIds!
+        .map((id) => patterns.find((p) => p.id === id))
+        .filter((p): p is GrammarPattern => p !== undefined && p.examples.length > 0);
+
+      // Sort: unmastered first, then by lower SRS stage
+      pool.sort((a, b) => {
+        const aMastered = masteredPatternIds.has(a.id) ? 1 : 0;
+        const bMastered = masteredPatternIds.has(b.id) ? 1 : 0;
+        if (aMastered !== bMastered) return aMastered - bMastered;
+        const aStage = (a as any).srsStage || 0;
+        const bStage = (b as any).srsStage || 0;
+        return aStage - bStage;
+      });
+    } else {
+      // Classic mode: pick from mastered patterns by level
       pool = patterns.filter(
-        (p) => p.examples.length > 0 && (challengeLevel === 'all' || p.cefr === challengeLevel)
+        (p) =>
+          masteredPatternIds.has(p.id) &&
+          p.examples.length > 0 &&
+          (challengeLevel === 'all' || p.cefr === challengeLevel)
       );
+      if (pool.length < 5) {
+        pool = patterns.filter(
+          (p) => p.examples.length > 0 && (challengeLevel === 'all' || p.cefr === challengeLevel)
+        );
+      }
     }
 
-    // Sort randomly
+    // Sort randomly (shuffle the ordered pool)
     pool.sort(() => Math.random() - 0.5);
-    const selectedPatterns = pool.slice(0, 5); // 5 questions per quiz
+    const selectedPatterns = pool.slice(0, Math.min(5, pool.length)); // up to 5 questions per quiz
 
     const newQuestions = selectedPatterns.map((pattern) => {
       // Create fill-in-the-blank from first example
@@ -1056,7 +1199,7 @@ function ChallengeMode({
     setScore(0);
     setSelectedAnswer(null);
     setIsFinished(false);
-  }, [patterns, masteredPatternIds, challengeLevel]);
+  }, [patterns, masteredPatternIds, challengeLevel, weekPatternIds, weekPatternSet]);
 
   // Start on mount or when level changes
   useEffect(() => {
@@ -1071,15 +1214,18 @@ function ChallengeMode({
       <div className="text-center py-12">
         <Trophy className="w-16 h-16 text-yellow-500 mx-auto mb-4" />
         <h3 className="text-2xl font-bold mb-2">Challenge Complete!</h3>
+        {weekLabel && <p className="text-sm text-blue-600 font-medium mb-2">{weekLabel}</p>}
         <p className="text-xl text-gray-600 mb-8">
           You scored {score} out of {questions.length}
         </p>
-        <button
-          onClick={startQuiz}
-          className="px-6 py-3 bg-blue-500 text-white font-medium rounded-lg hover:bg-blue-600 transition-colors"
-        >
-          Try Again
-        </button>
+        <div className="flex gap-3 justify-center">
+          <button
+            onClick={startQuiz}
+            className="px-6 py-3 bg-blue-500 text-white font-medium rounded-lg hover:bg-blue-600 transition-colors"
+          >
+            {weekLabel ? 'Retry Quiz' : 'Try Again'}
+          </button>
+        </div>
       </div>
     );
   }

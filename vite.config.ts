@@ -10,7 +10,7 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',
     port: 5173,
-    allowedHosts: ['openclaw.tailc24d36.ts.net'],
+    allowedHosts: ['fedora-nuc.tailc24d36.ts.net'],
     proxy: {
       '/api/ollama': {
         target: 'http://100.84.210.83:11434',
@@ -22,6 +22,6 @@ export default defineConfig({
   preview: {
     host: '0.0.0.0',
     port: 3000,
-    allowedHosts: ['openclaw', 'openclaw.tailc24d36.ts.net', '.tailc24d36.ts.net', '.local'],
+    allowedHosts: ['fedora-nuc', 'fedora-nuc.tailc24d36.ts.net', '.tailc24d36.ts.net', '.local'],
   },
 });
