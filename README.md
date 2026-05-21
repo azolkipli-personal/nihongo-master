@@ -7,6 +7,13 @@
 [![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
+
+<p align="center">
+  <a href="https://github.com/sponsors/azolkipli-personal">
+    <img src="https://img.shields.io/badge/Sponsor-%E2%9D%A4%EF%B8%8F%20jpeigo--slides-DB61A2?style=for-the-badge&logo=github&logoColor=white" alt="Sponsor">
+  </a>
+</p>
+
 ## The Problem
 
 You've been grinding WaniKani for months. Your kanji and vocab recognition is solid. But when your 先輩 asks you a question in the daily standup, the words don't come out. You freeze. You default to English.
