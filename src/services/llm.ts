@@ -125,10 +125,11 @@ export function buildConversationPrompt(
   cefrLevel: string,
   focusGrammar?: string[]
 ): string {
-  const focusGrammarLine = focusGrammar && focusGrammar.length > 0
-    ? `Focus on using these grammar patterns naturally in the conversations: ${focusGrammar.join(', ')}
+  const focusGrammarLine =
+    focusGrammar && focusGrammar.length > 0
+      ? `Focus on using these grammar patterns naturally in the conversations: ${focusGrammar.join(', ')}
 `
-    : '';
+      : '';
   return `Act as a professional Japanese language instructor.
 ${focusGrammarLine}Scenario/Context: ${scenario || 'Daily conversation'}
 
@@ -226,8 +227,15 @@ async function callGemini(prompt: string, apiKey: string, model: string): Promis
 
   if (!text) {
     const blockReason = data?.promptFeedback?.blockReason || 'unknown';
-    console.error('Gemini returned empty response. Block reason:', blockReason, 'Full data:', JSON.stringify(data).slice(0, 500));
-    throw new Error(`AI returned empty response (blocked: ${blockReason}). Try a different model or check your prompt.`);
+    console.error(
+      'Gemini returned empty response. Block reason:',
+      blockReason,
+      'Full data:',
+      JSON.stringify(data).slice(0, 500)
+    );
+    throw new Error(
+      `AI returned empty response (blocked: ${blockReason}). Try a different model or check your prompt.`
+    );
   }
 
   return parseLLMResponse(text);
@@ -365,7 +373,9 @@ async function callOllamaForUpgrade(
 
 function parseLLMResponse(text: string): LLMResponse {
   if (!text || !text.trim()) {
-    throw new Error('AI returned empty response. The model may have blocked the request or the prompt is too complex. Try fewer words or a different model.');
+    throw new Error(
+      'AI returned empty response. The model may have blocked the request or the prompt is too complex. Try fewer words or a different model.'
+    );
   }
   try {
     return JSON.parse(text);
@@ -373,11 +383,15 @@ function parseLLMResponse(text: string): LLMResponse {
     try {
       const blockMatch = text.match(/```(?:json)?\s*([\s\S]*?)```/);
       if (blockMatch) return JSON.parse(blockMatch[1].trim());
-    } catch { /* empty */ }
+    } catch {
+      /* empty */
+    }
     try {
       const resultsMatch = text.match(/\{[\s\S]*?"results"[\s\S]*?\}/);
       if (resultsMatch) return JSON.parse(resultsMatch[0]);
-    } catch { /* empty */ }
+    } catch {
+      /* empty */
+    }
     try {
       const objMatch = text.match(/\{[^{}]*"wordDetails"[\s\S]*?\}/);
       if (objMatch) {
@@ -387,9 +401,156 @@ function parseLLMResponse(text: string): LLMResponse {
         }
         return parsed;
       }
-    } catch { /* empty */ }
+    } catch {
+      /* empty */
+    }
     console.error('RAW RESPONSE FROM AI (first 1000 chars):', text.slice(0, 1000));
-    throw new Error('Failed to parse AI response. The model returned unexpected content. Try with fewer words or a different model.');
+    throw new Error(
+      'Failed to parse AI response. The model returned unexpected content. Try with fewer words or a different model.'
+    );
+  }
+}
+
+export interface ChallengeQuestionData {
+  pattern: string;
+  original: string;
+  blanked: string;
+  english: string;
+}
+
+export async function generateChallengeQuestions(
+  patterns: Array<{ pattern: string; meaning: string; cefr: string }>,
+  service: string,
+  apiKey: string,
+  ollamaUrl?: string,
+  model?: string
+): Promise<ChallengeQuestionData[]> {
+  const prompt = `Generate ${patterns.length} Japanese sentences for a fill-in-the-blank quiz.
+
+For each grammar pattern below, create a sentence where the target grammar pattern part is replaced with "____":
+${patterns.map((p, i) => `${i + 1}. Pattern: ${p.pattern} (${p.meaning}) [${p.cefr}]`).join('\n')}
+
+Return ONLY valid JSON (no markdown, no code fences):
+{"questions": [
+  {"pattern": "pattern name", "original": "full sentence with pattern visible", "blanked": "sentence with ____ replacing the pattern", "english": "english translation"}
+]}
+
+Rules:
+- Each sentence must be at the specified CEFR level
+- Naturally demonstrate the target grammar pattern
+- Use practical daily/workplace vocabulary
+- The blank should replace ONLY the grammar pattern part
+- Keep sentences concise (under 15 words)
+- Use natural Japanese`;
+
+  switch (service) {
+    case 'gemini':
+      return callGeminiForChallenge(prompt, apiKey, model || 'gemini-2.5-flash');
+    case 'openrouter':
+      return callOpenRouterForChallenge(prompt, apiKey);
+    case 'ollama':
+      return callOllamaForChallenge(prompt, ollamaUrl || 'http://localhost:11434', model);
+    default:
+      throw new Error(`Unknown service: ${service}`);
+  }
+}
+
+async function callGeminiForChallenge(
+  prompt: string,
+  apiKey: string,
+  model: string
+): Promise<ChallengeQuestionData[]> {
+  const response = await fetch(
+    `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`,
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        contents: [{ parts: [{ text: prompt }] }],
+        generationConfig: { temperature: 0.4, maxOutputTokens: 8192 },
+      }),
+    }
+  );
+
+  if (!response.ok) {
+    const error = await response.text();
+    throw new Error(`Gemini API error: ${error}`);
+  }
+
+  const data = await response.json();
+  const text = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+  return parseChallengeResponse(text);
+}
+
+async function callOpenRouterForChallenge(
+  prompt: string,
+  apiKey: string
+): Promise<ChallengeQuestionData[]> {
+  const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${apiKey}`,
+    },
+    body: JSON.stringify({
+      model: 'google/gemini-2.5-flash',
+      messages: [{ role: 'user', content: prompt }],
+      temperature: 0.4,
+    }),
+  });
+
+  if (!response.ok) {
+    const error = await response.text();
+    throw new Error(`OpenRouter API error: ${error}`);
+  }
+
+  const data = await response.json();
+  const text = data.choices?.[0]?.message?.content || '';
+  return parseChallengeResponse(text);
+}
+
+async function callOllamaForChallenge(
+  prompt: string,
+  url: string,
+  model: string = 'llama3.2'
+): Promise<ChallengeQuestionData[]> {
+  const response = await fetch(`${url}/api/generate`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      model,
+      prompt,
+      stream: false,
+    }),
+  });
+
+  if (!response.ok) {
+    const error = await response.text();
+    throw new Error(`Ollama API error: ${error}`);
+  }
+
+  const data = await response.json();
+  return parseChallengeResponse(data.response || '');
+}
+
+function parseChallengeResponse(text: string): ChallengeQuestionData[] {
+  try {
+    const jsonMatch = text.match(/\`\`\`(?:json)?\s*([\s\S]*?)\`\`\`/);
+    const jsonStr = jsonMatch ? jsonMatch[1] : text;
+    const parsed = JSON.parse(jsonStr);
+    const questions = parsed.questions || parsed;
+    if (Array.isArray(questions)) {
+      return questions.map((q: any) => ({
+        pattern: q.pattern || '',
+        original: q.original || q.sentence || '',
+        blanked: q.blanked || q.sentence?.replace(/____/g, '____') || '',
+        english: q.english || '',
+      }));
+    }
+    throw new Error('Unexpected response format');
+  } catch (e) {
+    console.error('Failed to parse challenge response:', text.slice(0, 500));
+    throw new Error('Failed to parse AI challenge question response. Please try again.');
   }
 }
 

@@ -14,7 +14,7 @@ import syllabus from '../../data/n3-syllabus.json';
 import { GrammarPattern, BunpoSubTab } from '../../types';
 import { Furigana } from '../common/Furigana';
 import { ToggleButton } from '../common/ToggleButton';
-import { generateSentenceUpgrade } from '../../services/llm';
+import { generateSentenceUpgrade, generateChallengeQuestions } from '../../services/llm';
 import { loadConfig } from '../../utils/configManager';
 import { isDueForReview, calculateNextReview } from '../../services/srsService';
 
@@ -27,6 +27,9 @@ type ChallengeQuestion = {
   options: string[];
   meaning: string;
 };
+
+// Only show A1-B1 patterns in reviews (user is studying for N3)
+const REVIEW_LEVELS = ['A1', 'A2', 'B1'];
 
 export function BunpoTab() {
   const [activeSubTab, setActiveSubTab] = useState<BunpoSubTab | 'review'>('path');
@@ -141,8 +144,11 @@ export function BunpoTab() {
   };
 
   // Patterns that have never been reviewed (no SRS data, not mastered)
+  // Only show A1-B1 patterns in reviews (user is studying for N3)
   const unreviewedPatterns = useMemo(() => {
-    return patterns.filter((p) => !p.mastered && p.srsStage === undefined);
+    return patterns.filter(
+      (p) => !p.mastered && p.srsStage === undefined && REVIEW_LEVELS.includes(p.cefr)
+    );
   }, [patterns]);
 
   const startReviewingNew = (ids: string[]) => {
@@ -259,7 +265,10 @@ export function BunpoTab() {
       if (line.trim() === '') return <div key={i} className="h-2" />;
       return (
         <p key={i} className="my-1 text-gray-700">
-          {line.replace(/\\`([^\\`]+)\\`/g, '$1')}
+          {line.split(/\*\*([^*]+)\*\*/g).map((part, j) => {
+            if (j % 2 === 1) return <strong key={j}>{part}</strong>;
+            return part.replace(/\\`([^\\`]+)\\`/g, '$1');
+          })}
         </p>
       );
     });
@@ -295,18 +304,27 @@ export function BunpoTab() {
               SRS Reviews
             </h2>
             <div className="text-sm text-gray-500">
-              Due Now: {patterns.filter((p) => isDueForReview(p.nextReviewDate)).length}
+              Due Now:{' '}
+              {
+                patterns.filter(
+                  (p) => isDueForReview(p.nextReviewDate) && REVIEW_LEVELS.includes(p.cefr)
+                ).length
+              }
             </div>
           </div>
 
           <ChallengeMode
-            patterns={patterns.filter((p) => isDueForReview(p.nextReviewDate))}
+            patterns={patterns.filter(
+              (p) => isDueForReview(p.nextReviewDate) && REVIEW_LEVELS.includes(p.cefr)
+            )}
             masteredPatternIds={new Set(patterns.filter((p) => p.mastered).map((p) => p.id))}
             challengeLevel="all"
             onSrsUpdate={handleSrsUpdate}
           />
 
-          {patterns.filter((p) => isDueForReview(p.nextReviewDate)).length === 0 && (
+          {patterns.filter(
+            (p) => isDueForReview(p.nextReviewDate) && REVIEW_LEVELS.includes(p.cefr)
+          ).length === 0 && (
             <div className="text-center py-12 text-gray-500">
               <Check className="w-12 h-12 text-green-500 mx-auto mb-4" />
               <p className="text-lg font-medium">No reviews due right now!</p>
@@ -438,7 +456,7 @@ export function BunpoTab() {
                         <div className="flex justify-between items-start">
                           <div className="flex-1">
                             <div className="flex items-center gap-2 mb-2 flex-wrap">
-                              <span className="text-2xl">
+                              <span className="text-2xl font-bold">
                                 <Furigana text={pattern.patternWithFurigana} />
                               </span>
                               <span className="px-2 py-1 bg-blue-100 text-blue-700 text-xs rounded-full">
@@ -721,7 +739,9 @@ function N3Track({
 
   // --- Computed values for catch-up & progress ---
   const dueCount = useMemo(() => {
-    return patterns.filter((p) => isDueForReview(p.nextReviewDate)).length;
+    return patterns.filter(
+      (p) => isDueForReview(p.nextReviewDate) && REVIEW_LEVELS.includes(p.cefr)
+    ).length;
   }, [patterns]);
 
   const [showCatchUp, setShowCatchUp] = useState(false);
@@ -1114,6 +1134,9 @@ function ChallengeMode({
   const [score, setScore] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [isFinished, setIsFinished] = useState(false);
+  const [isAiGenerating, setIsAiGenerating] = useState(false);
+  const [aiError, setAiError] = useState<string | null>(null);
+  const [hasAiGenerated, setHasAiGenerated] = useState(false);
 
   // Build lookup for week patterns
   const weekPatternSet = useMemo(
@@ -1201,13 +1224,97 @@ function ChallengeMode({
     setIsFinished(false);
   }, [patterns, masteredPatternIds, challengeLevel, weekPatternIds, weekPatternSet]);
 
+  // Generate fresh questions using AI (falls back to static on failure)
+  const generateWithAi = useCallback(async () => {
+    setIsAiGenerating(true);
+    setAiError(null);
+    try {
+      const config = loadConfig();
+      const apiKey =
+        config.selectedService === 'gemini'
+          ? config.geminiApiKey
+          : config.selectedService === 'openrouter'
+            ? config.openrouterApiKey
+            : '';
+      if (!apiKey && config.selectedService !== 'ollama') {
+        throw new Error('Set your API key in Settings first');
+      }
+
+      let pool: GrammarPattern[];
+      if (weekPatternSet && weekPatternIds) {
+        pool = weekPatternIds
+          .map((id) => patterns.find((p) => p.id === id))
+          .filter((p): p is GrammarPattern => p !== undefined);
+      } else {
+        pool = patterns.filter((p) => p.examples.length > 0);
+      }
+      pool.sort(() => Math.random() - 0.5);
+      const selected = pool.slice(0, 5);
+
+      const patternData = selected.map((p) => ({
+        pattern: p.pattern,
+        meaning: p.meaning,
+        cefr: p.cefr,
+      }));
+
+      const model = config.selectedService === 'gemini' ? config.geminiModel : config.ollamaModel;
+      const result = await generateChallengeQuestions(
+        patternData,
+        config.selectedService,
+        apiKey,
+        config.ollamaUrl,
+        model
+      );
+
+      const newQuestions: ChallengeQuestion[] = result.map((q, i) => {
+        const pattern = selected[i];
+        const rawPattern = pattern?.pattern?.replace(/〜/g, '') || q.pattern;
+        const distractors = selected
+          .filter((_, j) => j !== i)
+          .map((p) => p.pattern.replace(/〜/g, ''));
+        const options = [rawPattern, ...distractors].sort(() => Math.random() - 0.5);
+        return {
+          patternId: pattern?.id || '',
+          sentence: q.blanked,
+          originalSentence: q.original,
+          english: q.english,
+          correctAnswer: rawPattern,
+          options: options.length >= 2 ? options : [rawPattern, '_____'],
+          meaning: q.pattern,
+        };
+      });
+
+      setQuestions(newQuestions);
+      setCurrentIndex(0);
+      setScore(0);
+      setSelectedAnswer(null);
+      setIsFinished(false);
+      setHasAiGenerated(true);
+    } catch (e: any) {
+      setAiError(e.message || 'AI generation failed');
+      startQuiz();
+    } finally {
+      setIsAiGenerating(false);
+    }
+  }, [patterns, masteredPatternIds, challengeLevel, weekPatternIds, weekPatternSet, startQuiz]);
+
   // Start on mount or when level changes
   useEffect(() => {
     startQuiz();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [challengeLevel]);
 
-  if (questions.length === 0) return <div>Loading challenge...</div>;
+  if (questions.length === 0) {
+    if (isAiGenerating) {
+      return (
+        <div className="text-center py-12">
+          <div className="animate-spin w-8 h-8 border-4 border-purple-500 border-t-transparent rounded-full mx-auto mb-4" />
+          <p className="text-gray-600">Generating fresh questions with AI...</p>
+        </div>
+      );
+    }
+    return <div>Loading challenge...</div>;
+  }
 
   if (isFinished) {
     return (
@@ -1224,6 +1331,13 @@ function ChallengeMode({
             className="px-6 py-3 bg-blue-500 text-white font-medium rounded-lg hover:bg-blue-600 transition-colors"
           >
             {weekLabel ? 'Retry Quiz' : 'Try Again'}
+          </button>
+          <button
+            onClick={generateWithAi}
+            disabled={isAiGenerating}
+            className="px-6 py-3 bg-purple-500 text-white font-medium rounded-lg hover:bg-purple-600 transition-colors disabled:opacity-50"
+          >
+            {isAiGenerating ? 'Generating...' : 'Try with AI ✨'}
           </button>
         </div>
       </div>
@@ -1256,12 +1370,24 @@ function ChallengeMode({
 
   return (
     <div className="max-w-2xl mx-auto py-8">
-      <div className="flex justify-between items-center mb-6 text-sm font-medium text-gray-500">
-        <span>
-          Question {currentIndex + 1} of {questions.length}
-        </span>
+      <div className="flex justify-between items-center mb-4 text-sm font-medium text-gray-500">
+        <div className="flex items-center gap-2">
+          <span>
+            Question {currentIndex + 1} of {questions.length}
+          </span>
+          {hasAiGenerated && (
+            <span className="px-2 py-0.5 bg-purple-100 text-purple-700 text-xs rounded-full">
+              AI ✨
+            </span>
+          )}
+        </div>
         <span>Score: {score}</span>
       </div>
+      {aiError && (
+        <div className="mb-4 p-3 bg-yellow-50 border border-yellow-200 text-yellow-800 text-sm rounded-lg">
+          {aiError} — showing saved questions
+        </div>
+      )}
 
       <div className="bg-gray-50 p-6 rounded-xl border border-gray-100 mb-8 shadow-sm">
         <h3 className="text-xl font-medium text-gray-800 mb-2 leading-relaxed">
