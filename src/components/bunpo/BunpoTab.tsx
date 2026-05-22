@@ -22,6 +22,7 @@ type ChallengeQuestion = {
   patternId: string;
   sentence: string;
   originalSentence: string;
+  furiganaSentence: string;
   english: string;
   correctAnswer: string;
   options: string[];
@@ -1137,6 +1138,7 @@ function ChallengeMode({
   const [isAiGenerating, setIsAiGenerating] = useState(false);
   const [aiError, setAiError] = useState<string | null>(null);
   const [hasAiGenerated, setHasAiGenerated] = useState(false);
+  const [showChallengeEnglish, setShowChallengeEnglish] = useState(true);
 
   // Build lookup for week patterns
   const weekPatternSet = useMemo(
@@ -1186,8 +1188,7 @@ function ChallengeMode({
       // Create fill-in-the-blank from first example
       const example = pattern.examples[0];
       const sentence = example.japanese;
-      // Heuristic: strip the exact pattern text (kanji or hiragana) to make the blank
-      // Since pattern.pattern often has '～' we strip it
+      const furiganaSrc = example.japaneseWithFurigana || sentence;
       const rawPattern = pattern.pattern.replace(/～/g, '');
       const rawReading = pattern.reading.replace(/～/g, '');
 
@@ -1195,8 +1196,14 @@ function ChallengeMode({
       if (blankedSentence === sentence) {
         blankedSentence = sentence.replace(rawReading, '____');
       }
+      let blankedFurigana = furiganaSrc.replace(rawPattern, '____');
+      if (blankedFurigana === furiganaSrc) {
+        blankedFurigana = furiganaSrc.replace(rawReading, '____');
+      }
+      if (blankedFurigana === furiganaSrc) {
+        blankedFurigana = furiganaSrc.replace(/.{2,4}$/, '____');
+      }
 
-      // Generate distractors (3 wrong answers from same CEFR level)
       const distractors = patterns
         .filter((p) => p.id !== pattern.id && p.cefr === pattern.cefr)
         .sort(() => Math.random() - 0.5)
@@ -1208,8 +1215,9 @@ function ChallengeMode({
       return {
         patternId: pattern.id,
         sentence:
-          blankedSentence !== sentence ? blankedSentence : sentence.replace(/.{2,4}$/, '____'), // Fallback blank
+          blankedSentence !== sentence ? blankedSentence : sentence.replace(/.{2,4}$/, '____'),
         originalSentence: sentence,
+        furiganaSentence: blankedFurigana,
         english: example.english,
         correctAnswer: rawPattern,
         options,
@@ -1277,6 +1285,7 @@ function ChallengeMode({
           patternId: pattern?.id || '',
           sentence: q.blanked,
           originalSentence: q.original,
+          furiganaSentence: q.blanked,
           english: q.english,
           correctAnswer: rawPattern,
           options: options.length >= 2 ? options : [rawPattern, '_____'],
@@ -1390,10 +1399,17 @@ function ChallengeMode({
       )}
 
       <div className="bg-gray-50 p-6 rounded-xl border border-gray-100 mb-8 shadow-sm">
-        <h3 className="text-xl font-medium text-gray-800 mb-2 leading-relaxed">
-          {currentQ.sentence}
-        </h3>
-        <p className="text-gray-500 text-sm">{currentQ.english}</p>
+        <div className="flex items-start gap-2">
+          <h3 className="text-xl font-medium text-gray-800 leading-relaxed flex-1">
+            <Furigana text={currentQ.furiganaSentence} />
+          </h3>
+          <ToggleButton
+            label="EN"
+            active={showChallengeEnglish}
+            onClick={() => setShowChallengeEnglish(!showChallengeEnglish)}
+          />
+        </div>
+        {showChallengeEnglish && <p className="text-gray-500 text-sm mt-2">{currentQ.english}</p>}
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
