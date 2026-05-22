@@ -49,10 +49,9 @@ class NucBackend implements SyncBackend {
   readonly id = 'nuc';
   readonly label = 'NUC Server (Local Network)';
 
-  private url: string;
-
-  constructor() {
-    this.url = baseUrl();
+  // Resolve URL fresh from config each time so Settings changes take effect immediately
+  private get url(): string {
+    return baseUrl();
   }
 
   async getProgress(): Promise<SyncPayload> {

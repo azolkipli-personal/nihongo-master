@@ -36,10 +36,20 @@ export function useAutoSync(backend: SyncBackend | null, intervalMs = 15_000) {
 
   // ── Initial pull: on first connect, download server data to overwrite local ──
   // Uses localStorage flag so it survives the page reload triggered on success.
+  // Clears the flag if the backend URL changed (Settings updated) to allow re-pull.
   useEffect(() => {
     if (!backend || backend.id === 'none') return;
 
     const PULL_DONE_KEY = 'nihongo-master-sync-pull-done';
+    const URL_KEY = 'nihongo-master-sync-last-url';
+
+    // If the backend URL changed since last pull, clear the flag and allow re-pull
+    const lastUrl = localStorage.getItem(URL_KEY);
+    const currentUrl = (backend as any).url || '';
+    if (lastUrl && lastUrl !== currentUrl) {
+      localStorage.removeItem(PULL_DONE_KEY);
+    }
+    localStorage.setItem(URL_KEY, currentUrl);
 
     // Already pulled in a previous page load? Skip.
     if (localStorage.getItem(PULL_DONE_KEY)) return;
@@ -60,7 +70,6 @@ export function useAutoSync(backend: SyncBackend | null, intervalMs = 15_000) {
           window.location.reload();
         } else {
           console.log('[sync] server empty — local stays, push will populate it');
-          // No reload needed — component state already reflects localStorage.
         }
       } catch (err) {
         // Server unreachable — clear flag so we retry on next app launch.

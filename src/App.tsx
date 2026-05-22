@@ -24,7 +24,7 @@ function App() {
   const syncBackend = useMemo(() => {
     const cfg = loadConfig();
     return createBackend(cfg.syncBackend || 'none');
-  }, []);
+  }, [loadConfig().syncBackend, loadConfig().syncNucUrl]);
 
   // Auto-sync every 30s when backend is configured
   useAutoSync(syncBackend, 30_000);
