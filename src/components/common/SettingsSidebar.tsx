@@ -13,9 +13,18 @@ type ColorTheme = AppConfig['colorTheme'];
 interface SettingsSidebarProps {
   isOpen: boolean;
   onClose: () => void;
+  onPushSync?: () => void;
+  onPullSync?: () => void;
+  onForcePushSync?: () => void;
 }
 
-export function SettingsSidebar({ isOpen, onClose }: SettingsSidebarProps) {
+export function SettingsSidebar({
+  isOpen,
+  onClose,
+  onPushSync,
+  onPullSync,
+  onForcePushSync,
+}: SettingsSidebarProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const {
     config,
@@ -95,6 +104,9 @@ export function SettingsSidebar({ isOpen, onClose }: SettingsSidebarProps) {
             syncNucUrl={config.syncNucUrl}
             onSyncBackendChange={(backend) => updateConfig({ syncBackend: backend })}
             onSyncNucUrlChange={(url) => updateConfig({ syncNucUrl: url })}
+            onPushSync={onPushSync}
+            onPullSync={onPullSync}
+            onForcePushSync={onForcePushSync}
           />
 
           <SettingsActionButtons

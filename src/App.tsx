@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { Header } from './components/common/Header';
 import { TabNavigation } from './components/common/TabNavigation';
@@ -29,6 +29,85 @@ function App() {
   // Auto-sync every 30s when backend is configured
   useAutoSync(syncBackend, 30_000);
 
+  const handlePushSync = useCallback(async () => {
+    if (!syncBackend || syncBackend.id === 'none') return;
+    try {
+      const { gatherProgress, gatherConfig } = await import('./services/syncBackend');
+      const progress = gatherProgress();
+      await syncBackend.putProgress(progress);
+      await syncBackend.putConfig(gatherConfig());
+      alert('✅ Data pushed to server');
+    } catch (e) {
+      console.error('Push failed:', e);
+      const msg = e instanceof Error ? e.message : String(e);
+      if (msg === 'CONFLICT') {
+        alert(
+          '⚠️ Conflict: server has newer data. Pull from server first (to merge), then push again.'
+        );
+      } else if (
+        msg.includes('Failed to fetch') ||
+        msg.includes('NetworkError') ||
+        msg.includes('TypeError')
+      ) {
+        alert('❌ Cannot reach server — check your sync URL and network connection.');
+      } else {
+        alert(`❌ Push failed: ${msg}`);
+      }
+    }
+  }, [syncBackend]);
+
+  const handlePullSync = useCallback(async () => {
+    if (!syncBackend || syncBackend.id === 'none') return;
+    try {
+      const { applyProgress } = await import('./services/syncBackend');
+      const result = await syncBackend.getProgress();
+      if (result.data && Object.keys(result.data).length > 0) {
+        const keyCount = Object.keys(result.data).length;
+        const keyNames = Object.keys(result.data).join(', ');
+        applyProgress(result);
+        alert(`✅ Pulled ${keyCount} data groups: ${keyNames}. Reloading...`);
+        window.location.reload();
+      } else {
+        alert('⚠️ No data found on server. Push data first from the device that has it.');
+      }
+    } catch (e) {
+      console.error('Pull failed:', e);
+      const msg = e instanceof Error ? e.message : String(e);
+      if (
+        msg.includes('Failed to fetch') ||
+        msg.includes('NetworkError') ||
+        msg.includes('TypeError')
+      ) {
+        alert('❌ Cannot reach server — check your sync URL and network connection.');
+      } else {
+        alert(`❌ Pull failed: ${msg}`);
+      }
+    }
+  }, [syncBackend]);
+
+  const handleForcePushSync = useCallback(async () => {
+    if (!syncBackend || syncBackend.id === 'none') return;
+    try {
+      const { gatherProgress, gatherConfig } = await import('./services/syncBackend');
+      const progress = gatherProgress();
+      await syncBackend.putProgress(progress, true);
+      await syncBackend.putConfig(gatherConfig(), true);
+      alert('✅ Force push complete — server data overwritten');
+    } catch (e) {
+      console.error('Force push failed:', e);
+      const msg = e instanceof Error ? e.message : String(e);
+      if (
+        msg.includes('Failed to fetch') ||
+        msg.includes('NetworkError') ||
+        msg.includes('TypeError')
+      ) {
+        alert('❌ Cannot reach server — check your sync URL and network connection.');
+      } else {
+        alert(`❌ Force push failed: ${msg}`);
+      }
+    }
+  }, [syncBackend]);
+
   // Listen for tab switch requests from child components
   useEffect(() => {
     const handleTabSwitch = (e: CustomEvent<TabType>) => {
@@ -42,7 +121,7 @@ function App() {
   }, []);
 
   return (
-    <div className={`min-h-screen ${themeClasses.background}`}>
+    <div className={`min-h-screen overflow-x-hidden ${themeClasses.background}`}>
       <Toaster
         position="top-right"
         toastOptions={{
@@ -75,7 +154,13 @@ function App() {
         </ErrorBoundary>
       </main>
 
-      <SettingsSidebar isOpen={settingsOpen} onClose={() => setSettingsOpen(false)} />
+      <SettingsSidebar
+        isOpen={settingsOpen}
+        onClose={() => setSettingsOpen(false)}
+        onPushSync={handlePushSync}
+        onPullSync={handlePullSync}
+        onForcePushSync={handleForcePushSync}
+      />
     </div>
   );
 }

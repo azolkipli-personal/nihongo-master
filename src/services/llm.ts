@@ -416,6 +416,7 @@ export interface ChallengeQuestionData {
   original: string;
   blanked: string;
   english: string;
+  furigana?: string;
 }
 
 export async function generateChallengeQuestions(
@@ -432,8 +433,14 @@ ${patterns.map((p, i) => `${i + 1}. Pattern: ${p.pattern} (${p.meaning}) [${p.ce
 
 Return ONLY valid JSON (no markdown, no code fences):
 {"questions": [
-  {"pattern": "pattern name", "original": "full sentence with pattern visible", "blanked": "sentence with ____ replacing the pattern", "english": "english translation"}
+  {"pattern": "pattern name", "original": "full sentence with 漢字[ふりがな]", "blanked": "blanked sentence with ____ and 漢字[ふりがな]", "english": "english translation"}
 ]}
+
+CRITICAL: Use 漢字[ふりがな] format for ALL kanji in both "original" and "blanked" fields.
+Examples:
+  - Correct: 私[わたし]は毎日[まいにち]図書館[としょかん]で勉強[べんきょう]する
+  - Correct with blank: 私[わたし]は____図書館[としょかん]で勉強[べんきょう]する
+  - Wrong: 私は毎日図書館で勉強する (no furigana)
 
 Rules:
 - Each sentence must be at the specified CEFR level
@@ -545,6 +552,7 @@ function parseChallengeResponse(text: string): ChallengeQuestionData[] {
         original: q.original || q.sentence || '',
         blanked: q.blanked || q.sentence?.replace(/____/g, '____') || '',
         english: q.english || '',
+        furigana: q.furigana || q.blanked || q.original || '',
       }));
     }
     throw new Error('Unexpected response format');

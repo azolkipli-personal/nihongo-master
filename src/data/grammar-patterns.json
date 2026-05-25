@@ -30,7 +30,8 @@
     ],
     "mastered": false,
     "hub": "Building Sentences and Clauses",
-    "detailedExplanation": "**〜は〜です** is the most fundamental Japanese sentence structure. **は (wa)** marks the topic (pronounced わ, not ha, when used as a particle), and **です (desu)** is the polite copula meaning 'is/am/are'.\n\n**Usage Tips:** Think of は as setting the topic — 'as for X...'. In questions it often introduces new information or contrast. In casual speech です can be dropped: 私、学生.\n\n**N5 Connection:** This is the first pattern you learn — everything builds on it."
+    "detailedExplanation": "**〜は〜です** is the most fundamental Japanese sentence structure. **は (wa)** marks the topic (pronounced わ, not ha, when used as a particle), and **です (desu)** is the polite copula meaning 'is/am/are'.\n\n**Usage Tips:** Think of は as setting the topic — 'as for X...'. In questions it often introduces new information or contrast. In casual speech です can be dropped: 私、学生.\n\n**N5 Connection:** This is the first pattern you learn — everything builds on it.",
+    "blankTarget": "は学生です"
   },
   {
     "id": "g-a1-02",
@@ -129,7 +130,8 @@
     ],
     "mastered": false,
     "hub": "Verbs",
-    "detailedExplanation": "**〜に〜がある/いる** expresses existence. Use ある for things, いる for people/animals.\n\n**Usage Tips:** Don't confuse に (existence location) with で (action location). 部屋に猫がいる = existence. 部屋で寝る = action.\n\n**N5 Connection:** Your first tool for describing what's around you."
+    "detailedExplanation": "**〜に〜がある/いる** expresses existence. Use ある for things, いる for people/animals.\n\n**Usage Tips:** Don't confuse に (existence location) with で (action location). 部屋に猫がいる = existence. 部屋で寝る = action.\n\n**N5 Connection:** Your first tool for describing what's around you.",
+    "blankTarget": "に猫がいます"
   },
   {
     "id": "g-a1-05",
@@ -142,10 +144,10 @@
     "formality": "formal",
     "examples": [
       {
-        "japanese": "すみませんが、トイレはどこですか。",
-        "japaneseWithFurigana": "すみませんが、トイレはどこですか。",
-        "romaji": "Sumimasen ga, toire wa doko desu ka.",
-        "english": "Excuse me, but where is the toilet?"
+        "japanese": "この店は安いですが、美味しいです。",
+        "japaneseWithFurigana": "この店[みせ]は安[やす]いですが、美味[おい]しいです。",
+        "english": "This restaurant is cheap but delicious.",
+        "romaji": "Kono mise wa yasui desu ga, oishii desu."
       },
       {
         "japanese": "すみませんが、書類の確認をお願いします。",
@@ -162,7 +164,8 @@
     ],
     "mastered": false,
     "hub": "Conjunctive Particles",
-    "detailedExplanation": "**〜が** after a clause creates contrast or politely introduces a topic. Works like 'but' or 'well...'.\n\n**Usage Tips:** が marks NEW information vs は (known topic). Common in polite requests: すみませんが... At work: 確認したんですが = 'I checked, but...'\n\n**N5 Connection:** You know が from basic sentences. Here it connects whole clauses."
+    "detailedExplanation": "**〜が** after a clause creates contrast or politely introduces a topic. Works like 'but' or 'well...'.\n\n**Usage Tips:** が marks NEW information vs は (known topic). Common in polite requests: すみませんが... At work: 確認したんですが = 'I checked, but...'\n\n**N5 Connection:** You know が from basic sentences. Here it connects whole clauses.",
+    "blankTarget": "ですが"
   },
   {
     "id": "g-a1-06",
@@ -327,7 +330,8 @@
     ],
     "mastered": false,
     "hub": "Building Sentences and Clauses",
-    "detailedExplanation": "**〜たり〜たりする** lists example activities — 'do things like X and Y'. Non-exhaustive list.\n\n**Usage Tips:** Form: plain past (た-form) + り. Close with する. Can list one: 寝たりしてる = 'doing things like sleeping'.\n\n**N4 Connection:** Natural for describing daily routines."
+    "detailedExplanation": "**〜たり〜たりする** lists example activities — 'do things like X and Y'. Non-exhaustive list.\n\n**Usage Tips:** Form: plain past (た-form) + り. Close with する. Can list one: 寝たりしてる = 'doing things like sleeping'.\n\n**N4 Connection:** Natural for describing daily routines.",
+    "blankTarget": "読んだり、テレビを見たりします"
   },
   {
     "id": "g-a2-03",
@@ -459,7 +463,8 @@
     ],
     "mastered": false,
     "hub": "Verb Conjugation",
-    "detailedExplanation": "**〜なければならない** expresses obligation — 'must/have to'. ない-form + ければならない.\n\n**Usage Tips:** Casual: 〜なきゃ or 〜なくちゃ. Polite: 〜なければなりません. Opposite of 〜てもいい (permission).\n\n**N4 Connection:** 'It's NOT okay to NOT do'."
+    "detailedExplanation": "**〜なければならない** expresses obligation — 'must/have to'. ない-form + ければならない.\n\n**Usage Tips:** Casual: 〜なきゃ or 〜なくちゃ. Polite: 〜なければなりません. Opposite of 〜てもいい (permission).\n\n**N4 Connection:** 'It's NOT okay to NOT do'.",
+    "blankTarget": "なければなりません"
   },
   {
     "id": "g-a2-07",
@@ -492,7 +497,8 @@
     ],
     "mastered": false,
     "hub": "Verb Conjugation",
-    "detailedExplanation": "**〜ている (te iru)** is the progressive/continuous form — 'is doing'. て-form + いる.\n\n**Usage Tips:** Two uses: (1) action in progress (読んでいる), (2) resulting state (結婚している). Casual: 〜てる (食べてる).\n\n**N4 Connection:** Builds on て-form from てください."
+    "detailedExplanation": "**〜ている (te iru)** is the progressive/continuous form — 'is doing'. て-form + いる.\n\n**Usage Tips:** Two uses: (1) action in progress (読んでいる), (2) resulting state (結婚している). Casual: 〜てる (食べてる).\n\n**N4 Connection:** Builds on て-form from てください.",
+    "blankTarget": "ています"
   },
   {
     "id": "g-a2-08",
@@ -591,7 +597,8 @@
     ],
     "mastered": false,
     "hub": "Building Sentences and Clauses",
-    "detailedExplanation": "**〜そうだ (sou)** = 'looks like/seems like' based on appearance. Verb stem or adjective stem + そう.\n\n**Usage Tips:** 美味しそう = 'looks delicious' (NOT 美味しいそう). Don't confuse with hearsay そうだ: 雨が降るそうだ = 'I heard it will rain' (different).\n\n**N4 Connection:** For making observations about what you see."
+    "detailedExplanation": "**〜そうだ (sou)** = 'looks like/seems like' based on appearance. Verb stem or adjective stem + そう.\n\n**Usage Tips:** 美味しそう = 'looks delicious' (NOT 美味しいそう). Don't confuse with hearsay そうだ: 雨が降るそうだ = 'I heard it will rain' (different).\n\n**N4 Connection:** For making observations about what you see.",
+    "blankTarget": "そうです"
   },
   {
     "id": "g-b1-01",
@@ -663,7 +670,8 @@
     ],
     "mastered": false,
     "hub": "Verbs",
-    "detailedExplanation": "**〜ようになる** describes a natural or progressive change in ability or habit over time. Use it with potential form (できるようになる - became able to) or dictionary form (行くようになる - started going regularly) to highlight a shift from the previous state. It isn't for sudden, conscious decisions; it tracks how a new habit or skill has settled in as part of your life.\n\n### Usage Tips\nUse this to describe growth or adaptation, such as acclimating to life in Tokyo. Unlike 〜ようにする (which focuses on your deliberate effort), 〜ようになる focuses on the end result or the change itself. It’s perfect for reflecting on your progress over the last few months.\n\n### Connection to Easier Grammar\nIt relies on basic verb forms you already know: potential form (〜できる) and dictionary form. If you can conjugate a verb, you can use this pattern to express your evolution."
+    "detailedExplanation": "**〜ようになる** describes a natural or progressive change in ability or habit over time. Use it with potential form (できるようになる - became able to) or dictionary form (行くようになる - started going regularly) to highlight a shift from the previous state. It isn't for sudden, conscious decisions; it tracks how a new habit or skill has settled in as part of your life.\n\n### Usage Tips\nUse this to describe growth or adaptation, such as acclimating to life in Tokyo. Unlike 〜ようにする (which focuses on your deliberate effort), 〜ようになる focuses on the end result or the change itself. It’s perfect for reflecting on your progress over the last few months.\n\n### Connection to Easier Grammar\nIt relies on basic verb forms you already know: potential form (〜できる) and dictionary form. If you can conjugate a verb, you can use this pattern to express your evolution.",
+    "blankTarget": "ようになりました"
   },
   {
     "id": "g-b1-03",
@@ -696,7 +704,8 @@
     ],
     "mastered": false,
     "hub": "Conjunctive Particles",
-    "detailedExplanation": "**〜し** lists multiple non-exhaustive reasons or qualities. Unlike simple conjunctions like 〜て, it can connect clauses with different subjects and implies that these are just a few reasons among others. It often provides context for a conclusion stated at the very end.\n\n### Usage Tips\nThis pattern is very natural for explaining yourself. Don't feel like you need to list *every* reason; 〜し is specifically for picking the most important ones. It is common to follow it with a final judgment, like 'because of this and this, the situation is Y.'\n\n### Connection to Easier Grammar\nIt connects directly to the plain forms of verbs, adjectives, and nouns you learned early on. If you can say 'it's hot' (暑い), you can say 'it's hot and also...' (暑いし...)."
+    "detailedExplanation": "**〜し** lists multiple non-exhaustive reasons or qualities. Unlike simple conjunctions like 〜て, it can connect clauses with different subjects and implies that these are just a few reasons among others. It often provides context for a conclusion stated at the very end.\n\n### Usage Tips\nThis pattern is very natural for explaining yourself. Don't feel like you need to list *every* reason; 〜し is specifically for picking the most important ones. It is common to follow it with a final judgment, like 'because of this and this, the situation is Y.'\n\n### Connection to Easier Grammar\nIt connects directly to the plain forms of verbs, adjectives, and nouns you learned early on. If you can say 'it's hot' (暑い), you can say 'it's hot and also...' (暑いし...).",
+    "blankTarget": "し、美味し"
   },
   {
     "id": "g-b1-04",
@@ -729,7 +738,8 @@
     ],
     "mastered": false,
     "hub": "Verbs",
-    "detailedExplanation": "**〜ようにする** expresses a deliberate, conscious effort to establish a new habit or maintain a rule. You aren't just letting things happen; you are actively ensuring the action occurs (or, with negative forms, is avoided).\n\n### Usage Tips\nUse this for daily resolutions or professional commitments. Compare: 〜ようになる (the result, 'I have become able to') vs 〜ようにする (the commitment, 'I am working on'). It's excellent for describing how you manage your health or work tasks.\n\n### Connection to Easier Grammar\nIt builds on dictionary and negative verb forms. Once you can say 'I read books' (本を読[よ]む), you can express your commitment: 'I try to read books' (本を読[よ]むようにする)."
+    "detailedExplanation": "**〜ようにする** expresses a deliberate, conscious effort to establish a new habit or maintain a rule. You aren't just letting things happen; you are actively ensuring the action occurs (or, with negative forms, is avoided).\n\n### Usage Tips\nUse this for daily resolutions or professional commitments. Compare: 〜ようになる (the result, 'I have become able to') vs 〜ようにする (the commitment, 'I am working on'). It's excellent for describing how you manage your health or work tasks.\n\n### Connection to Easier Grammar\nIt builds on dictionary and negative verb forms. Once you can say 'I read books' (本を読[よ]む), you can express your commitment: 'I try to read books' (本を読[よ]むようにする).",
+    "blankTarget": "ようにしています"
   },
   {
     "id": "g-b1-05",
@@ -762,7 +772,8 @@
     ],
     "mastered": false,
     "hub": "Building Sentences and Clauses",
-    "detailedExplanation": "**〜ことにする** expresses a personal decision made by the speaker. It signifies that you have weighed your options and landed on a specific plan. Using the past tense (〜ことにした) is the standard way to declare a firm decision you’ve already made.\n\n### Usage Tips\nUse this for your own plans. If something was decided for you by someone else, use 〜ことになった instead. This distinction is vital in professional settings to show whether you are driving the decision or following external instructions.\n\n### Connection to Easier Grammar\nIt uses the nominalizer 〜こと, which you likely already use to turn verbs into nouns (e.g., 読[よ]むこと). Just add 'to make it a state' (にする) and you have a decision pattern."
+    "detailedExplanation": "**〜ことにする** expresses a personal decision made by the speaker. It signifies that you have weighed your options and landed on a specific plan. Using the past tense (〜ことにした) is the standard way to declare a firm decision you’ve already made.\n\n### Usage Tips\nUse this for your own plans. If something was decided for you by someone else, use 〜ことになった instead. This distinction is vital in professional settings to show whether you are driving the decision or following external instructions.\n\n### Connection to Easier Grammar\nIt uses the nominalizer 〜こと, which you likely already use to turn verbs into nouns (e.g., 読[よ]むこと). Just add 'to make it a state' (にする) and you have a decision pattern.",
+    "blankTarget": "ことにしました"
   },
   {
     "id": "g-b1-06",
@@ -795,7 +806,8 @@
     ],
     "mastered": false,
     "hub": "Building Sentences and Clauses",
-    "detailedExplanation": "**〜はずだ** expresses a strong expectation based on logic, objective facts, or reliable information. Unlike 〜でしょう (which is a subjective guess) or 〜に違いない (which implies deep conviction), 〜はずだ is grounded in the belief that 'given what I know, this is the logical result'.\n\n### Usage Tips\nUse it when you feel confident because you have evidence (e.g., 'I checked the schedule, so he should be here'). If something contradicts your expectation, use 〜はずがない (there is no way X is happening). It's incredibly useful for troubleshooting at the office.\n\n### Connection to Easier Grammar\nIt directly follows the plain forms of verbs and adjectives. If you can say 'it is big' (大きい), you can say 'it should be big' (大きいはずだ)."
+    "detailedExplanation": "**〜はずだ** expresses a strong expectation based on logic, objective facts, or reliable information. Unlike 〜でしょう (which is a subjective guess) or 〜に違いない (which implies deep conviction), 〜はずだ is grounded in the belief that 'given what I know, this is the logical result'.\n\n### Usage Tips\nUse it when you feel confident because you have evidence (e.g., 'I checked the schedule, so he should be here'). If something contradicts your expectation, use 〜はずがない (there is no way X is happening). It's incredibly useful for troubleshooting at the office.\n\n### Connection to Easier Grammar\nIt directly follows the plain forms of verbs and adjectives. If you can say 'it is big' (大きい), you can say 'it should be big' (大きいはずだ).",
+    "blankTarget": "はずです"
   },
   {
     "id": "g-b1-07",
@@ -1026,7 +1038,8 @@
     ],
     "mastered": false,
     "hub": "Building Sentences and Clauses",
-    "detailedExplanation": "**〜次第** has two uses: (1) **Verb stem + 次第**: 'as soon as' (formal, business context); (2) **Noun + 次第だ**: 'it depends on'. Very common in business emails: ご確認[かくにん]いただき次第ご連絡いたします.\n\n### Usage Tips\nEssential for office communication. It’s the professional standard for 'I'll get back to you as soon as I can'. Keep it in your business email arsenal.\n\n### Connection to Easier Grammar\nIt relies on basic verb stems (e.g., でき from できる). You've already mastered the stems for basic conjugation, so this is just applying that knowledge to a more formal structure."
+    "detailedExplanation": "**〜次第** has two uses: (1) **Verb stem + 次第**: 'as soon as' (formal, business context); (2) **Noun + 次第だ**: 'it depends on'. Very common in business emails: ご確認[かくにん]いただき次第ご連絡いたします.\n\n### Usage Tips\nEssential for office communication. It’s the professional standard for 'I'll get back to you as soon as I can'. Keep it in your business email arsenal.\n\n### Connection to Easier Grammar\nIt relies on basic verb stems (e.g., でき from できる). You've already mastered the stems for basic conjugation, so this is just applying that knowledge to a more formal structure.",
+    "blankTarget": "次第"
   },
   {
     "id": "g-b2-04",
@@ -1125,7 +1138,8 @@
     ],
     "mastered": false,
     "hub": "Advanced Grammar",
-    "detailedExplanation": "**〜ものだ** has three nuances: (1) General truth: 子供は泣くものだ (kids naturally cry); (2) Nostalgic recall (past tense): よく遊んだものだ (I used to play a lot); (3) Moral expectation: そんなことは言わないものだ (you shouldn't say such things).\n\n### Usage Tips\nThis is brilliant for expressing social norms or reminiscing. It adds emotional depth. Use it when explaining Japanese cultural expectations or when reflecting on your time in Malaysia vs Japan.\n\n### Connection to Easier Grammar\nIt uses the noun 〜もの. You've used もの for objects; now you're using it to encapsulate abstract generalities."
+    "detailedExplanation": "**〜ものだ** has three nuances: (1) General truth: 子供は泣くものだ (kids naturally cry); (2) Nostalgic recall (past tense): よく遊んだものだ (I used to play a lot); (3) Moral expectation: そんなことは言わないものだ (you shouldn't say such things).\n\n### Usage Tips\nThis is brilliant for expressing social norms or reminiscing. It adds emotional depth. Use it when explaining Japanese cultural expectations or when reflecting on your time in Malaysia vs Japan.\n\n### Connection to Easier Grammar\nIt uses the noun 〜もの. You've used もの for objects; now you're using it to encapsulate abstract generalities.",
+    "blankTarget": "ものです"
   },
   {
     "id": "g-b2-07",
@@ -1224,7 +1238,8 @@
     ],
     "mastered": false,
     "hub": "Advanced Grammar",
-    "detailedExplanation": "**〜に過ぎない** downplays or limits something, meaning 'no more than' or 'just'. Attaches to nouns or plain-form verbs/adjectives. Used to humble, minimize, or clarify scope. Compare with 〜だけだ (same nuance, less formal).\n\n### Usage Tips\nThis is essential for modesty. If you’re presenting an idea and want to say it’s 'just' an initial thought, this is perfect. It adds a professional, humble tone.\n\n### Connection to Easier Grammar\nIt’s a formal synonym for 'just' (だけ). If you know 'dake', you already understand the meaning—now you’re just leveling up the formality."
+    "detailedExplanation": "**〜に過ぎない** downplays or limits something, meaning 'no more than' or 'just'. Attaches to nouns or plain-form verbs/adjectives. Used to humble, minimize, or clarify scope. Compare with 〜だけだ (same nuance, less formal).\n\n### Usage Tips\nThis is essential for modesty. If you’re presenting an idea and want to say it’s 'just' an initial thought, this is perfect. It adds a professional, humble tone.\n\n### Connection to Easier Grammar\nIt’s a formal synonym for 'just' (だけ). If you know 'dake', you already understand the meaning—now you’re just leveling up the formality.",
+    "blankTarget": "に過ぎません"
   },
   {
     "id": "g-b2-10",
@@ -1290,7 +1305,8 @@
     ],
     "mastered": false,
     "hub": "Formal/Written Expression",
-    "detailedExplanation": "**〜ごとく/ごとき** is the classical/literary form of 〜ように (like/as). ごとく modifies verbs/adjectives; ごとき modifies nouns. Used in proverbs, literature, and elevated speech. Modern equivalent: 矢のように過ぎる.\n\n### Usage Tips\nUse this to lend elegance or classical authority to your writing. It’s definitely not for text messages! It fits well in speeches, literature reviews, or formal compositions.\n\n### Connection to Easier Grammar\nIt performs the exact same role as the basic 〜ようだ you learned early on. This is just the formal, literary version of your existing knowledge."
+    "detailedExplanation": "**〜ごとく/ごとき** is the classical/literary form of 〜ように (like/as). ごとく modifies verbs/adjectives; ごとき modifies nouns. Used in proverbs, literature, and elevated speech. Modern equivalent: 矢のように過ぎる.\n\n### Usage Tips\nUse this to lend elegance or classical authority to your writing. It’s definitely not for text messages! It fits well in speeches, literature reviews, or formal compositions.\n\n### Connection to Easier Grammar\nIt performs the exact same role as the basic 〜ようだ you learned early on. This is just the formal, literary version of your existing knowledge.",
+    "blankTarget": "ごとく"
   },
   {
     "id": "g-c1-02",
@@ -1323,7 +1339,8 @@
     ],
     "mastered": false,
     "hub": "Advanced Grammar",
-    "detailedExplanation": "**〜ざるを得ない** expresses unavoidable compulsion against the speaker's preference. Form: verb negative stem (remove ない, add ざる) + を得ない. Exception: する → せざるを得ない. Formal and literary; common in business writing.\n\n### Usage Tips\nThis is a heavy hitter in business. Use it to indicate forced, undesirable actions taken due to external circumstances. It shows serious decision-making.\n\n### Connection to Easier Grammar\nIt builds on the negative form (~ない). Since you already know how to negate verbs, this is just learning the classical conjugation rule (~ざる) for that same negative concept."
+    "detailedExplanation": "**〜ざるを得ない** expresses unavoidable compulsion against the speaker's preference. Form: verb negative stem (remove ない, add ざる) + を得ない. Exception: する → せざるを得ない. Formal and literary; common in business writing.\n\n### Usage Tips\nThis is a heavy hitter in business. Use it to indicate forced, undesirable actions taken due to external circumstances. It shows serious decision-making.\n\n### Connection to Easier Grammar\nIt builds on the negative form (~ない). Since you already know how to negate verbs, this is just learning the classical conjugation rule (~ざる) for that same negative concept.",
+    "blankTarget": "ざるを得なかった"
   },
   {
     "id": "g-c1-03",
@@ -1488,7 +1505,8 @@
     ],
     "mastered": false,
     "hub": "Formal/Written Expression",
-    "detailedExplanation": "**〜に至る** means to reach a significant or extreme point at the end of a process. Noun + に至る or に至るまで (all the way to). に至っても means 'even at that point'. Used in formal writing, historical accounts, and reports.\n\n### Usage Tips\nUse this to describe milestones or culmination points. It’s effective when summarizing the conclusion of a complex situation or the results of long-term efforts.\n\n### Connection to Easier Grammar\nIt relates to basic destination particles (に). You’re just taking a verb that means 'to arrive' (至る) and using it as a pattern for complex arrival or conclusion."
+    "detailedExplanation": "**〜に至る** means to reach a significant or extreme point at the end of a process. Noun + に至る or に至るまで (all the way to). に至っても means 'even at that point'. Used in formal writing, historical accounts, and reports.\n\n### Usage Tips\nUse this to describe milestones or culmination points. It’s effective when summarizing the conclusion of a complex situation or the results of long-term efforts.\n\n### Connection to Easier Grammar\nIt relates to basic destination particles (に). You’re just taking a verb that means 'to arrive' (至る) and using it as a pattern for complex arrival or conclusion.",
+    "blankTarget": "に至った"
   },
   {
     "id": "g-c1-08",
@@ -1752,7 +1770,8 @@
     ],
     "mastered": false,
     "hub": "Verb Conjugation",
-    "detailedExplanation": "**〜たことがある** expresses life experience — 'have done before'. た-form + ことがある.\n\n**Usage Tips:** Negative: ことがない. Never: 一度も〜たことがない. こと = 'the experience/fact of'. Not for recent actions.\n\n**N4 Connection:** Great for interviews and self-introductions."
+    "detailedExplanation": "**〜たことがある** expresses life experience — 'have done before'. た-form + ことがある.\n\n**Usage Tips:** Negative: ことがない. Never: 一度も〜たことがない. こと = 'the experience/fact of'. Not for recent actions.\n\n**N4 Connection:** Great for interviews and self-introductions.",
+    "blankTarget": "たことがあります"
   },
   {
     "id": "g-a2-12",
@@ -1884,7 +1903,8 @@
     ],
     "mastered": false,
     "hub": "Verb Conjugation",
-    "detailedExplanation": "**〜切る (kiru)** means 'to do something completely/thoroughly' or 'to the very end'. Attach to the verb stem (ます-stem): 使い切る = 'use up completely', 信じ切る = 'trust completely'.\n\n**Usage Tips:** Can express physical completion (食べ切る = eat all) or emotional intensity (思い切る = decide/resolve). The casual potential form 〜切れる means 'can finish all': この仕事は今日中にやり切れる？ = 'Can we finish all this work today?'\n\n**N3 Connection:** This verb suffix turns ordinary verbs into 'completely done' versions. Think of it like adding 'all the way' or 'completely' to an action."
+    "detailedExplanation": "**〜切る (kiru)** means 'to do something completely/thoroughly' or 'to the very end'. Attach to the verb stem (ます-stem): 使い切る = 'use up completely', 信じ切る = 'trust completely'.\n\n**Usage Tips:** Can express physical completion (食べ切る = eat all) or emotional intensity (思い切る = decide/resolve). The casual potential form 〜切れる means 'can finish all': この仕事は今日中にやり切れる？ = 'Can we finish all this work today?'\n\n**N3 Connection:** This verb suffix turns ordinary verbs into 'completely done' versions. Think of it like adding 'all the way' or 'completely' to an action.",
+    "blankTarget": "読み切りました"
   },
   {
     "id": "g-b2-12",
@@ -1983,7 +2003,8 @@
     ],
     "mastered": false,
     "hub": "Formal/Written Expression",
-    "detailedExplanation": "**〜にかたくない (ni katakunai)** means 'easy to imagine/understand' — used with nouns like 想像 (imagination) or 理解 (understanding). Literally: 'not difficult to ~'.\n\n**Usage Tips:** Almost always used with 想像 (想像にかたくない = easy to imagine) or 理解 (理解にかたくない = easy to understand). It's a formal/written expression. In conversation, use 簡単に想像できる instead.\n\n**N3 Connection:** You know 〜やすい (easy to). にかたくない is the formal, literary version specifically for 'easy to imagine/understand'."
+    "detailedExplanation": "**〜にかたくない (ni katakunai)** means 'easy to imagine/understand' — used with nouns like 想像 (imagination) or 理解 (understanding). Literally: 'not difficult to ~'.\n\n**Usage Tips:** Almost always used with 想像 (想像にかたくない = easy to imagine) or 理解 (理解にかたくない = easy to understand). It's a formal/written expression. In conversation, use 簡単に想像できる instead.\n\n**N3 Connection:** You know 〜やすい (easy to). にかたくない is the formal, literary version specifically for 'easy to imagine/understand'.",
+    "blankTarget": "に難くない"
   },
   {
     "id": "g-c2-05",
@@ -2088,7 +2109,8 @@
     ],
     "mastered": false,
     "hub": "Verb Conjugation",
-    "detailedExplanation": "**〜てしまう** has two distinct uses: (1) doing something completely/thoroughly (positive completion), and (2) doing something regrettably or unintentionally (negative). The contracted form **〜ちゃう** (〜じゃう for で-ending verbs) is used in casual speech.\n\n**Usage Tips:** Context determines which meaning is intended. If the verb is positive (食べる, 読む), てしまう usually means \"finish completely\". If the verb is negative or the situation is regrettable (忘れる, 落とす), it implies regret. In speech, 〜ちゃう/〜じゃう is extremely common — almost no one says 〜てしまう in casual conversation. Use 〜てしまいます in formal/business settings.\n\n**N4 Connection:** You know 〜てください (please do). 〜てしまう extends this te-form pattern to add \"completely\" or \"(unfortunately) done it\". Think of it as て + しまう (put away/finish) — literally \"to put the action away\" = to complete it, for better or worse.\n\n**Key workplace tip:** 〜てしまう is very common in Japanese apologies. Saying 忘れてしまいました sounds more sincere than just 忘れました because it adds the nuance of regret."
+    "detailedExplanation": "**〜てしまう** has two distinct uses: (1) doing something completely/thoroughly (positive completion), and (2) doing something regrettably or unintentionally (negative). The contracted form **〜ちゃう** (〜じゃう for で-ending verbs) is used in casual speech.\n\n**Usage Tips:** Context determines which meaning is intended. If the verb is positive (食べる, 読む), てしまう usually means \"finish completely\". If the verb is negative or the situation is regrettable (忘れる, 落とす), it implies regret. In speech, 〜ちゃう/〜じゃう is extremely common — almost no one says 〜てしまう in casual conversation. Use 〜てしまいます in formal/business settings.\n\n**N4 Connection:** You know 〜てください (please do). 〜てしまう extends this te-form pattern to add \"completely\" or \"(unfortunately) done it\". Think of it as て + しまう (put away/finish) — literally \"to put the action away\" = to complete it, for better or worse.\n\n**Key workplace tip:** 〜てしまう is very common in Japanese apologies. Saying 忘れてしまいました sounds more sincere than just 忘れました because it adds the nuance of regret.",
+    "blankTarget": "てしまいました"
   },
   {
     "id": "g-b1-14",
@@ -2121,7 +2143,8 @@
     ],
     "mastered": false,
     "hub": "Verb Conjugation",
-    "detailedExplanation": "**〜てある** describes a state resulting from someone's intentional action. Unlike 〜ている (which can be unintentional), 〜てある implies purpose: the object takes が instead of を.\n\n### Usage Tips\nUse this to confirm the status of tasks. It's the standard for 'the task is done, and it’s still in that state'. It's very useful for status updates in Tokyo offices.\n\n### Connection to Easier Grammar\nIt links the て-form (like 飲んで) with the verb for 'to exist' (ある). If you’ve mastered the て-form, you’ve basically mastered this construction."
+    "detailedExplanation": "**〜てある** describes a state resulting from someone's intentional action. Unlike 〜ている (which can be unintentional), 〜てある implies purpose: the object takes が instead of を.\n\n### Usage Tips\nUse this to confirm the status of tasks. It's the standard for 'the task is done, and it’s still in that state'. It's very useful for status updates in Tokyo offices.\n\n### Connection to Easier Grammar\nIt links the て-form (like 飲んで) with the verb for 'to exist' (ある). If you’ve mastered the て-form, you’ve basically mastered this construction.",
+    "blankTarget": "てあります"
   },
   {
     "id": "g-b1-15",
@@ -2154,7 +2177,8 @@
     ],
     "mastered": false,
     "hub": "Verb Conjugation",
-    "detailedExplanation": "**〜ておく** expresses doing an action as preparation for future use. Casual contracted form: **〜とく**. The key nuance is that the action is performed for your own or someone else's later benefit.\n\n### Usage Tips\nThis is essential for business efficiency. It shows you’ve considered upcoming tasks and handled things proactively. Use it to build trust.\n\n### Connection to Easier Grammar\nIt uses the basic て-form. It adds the verb 置[お]く (to place), creating a sense of 'putting the action in place' for later."
+    "detailedExplanation": "**〜ておく** expresses doing an action as preparation for future use. Casual contracted form: **〜とく**. The key nuance is that the action is performed for your own or someone else's later benefit.\n\n### Usage Tips\nThis is essential for business efficiency. It shows you’ve considered upcoming tasks and handled things proactively. Use it to build trust.\n\n### Connection to Easier Grammar\nIt uses the basic て-form. It adds the verb 置[お]く (to place), creating a sense of 'putting the action in place' for later.",
+    "blankTarget": "ておきました"
   },
   {
     "id": "g-b1-16",
@@ -2187,7 +2211,8 @@
     ],
     "mastered": false,
     "hub": "Verb Conjugation",
-    "detailedExplanation": "**受身形** shifts focus from the doer to the receiver of the action. U-verbs → 〜される (書く→書かれる), ru-verbs → 〜られる (食べる→食べられる), する→される, 来る→来られる. The agent is marked by **に**.\n\n### Usage Tips\nThis is vital for office settings when describing processes (e.g., 'the report was submitted') or for venting about minor inconveniences (e.g., 'I was stepped on').\n\n### Connection to Easier Grammar\nIt’s a conjugation rule change. If you know how to build basic negative/dictionary verb forms, you’re just memorizing the suffix mapping for the passive voice."
+    "detailedExplanation": "**受身形** shifts focus from the doer to the receiver of the action. U-verbs → 〜される (書く→書かれる), ru-verbs → 〜られる (食べる→食べられる), する→される, 来る→来られる. The agent is marked by **に**.\n\n### Usage Tips\nThis is vital for office settings when describing processes (e.g., 'the report was submitted') or for venting about minor inconveniences (e.g., 'I was stepped on').\n\n### Connection to Easier Grammar\nIt’s a conjugation rule change. If you know how to build basic negative/dictionary verb forms, you’re just memorizing the suffix mapping for the passive voice.",
+    "blankTarget": "読まれています"
   },
   {
     "id": "g-b1-17",
@@ -2220,7 +2245,8 @@
     ],
     "mastered": false,
     "hub": "Verb Conjugation",
-    "detailedExplanation": "**使役形** expresses making or letting someone perform an action. U-verbs → 〜せる, ru-verbs → 〜させる, する→させる, 来る→来させる. The person made to act is marked by **に** (intransitive) or **を** (transitive).\n\n### Usage Tips\nThis shows control or authority. Use it when explaining your managerial role or how you manage duties at home. It’s powerful and implies hierarchy.\n\n### Connection to Easier Grammar\nIt’s another conjugation rule. You’ve used these base verbs (作[つく]る, 読[よ]む) for levels A1/A2. This adds a layer of command to them."
+    "detailedExplanation": "**使役形** expresses making or letting someone perform an action. U-verbs → 〜せる, ru-verbs → 〜させる, する→させる, 来る→来させる. The person made to act is marked by **に** (intransitive) or **を** (transitive).\n\n### Usage Tips\nThis shows control or authority. Use it when explaining your managerial role or how you manage duties at home. It’s powerful and implies hierarchy.\n\n### Connection to Easier Grammar\nIt’s another conjugation rule. You’ve used these base verbs (作[つく]る, 読[よ]む) for levels A1/A2. This adds a layer of command to them.",
+    "blankTarget": "出張させた"
   },
   {
     "id": "g-b1-18",
@@ -2253,7 +2279,8 @@
     ],
     "mastered": false,
     "hub": "Verb Conjugation",
-    "detailedExplanation": "**使役受身形** = causative + passive: someone is made to do something unwillingly. 行かせられる → 行かされる (short). する→させられる. Common in workplace complaints.\n\n### Usage Tips\nThis is the ultimate 'office vent' grammar. Use it when describing situations where your agency feels limited by external pressure—it’s how you politely but firmly convey discomfort.\n\n### Connection to Easier Grammar\nIt merges the Causative and Passive rules you just learned. If you know how to build those two separately, merging them is straightforward."
+    "detailedExplanation": "**使役受身形** = causative + passive: someone is made to do something unwillingly. 行かせられる → 行かされる (short). する→させられる. Common in workplace complaints.\n\n### Usage Tips\nThis is the ultimate 'office vent' grammar. Use it when describing situations where your agency feels limited by external pressure—it’s how you politely but firmly convey discomfort.\n\n### Connection to Easier Grammar\nIt merges the Causative and Passive rules you just learned. If you know how to build those two separately, merging them is straightforward.",
+    "blankTarget": "残業させられています"
   },
   {
     "id": "g-b1-19",
@@ -2418,7 +2445,8 @@
     ],
     "mastered": false,
     "hub": "Verbs",
-    "detailedExplanation": "**〜ところだ** expresses temporal proximity: (1) dictionary + ところ = about to; (2) ている + ところ = in progress; (3) た + ところ = just finished. One of the most common N3 patterns.\n\n### Usage Tips\nThis is incredibly useful for everyday office communication—it clearly communicates *exactly* where you are in the cycle of an action. It saves people from asking 'Are you done yet?'\n\n### Connection to Easier Grammar\nIt relies on the basic verb forms you already know (dict, ている, た). You are simply placing them into a structured timeframe."
+    "detailedExplanation": "**〜ところだ** expresses temporal proximity: (1) dictionary + ところ = about to; (2) ている + ところ = in progress; (3) た + ところ = just finished. One of the most common N3 patterns.\n\n### Usage Tips\nThis is incredibly useful for everyday office communication—it clearly communicates *exactly* where you are in the cycle of an action. It saves people from asking 'Are you done yet?'\n\n### Connection to Easier Grammar\nIt relies on the basic verb forms you already know (dict, ている, た). You are simply placing them into a structured timeframe.",
+    "blankTarget": "ところです"
   },
   {
     "id": "g-b1-24",
@@ -2814,7 +2842,8 @@
     ],
     "mastered": false,
     "hub": "Building Sentences and Clauses",
-    "detailedExplanation": "**〜ほど〜ない** expresses 'A is not as B'. Structure: B + ほど + A + negative. The item after ほど is the standard of comparison.\n\n### Usage Tips\nThis is essential for nuanced comparisons. Instead of just saying 'X is better', this helps you define the scope of the comparison more accurately.\n\n### Connection to Easier Grammar\nIt relies on the noun ほど (extent). You’ve used nouns like this for general measurements before; now you’re applying it to comparative scale."
+    "detailedExplanation": "**〜ほど〜ない** expresses 'A is not as B'. Structure: B + ほど + A + negative. The item after ほど is the standard of comparison.\n\n### Usage Tips\nThis is essential for nuanced comparisons. Instead of just saying 'X is better', this helps you define the scope of the comparison more accurately.\n\n### Connection to Easier Grammar\nIt relies on the noun ほど (extent). You’ve used nouns like this for general measurements before; now you’re applying it to comparative scale.",
+    "blankTarget": "ほど人が多くない"
   },
   {
     "id": "g-b1-36",
@@ -2847,7 +2876,8 @@
     ],
     "mastered": false,
     "hub": "Conditional Expressions",
-    "detailedExplanation": "**〜ば〜ほど** expresses proportional correlation. Verb-ば + same verb dictionary + ほど. I-adj: 安ければ安いほど (the cheaper). Na-adj: 便利であれば便利なほど.\n\n### Usage Tips\nThis is a classic for expressing correlations. Use it to build persuasive arguments about how increasing one positive input leads to a better output.\n\n### Connection to Easier Grammar\nIt combines the conditional 'ba' (which you already know) and the extent noun 'hodo'. It’s an elegant, compound way to state a relationship."
+    "detailedExplanation": "**〜ば〜ほど** expresses proportional correlation. Verb-ば + same verb dictionary + ほど. I-adj: 安ければ安いほど (the cheaper). Na-adj: 便利であれば便利なほど.\n\n### Usage Tips\nThis is a classic for expressing correlations. Use it to build persuasive arguments about how increasing one positive input leads to a better output.\n\n### Connection to Easier Grammar\nIt combines the conditional 'ba' (which you already know) and the extent noun 'hodo'. It’s an elegant, compound way to state a relationship.",
+    "blankTarget": "ばするほど"
   },
   {
     "id": "g-b1-37",
@@ -2880,7 +2910,8 @@
     ],
     "mastered": false,
     "hub": "Verb Conjugation",
-    "detailedExplanation": "**〜べきだ** = strong suggestion/moral duty. Dictionary form + べきだ (する→すべき or するべき). Negative: べきではない. Weaker than なければならない, stronger than ほうがいい.\n\n### Usage Tips\nThis is strong, clear advice. Use it when setting moral standards or professional expectations. It’s assertive but remains polite enough for most work discussions.\n\n### Connection to Easier Grammar\nIt’s a simple dictionary-verb suffix. If you can make a general statement, you’ve got it."
+    "detailedExplanation": "**〜べきだ** = strong suggestion/moral duty. Dictionary form + べきだ (する→すべき or するべき). Negative: べきではない. Weaker than なければならない, stronger than ほうがいい.\n\n### Usage Tips\nThis is strong, clear advice. Use it when setting moral standards or professional expectations. It’s assertive but remains polite enough for most work discussions.\n\n### Connection to Easier Grammar\nIt’s a simple dictionary-verb suffix. If you can make a general statement, you’ve got it.",
+    "blankTarget": "べきです"
   },
   {
     "id": "g-b1-38",
@@ -2913,7 +2944,8 @@
     ],
     "mastered": false,
     "hub": "Building Sentences and Clauses",
-    "detailedExplanation": "**〜ということだ** = (1) hearsay — based on what you've been told; (2) explanatory — 'that is to say'. Casual: 〜ってことだ.\n\n### Usage Tips\nThis is incredibly common for summarizing information, whether you're reporting what you've heard or clarifying a conclusion in a conversation. It's the standard for 'so what this means is...' at work.\n\n### Connection to Easier Grammar\nIt’s just a standard nominalizer + 'da'. If you can say 'it is X', you can use this pattern to define 'it' as the hearsay or explanation."
+    "detailedExplanation": "**〜ということだ** = (1) hearsay — based on what you've been told; (2) explanatory — 'that is to say'. Casual: 〜ってことだ.\n\n### Usage Tips\nThis is incredibly common for summarizing information, whether you're reporting what you've heard or clarifying a conclusion in a conversation. It's the standard for 'so what this means is...' at work.\n\n### Connection to Easier Grammar\nIt’s just a standard nominalizer + 'da'. If you can say 'it is X', you can use this pattern to define 'it' as the hearsay or explanation.",
+    "blankTarget": "ということです"
   },
   {
     "id": "g-b1-39",
@@ -3045,7 +3077,8 @@
     ],
     "mastered": false,
     "hub": "Conditional Expressions",
-    "detailedExplanation": "**〜さえ〜ば** = minimum condition for an outcome. Noun + さえ + Verb-ば (お金さえあれば = if only I have money). Verb stem + さえすれば (努力しさえすれば = if you just try).\n\n### Usage Tips\nThis is great for expressing prerequisites in a clear, 'minimum requirement' way. It’s perfect for setting conditions for cooperation in a project.\n\n### Connection to Easier Grammar\nIt uses the conditional (ば) and the particle for 'even/also' (さえ). You’ve used both; merging them is a simple structural evolution."
+    "detailedExplanation": "**〜さえ〜ば** = minimum condition for an outcome. Noun + さえ + Verb-ば (お金さえあれば = if only I have money). Verb stem + さえすれば (努力しさえすれば = if you just try).\n\n### Usage Tips\nThis is great for expressing prerequisites in a clear, 'minimum requirement' way. It’s perfect for setting conditions for cooperation in a project.\n\n### Connection to Easier Grammar\nIt uses the conditional (ば) and the particle for 'even/also' (さえ). You’ve used both; merging them is a simple structural evolution.",
+    "blankTarget": "さえあれば"
   },
   {
     "id": "g-b1-43",
@@ -3144,7 +3177,8 @@
     ],
     "mastered": false,
     "hub": "Conditional Expressions",
-    "detailedExplanation": "**〜限り** = (1) 'as long as' — dictionary + 限り; (2) 'as far as' — 知っている限り; (3) 'unless' — 〜ない限り (雨が降らない限り = unless it rains).\n\n### Usage Tips\nThis is essential for defining conditions or scope. It’s perfect for setting expectations ('As long as you do X, Y is fine') or confirming what you are certain about.\n\n### Connection to Easier Grammar\nIt uses the common noun 'limit' (限[かぎ]り). You’ve encountered this character for 'limit' or 'exclusive' use, so the concept should be familiar."
+    "detailedExplanation": "**〜限り** = (1) 'as long as' — dictionary + 限り; (2) 'as far as' — 知っている限り; (3) 'unless' — 〜ない限り (雨が降らない限り = unless it rains).\n\n### Usage Tips\nThis is essential for defining conditions or scope. It’s perfect for setting expectations ('As long as you do X, Y is fine') or confirming what you are certain about.\n\n### Connection to Easier Grammar\nIt uses the common noun 'limit' (限[かぎ]り). You’ve encountered this character for 'limit' or 'exclusive' use, so the concept should be familiar.",
+    "blankTarget": "限り"
   },
   {
     "id": "g-b1-46",

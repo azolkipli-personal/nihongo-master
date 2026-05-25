@@ -72,7 +72,7 @@ export function KaiwaInputSection({
   };
 
   return (
-    <div className="bg-white rounded-lg shadow p-6">
+    <div className="bg-white rounded-lg shadow p-4 sm:p-6">
       <h2 className="text-xl font-bold text-gray-800 mb-4">Generate Conversation</h2>
 
       <div className="space-y-4">
@@ -89,8 +89,8 @@ export function KaiwaInputSection({
           />
         </div>
 
-        <div className="flex gap-4">
-          <div className="flex-[2]">
+        <div className="flex flex-col sm:flex-row gap-4">
+          <div className="sm:flex-[2]">
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Scenario (optional)
             </label>
@@ -102,7 +102,7 @@ export function KaiwaInputSection({
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>
-          <div className="flex-1">
+          <div className="sm:flex-1">
             <label className="block text-sm font-medium text-gray-700 mb-1">CEFR Level</label>
             <select
               value={cefrLevel}
@@ -126,7 +126,7 @@ export function KaiwaInputSection({
             className="flex items-center gap-2 px-4 py-2 bg-purple-50 text-purple-700 rounded-lg hover:bg-purple-100 transition-colors font-medium"
           >
             <Target className="w-4 h-4" />
-            🎯 Focus Grammar
+            Focus Grammar
             {focusPatternIds.length > 0 && (
               <span className="px-2 py-0.5 bg-purple-200 text-purple-800 text-xs rounded-full">
                 {focusPatternIds.length}
@@ -215,10 +215,10 @@ export function KaiwaInputSection({
         )}
 
         {/* Import/Export Section - Always Available */}
-        <div className="flex gap-2 pt-4 border-t border-gray-200">
+        <div className="pt-4 border-t border-gray-200">
           <button
             onClick={onImportConversations}
-            className="flex items-center gap-2 px-4 py-2 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200"
+            className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 transition-colors"
             title="Import conversations from JSON"
           >
             <Upload className="w-4 h-4" />

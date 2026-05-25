@@ -20,9 +20,9 @@ export interface SyncBackend {
   readonly id: string;
   readonly label: string;
   getProgress(): Promise<SyncPayload>;
-  putProgress(payload: SyncPayload): Promise<{ lastUpdated: string }>;
+  putProgress(payload: SyncPayload, force?: boolean): Promise<{ lastUpdated: string }>;
   getConfig(): Promise<SyncPayload>;
-  putConfig(payload: SyncPayload): Promise<{ lastUpdated: string }>;
+  putConfig(payload: SyncPayload, force?: boolean): Promise<{ lastUpdated: string }>;
 }
 
 // ── Backend URL helpers ────────────────────────────────────────────────────
@@ -60,8 +60,9 @@ class NucBackend implements SyncBackend {
     return res.json();
   }
 
-  async putProgress(payload: SyncPayload): Promise<{ lastUpdated: string }> {
-    const res = await fetch(`${this.url}/progress`, {
+  async putProgress(payload: SyncPayload, force?: boolean): Promise<{ lastUpdated: string }> {
+    const url = force ? `${this.url}/progress?force=1` : `${this.url}/progress`;
+    const res = await fetch(url, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
@@ -79,8 +80,9 @@ class NucBackend implements SyncBackend {
     return res.json();
   }
 
-  async putConfig(payload: SyncPayload): Promise<{ lastUpdated: string }> {
-    const res = await fetch(`${this.url}/config`, {
+  async putConfig(payload: SyncPayload, force?: boolean): Promise<{ lastUpdated: string }> {
+    const url = force ? `${this.url}/config?force=1` : `${this.url}/config`;
+    const res = await fetch(url, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
@@ -166,9 +168,17 @@ export function gatherProgress(): SyncPayload {
   const grammar = localStorage.getItem('nihongo-master-grammar-srs');
   if (grammar) data.grammar = JSON.parse(grammar);
 
+  // Grammar mastered list (BunpoTab)
+  const grammarMastered = localStorage.getItem('nihongo-master-grammar-mastered');
+  if (grammarMastered) data.grammarMastered = JSON.parse(grammarMastered);
+
   // Vocabulary
   const vocab = localStorage.getItem('nihongo-master-vocabulary');
   if (vocab) data.vocabulary = JSON.parse(vocab);
+
+  // Vocabulary timestamp (TangoTab)
+  const vocabTime = localStorage.getItem('nihongo-master-vocabulary-time');
+  if (vocabTime) data.vocabularyTime = vocabTime;
 
   // Sessions
   const sessions = localStorage.getItem('nihongo-master-sessions');
@@ -177,6 +187,14 @@ export function gatherProgress(): SyncPayload {
   // Vocabulary sets
   const vocabSets = localStorage.getItem('nihongo-master-vocab-sets');
   if (vocabSets) data.vocabSets = JSON.parse(vocabSets);
+
+  // Vocab sets editor data (VocabSetsTab)
+  const vocabSetsText = localStorage.getItem('vocab-sets-text');
+  if (vocabSetsText) data.vocabSetsText = vocabSetsText;
+  const vocabSetsParsed = localStorage.getItem('vocab-sets-parsed');
+  if (vocabSetsParsed) data.vocabSetsParsed = JSON.parse(vocabSetsParsed);
+  const vocabSetsEdits = localStorage.getItem('vocab-sets-edits');
+  if (vocabSetsEdits) data.vocabSetsEdits = JSON.parse(vocabSetsEdits);
 
   // Kaiwa conversations (from kaiwa_v2 STORAGE_KEYS)
   const conversations = localStorage.getItem('kaiwa_conversations');
@@ -205,11 +223,20 @@ export function applyProgress(payload: SyncPayload): void {
 
   if (data.grammar)
     localStorage.setItem('nihongo-master-grammar-srs', JSON.stringify(data.grammar));
+  if (data.grammarMastered)
+    localStorage.setItem('nihongo-master-grammar-mastered', JSON.stringify(data.grammarMastered));
   if (data.vocabulary)
     localStorage.setItem('nihongo-master-vocabulary', JSON.stringify(data.vocabulary));
+  if (data.vocabularyTime)
+    localStorage.setItem('nihongo-master-vocabulary-time', data.vocabularyTime as string);
   if (data.sessions) localStorage.setItem('nihongo-master-sessions', JSON.stringify(data.sessions));
   if (data.vocabSets)
     localStorage.setItem('nihongo-master-vocab-sets', JSON.stringify(data.vocabSets));
+  if (data.vocabSetsText) localStorage.setItem('vocab-sets-text', data.vocabSetsText as string);
+  if (data.vocabSetsParsed)
+    localStorage.setItem('vocab-sets-parsed', JSON.stringify(data.vocabSetsParsed));
+  if (data.vocabSetsEdits)
+    localStorage.setItem('vocab-sets-edits', JSON.stringify(data.vocabSetsEdits));
   if (data.kaiwaConversations)
     localStorage.setItem('kaiwa_conversations', JSON.stringify(data.kaiwaConversations));
   if (data.kaiwaWords) localStorage.setItem('kaiwa_words', data.kaiwaWords as string);

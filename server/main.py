@@ -15,7 +15,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 DB_PATH = os.environ.get("NIHONGO_DB_PATH", os.path.expanduser("~/.local/share/nihongo-backend/progress.db"))
-HOST = os.environ.get("NIHONGO_HOST", "127.0.0.1")
+HOST = os.environ.get("NIHONGO_HOST", "0.0.0.0")
 PORT = int(os.environ.get("NIHONGO_PORT", "9001"))
 
 
@@ -78,13 +78,14 @@ async def get_progress():
 
 
 @app.put("/progress")
-async def put_progress(payload: ProgressPayload):
+async def put_progress(payload: ProgressPayload, force: bool = False):
     now = datetime.now(timezone.utc).isoformat()
     wrapper = {"data": payload.data, "lastUpdated": now}
-    async with app.state.db.execute("SELECT updated_at FROM store WHERE key='progress'") as cursor:
-        existing = await cursor.fetchone()
-    if existing and payload.lastUpdated and payload.lastUpdated < existing[0]:
-        raise HTTPException(409, detail="Conflict: remote data is newer. Re-fetch and merge.")
+    if not force:
+        async with app.state.db.execute("SELECT updated_at FROM store WHERE key='progress'") as cursor:
+            existing = await cursor.fetchone()
+        if existing and payload.lastUpdated and payload.lastUpdated < existing[0]:
+            raise HTTPException(409, detail="Conflict: remote data is newer. Re-fetch and merge.")
     await app.state.db.execute(
         "INSERT INTO store(key, value, updated_at) VALUES('progress', ?, ?) "
         "ON CONFLICT(key) DO UPDATE SET value=excluded.value, updated_at=excluded.updated_at",
@@ -104,13 +105,14 @@ async def get_config():
 
 
 @app.put("/config")
-async def put_config(payload: ConfigPayload):
+async def put_config(payload: ConfigPayload, force: bool = False):
     now = datetime.now(timezone.utc).isoformat()
     wrapper = {"data": payload.data, "lastUpdated": now}
-    async with app.state.db.execute("SELECT updated_at FROM store WHERE key='config'") as cursor:
-        existing = await cursor.fetchone()
-    if existing and payload.lastUpdated and payload.lastUpdated < existing[0]:
-        raise HTTPException(409, detail="Conflict: remote data is newer. Re-fetch and merge.")
+    if not force:
+        async with app.state.db.execute("SELECT updated_at FROM store WHERE key='config'") as cursor:
+            existing = await cursor.fetchone()
+        if existing and payload.lastUpdated and payload.lastUpdated < existing[0]:
+            raise HTTPException(409, detail="Conflict: remote data is newer. Re-fetch and merge.")
     await app.state.db.execute(
         "INSERT INTO store(key, value, updated_at) VALUES('config', ?, ?) "
         "ON CONFLICT(key) DO UPDATE SET value=excluded.value, updated_at=excluded.updated_at",

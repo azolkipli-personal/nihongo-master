@@ -1146,6 +1146,47 @@ function ChallengeMode({
     [weekPatternIds]
   );
 
+  // Helper: replace target text inside furigana-annotated text (e.g. "読[よ]んだり")
+  // Finds target by first stripping furigana markers, then mirrors position back.
+  function blankInFurigana(furiganaText: string, target: string): string {
+    const plain = furiganaText.replace(/\[.*?\]/g, '');
+    const idx = plain.indexOf(target);
+    if (idx === -1) return furiganaText;
+
+    let fIdx = 0;
+    let pIdx = 0;
+    let result = '';
+
+    while (fIdx < furiganaText.length && pIdx < idx) {
+      if (furiganaText[fIdx] === '[') {
+        const close = furiganaText.indexOf(']', fIdx);
+        result += furiganaText.slice(fIdx, close + 1);
+        fIdx = close + 1;
+      } else {
+        result += furiganaText[fIdx];
+        fIdx++;
+        pIdx++;
+      }
+    }
+
+    // Skip over the target's plain-text length in the furigana source
+    let rem = target.length;
+    while (fIdx < furiganaText.length && rem > 0) {
+      if (furiganaText[fIdx] === '[') {
+        const close = furiganaText.indexOf(']', fIdx);
+        result += furiganaText.slice(fIdx, close + 1);
+        fIdx = close + 1;
+      } else {
+        rem--;
+        fIdx++;
+      }
+    }
+
+    result += '____';
+    result += furiganaText.slice(fIdx);
+    return result;
+  }
+
   // Initialize quiz
   const startQuiz = useCallback(() => {
     let pool: GrammarPattern[];
@@ -1192,11 +1233,29 @@ function ChallengeMode({
       const rawPattern = pattern.pattern.replace(/～/g, '');
       const rawReading = pattern.reading.replace(/～/g, '');
 
-      let blankedSentence = sentence.replace(rawPattern, '____');
+      // Use explicit blankTarget if provided (precise position), else fall back to raw pattern
+      const bt = (pattern as any).blankTarget as string | undefined;
+
+      let blankedSentence: string;
+      let blankedFurigana: string;
+
+      if (bt) {
+        blankedSentence = sentence.replace(bt, '____');
+        if (blankedSentence === sentence) {
+          blankedSentence = sentence.replace(rawPattern, '____');
+        }
+        blankedFurigana = blankInFurigana(furiganaSrc, bt);
+        if (blankedFurigana === furiganaSrc) {
+          blankedFurigana = furiganaSrc.replace(rawPattern, '____');
+        }
+      } else {
+        blankedSentence = sentence.replace(rawPattern, '____');
+        blankedFurigana = furiganaSrc.replace(rawPattern, '____');
+      }
+
       if (blankedSentence === sentence) {
         blankedSentence = sentence.replace(rawReading, '____');
       }
-      let blankedFurigana = furiganaSrc.replace(rawPattern, '____');
       if (blankedFurigana === furiganaSrc) {
         blankedFurigana = furiganaSrc.replace(rawReading, '____');
       }
@@ -1285,7 +1344,7 @@ function ChallengeMode({
           patternId: pattern?.id || '',
           sentence: q.blanked,
           originalSentence: q.original,
-          furiganaSentence: q.blanked,
+          furiganaSentence: q.furigana || q.blanked,
           english: q.english,
           correctAnswer: rawPattern,
           options: options.length >= 2 ? options : [rawPattern, '_____'],

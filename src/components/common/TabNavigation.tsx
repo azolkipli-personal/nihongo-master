@@ -17,13 +17,13 @@ export function TabNavigation({ activeTab, onTabChange }: TabNavigationProps) {
   return (
     <nav className="bg-white border-b border-gray-200 sticky top-16 z-30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex space-x-1">
+        <div className="flex overflow-x-auto gap-1 scrollbar-hide">
           {tabs.map((tab) => (
             <button
               key={tab.id}
               onClick={() => onTabChange(tab.id)}
               className={`
-                flex items-center gap-2 px-4 py-3 text-sm font-medium border-b-2 transition-colors
+                flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-3 text-xs sm:text-sm font-medium border-b-2 transition-colors whitespace-nowrap shrink-0
                 ${
                   activeTab === tab.id
                     ? 'border-blue-500 text-blue-600'
