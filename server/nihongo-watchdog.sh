@@ -38,9 +38,9 @@ echo "   PID: $TTS_PID"
 
 sleep 2
 
-# Start sync backend
+# Start sync backend (localhost only — Tailscale serve proxies externally)
 echo "🔌 Starting sync backend..."
-python3 "$APP_DIR/server/main.py" &
+NIHONGO_HOST=127.0.0.1 python3 "$APP_DIR/server/main.py" &
 BACKEND_PID=$!
 echo "   PID: $BACKEND_PID"
 

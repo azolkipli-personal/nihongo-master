@@ -1260,7 +1260,9 @@ function ChallengeMode({
         blankedFurigana = furiganaSrc.replace(rawReading, '____');
       }
       if (blankedFurigana === furiganaSrc) {
-        blankedFurigana = furiganaSrc.replace(/.{2,4}$/, '____');
+        // Last resort: use the plain blanked sentence (already has ____)
+        // stripped of brackets for display
+        blankedFurigana = blankedSentence.replace(/\[|\]/g, '');
       }
 
       const distractors = patterns
@@ -1274,9 +1276,11 @@ function ChallengeMode({
       return {
         patternId: pattern.id,
         sentence:
-          blankedSentence !== sentence ? blankedSentence : sentence.replace(/.{2,4}$/, '____'),
+          blankedSentence !== sentence
+            ? blankedSentence
+            : blankedFurigana?.replace(/\[|\]/g, '') || sentence,
         originalSentence: sentence,
-        furiganaSentence: blankedFurigana,
+        furiganaSentence: blankedFurigana || blankedSentence,
         english: example.english,
         correctAnswer: rawPattern,
         options,

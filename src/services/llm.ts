@@ -547,13 +547,26 @@ function parseChallengeResponse(text: string): ChallengeQuestionData[] {
     const parsed = JSON.parse(jsonStr);
     const questions = parsed.questions || parsed;
     if (Array.isArray(questions)) {
-      return questions.map((q: any) => ({
-        pattern: q.pattern || '',
-        original: q.original || q.sentence || '',
-        blanked: q.blanked || q.sentence?.replace(/____/g, '____') || '',
-        english: q.english || '',
-        furigana: q.furigana || q.blanked || q.original || '',
-      }));
+      return questions.map((q: any) => {
+        // Try multiple fields for the blanked sentence
+        let blanked = q.blanked || q.blankedSentence || '';
+        // If blanked has no ____, try to extract from the sentence
+        if (!blanked.includes('____') && q.sentence) {
+          blanked = q.sentence; // Use sentence as-is (it might already have ____)
+        }
+        if (!blanked.includes('____') && q.original) {
+          // Fallback: blanked is missing — use sentence if it has ____, otherwise use original
+          blanked = q.sentence?.includes('____') ? q.sentence : q.original;
+        }
+
+        return {
+          pattern: q.pattern || '',
+          original: q.original || q.sentence || '',
+          blanked,
+          english: q.english || '',
+          furigana: q.furigana || blanked || q.original || '',
+        };
+      });
     }
     throw new Error('Unexpected response format');
   } catch (e) {

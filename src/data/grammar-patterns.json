@@ -64,7 +64,8 @@
     ],
     "mastered": false,
     "hub": "Particles",
-    "detailedExplanation": "**〜か (ka)** turns any statement into a question. Add it to the end — no word order change needed.\n\n**Usage Tips:** In casual speech, か can be dropped with rising intonation: 行く？ In polite speech, always keep か. Combine with question words: どこに行きますか？\n\n**N5 Connection:** Add か to any です sentence: これは本ですか = 'Is this a book?'"
+    "detailedExplanation": "**〜か (ka)** turns any statement into a question. Add it to the end — no word order change needed.\n\n**Usage Tips:** In casual speech, か can be dropped with rising intonation: 行く？ In polite speech, always keep か. Combine with question words: どこに行きますか？\n\n**N5 Connection:** Add か to any です sentence: これは本ですか = 'Is this a book?'",
+    "blankTarget": "か"
   },
   {
     "id": "g-a1-03",
@@ -97,7 +98,8 @@
     ],
     "mastered": false,
     "hub": "Particles",
-    "detailedExplanation": "**〜の (no)** connects two nouns — possession, attribution, or description. Like 's in English.\n\n**Usage Tips:** Use for possession (私の本), description (日本の車), or category (数学の先生). Chain multiple: 私の友達の会社. In casual speech の can end a sentence: どうしたの？ = 'What happened?'\n\n**N5 Connection:** One of the most common particles you'll hear daily."
+    "detailedExplanation": "**〜の (no)** connects two nouns — possession, attribution, or description. Like 's in English.\n\n**Usage Tips:** Use for possession (私の本), description (日本の車), or category (数学の先生). Chain multiple: 私の友達の会社. In casual speech の can end a sentence: どうしたの？ = 'What happened?'\n\n**N5 Connection:** One of the most common particles you'll hear daily.",
+    "blankTarget": "の"
   },
   {
     "id": "g-a1-04",
@@ -198,7 +200,8 @@
     ],
     "mastered": false,
     "hub": "Particles",
-    "detailedExplanation": "**〜を (o)** marks the direct object. Written を but pronounced お.\n\n**Usage Tips:** Only with transitive verbs. In casual speech often omitted: ご飯食べた？ instead of ご飯を食べた？\n\n**N5 Connection:** The 'receiving end' marker."
+    "detailedExplanation": "**〜を (o)** marks the direct object. Written を but pronounced お.\n\n**Usage Tips:** Only with transitive verbs. In casual speech often omitted: ご飯食べた？ instead of ご飯を食べた？\n\n**N5 Connection:** The 'receiving end' marker.",
+    "blankTarget": "を"
   },
   {
     "id": "g-a1-07",
@@ -231,7 +234,8 @@
     ],
     "mastered": false,
     "hub": "Particles",
-    "detailedExplanation": "**〜で (de)** marks WHERE action happens or MEANS/TOOL used.\n\n**Usage Tips:** で = action location (食堂で食べる). に = destination (食堂に行く). For means: バスで行く, 日本語で書く.\n\n**N5 Connection:** Already know で from basic phrases — now use it confidently."
+    "detailedExplanation": "**〜で (de)** marks WHERE action happens or MEANS/TOOL used.\n\n**Usage Tips:** で = action location (食堂で食べる). に = destination (食堂に行く). For means: バスで行く, 日本語で書く.\n\n**N5 Connection:** Already know で from basic phrases — now use it confidently.",
+    "blankTarget": "で"
   },
   {
     "id": "g-a1-08",
@@ -264,7 +268,8 @@
     ],
     "mastered": false,
     "hub": "Particles",
-    "detailedExplanation": "**〜も (mo)** = 'also/too'. Replaces は/が/を. Negative = 'either/neither'.\n\n**Usage Tips:** も replaces, doesn't stack: 私も学生です (not 私はも学生). Shows surprise: 3時間も待った = 'I waited AS LONG AS 3 hours!'.\n\n**N5 Connection:** The 'me too' particle."
+    "detailedExplanation": "**〜も (mo)** = 'also/too'. Replaces は/が/を. Negative = 'either/neither'.\n\n**Usage Tips:** も replaces, doesn't stack: 私も学生です (not 私はも学生). Shows surprise: 3時間も待った = 'I waited AS LONG AS 3 hours!'.\n\n**N5 Connection:** The 'me too' particle.",
+    "blankTarget": "も"
   },
   {
     "id": "g-a2-01",
@@ -297,7 +302,8 @@
     ],
     "mastered": false,
     "hub": "Verb Conjugation",
-    "detailedExplanation": "**〜たい (tai)** expresses desire — 'want to do'. Attach to verb stem (remove ます).\n\n**Usage Tips:** Use for YOUR desires or direct questions. For others: 〜たがる. Casual: 行きたい！ を often changes to が: 寿司が食べたい.\n\n**N4 Connection:** Drop ます, add たい = instant desire."
+    "detailedExplanation": "**〜たい (tai)** expresses desire — 'want to do'. Attach to verb stem (remove ます).\n\n**Usage Tips:** Use for YOUR desires or direct questions. For others: 〜たがる. Casual: 行きたい！ を often changes to が: 寿司が食べたい.\n\n**N4 Connection:** Drop ます, add たい = instant desire.",
+    "blankTarget": "たい"
   },
   {
     "id": "g-a2-02",
@@ -364,7 +370,8 @@
     ],
     "mastered": false,
     "hub": "Verb Conjugation",
-    "detailedExplanation": "**〜てもいいですか** asks permission — 'May I do ~?' て-form + もいいですか.\n\n**Usage Tips:** Casual: 〜ていい？ Formal: 〜してもよろしいでしょうか. Answer: はい、いいですよ / すみません、ちょっと...\n\n**N4 Connection:** Reverse of てください — asking for yourself."
+    "detailedExplanation": "**〜てもいいですか** asks permission — 'May I do ~?' て-form + もいいですか.\n\n**Usage Tips:** Casual: 〜ていい？ Formal: 〜してもよろしいでしょうか. Answer: はい、いいですよ / すみません、ちょっと...\n\n**N4 Connection:** Reverse of てください — asking for yourself.",
+    "blankTarget": "てもいいですか"
   },
   {
     "id": "g-a2-04",
@@ -397,7 +404,8 @@
     ],
     "mastered": false,
     "hub": "Verb Conjugation",
-    "detailedExplanation": "**〜ないでください** asks someone NOT to do. ない-form + でください.\n\n**Usage Tips:** Stronger prohibition: 〜てはいけません. Casual: 〜ないで(ね). Polite enough for work.\n\n**N4 Connection:** Negative partner of てください."
+    "detailedExplanation": "**〜ないでください** asks someone NOT to do. ない-form + でください.\n\n**Usage Tips:** Stronger prohibition: 〜てはいけません. Casual: 〜ないで(ね). Polite enough for work.\n\n**N4 Connection:** Negative partner of てください.",
+    "blankTarget": "ないでください"
   },
   {
     "id": "g-a2-05",
@@ -430,7 +438,8 @@
     ],
     "mastered": false,
     "hub": "Conjunctive Particles",
-    "detailedExplanation": "**〜ので (node)** gives an objective reason — politer than から.\n\n**Usage Tips:** ので = fact-based (objective). から = personal (subjective). Use ので with bosses/customers. Na-adj/noun need なので: 休みなので.\n\n**N4 Connection:** Upgrade from から when you need to be polite."
+    "detailedExplanation": "**〜ので (node)** gives an objective reason — politer than から.\n\n**Usage Tips:** ので = fact-based (objective). から = personal (subjective). Use ので with bosses/customers. Na-adj/noun need なので: 休みなので.\n\n**N4 Connection:** Upgrade from から when you need to be polite.",
+    "blankTarget": "ので"
   },
   {
     "id": "g-a2-06",
@@ -531,7 +540,8 @@
     ],
     "mastered": false,
     "hub": "Building Sentences and Clauses",
-    "detailedExplanation": "**〜てから** means 'after doing ~'. Sequential: do A, THEN B.\n\n**Usage Tips:** Don't confuse with から (reason). 食べてから出かける = 'eat THEN go out' vs 食べたから出かける = 'BECAUSE I ate, I go out'.\n\n**N4 Connection:** Useful for describing procedures at work."
+    "detailedExplanation": "**〜てから** means 'after doing ~'. Sequential: do A, THEN B.\n\n**Usage Tips:** Don't confuse with から (reason). 食べてから出かける = 'eat THEN go out' vs 食べたから出かける = 'BECAUSE I ate, I go out'.\n\n**N4 Connection:** Useful for describing procedures at work.",
+    "blankTarget": "てから"
   },
   {
     "id": "g-a2-09",
@@ -564,7 +574,8 @@
     ],
     "mastered": false,
     "hub": "Conditional Expressions",
-    "detailedExplanation": "**〜なら** means 'if' — hypothetical condition or advice based on context.\n\n**Usage Tips:** なら is for 'if given that situation...' 行くなら傘を持って = 'If you're going, take an umbrella'. Also 'speaking of': 日本語なら、あの先生がいいよ.\n\n**N4 Connection:** One of four 'if' forms — the one for responding to context."
+    "detailedExplanation": "**〜なら** means 'if' — hypothetical condition or advice based on context.\n\n**Usage Tips:** なら is for 'if given that situation...' 行くなら傘を持って = 'If you're going, take an umbrella'. Also 'speaking of': 日本語なら、あの先生がいいよ.\n\n**N4 Connection:** One of four 'if' forms — the one for responding to context.",
+    "blankTarget": "なら"
   },
   {
     "id": "g-a2-10",
@@ -637,7 +648,8 @@
     ],
     "mastered": false,
     "hub": "Building Sentences and Clauses",
-    "detailedExplanation": "**〜といい** expresses a hope or wish about something. Attach it to the plain (dictionary) form of a verb to say \"I hope [X happens]\". It's the N3 upgrade from the simple N4 〜たい (want to) — たい is about what YOU want to do, while といい is about hoping for a situation, often outside your control.\n\n**Usage Tips:** といい is for hopes about future events. For past events that didn't happen, use ばよかった (should have). Compare: 合格するといい (I hope I pass) vs 合格すればよかった (I should have passed [but didn't]). Adding ですね softens it and invites agreement. For stronger hopes in casual speech, といいな is common.\n\n**N4 Connection:** You already know 〜たい (want to). Think of といい as the opposite direction — instead of \"I want to do X\", it's \"I hope X happens\". This distinction matters in Japanese because direct desire (たい) can sound pushy, while といい is softer and more appropriate for situations you can't control."
+    "detailedExplanation": "**〜といい** expresses a hope or wish about something. Attach it to the plain (dictionary) form of a verb to say \"I hope [X happens]\". It's the N3 upgrade from the simple N4 〜たい (want to) — たい is about what YOU want to do, while といい is about hoping for a situation, often outside your control.\n\n**Usage Tips:** といい is for hopes about future events. For past events that didn't happen, use ばよかった (should have). Compare: 合格するといい (I hope I pass) vs 合格すればよかった (I should have passed [but didn't]). Adding ですね softens it and invites agreement. For stronger hopes in casual speech, といいな is common.\n\n**N4 Connection:** You already know 〜たい (want to). Think of といい as the opposite direction — instead of \"I want to do X\", it's \"I hope X happens\". This distinction matters in Japanese because direct desire (たい) can sound pushy, while といい is softer and more appropriate for situations you can't control.",
+    "blankTarget": "といい"
   },
   {
     "id": "g-b1-02",
@@ -840,7 +852,8 @@
     ],
     "mastered": false,
     "hub": "Building Sentences and Clauses",
-    "detailedExplanation": "**〜ために** defines purpose (using the dictionary form: 〜するために) or explains cause (using past form: 〜したために). For purpose, the subject of both the goal and the action should be the same. You are clearly stating why you are taking a specific step.\n\n### Usage Tips\nThis is essential for business reports where you must justify your actions. Noun usage is simple: 家族[かぞく]のために (for my family's sake). When using it for cause, remember it has a negative/serious nuance—use it when explaining accidents or failures.\n\n### Connection to Easier Grammar\nIt builds on your knowledge of noun modifiers. It's essentially saying 'for the sake of X'. If you know how to use の (family's = 家族の), you are half-way there."
+    "detailedExplanation": "**〜ために** defines purpose (using the dictionary form: 〜するために) or explains cause (using past form: 〜したために). For purpose, the subject of both the goal and the action should be the same. You are clearly stating why you are taking a specific step.\n\n### Usage Tips\nThis is essential for business reports where you must justify your actions. Noun usage is simple: 家族[かぞく]のために (for my family's sake). When using it for cause, remember it has a negative/serious nuance—use it when explaining accidents or failures.\n\n### Connection to Easier Grammar\nIt builds on your knowledge of noun modifiers. It's essentially saying 'for the sake of X'. If you know how to use の (family's = 家族の), you are half-way there.",
+    "blankTarget": "ために"
   },
   {
     "id": "g-b1-08",
@@ -873,7 +886,8 @@
     ],
     "mastered": false,
     "hub": "Conditional Expressions",
-    "detailedExplanation": "**〜ば** (the ba-conditional) expresses a condition—either a natural consequence or a standard requirement. To conjugate: u-verbs → final 'u' to 'e' (飲む→飲めば); ru-verbs → drop 'ru', add 'reba' (食べる→食べれば). It suggests that if X is met, Y naturally happens.\n\n### Usage Tips\nIt's ideal for general truths or business conditions. It sounds slightly more structured than the casual 〜たら. Be careful not to use it for future personal intent (e.g., 'If I go, I will buy...'), where 〜たら is better.\n\n### Connection to Easier Grammar\nIt's a step up from basic verb conjugation. It uses the same verb roots you've been using since level A1, just with a new ending."
+    "detailedExplanation": "**〜ば** (the ba-conditional) expresses a condition—either a natural consequence or a standard requirement. To conjugate: u-verbs → final 'u' to 'e' (飲む→飲めば); ru-verbs → drop 'ru', add 'reba' (食べる→食べれば). It suggests that if X is met, Y naturally happens.\n\n### Usage Tips\nIt's ideal for general truths or business conditions. It sounds slightly more structured than the casual 〜たら. Be careful not to use it for future personal intent (e.g., 'If I go, I will buy...'), where 〜たら is better.\n\n### Connection to Easier Grammar\nIt's a step up from basic verb conjugation. It uses the same verb roots you've been using since level A1, just with a new ending.",
+    "blankTarget": "ば"
   },
   {
     "id": "g-b1-09",
@@ -906,7 +920,8 @@
     ],
     "mastered": false,
     "hub": "Conjunctive Particles",
-    "detailedExplanation": "**〜のに** (concessive) connects clauses where the result contradicts expectations, often carrying a tone of regret, frustration, or criticism. It highlights the gap between what 'should' have happened and what actually did.\n\n### Usage Tips\nUse this to point out discrepancies. It's common in work environments when deadlines are missed or promises aren't kept. Avoid confusing it with 〜ために (purpose), which is used for positive goals.\n\n### Connection to Easier Grammar\nIt attaches to plain forms. You already know how to use plain forms to modify nouns; here, you just add のに to express that contradiction."
+    "detailedExplanation": "**〜のに** (concessive) connects clauses where the result contradicts expectations, often carrying a tone of regret, frustration, or criticism. It highlights the gap between what 'should' have happened and what actually did.\n\n### Usage Tips\nUse this to point out discrepancies. It's common in work environments when deadlines are missed or promises aren't kept. Avoid confusing it with 〜ために (purpose), which is used for positive goals.\n\n### Connection to Easier Grammar\nIt attaches to plain forms. You already know how to use plain forms to modify nouns; here, you just add のに to express that contradiction.",
+    "blankTarget": "のに"
   },
   {
     "id": "g-b1-10",
@@ -939,7 +954,8 @@
     ],
     "mastered": false,
     "hub": "Conditional Expressions",
-    "detailedExplanation": "**〜ても** attaches to the て-form of verbs and adjectives (or でも for nouns/na-adjectives) to signify that the following result remains unchanged regardless of the condition. It’s the go-to pattern for 'no matter what happens'.\n\n### Usage Tips\nIt’s extremely versatile. Use it to show resilience in work projects or just to handle daily inconveniences. 〜なくても means 'even if you don't do X'—very helpful for setting boundaries.\n\n### Connection to Easier Grammar\nIt relies entirely on the て-form (like 飲んで), which is the foundation of most A2 grammar. If you know how to link sentences (linking verbs), you know how to use this."
+    "detailedExplanation": "**〜ても** attaches to the て-form of verbs and adjectives (or でも for nouns/na-adjectives) to signify that the following result remains unchanged regardless of the condition. It’s the go-to pattern for 'no matter what happens'.\n\n### Usage Tips\nIt’s extremely versatile. Use it to show resilience in work projects or just to handle daily inconveniences. 〜なくても means 'even if you don't do X'—very helpful for setting boundaries.\n\n### Connection to Easier Grammar\nIt relies entirely on the て-form (like 飲んで), which is the foundation of most A2 grammar. If you know how to link sentences (linking verbs), you know how to use this.",
+    "blankTarget": "ても"
   },
   {
     "id": "g-b2-01",
@@ -972,7 +988,8 @@
     ],
     "mastered": false,
     "hub": "Building Sentences and Clauses",
-    "detailedExplanation": "**〜に違いない** expresses strong certainty based on reasoning or evidence—stronger than 〜でしょう or 〜はず. Plain form + に違いない. Do not use when you have direct proof; use when highly confident from indirect evidence.\n\n### Usage Tips\nUse it when you feel extremely confident due to logical deduction. It’s a very assertive way to share your take on a situation. Avoid it when presenting absolute facts; use this for 'inferred facts'.\n\n### Connection to Easier Grammar\nIt attaches to plain forms (like 〜はずだ). If you can say 'it is busy' (忙しい), you can use this structure for 'it must be busy' (忙しいに違いない)."
+    "detailedExplanation": "**〜に違いない** expresses strong certainty based on reasoning or evidence—stronger than 〜でしょう or 〜はず. Plain form + に違いない. Do not use when you have direct proof; use when highly confident from indirect evidence.\n\n### Usage Tips\nUse it when you feel extremely confident due to logical deduction. It’s a very assertive way to share your take on a situation. Avoid it when presenting absolute facts; use this for 'inferred facts'.\n\n### Connection to Easier Grammar\nIt attaches to plain forms (like 〜はずだ). If you can say 'it is busy' (忙しい), you can use this structure for 'it must be busy' (忙しいに違いない).",
+    "blankTarget": "に違いない"
   },
   {
     "id": "g-b2-02",
@@ -1005,7 +1022,8 @@
     ],
     "mastered": false,
     "hub": "Verb Conjugation",
-    "detailedExplanation": "**〜かけ** (verb stem + かけ) describes something begun but not yet finished. As a noun modifier use の: 読みかけの本 (a half-read book). 〜かける can also mean 'to be about to': 死にかけた = was on the verge of dying.\n\n### Usage Tips\nThis is a compact way to describe states of work in progress. It's common for daily life chores (飲みかけ, 読みかけ) or professional tasks (書きかけ). It’s efficient and descriptive.\n\n### Connection to Easier Grammar\nIt works like basic verb conjugation (verb stem + suffix). If you can identify the stem of a verb (e.g., 飲み from 飲む), you are set."
+    "detailedExplanation": "**〜かけ** (verb stem + かけ) describes something begun but not yet finished. As a noun modifier use の: 読みかけの本 (a half-read book). 〜かける can also mean 'to be about to': 死にかけた = was on the verge of dying.\n\n### Usage Tips\nThis is a compact way to describe states of work in progress. It's common for daily life chores (飲みかけ, 読みかけ) or professional tasks (書きかけ). It’s efficient and descriptive.\n\n### Connection to Easier Grammar\nIt works like basic verb conjugation (verb stem + suffix). If you can identify the stem of a verb (e.g., 飲み from 飲む), you are set.",
+    "blankTarget": "かけ"
   },
   {
     "id": "g-b2-03",
@@ -1072,7 +1090,8 @@
     ],
     "mastered": false,
     "hub": "Verbs",
-    "detailedExplanation": "**〜つつある** (verb stem + つつある) describes an ongoing gradual change—more formal than 〜ている. Note: 〜つつ alone (without ある) means 'while doing simultaneously', e.g., 考えつつ話した (spoke while thinking).\n\n### Usage Tips\nThis is excellent for business reports describing slow shifts or ongoing trends. It sounds far more objective and professional than just saying 〜ている.\n\n### Connection to Easier Grammar\nIt's an extension of your verb stem knowledge. If you can conjugate verbs, you can describe gradual change with ease."
+    "detailedExplanation": "**〜つつある** (verb stem + つつある) describes an ongoing gradual change—more formal than 〜ている. Note: 〜つつ alone (without ある) means 'while doing simultaneously', e.g., 考えつつ話した (spoke while thinking).\n\n### Usage Tips\nThis is excellent for business reports describing slow shifts or ongoing trends. It sounds far more objective and professional than just saying 〜ている.\n\n### Connection to Easier Grammar\nIt's an extension of your verb stem knowledge. If you can conjugate verbs, you can describe gradual change with ease.",
+    "blankTarget": "つつある"
   },
   {
     "id": "g-b2-05",
@@ -1105,7 +1124,8 @@
     ],
     "mastered": false,
     "hub": "Advanced Grammar",
-    "detailedExplanation": "**〜わけにはいかない** means the speaker cannot do something due to social pressure or duty—not physical inability. The double-negative logic: 行かないわけにはいかない = 'there is no reason I can NOT go' = I must go. Contrast with できない (inability).\n\n### Usage Tips\nThis shows you understand Japanese social nuance. It’s perfect for 'I’d love to help, but social duty dictates I must do X instead.' It’s strong and polite.\n\n### Connection to Easier Grammar\nIt relies on dictionary/negative plain forms. If you've mastered negative conjugation, you're ready to add this formal social layer."
+    "detailedExplanation": "**〜わけにはいかない** means the speaker cannot do something due to social pressure or duty—not physical inability. The double-negative logic: 行かないわけにはいかない = 'there is no reason I can NOT go' = I must go. Contrast with できない (inability).\n\n### Usage Tips\nThis shows you understand Japanese social nuance. It’s perfect for 'I’d love to help, but social duty dictates I must do X instead.' It’s strong and polite.\n\n### Connection to Easier Grammar\nIt relies on dictionary/negative plain forms. If you've mastered negative conjugation, you're ready to add this formal social layer.",
+    "blankTarget": "わけにはいかない"
   },
   {
     "id": "g-b2-06",
@@ -1172,7 +1192,8 @@
     ],
     "mastered": false,
     "hub": "Formal/Written Expression",
-    "detailedExplanation": "**〜のみならず** is the formal written equivalent of 〜だけでなく (not only… but also…). Attaches to nouns and plain forms. Common in academic writing, news articles, and formal speeches. The second clause typically uses も to reinforce the additive meaning.\n\n### Usage Tips\nThis is essential for formal business documents or presentations. It sounds authoritative and precise. Use it to build arguments in written reports.\n\n### Connection to Easier Grammar\nIt maps directly to the basic 〜だけでなく you already use. It's just upgrading your vocabulary for professional writing."
+    "detailedExplanation": "**〜のみならず** is the formal written equivalent of 〜だけでなく (not only… but also…). Attaches to nouns and plain forms. Common in academic writing, news articles, and formal speeches. The second clause typically uses も to reinforce the additive meaning.\n\n### Usage Tips\nThis is essential for formal business documents or presentations. It sounds authoritative and precise. Use it to build arguments in written reports.\n\n### Connection to Easier Grammar\nIt maps directly to the basic 〜だけでなく you already use. It's just upgrading your vocabulary for professional writing.",
+    "blankTarget": "のみならず"
   },
   {
     "id": "g-b2-08",
@@ -1205,7 +1226,8 @@
     ],
     "mastered": false,
     "hub": "Advanced Grammar",
-    "detailedExplanation": "**〜どころか** negates an expectation and replaces it with the opposite or a more extreme reality. It can mean 'far from X', 'not just X but even Y', or 'let alone X'. The speaker's tone is often surprise or frustration.\n\n### Usage Tips\nThis is great for expressing disappointment, strong contrast, or humorous frustration. It’s perfect when your plans go completely off-track—perfect for venting about projects!\n\n### Connection to Easier Grammar\nIt works like basic contrast (〜ではなく). If you can contrast two ideas (e.g., I'm not a teacher but a doctor), you’re ready for this."
+    "detailedExplanation": "**〜どころか** negates an expectation and replaces it with the opposite or a more extreme reality. It can mean 'far from X', 'not just X but even Y', or 'let alone X'. The speaker's tone is often surprise or frustration.\n\n### Usage Tips\nThis is great for expressing disappointment, strong contrast, or humorous frustration. It’s perfect when your plans go completely off-track—perfect for venting about projects!\n\n### Connection to Easier Grammar\nIt works like basic contrast (〜ではなく). If you can contrast two ideas (e.g., I'm not a teacher but a doctor), you’re ready for this.",
+    "blankTarget": "どころか"
   },
   {
     "id": "g-b2-09",
@@ -1272,7 +1294,8 @@
     ],
     "mastered": false,
     "hub": "Formal/Written Expression",
-    "detailedExplanation": "**〜に伴い/に伴って** expresses two changes occurring simultaneously or as cause and effect. Noun or plain form + に伴い. Formal に伴い is used in written contexts; に伴って is slightly less formal. Common in business reports and journalism.\n\n### Usage Tips\nThis is a staple of professional writing. Whenever you need to describe how one event triggered another, this is your primary tool.\n\n### Connection to Easier Grammar\nIt relates to the concept of 'accompanying' things. If you know that 'tomoni' means together, you have the base for this formal construction."
+    "detailedExplanation": "**〜に伴い/に伴って** expresses two changes occurring simultaneously or as cause and effect. Noun or plain form + に伴い. Formal に伴い is used in written contexts; に伴って is slightly less formal. Common in business reports and journalism.\n\n### Usage Tips\nThis is a staple of professional writing. Whenever you need to describe how one event triggered another, this is your primary tool.\n\n### Connection to Easier Grammar\nIt relates to the concept of 'accompanying' things. If you know that 'tomoni' means together, you have the base for this formal construction.",
+    "blankTarget": "に伴い"
   },
   {
     "id": "g-c1-01",
@@ -1373,7 +1396,8 @@
     ],
     "mastered": false,
     "hub": "Formal/Written Expression",
-    "detailedExplanation": "**〜やいなや** (dictionary form + やいなや) describes a spontaneous action immediately triggered by another. Literary written tone; the second action occurs almost simultaneously—often unexpectedly. More formal than 〜とたんに.\n\n### Usage Tips\nThis is great for high-impact narration or news reporting. It captures the suddenness of an event. Don't use it for intentional or prepared actions; it’s strictly for reflex-like sequences.\n\n### Connection to Easier Grammar\nIt attaches to the dictionary form. It’s an alternative to the simpler 〜とたんに (on the spot), elevated for a more narrative tone."
+    "detailedExplanation": "**〜やいなや** (dictionary form + やいなや) describes a spontaneous action immediately triggered by another. Literary written tone; the second action occurs almost simultaneously—often unexpectedly. More formal than 〜とたんに.\n\n### Usage Tips\nThis is great for high-impact narration or news reporting. It captures the suddenness of an event. Don't use it for intentional or prepared actions; it’s strictly for reflex-like sequences.\n\n### Connection to Easier Grammar\nIt attaches to the dictionary form. It’s an alternative to the simpler 〜とたんに (on the spot), elevated for a more narrative tone.",
+    "blankTarget": "やいなや"
   },
   {
     "id": "g-c1-04",
@@ -1406,7 +1430,8 @@
     ],
     "mastered": false,
     "hub": "Formal/Written Expression",
-    "detailedExplanation": "**〜ながらも** acknowledges a contradictory concurrent state with literary nuance beyond 〜のに or 〜けれど. Attaches to verb stems, adjective stems, or nouns. Both clauses typically share the same subject. Common in essays and formal narratives.\n\n### Usage Tips\nThis conveys sincerity and resilience. It's often used when admitting to a limitation ('I'm busy') while affirming your commitment ('I'm still studying').\n\n### Connection to Easier Grammar\nIt builds on the simple 〜ながら you learned early on. If you can use it to link 'while' actions, adding the particle も brings that contrast you’ve been looking for."
+    "detailedExplanation": "**〜ながらも** acknowledges a contradictory concurrent state with literary nuance beyond 〜のに or 〜けれど. Attaches to verb stems, adjective stems, or nouns. Both clauses typically share the same subject. Common in essays and formal narratives.\n\n### Usage Tips\nThis conveys sincerity and resilience. It's often used when admitting to a limitation ('I'm busy') while affirming your commitment ('I'm still studying').\n\n### Connection to Easier Grammar\nIt builds on the simple 〜ながら you learned early on. If you can use it to link 'while' actions, adding the particle も brings that contrast you’ve been looking for.",
+    "blankTarget": "ながらも"
   },
   {
     "id": "g-c1-05",
@@ -1439,7 +1464,8 @@
     ],
     "mastered": false,
     "hub": "Advanced Grammar",
-    "detailedExplanation": "**〜とはいえ** concedes a commonly accepted fact in the first clause, then qualifies or contradicts it in the second. More formal than 〜けれど or 〜でも. Attaches to plain form verbs, adjectives, and nouns. Frequently used in editorials and formal essays.\n\n### Usage Tips\nThis is brilliant for setting up a nuance. It allows you to acknowledge a general rule and then provide a necessary caveat. Very balanced for professional writing.\n\n### Connection to Easier Grammar\nIt uses the basic 〜といえる (to say that). It’s just an elevated version of 'even if people say that...' which you can easily grasp with basic sentence-linking."
+    "detailedExplanation": "**〜とはいえ** concedes a commonly accepted fact in the first clause, then qualifies or contradicts it in the second. More formal than 〜けれど or 〜でも. Attaches to plain form verbs, adjectives, and nouns. Frequently used in editorials and formal essays.\n\n### Usage Tips\nThis is brilliant for setting up a nuance. It allows you to acknowledge a general rule and then provide a necessary caveat. Very balanced for professional writing.\n\n### Connection to Easier Grammar\nIt uses the basic 〜といえる (to say that). It’s just an elevated version of 'even if people say that...' which you can easily grasp with basic sentence-linking.",
+    "blankTarget": "とはいえ"
   },
   {
     "id": "g-c1-06",
@@ -1472,7 +1498,8 @@
     ],
     "mastered": false,
     "hub": "Formal/Written Expression",
-    "detailedExplanation": "**〜をもって** has two formal uses: (1) delineating a point in time 'as of / effective from' (本日をもって = as of today); (2) indicating means 'by means of' (誠意[せいい]をもって = with sincerity). Used in official announcements, contracts, and business closings.\n\n### Usage Tips\nThis is extremely formal and almost exclusively used in written business or official settings. Use it for closing statements, formal apologies, or clarifying effective dates. It projects high authority.\n\n### Connection to Easier Grammar\nIt’s the formal version of 〜で (indicating means). If you can use 〜で, you’re just upgrading to a higher formality level."
+    "detailedExplanation": "**〜をもって** has two formal uses: (1) delineating a point in time 'as of / effective from' (本日をもって = as of today); (2) indicating means 'by means of' (誠意[せいい]をもって = with sincerity). Used in official announcements, contracts, and business closings.\n\n### Usage Tips\nThis is extremely formal and almost exclusively used in written business or official settings. Use it for closing statements, formal apologies, or clarifying effective dates. It projects high authority.\n\n### Connection to Easier Grammar\nIt’s the formal version of 〜で (indicating means). If you can use 〜で, you’re just upgrading to a higher formality level.",
+    "blankTarget": "をもって"
   },
   {
     "id": "g-c1-07",
@@ -1539,7 +1566,8 @@
     ],
     "mastered": false,
     "hub": "Formal/Written Expression",
-    "detailedExplanation": "**〜いかんによらず** means 'regardless of'. いかん means 'the state of / how things are'. Noun の + いかんによらず. Very formal; used in contracts, official documents, and formal speeches. Variants: いかんにかかわらず, いかんを問わず.\n\n### Usage Tips\nThis is strictly for high-stakes formal environments. Use it when setting categorical rules, like in company policy or legal notices. It is impersonal and decisive.\n\n### Connection to Easier Grammar\nIt’s a formal synonym for 'regardless of' (〜に関係なく). If you understand the idea of 'making no difference', you’ve got the conceptual base down."
+    "detailedExplanation": "**〜いかんによらず** means 'regardless of'. いかん means 'the state of / how things are'. Noun の + いかんによらず. Very formal; used in contracts, official documents, and formal speeches. Variants: いかんにかかわらず, いかんを問わず.\n\n### Usage Tips\nThis is strictly for high-stakes formal environments. Use it when setting categorical rules, like in company policy or legal notices. It is impersonal and decisive.\n\n### Connection to Easier Grammar\nIt’s a formal synonym for 'regardless of' (〜に関係なく). If you understand the idea of 'making no difference', you’ve got the conceptual base down.",
+    "blankTarget": "いかんによらず"
   },
   {
     "id": "g-c2-01",
@@ -1572,7 +1600,8 @@
     ],
     "mastered": false,
     "hub": "Formal/Written Expression",
-    "detailedExplanation": "**〜禁じ得ない** (noun + を禁じ得ない) is a literary/written expression meaning 'cannot suppress an emotion'. The noun is typically an emotion (驚[おどろ]き, 感動[かんどう], 怒り). Exclusively formal; found in written commentaries, literature, and formal statements.\n\n### Usage Tips\nThis is a highly evocative, literary, and formal construction. It allows you to express intense feelings with professional distance. It’s powerful in speeches or reflective essays.\n\n### Connection to Easier Grammar\nIt uses the potential form of the verb 禁[きん]じる (to forbid/suppress). If you’ve learned potential forms and basic emotion-related nouns, you’re ready to combine them in this formal way."
+    "detailedExplanation": "**〜禁じ得ない** (noun + を禁じ得ない) is a literary/written expression meaning 'cannot suppress an emotion'. The noun is typically an emotion (驚[おどろ]き, 感動[かんどう], 怒り). Exclusively formal; found in written commentaries, literature, and formal statements.\n\n### Usage Tips\nThis is a highly evocative, literary, and formal construction. It allows you to express intense feelings with professional distance. It’s powerful in speeches or reflective essays.\n\n### Connection to Easier Grammar\nIt uses the potential form of the verb 禁[きん]じる (to forbid/suppress). If you’ve learned potential forms and basic emotion-related nouns, you’re ready to combine them in this formal way.",
+    "blankTarget": "禁じ得ない"
   },
   {
     "id": "g-c2-02",
@@ -1605,7 +1634,8 @@
     ],
     "mastered": false,
     "hub": "Formal/Written Expression",
-    "detailedExplanation": "**〜ともなく/〜ともなしに** expresses an action without intention or clear awareness. Dictionary form + ともなく. Also: どこからともなく (from out of nowhere), 誰[だれ]ともなく (no one in particular). Literary and introspective in tone.\n\n### Usage Tips\nThis is brilliant for introspective writing. It conveys a dreamlike or aimless quality. It’s less about a clear plan and more about capturing the spontaneous nature of moments.\n\n### Connection to Easier Grammar\nIt uses common particles (と, も, なく). You already know these individual building blocks; you’re simply combining them to describe a sense of aimlessness."
+    "detailedExplanation": "**〜ともなく/〜ともなしに** expresses an action without intention or clear awareness. Dictionary form + ともなく. Also: どこからともなく (from out of nowhere), 誰[だれ]ともなく (no one in particular). Literary and introspective in tone.\n\n### Usage Tips\nThis is brilliant for introspective writing. It conveys a dreamlike or aimless quality. It’s less about a clear plan and more about capturing the spontaneous nature of moments.\n\n### Connection to Easier Grammar\nIt uses common particles (と, も, なく). You already know these individual building blocks; you’re simply combining them to describe a sense of aimlessness.",
+    "blankTarget": "ともなく"
   },
   {
     "id": "g-c2-03",
@@ -1638,7 +1668,8 @@
     ],
     "mastered": false,
     "hub": "Advanced Grammar",
-    "detailedExplanation": "**〜にもほどがある** expresses strong indignation that something has exceeded acceptable limits. Noun / na-adjective stem + にもほどがある. Emotionally charged; used in rebukes. The nuance is 'there's a limit to X—you've gone too far!'\n\n### Usage Tips\nThis is a strong, confrontational phrase. It’s strictly for expressing frustration when someone has crossed a clear boundary. It carries significant emotional weight, so use it sparingly.\n\n### Connection to Easier Grammar\nIt relies on basic noun modifiers (にも) and the noun for limit (ほど). If you can express basic boundaries, you’ve mastered the core concept here."
+    "detailedExplanation": "**〜にもほどがある** expresses strong indignation that something has exceeded acceptable limits. Noun / na-adjective stem + にもほどがある. Emotionally charged; used in rebukes. The nuance is 'there's a limit to X—you've gone too far!'\n\n### Usage Tips\nThis is a strong, confrontational phrase. It’s strictly for expressing frustration when someone has crossed a clear boundary. It carries significant emotional weight, so use it sparingly.\n\n### Connection to Easier Grammar\nIt relies on basic noun modifiers (にも) and the noun for limit (ほど). If you can express basic boundaries, you’ve mastered the core concept here.",
+    "blankTarget": "にもほどがある"
   },
   {
     "id": "g-c2-04",
@@ -1671,7 +1702,8 @@
     ],
     "mastered": false,
     "hub": "Formal/Written Expression",
-    "detailedExplanation": "**〜をものともせず** describes facing a serious challenge (noun) with courage and determination, unfazed. Noun + をものともせず. Heroic/admirable nuance. Exclusively formal and literary; found in news reports of achievements and historical narratives.\n\n### Usage Tips\nThis carries a sense of nobility or intense drive. Perfect for acknowledging someone’s impressive commitment in the face of significant obstacles.\n\n### Connection to Easier Grammar\nIt builds on the simple concept of ignoring things. It’s an elevated construction for 'disregarding X', which is a fundamental concept in both everyday and formal language."
+    "detailedExplanation": "**〜をものともせず** describes facing a serious challenge (noun) with courage and determination, unfazed. Noun + をものともせず. Heroic/admirable nuance. Exclusively formal and literary; found in news reports of achievements and historical narratives.\n\n### Usage Tips\nThis carries a sense of nobility or intense drive. Perfect for acknowledging someone’s impressive commitment in the face of significant obstacles.\n\n### Connection to Easier Grammar\nIt builds on the simple concept of ignoring things. It’s an elevated construction for 'disregarding X', which is a fundamental concept in both everyday and formal language.",
+    "blankTarget": "をものともせず"
   },
   {
     "id": "g-a1-09",
@@ -1704,7 +1736,8 @@
     ],
     "mastered": false,
     "hub": "Verb Conjugation",
-    "detailedExplanation": "**〜てください** politely requests action. て-form + ください.\n\n**Usage Tips:** Casual: just て-form (待ってて). Polite: お+masu-stem+ください (お待ちください). Prohibition: ないでください.\n\n**N5 Connection:** て-form is your gateway to many grammar patterns."
+    "detailedExplanation": "**〜てください** politely requests action. て-form + ください.\n\n**Usage Tips:** Casual: just て-form (待ってて). Polite: お+masu-stem+ください (お待ちください). Prohibition: ないでください.\n\n**N5 Connection:** て-form is your gateway to many grammar patterns.",
+    "blankTarget": "てください"
   },
   {
     "id": "g-a1-10",
@@ -1737,7 +1770,8 @@
     ],
     "mastered": false,
     "hub": "Conjunctive Particles",
-    "detailedExplanation": "**〜から (kara)** gives a reason — 'because'. [Reason] から [Result].\n\n**Usage Tips:** から = YOUR subjective reason. For objective reasons use ので (politer). Can end sentence: だって忙しいから = 'Well, because I'm busy'.\n\n**N5 Connection:** Essential for explaining yourself at work."
+    "detailedExplanation": "**〜から (kara)** gives a reason — 'because'. [Reason] から [Result].\n\n**Usage Tips:** から = YOUR subjective reason. For objective reasons use ので (politer). Can end sentence: だって忙しいから = 'Well, because I'm busy'.\n\n**N5 Connection:** Essential for explaining yourself at work.",
+    "blankTarget": "から"
   },
   {
     "id": "g-a2-11",
@@ -1804,7 +1838,8 @@
     ],
     "mastered": false,
     "hub": "Building Sentences and Clauses",
-    "detailedExplanation": "**〜ほうがいい** gives advice — 'you should / it's better to'. た-form + ほうがいい.\n\n**Usage Tips:** Affirmative: 行ったほうがいい = should go. Negative: 行かないほうがいい = shouldn't go. Past regret: ほうがよかった = 'should have'.\n\n**N4 Connection:** Essential for giving/receiving advice."
+    "detailedExplanation": "**〜ほうがいい** gives advice — 'you should / it's better to'. た-form + ほうがいい.\n\n**Usage Tips:** Affirmative: 行ったほうがいい = should go. Negative: 行かないほうがいい = shouldn't go. Past regret: ほうがよかった = 'should have'.\n\n**N4 Connection:** Essential for giving/receiving advice.",
+    "blankTarget": "ほうがいい"
   },
   {
     "id": "g-b1-11",
@@ -1837,7 +1872,8 @@
     ],
     "mastered": false,
     "hub": "Verbs",
-    "detailedExplanation": "Indicates that an action was completed very recently according to the speaker's perception. It emphasizes the 'freshness' of the event. Form: **Verb (plain past/た-form)** + **ばかり**.\n\n### Usage Tips\nUse this for recent actions that still impact your current situation. In business, it's perfect for explaining why you might not have full info yet (e.g., 'I just arrived'). It’s more personal and emphasizes the time gap.\n\n### Connection to Easier Grammar\nIt relies on the plain past (た-form). You’ve used the た-form for simple past; now you just attach ばかり to indicate *when* it happened."
+    "detailedExplanation": "Indicates that an action was completed very recently according to the speaker's perception. It emphasizes the 'freshness' of the event. Form: **Verb (plain past/た-form)** + **ばかり**.\n\n### Usage Tips\nUse this for recent actions that still impact your current situation. In business, it's perfect for explaining why you might not have full info yet (e.g., 'I just arrived'). It’s more personal and emphasizes the time gap.\n\n### Connection to Easier Grammar\nIt relies on the plain past (た-form). You’ve used the た-form for simple past; now you just attach ばかり to indicate *when* it happened.",
+    "blankTarget": "たばかり"
   },
   {
     "id": "g-b1-12",
@@ -1870,7 +1906,8 @@
     ],
     "mastered": false,
     "hub": "Building Sentences and Clauses",
-    "detailedExplanation": "Expresses a goal or purpose. Unlike **〜ために**, **〜ように** is often used with potential verbs or negative forms to indicate an objective that is not entirely under the speaker's direct control.\n\n### Usage Tips\nIt is the standard for 'so that'. If you are setting a rule or goal for yourself or others, this is the grammar to use. Remember: it focuses on the outcome you *want* to achieve.\n\n### Connection to Easier Grammar\nIt directly follows dictionary/negative forms. You’ve mastered simple verb commands and requests; now you are using those same verb forms to justify your actions."
+    "detailedExplanation": "Expresses a goal or purpose. Unlike **〜ために**, **〜ように** is often used with potential verbs or negative forms to indicate an objective that is not entirely under the speaker's direct control.\n\n### Usage Tips\nIt is the standard for 'so that'. If you are setting a rule or goal for yourself or others, this is the grammar to use. Remember: it focuses on the outcome you *want* to achieve.\n\n### Connection to Easier Grammar\nIt directly follows dictionary/negative forms. You’ve mastered simple verb commands and requests; now you are using those same verb forms to justify your actions.",
+    "blankTarget": "ように"
   },
   {
     "id": "g-b2-11",
@@ -1937,7 +1974,8 @@
     ],
     "mastered": false,
     "hub": "Building Sentences and Clauses",
-    "detailedExplanation": "**〜わけだ (wake da)** expresses a logical conclusion or explanation — 'that's why', 'it follows that', 'no wonder'. It shows that something makes sense given the circumstances.\n\n**Usage Tips:** わけだ = logical result. わけではない = 'it doesn't mean that' (partial negation). Don't confuse with はずだ which means 'expected to be' (strong expectation). わけだ = natural conclusion based on facts.\n\n**N3 Connection:** You know だから for 'therefore'. わけだ is more nuanced — it explains the REASONING, not just the cause."
+    "detailedExplanation": "**〜わけだ (wake da)** expresses a logical conclusion or explanation — 'that's why', 'it follows that', 'no wonder'. It shows that something makes sense given the circumstances.\n\n**Usage Tips:** わけだ = logical result. わけではない = 'it doesn't mean that' (partial negation). Don't confuse with はずだ which means 'expected to be' (strong expectation). わけだ = natural conclusion based on facts.\n\n**N3 Connection:** You know だから for 'therefore'. わけだ is more nuanced — it explains the REASONING, not just the cause.",
+    "blankTarget": "わけだ"
   },
   {
     "id": "g-c1-09",
@@ -1970,7 +2008,8 @@
     ],
     "mastered": false,
     "hub": "Formal/Written Expression",
-    "detailedExplanation": "**〜がてら (gatara)** means 'while doing X, also do Y' — doing two things in one trip. Attach to verb stem or noun: 散歩がてら = 'while/on the walk'.\n\n**Usage Tips:** がてら implies doing one main action while taking the opportunity to do another. The second action benefits from the first's location/movement. It's slightly formal/old-fashioned but still used. Compare ついでに which is more common in daily conversation.\n\n**N3 Connection:** You know ながら (while doing). がてら specifically implies 'taking the opportunity to also do something else on the same trip/outing'."
+    "detailedExplanation": "**〜がてら (gatara)** means 'while doing X, also do Y' — doing two things in one trip. Attach to verb stem or noun: 散歩がてら = 'while/on the walk'.\n\n**Usage Tips:** がてら implies doing one main action while taking the opportunity to do another. The second action benefits from the first's location/movement. It's slightly formal/old-fashioned but still used. Compare ついでに which is more common in daily conversation.\n\n**N3 Connection:** You know ながら (while doing). がてら specifically implies 'taking the opportunity to also do something else on the same trip/outing'.",
+    "blankTarget": "がてら"
   },
   {
     "id": "g-c1-10",
@@ -2037,7 +2076,8 @@
     ],
     "mastered": false,
     "hub": "Formal/Written Expression",
-    "detailedExplanation": "**〜すら** emphasizes an extreme example to show that the situation is even more so for other things. Similar to **〜さえ**, but more formal and often used in negative contexts. Attaches directly to nouns.\n\n### Usage Tips\nThis highlights extreme conditions. Use it when even standard benchmarks are missing. It’s effective for adding a dramatic touch to your descriptions.\n\n### Connection to Easier Grammar\nIt functions identically to the common emphasis particles (さえ, でも). It’s a formal substitution, easily understood if you’ve handled basic emphasis particles."
+    "detailedExplanation": "**〜すら** emphasizes an extreme example to show that the situation is even more so for other things. Similar to **〜さえ**, but more formal and often used in negative contexts. Attaches directly to nouns.\n\n### Usage Tips\nThis highlights extreme conditions. Use it when even standard benchmarks are missing. It’s effective for adding a dramatic touch to your descriptions.\n\n### Connection to Easier Grammar\nIt functions identically to the common emphasis particles (さえ, でも). It’s a formal substitution, easily understood if you’ve handled basic emphasis particles.",
+    "blankTarget": "すら"
   },
   {
     "id": "g-c2-06",
@@ -2070,7 +2110,8 @@
     ],
     "mastered": false,
     "hub": "Formal/Written Expression",
-    "detailedExplanation": "A highly formal expression used to emphasize that even in a certain state or condition, something still applies. **Noun / Plain form** + **といえども**. Often used to introduce a caveat to a general statement.\n\n### Usage Tips\nThis is perfect for adding gravitas to an opinion or a rule. It emphasizes that the rule is universal, regardless of the exception being mentioned. It’s strongly assertive.\n\n### Connection to Easier Grammar\nIt expands on the basic 'even though' (〜ても). If you can express 'even though I am a child' (子供でも), this is just the ultra-formal way to do so."
+    "detailedExplanation": "A highly formal expression used to emphasize that even in a certain state or condition, something still applies. **Noun / Plain form** + **といえども**. Often used to introduce a caveat to a general statement.\n\n### Usage Tips\nThis is perfect for adding gravitas to an opinion or a rule. It emphasizes that the rule is universal, regardless of the exception being mentioned. It’s strongly assertive.\n\n### Connection to Easier Grammar\nIt expands on the basic 'even though' (〜ても). If you can express 'even though I am a child' (子供でも), this is just the ultra-formal way to do so.",
+    "blankTarget": "といえども"
   },
   {
     "id": "g-b1-13",
@@ -2313,7 +2354,8 @@
     ],
     "mastered": false,
     "hub": "Building Sentences and Clauses",
-    "detailedExplanation": "**〜らしい** has three uses: (1) hearsay — based on what you heard; (2) typical behavior — 男らしい (manly); (3) appearance-based judgment. Do not confuse with 〜ようだ (visual evidence) or 〜そうだ (hearsay or appearance).\n\n### Usage Tips\nThis is brilliant for gossip or sharing news you heard from other people. It’s also the perfect word for describing archetypes (e.g., 'professional-like').\n\n### Connection to Easier Grammar\nIt’s a simple adjective-like ending. You’ve used 〜い adjectives for a long time; adding this suffix follows the same logic."
+    "detailedExplanation": "**〜らしい** has three uses: (1) hearsay — based on what you heard; (2) typical behavior — 男らしい (manly); (3) appearance-based judgment. Do not confuse with 〜ようだ (visual evidence) or 〜そうだ (hearsay or appearance).\n\n### Usage Tips\nThis is brilliant for gossip or sharing news you heard from other people. It’s also the perfect word for describing archetypes (e.g., 'professional-like').\n\n### Connection to Easier Grammar\nIt’s a simple adjective-like ending. You’ve used 〜い adjectives for a long time; adding this suffix follows the same logic.",
+    "blankTarget": "らしい"
   },
   {
     "id": "g-b1-20",
@@ -2346,7 +2388,8 @@
     ],
     "mastered": false,
     "hub": "Building Sentences and Clauses",
-    "detailedExplanation": "**〜たびに** means 'every time something happens'. Dictionary form + たびに. Noun + の + たびに. Emphasizes that each occurrence produces a consistent result.\n\n### Usage Tips\nUse this to highlight patterns in your life. It’s perfect for 'Whenever I do X, Y happens.' Great for both emotional reflections and professional observations.\n\n### Connection to Easier Grammar\nIt uses the basic noun 'tabi' (time/occasion). You’ve used nouns like that since your first few lessons."
+    "detailedExplanation": "**〜たびに** means 'every time something happens'. Dictionary form + たびに. Noun + の + たびに. Emphasizes that each occurrence produces a consistent result.\n\n### Usage Tips\nUse this to highlight patterns in your life. It’s perfect for 'Whenever I do X, Y happens.' Great for both emotional reflections and professional observations.\n\n### Connection to Easier Grammar\nIt uses the basic noun 'tabi' (time/occasion). You’ve used nouns like that since your first few lessons.",
+    "blankTarget": "たびに"
   },
   {
     "id": "g-b1-21",
@@ -2379,7 +2422,8 @@
     ],
     "mastered": false,
     "hub": "Building Sentences and Clauses",
-    "detailedExplanation": "**〜うちに** expresses doing something while a state continues or before it changes. Dictionary form + うちに (while doing voluntarily), negative + うちに (before), adj + うちに (while X is Y). Key nuance: 'while this window is open'.\n\n### Usage Tips\nThis is the ultimate 'seize the moment' grammar. Use it for deadlines, opportunities, or fleeting conditions. It adds urgency to your actions.\n\n### Connection to Easier Grammar\nIt relies on basic noun 'uchi' (inside). You’ve used this noun for 'inside a house'. It’s just conceptualizing a time-based 'inside'."
+    "detailedExplanation": "**〜うちに** expresses doing something while a state continues or before it changes. Dictionary form + うちに (while doing voluntarily), negative + うちに (before), adj + うちに (while X is Y). Key nuance: 'while this window is open'.\n\n### Usage Tips\nThis is the ultimate 'seize the moment' grammar. Use it for deadlines, opportunities, or fleeting conditions. It adds urgency to your actions.\n\n### Connection to Easier Grammar\nIt relies on basic noun 'uchi' (inside). You’ve used this noun for 'inside a house'. It’s just conceptualizing a time-based 'inside'.",
+    "blankTarget": "うちに"
   },
   {
     "id": "g-b1-22",
@@ -2412,7 +2456,8 @@
     ],
     "mastered": false,
     "hub": "Verb Conjugation",
-    "detailedExplanation": "**〜て以来** means 'ever since a turning-point event'. The event must be one-time, after which the situation continues. Not for repeated or temporary events. More emphatic than 〜てから.\n\n### Usage Tips\nThis is powerful for reflecting on milestones in your life. Use it when describing how your life trajectory changed because of a single decision or event.\n\n### Connection to Easier Grammar\nIt’s a more formal, emphatic version of 'since' (~から). If you know the basic 'since', this is just upgrading that same thought."
+    "detailedExplanation": "**〜て以来** means 'ever since a turning-point event'. The event must be one-time, after which the situation continues. Not for repeated or temporary events. More emphatic than 〜てから.\n\n### Usage Tips\nThis is powerful for reflecting on milestones in your life. Use it when describing how your life trajectory changed because of a single decision or event.\n\n### Connection to Easier Grammar\nIt’s a more formal, emphatic version of 'since' (~から). If you know the basic 'since', this is just upgrading that same thought.",
+    "blankTarget": "て以来"
   },
   {
     "id": "g-b1-23",
@@ -2479,7 +2524,8 @@
     ],
     "mastered": false,
     "hub": "Building Sentences and Clauses",
-    "detailedExplanation": "**〜だけでなく** means 'not only A, also B'. Nouns, na-adjectives (な), or plain forms. Second clause often has も. More formal: 〜のみならず.\n\n### Usage Tips\nThis is a standard for making balanced, persuasive arguments in meetings. It shows you’re considering multiple factors.\n\n### Connection to Easier Grammar\nIf you can use the word 'dake' (only), you already have the building block. This just puts it into a formal clause-connecting structure."
+    "detailedExplanation": "**〜だけでなく** means 'not only A, also B'. Nouns, na-adjectives (な), or plain forms. Second clause often has も. More formal: 〜のみならず.\n\n### Usage Tips\nThis is a standard for making balanced, persuasive arguments in meetings. It shows you’re considering multiple factors.\n\n### Connection to Easier Grammar\nIf you can use the word 'dake' (only), you already have the building block. This just puts it into a formal clause-connecting structure.",
+    "blankTarget": "だけでなく"
   },
   {
     "id": "g-b1-25",
@@ -2512,7 +2558,8 @@
     ],
     "mastered": false,
     "hub": "Building Sentences and Clauses",
-    "detailedExplanation": "**〜せいで** attributes cause with negative connotation. Noun + の + せいで; plain form + せいで. Antonym: **〜おかげで** (thanks to). 〜せいか = maybe because of.\n\n### Usage Tips\nUse this to explain unfavorable outcomes at work or in life. It helps clarify *why* something didn't go according to plan, but be aware: it sounds like you’re blaming an outside factor.\n\n### Connection to Easier Grammar\nIt relates to the noun 'sei' (fault). It’s like saying 'due to the fault of...'—a concept you likely understand from basic noun-based cause sentences."
+    "detailedExplanation": "**〜せいで** attributes cause with negative connotation. Noun + の + せいで; plain form + せいで. Antonym: **〜おかげで** (thanks to). 〜せいか = maybe because of.\n\n### Usage Tips\nUse this to explain unfavorable outcomes at work or in life. It helps clarify *why* something didn't go according to plan, but be aware: it sounds like you’re blaming an outside factor.\n\n### Connection to Easier Grammar\nIt relates to the noun 'sei' (fault). It’s like saying 'due to the fault of...'—a concept you likely understand from basic noun-based cause sentences.",
+    "blankTarget": "せいで"
   },
   {
     "id": "g-b1-26",
@@ -2545,7 +2592,8 @@
     ],
     "mastered": false,
     "hub": "Building Sentences and Clauses",
-    "detailedExplanation": "**〜おかげで** expresses gratitude for a positive outcome. Noun + の + おかげで; plain form + おかげで. Can be used sarcastically: 君のおかげで遅れた (thanks to you, I'm late).\n\n### Usage Tips\nThis is essential for expressing gratitude. Whether you're thanking your team, your mentor, or the weather, this is the perfect way to acknowledge someone else's positive influence.\n\n### Connection to Easier Grammar\nIt’s the antonym of せいで. It’s a noun-based cause, similar to how you link reasons in basic Japanese."
+    "detailedExplanation": "**〜おかげで** expresses gratitude for a positive outcome. Noun + の + おかげで; plain form + おかげで. Can be used sarcastically: 君のおかげで遅れた (thanks to you, I'm late).\n\n### Usage Tips\nThis is essential for expressing gratitude. Whether you're thanking your team, your mentor, or the weather, this is the perfect way to acknowledge someone else's positive influence.\n\n### Connection to Easier Grammar\nIt’s the antonym of せいで. It’s a noun-based cause, similar to how you link reasons in basic Japanese.",
+    "blankTarget": "おかげで"
   },
   {
     "id": "g-b1-27",
@@ -2578,7 +2626,8 @@
     ],
     "mastered": false,
     "hub": "Building Sentences and Clauses",
-    "detailedExplanation": "**〜にとって** means 'from X's point of view'. Noun + にとって. Often with 大切/重要/難しい. Not used for action targets (use 〜に対して instead).\n\n### Usage Tips\nThis helps you clarify whose perspective you are talking about, which is critical in a diverse Tokyo work environment. It shows that you value the viewpoints of others.\n\n### Connection to Easier Grammar\nIt connects directly to the noun. If you know how to say 'for you' (あなたのために), this is a more formal, objective alternative for when you want to express a viewpoint rather than a purpose."
+    "detailedExplanation": "**〜にとって** means 'from X's point of view'. Noun + にとって. Often with 大切/重要/難しい. Not used for action targets (use 〜に対して instead).\n\n### Usage Tips\nThis helps you clarify whose perspective you are talking about, which is critical in a diverse Tokyo work environment. It shows that you value the viewpoints of others.\n\n### Connection to Easier Grammar\nIt connects directly to the noun. If you know how to say 'for you' (あなたのために), this is a more formal, objective alternative for when you want to express a viewpoint rather than a purpose.",
+    "blankTarget": "にとって"
   },
   {
     "id": "g-b1-28",
@@ -2611,7 +2660,8 @@
     ],
     "mastered": false,
     "hub": "Building Sentences and Clauses",
-    "detailedExplanation": "**〜によって** has four uses: (1) agent in passive; (2) 'depending on'; (3) means/method; (4) cause. Very common in formal writing. Noun + によって.\n\n### Usage Tips\nThis is one of the most versatile formal tools in Japanese. Use it for passive voice, describing dependencies, clarifying methods, or expressing root causes. It's an indispensable professional tool.\n\n### Connection to Easier Grammar\nIt’s a standard particle-based structure. If you’ve used the particle に for direction, this just adds the concept of dependency or methodology to it."
+    "detailedExplanation": "**〜によって** has four uses: (1) agent in passive; (2) 'depending on'; (3) means/method; (4) cause. Very common in formal writing. Noun + によって.\n\n### Usage Tips\nThis is one of the most versatile formal tools in Japanese. Use it for passive voice, describing dependencies, clarifying methods, or expressing root causes. It's an indispensable professional tool.\n\n### Connection to Easier Grammar\nIt’s a standard particle-based structure. If you’ve used the particle に for direction, this just adds the concept of dependency or methodology to it.",
+    "blankTarget": "によって"
   },
   {
     "id": "g-b1-29",
@@ -2644,7 +2694,8 @@
     ],
     "mastered": false,
     "hub": "Building Sentences and Clauses",
-    "detailedExplanation": "**〜に加えて** means 'in addition to'. Noun + に加えて. More formal than 〜だけでなく. に加え (without て) is even more formal. Common in business writing.\n\n### Usage Tips\nUse this to layer additional items, benefits, or tasks. It’s efficient for lists or summaries in professional emails.\n\n### Connection to Easier Grammar\nIt relates to the simple verb 'kuwaeru' (to add). Once you understand the action of adding, the grammar construction follows naturally."
+    "detailedExplanation": "**〜に加えて** means 'in addition to'. Noun + に加えて. More formal than 〜だけでなく. に加え (without て) is even more formal. Common in business writing.\n\n### Usage Tips\nUse this to layer additional items, benefits, or tasks. It’s efficient for lists or summaries in professional emails.\n\n### Connection to Easier Grammar\nIt relates to the simple verb 'kuwaeru' (to add). Once you understand the action of adding, the grammar construction follows naturally.",
+    "blankTarget": "に加えて"
   },
   {
     "id": "g-b1-30",
@@ -2677,7 +2728,8 @@
     ],
     "mastered": false,
     "hub": "Building Sentences and Clauses",
-    "detailedExplanation": "**〜に対して** has three uses: (1) action/feeling toward someone; (2) contrast 'unlike A, B'; (3) per unit. 〜に対し is the written form.\n\n### Usage Tips\nThis is essential for workplace interactions. When you are describing how to treat customers or how one team compares to another, this phrasing is the professional benchmark.\n\n### Connection to Easier Grammar\nIt connects to simple directional particles. If you understand basic 'to' (に), you have the foundation, and this just formalizes the direction of interaction."
+    "detailedExplanation": "**〜に対して** has three uses: (1) action/feeling toward someone; (2) contrast 'unlike A, B'; (3) per unit. 〜に対し is the written form.\n\n### Usage Tips\nThis is essential for workplace interactions. When you are describing how to treat customers or how one team compares to another, this phrasing is the professional benchmark.\n\n### Connection to Easier Grammar\nIt connects to simple directional particles. If you understand basic 'to' (に), you have the foundation, and this just formalizes the direction of interaction.",
+    "blankTarget": "に対して"
   },
   {
     "id": "g-b1-31",
@@ -2710,7 +2762,8 @@
     ],
     "mastered": false,
     "hub": "Building Sentences and Clauses",
-    "detailedExplanation": "**〜に関して** means 'regarding'. Very common in business. Noun + に関して. Related forms: に関する + noun, に関しては. Less formal: 〜について.\n\n### Usage Tips\nThis is your go-to pattern for opening professional topics in meetings. It’s significantly more formal and professional than 'tsuite'.\n\n### Connection to Easier Grammar\nIt relates to the word 'kankei' (relation). If you understand the noun for 'relationship', you’re just turning it into a topic-setting grammatical tool."
+    "detailedExplanation": "**〜に関して** means 'regarding'. Very common in business. Noun + に関して. Related forms: に関する + noun, に関しては. Less formal: 〜について.\n\n### Usage Tips\nThis is your go-to pattern for opening professional topics in meetings. It’s significantly more formal and professional than 'tsuite'.\n\n### Connection to Easier Grammar\nIt relates to the word 'kankei' (relation). If you understand the noun for 'relationship', you’re just turning it into a topic-setting grammatical tool.",
+    "blankTarget": "に関して"
   },
   {
     "id": "g-b1-32",
@@ -2743,7 +2796,8 @@
     ],
     "mastered": false,
     "hub": "Building Sentences and Clauses",
-    "detailedExplanation": "**〜に基づいて** means 'based on' (law, rule, fact, experience). Noun + に基づいて. に基づく + noun: 法律に基づく判断.\n\n### Usage Tips\nUse this to justify decisions by pointing to empirical data or established rules. It carries weight and credibility in any professional environment.\n\n### Connection to Easier Grammar\nIt’s a standard noun + に + verb construction. If you know how to link things with particles, this is just a more sophisticated verb for 'basing' or 'founding'."
+    "detailedExplanation": "**〜に基づいて** means 'based on' (law, rule, fact, experience). Noun + に基づいて. に基づく + noun: 法律に基づく判断.\n\n### Usage Tips\nUse this to justify decisions by pointing to empirical data or established rules. It carries weight and credibility in any professional environment.\n\n### Connection to Easier Grammar\nIt’s a standard noun + に + verb construction. If you know how to link things with particles, this is just a more sophisticated verb for 'basing' or 'founding'.",
+    "blankTarget": "に基づいて"
   },
   {
     "id": "g-b1-33",
@@ -2776,7 +2830,8 @@
     ],
     "mastered": false,
     "hub": "Building Sentences and Clauses",
-    "detailedExplanation": "**〜に応じて** expresses adjustment proportional to something. Noun + に応じて. に応じた + noun: 予算に応じたプラン.\n\n### Usage Tips\nThis shows you’re a professional who knows how to adapt to client needs. Use it when explaining your flexibility and focus on satisfying custom requirements.\n\n### Connection to Easier Grammar\nIt relates to the basic verb for responding (応[おう]じる). You’re just taking a basic verb of response and using it as a pattern for proportionality."
+    "detailedExplanation": "**〜に応じて** expresses adjustment proportional to something. Noun + に応じて. に応じた + noun: 予算に応じたプラン.\n\n### Usage Tips\nThis shows you’re a professional who knows how to adapt to client needs. Use it when explaining your flexibility and focus on satisfying custom requirements.\n\n### Connection to Easier Grammar\nIt relates to the basic verb for responding (応[おう]じる). You’re just taking a basic verb of response and using it as a pattern for proportionality.",
+    "blankTarget": "に応じて"
   },
   {
     "id": "g-b1-34",
@@ -2809,7 +2864,8 @@
     ],
     "mastered": false,
     "hub": "Building Sentences and Clauses",
-    "detailedExplanation": "**〜に比べて** compares two nouns. Noun + に比べて. に比べ is the written form. Same meaning as より but used as a topic at the start.\n\n### Usage Tips\nEssential for reporting and analysis. Use this when you need to highlight trends, performance, or differences between options. It's clean and direct.\n\n### Connection to Easier Grammar\nIt relates to the common verb 'kuraberu' (to compare). You are using the noun structure with a well-known base verb."
+    "detailedExplanation": "**〜に比べて** compares two nouns. Noun + に比べて. に比べ is the written form. Same meaning as より but used as a topic at the start.\n\n### Usage Tips\nEssential for reporting and analysis. Use this when you need to highlight trends, performance, or differences between options. It's clean and direct.\n\n### Connection to Easier Grammar\nIt relates to the common verb 'kuraberu' (to compare). You are using the noun structure with a well-known base verb.",
+    "blankTarget": "に比べて"
   },
   {
     "id": "g-b1-35",
@@ -2978,7 +3034,8 @@
     ],
     "mastered": false,
     "hub": "Building Sentences and Clauses",
-    "detailedExplanation": "**〜と言っても** concedes a claim then qualifies it. Dictionary form + と言っても. Common: できると言っても = 'even though I say I can... (it's not much)'.\n\n### Usage Tips\nThis is brilliant for humility. It’s perfect when someone praises you for something and you want to accept the compliment while keeping your feet on the ground.\n\n### Connection to Easier Grammar\nIt relies on basic linking and the verb 'to say'. If you can report what people say (〜と言う), you have the core structure ready to add the 'even though' layer."
+    "detailedExplanation": "**〜と言っても** concedes a claim then qualifies it. Dictionary form + と言っても. Common: できると言っても = 'even though I say I can... (it's not much)'.\n\n### Usage Tips\nThis is brilliant for humility. It’s perfect when someone praises you for something and you want to accept the compliment while keeping your feet on the ground.\n\n### Connection to Easier Grammar\nIt relies on basic linking and the verb 'to say'. If you can report what people say (〜と言う), you have the core structure ready to add the 'even though' layer.",
+    "blankTarget": "と言っても"
   },
   {
     "id": "g-b1-40",
@@ -3011,7 +3068,8 @@
     ],
     "mastered": false,
     "hub": "Building Sentences and Clauses",
-    "detailedExplanation": "**〜というより** corrects a statement. 'Rather than X, it's Y.' Dictionary form + というより. というよりも is emphatic.\n\n### Usage Tips\nThis is a nuanced way to clarify your meaning in a conversation. It shows that you’re thinking critically about what word best describes a situation.\n\n### Connection to Easier Grammar\nIt combines basic 'to say' (と言う) and 'than' (より). If you know comparison (AよりB), you already have the building block."
+    "detailedExplanation": "**〜というより** corrects a statement. 'Rather than X, it's Y.' Dictionary form + というより. というよりも is emphatic.\n\n### Usage Tips\nThis is a nuanced way to clarify your meaning in a conversation. It shows that you’re thinking critically about what word best describes a situation.\n\n### Connection to Easier Grammar\nIt combines basic 'to say' (と言う) and 'than' (より). If you know comparison (AよりB), you already have the building block.",
+    "blankTarget": "というより"
   },
   {
     "id": "g-b1-41",
@@ -3044,7 +3102,8 @@
     ],
     "mastered": false,
     "hub": "Particles",
-    "detailedExplanation": "**〜こそ** emphasizes the preceding word. Replaces は/が. Common: 今日こそ (today of all days), だからこそ (precisely because), こちらこそ (likewise — in greetings).\n\n### Usage Tips\nThis is for when you want to make an emphatic point. It’s perfect for 'This is the *very* one!' or 'Precisely because of this reason...'.\n\n### Connection to Easier Grammar\nIt works exactly like は or が, but with a punch. If you understand basic particle placement, swapping in 'koso' for emphasis is the natural next step."
+    "detailedExplanation": "**〜こそ** emphasizes the preceding word. Replaces は/が. Common: 今日こそ (today of all days), だからこそ (precisely because), こちらこそ (likewise — in greetings).\n\n### Usage Tips\nThis is for when you want to make an emphatic point. It’s perfect for 'This is the *very* one!' or 'Precisely because of this reason...'.\n\n### Connection to Easier Grammar\nIt works exactly like は or が, but with a punch. If you understand basic particle placement, swapping in 'koso' for emphasis is the natural next step.",
+    "blankTarget": "こそ"
   },
   {
     "id": "g-b1-42",
@@ -3111,7 +3170,8 @@
     ],
     "mastered": false,
     "hub": "Building Sentences and Clauses",
-    "detailedExplanation": "**〜について** means 'about/regarding'. Noun + について. についての + noun: 日本語についての本. Less formal than 〜に関して.\n\n### Usage Tips\nThis is your workhorse for introducing any new topic. It’s the standard, neutral way to frame your subject.\n\n### Connection to Easier Grammar\nIt stems from the verb 'tsuku' (to attach/stick to). It’s basically 'attaching to [this topic]'. Very intuitive!"
+    "detailedExplanation": "**〜について** means 'about/regarding'. Noun + について. についての + noun: 日本語についての本. Less formal than 〜に関して.\n\n### Usage Tips\nThis is your workhorse for introducing any new topic. It’s the standard, neutral way to frame your subject.\n\n### Connection to Easier Grammar\nIt stems from the verb 'tsuku' (to attach/stick to). It’s basically 'attaching to [this topic]'. Very intuitive!",
+    "blankTarget": "について"
   },
   {
     "id": "g-b1-44",
@@ -3144,7 +3204,8 @@
     ],
     "mastered": false,
     "hub": "Building Sentences and Clauses",
-    "detailedExplanation": "**〜を問わず** means 'regardless of X'. Noun + を問わず. Common: 年齢/性別/経験を問わず. Formal; used in job posts and announcements.\n\n### Usage Tips\nThis is very common in professional recruiting, event management, and official communications. It tells your audience that inclusivity and accessibility are priorities.\n\n### Connection to Easier Grammar\nIt’s derived from 'to ask' (問[と]う). So it means 'without asking [about these factors]'. That’s a very literal and easy way to remember it."
+    "detailedExplanation": "**〜を問わず** means 'regardless of X'. Noun + を問わず. Common: 年齢/性別/経験を問わず. Formal; used in job posts and announcements.\n\n### Usage Tips\nThis is very common in professional recruiting, event management, and official communications. It tells your audience that inclusivity and accessibility are priorities.\n\n### Connection to Easier Grammar\nIt’s derived from 'to ask' (問[と]う). So it means 'without asking [about these factors]'. That’s a very literal and easy way to remember it.",
+    "blankTarget": "を問わず"
   },
   {
     "id": "g-b1-45",
@@ -3211,7 +3272,8 @@
     ],
     "mastered": false,
     "hub": "Building Sentences and Clauses",
-    "detailedExplanation": "**〜ついでに** uses A as an opportunity to also do B. Verb dictionary/た-form + ついでに; noun + の + ついでに. A = main purpose, B = bonus.\n\n### Usage Tips\nThis is a classic 'efficiency' phrase. It’s perfect for casually mentioning an additional errand to someone without making it sound like a separate request.\n\n### Connection to Easier Grammar\nIt’s a noun-based structure (tsuide = opportunity). You are just combining it with your existing grammar for linking sequential actions."
+    "detailedExplanation": "**〜ついでに** uses A as an opportunity to also do B. Verb dictionary/た-form + ついでに; noun + の + ついでに. A = main purpose, B = bonus.\n\n### Usage Tips\nThis is a classic 'efficiency' phrase. It’s perfect for casually mentioning an additional errand to someone without making it sound like a separate request.\n\n### Connection to Easier Grammar\nIt’s a noun-based structure (tsuide = opportunity). You are just combining it with your existing grammar for linking sequential actions.",
+    "blankTarget": "ついでに"
   },
   {
     "id": "g-b1-47",
@@ -3244,7 +3306,8 @@
     ],
     "mastered": false,
     "hub": "Building Sentences and Clauses",
-    "detailedExplanation": "**〜をきっかけに** marks an event as the trigger for change. Noun + をきっかけに. Similar to 〜を契機に but less formal.\n\n### Usage Tips\nThis is powerful for personal branding. Whether in an interview or a casual chat, it’s the standard way to explain the source or inspiration behind a decision.\n\n### Connection to Easier Grammar\nIt uses the noun 'kikkake' (a trigger/start). Once you know the noun, you just add it to a sentence to explain 'how this all started'."
+    "detailedExplanation": "**〜をきっかけに** marks an event as the trigger for change. Noun + をきっかけに. Similar to 〜を契機に but less formal.\n\n### Usage Tips\nThis is powerful for personal branding. Whether in an interview or a casual chat, it’s the standard way to explain the source or inspiration behind a decision.\n\n### Connection to Easier Grammar\nIt uses the noun 'kikkake' (a trigger/start). Once you know the noun, you just add it to a sentence to explain 'how this all started'.",
+    "blankTarget": "をきっかけに"
   },
   {
     "id": "g-b1-48",
@@ -3277,7 +3340,8 @@
     ],
     "mastered": false,
     "hub": "Building Sentences and Clauses",
-    "detailedExplanation": "**〜というわけではない** denies an assumption without taking the opposite extreme. Plain form + というわけではない. Often with 〜が to lead into actual situation. Casual: ってわけじゃない.\n\n### Usage Tips\nThis is brilliant for maintaining nuance. It helps you avoid being too absolute in your statements and clearly sets the context.\n\n### Connection to Easier Grammar\nIt uses 'wake' (reason/sense), which you’ve likely seen in simple phrases. Putting it into the 'to iu wake dewa nai' structure makes it a nuanced negation."
+    "detailedExplanation": "**〜というわけではない** denies an assumption without taking the opposite extreme. Plain form + というわけではない. Often with 〜が to lead into actual situation. Casual: ってわけじゃない.\n\n### Usage Tips\nThis is brilliant for maintaining nuance. It helps you avoid being too absolute in your statements and clearly sets the context.\n\n### Connection to Easier Grammar\nIt uses 'wake' (reason/sense), which you’ve likely seen in simple phrases. Putting it into the 'to iu wake dewa nai' structure makes it a nuanced negation.",
+    "blankTarget": "というわけではない"
   },
   {
     "id": "g-b1-49",
@@ -3310,7 +3374,8 @@
     ],
     "mastered": false,
     "hub": "Building Sentences and Clauses",
-    "detailedExplanation": "**〜かのように** means 'as if it were so (but it isn't)'. Plain form + かのように. Noun/na-adj: 〜であるかのように. Implies the situation is contrary to reality.\n\n### Usage Tips\nThis adds descriptive weight to your speech. It’s effective for emphasizing that a situation seems a certain way, while clarifying the actual reality.\n\n### Connection to Easier Grammar\nIt links basic verb plain forms (e.g., 知らなかった) to the common 'you ni' (as/like) pattern. It’s very intuitive if you can link simple thoughts."
+    "detailedExplanation": "**〜かのように** means 'as if it were so (but it isn't)'. Plain form + かのように. Noun/na-adj: 〜であるかのように. Implies the situation is contrary to reality.\n\n### Usage Tips\nThis adds descriptive weight to your speech. It’s effective for emphasizing that a situation seems a certain way, while clarifying the actual reality.\n\n### Connection to Easier Grammar\nIt links basic verb plain forms (e.g., 知らなかった) to the common 'you ni' (as/like) pattern. It’s very intuitive if you can link simple thoughts.",
+    "blankTarget": "かのように"
   },
   {
     "id": "g-b1-50",
@@ -3343,7 +3408,8 @@
     ],
     "mastered": false,
     "hub": "Building Sentences and Clauses",
-    "detailedExplanation": "**〜気味 (gimi)** means 'slightly ~, a bit on the ~ side, tending to'. Attach to noun or verb stem: 疲れ気味 = 'a bit tired', 太り気味 = 'a bit on the heavy side'.\n\n**Usage Tips:** 気味 carries a slightly negative nuance — it's used for undesirable states. 風邪気味 = 'feel like coming down with a cold'. Don't use for positive states. It's very common in daily conversation at work: 過労気味 = 'a bit overworked'.\n\n**N3 Connection:** You know 〜そう (seems like). 気味 is specifically for subtle, usually undesirable tendencies in a state you're currently experiencing."
+    "detailedExplanation": "**〜気味 (gimi)** means 'slightly ~, a bit on the ~ side, tending to'. Attach to noun or verb stem: 疲れ気味 = 'a bit tired', 太り気味 = 'a bit on the heavy side'.\n\n**Usage Tips:** 気味 carries a slightly negative nuance — it's used for undesirable states. 風邪気味 = 'feel like coming down with a cold'. Don't use for positive states. It's very common in daily conversation at work: 過労気味 = 'a bit overworked'.\n\n**N3 Connection:** You know 〜そう (seems like). 気味 is specifically for subtle, usually undesirable tendencies in a state you're currently experiencing.",
+    "blankTarget": "気味"
   },
   {
     "id": "g-b1-51",
@@ -3382,6 +3448,7 @@
     ],
     "mastered": false,
     "hub": "Building Sentences and Clauses",
-    "detailedExplanation": "**〜っぽい** means \"has a strong tendency or characteristic of\" — like adding \"-ish\" or \"-y\" in English. Use it with nouns (子供っぽい = childish), verb stems (忘れっぽい = forgetful), or i-adjective stems (安っぽい = cheap-looking). It's casual and very common in daily conversation.\n\n**Usage Tips:** っぽい often carries a mildly negative judgment. 子供っぽい means \"childish\" (immature) not \"childlike\" (which would be 子供らしい). 怒りっぽい means \"short-tempered\" — it's a character flaw. If you want a neutral or positive observation, use らしい instead. っぽい can also attach to colors: 黒っぽい (blackish) — this is neutral.\n\n**N4 Connection:** You know 〜そう (seems like). The difference: 美味しそう = \"looks delicious\" (appearance-based judgment), while 子供っぽい = \"childish\" (tendency/characteristic). っぽい is about inherent quality, not surface appearance.\n\n**Tokyo life tip:** You'll hear っぽい constantly in casual Japanese. 疲れたっぽい (seems tired), 雨っぽい (looks like rain), 彼女いるっぽいよ (seems like he has a girlfriend). It's versatile and very natural."
+    "detailedExplanation": "**〜っぽい** means \"has a strong tendency or characteristic of\" — like adding \"-ish\" or \"-y\" in English. Use it with nouns (子供っぽい = childish), verb stems (忘れっぽい = forgetful), or i-adjective stems (安っぽい = cheap-looking). It's casual and very common in daily conversation.\n\n**Usage Tips:** っぽい often carries a mildly negative judgment. 子供っぽい means \"childish\" (immature) not \"childlike\" (which would be 子供らしい). 怒りっぽい means \"short-tempered\" — it's a character flaw. If you want a neutral or positive observation, use らしい instead. っぽい can also attach to colors: 黒っぽい (blackish) — this is neutral.\n\n**N4 Connection:** You know 〜そう (seems like). The difference: 美味しそう = \"looks delicious\" (appearance-based judgment), while 子供っぽい = \"childish\" (tendency/characteristic). っぽい is about inherent quality, not surface appearance.\n\n**Tokyo life tip:** You'll hear っぽい constantly in casual Japanese. 疲れたっぽい (seems tired), 雨っぽい (looks like rain), 彼女いるっぽいよ (seems like he has a girlfriend). It's versatile and very natural.",
+    "blankTarget": "っぽい"
   }
 ]

@@ -28,7 +28,7 @@ export interface SyncBackend {
 // ── Backend URL helpers ────────────────────────────────────────────────────
 
 function baseUrl(): string {
-  // Configurable via AppConfig, but for now read from localStorage fallback
+  // Configurable via AppConfig (settings UI)
   if (typeof window !== 'undefined') {
     const stored = localStorage.getItem('nihongo-master-config');
     if (stored) {
@@ -40,7 +40,8 @@ function baseUrl(): string {
       }
     }
   }
-  return 'http://localhost:9001';
+  // Use same-origin relative URL — the proxy server handles routing
+  return '';
 }
 
 // ── NUC Backend (FastAPI + SQLite) ─────────────────────────────────────────
