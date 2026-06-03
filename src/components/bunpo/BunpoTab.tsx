@@ -182,7 +182,12 @@ export function BunpoTab() {
 
     setUpgrading(true);
     try {
-      const model = config.selectedService === 'gemini' ? config.geminiModel : config.ollamaModel;
+      const model =
+        config.selectedService === 'gemini'
+          ? config.geminiModel
+          : config.selectedService === 'openrouter'
+            ? config.openrouterModel
+            : config.ollamaModel;
       const result = await generateSentenceUpgrade(
         sentence,
         targetLevel,
@@ -1328,7 +1333,12 @@ function ChallengeMode({
         cefr: p.cefr,
       }));
 
-      const model = config.selectedService === 'gemini' ? config.geminiModel : config.ollamaModel;
+      const model =
+        config.selectedService === 'gemini'
+          ? config.geminiModel
+          : config.selectedService === 'openrouter'
+            ? config.openrouterModel
+            : config.ollamaModel;
       const result = await generateChallengeQuestions(
         patternData,
         config.selectedService,

@@ -26,17 +26,8 @@ export function SettingsSidebar({
   onForcePushSync,
 }: SettingsSidebarProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const {
-    config,
-    saved,
-    ollamaModels,
-    loadingModels,
-    updateConfig,
-    handleSave,
-    handleExportSettings,
-    handleImportSettings,
-    fetchOllamaModels,
-  } = useSettingsState(isOpen, onClose);
+  const { config, saved, updateConfig, handleSave, handleExportSettings, handleImportSettings } =
+    useSettingsState(isOpen, onClose);
 
   const onFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -76,22 +67,24 @@ export function SettingsSidebar({
           <LLMConfigSection
             selectedService={config.selectedService}
             geminiModel={config.geminiModel}
-            ollamaModel={config.ollamaModel}
+            openrouterModel={config.openrouterModel || ''}
             geminiApiKey={config.geminiApiKey}
-            ollamaUrl={config.ollamaUrl}
-            ollamaModels={ollamaModels}
-            loadingModels={loadingModels}
+            openrouterApiKey={config.openrouterApiKey}
             onServiceChange={(service) => updateConfig({ selectedService: service })}
             onModelChange={(model) =>
               updateConfig(
                 config.selectedService === 'gemini'
                   ? { geminiModel: model }
-                  : { ollamaModel: model }
+                  : { openrouterModel: model }
               )
             }
-            onApiKeyChange={(key) => updateConfig({ geminiApiKey: key })}
-            onOllamaUrlChange={(url) => updateConfig({ ollamaUrl: url })}
-            onRefreshOllamaModels={() => fetchOllamaModels(config.ollamaUrl)}
+            onApiKeyChange={(key) =>
+              updateConfig(
+                config.selectedService === 'gemini'
+                  ? { geminiApiKey: key }
+                  : { openrouterApiKey: key }
+              )
+            }
           />
 
           <IntegrationsSection

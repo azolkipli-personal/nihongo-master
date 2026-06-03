@@ -35,7 +35,9 @@ export function useKaiwaState() {
       try {
         const ids = JSON.parse(practicePatterns);
         setFocusPatternIds(ids);
-      } catch { /* ignore parse errors */ }
+      } catch {
+        /* ignore parse errors */
+      }
       sessionStorage.removeItem('kaiwa_practice_patterns');
     }
 
@@ -187,7 +189,12 @@ export function useKaiwaState() {
       }
 
       // Use the config directly for model selection instead of local state
-      const model = config.selectedService === 'gemini' ? config.geminiModel : config.ollamaModel;
+      const model =
+        config.selectedService === 'gemini'
+          ? config.geminiModel
+          : config.selectedService === 'openrouter'
+            ? config.openrouterModel
+            : config.ollamaModel;
 
       const result = await generateConversation(
         wordList,

@@ -74,7 +74,7 @@ function MergedInfoBox({ conversation: conv }: { conversation: Conversation }) {
           <div className="flex items-center gap-2 font-black text-purple-700 text-sm uppercase tracking-wider">
             <span className="bg-purple-600 text-white p-1 rounded">02</span> Meaning & Usage
           </div>
-          <div className="bg-white rounded-2xl p-6 border-2 border-purple-100 shadow-sm h-full">
+          <div className="bg-white rounded-2xl p-6 border-2 border-purple-100 shadow-sm">
             <div className="font-bold text-gray-900 text-xl mb-4 border-b border-gray-100 pb-2">
               {mainMeaning}
             </div>
@@ -177,20 +177,20 @@ function FinalCard({
             key={idx}
             className="flex gap-4 items-start group hover:bg-white p-2 rounded-lg transition-colors shadow-none hover:shadow-sm"
           >
-            <span className="font-bold text-blue-600 min-w-[60px] pt-1 text-sm">
+            <span className="font-bold text-blue-600 min-w-[60px] pt-1 text-lg">
               {line.speaker}:
             </span>
             <div className="flex-1">
-              <div className="text-gray-900 mb-1 leading-relaxed">
+              <div className="text-gray-900 mb-1 leading-relaxed text-xl">
                 <Furigana text={line.japaneseWithFurigana} showFurigana={showFurigana} />
               </div>
               {showRomaji && (
-                <div className="text-xs text-gray-400 italic mb-0.5 tracking-tight">
+                <div className="text-base text-gray-400 italic mb-0.5 tracking-tight">
                   {line.romaji}
                 </div>
               )}
               {showEnglish && (
-                <div className="text-xs text-gray-500 leading-tight">{line.english}</div>
+                <div className="text-base text-gray-500 leading-tight">{line.english}</div>
               )}
             </div>
             <button

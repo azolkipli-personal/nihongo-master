@@ -1,33 +1,34 @@
 import { GEMINI_MODELS } from '../../services/llm';
 
 interface LLMConfigSectionProps {
-  selectedService: 'gemini' | 'openrouter' | 'ollama';
+  selectedService: string;
   geminiModel: string;
-  ollamaModel: string;
+  openrouterModel: string;
   geminiApiKey: string;
-  ollamaUrl: string;
-  ollamaModels: string[];
-  loadingModels?: boolean;
-  onServiceChange: (service: 'gemini' | 'openrouter' | 'ollama') => void;
+  openrouterApiKey: string;
+  onServiceChange: (service: 'gemini' | 'openrouter') => void;
   onModelChange: (model: string) => void;
   onApiKeyChange: (key: string) => void;
-  onOllamaUrlChange: (url: string) => void;
-  onRefreshOllamaModels: () => void;
 }
+
+const OPENROUTER_MODELS = [
+  { id: 'google/gemini-2.5-flash', name: 'Gemini 2.5 Flash' },
+  { id: 'google/gemini-2.5-pro', name: 'Gemini 2.5 Pro' },
+  { id: 'anthropic/claude-sonnet-4', name: 'Claude Sonnet 4' },
+  { id: 'anthropic/claude-haiku-4', name: 'Claude Haiku 4' },
+  { id: 'openai/gpt-4o', name: 'GPT-4o' },
+  { id: 'openai/gpt-4o-mini', name: 'GPT-4o Mini' },
+];
 
 export function LLMConfigSection({
   selectedService,
   geminiModel,
-  ollamaModel,
+  openrouterModel,
   geminiApiKey,
-  ollamaUrl,
-  ollamaModels,
-  loadingModels = false,
+  openrouterApiKey,
   onServiceChange,
   onModelChange,
   onApiKeyChange,
-  onOllamaUrlChange,
-  onRefreshOllamaModels,
 }: LLMConfigSectionProps) {
   return (
     <section className="mb-8">
@@ -44,28 +45,27 @@ export function LLMConfigSection({
           Google Gemini
         </button>
         <button
-          onClick={() => onServiceChange('ollama')}
+          onClick={() => onServiceChange('openrouter')}
           className={`py-2.5 rounded-md text-sm font-medium transition-all ${
-            selectedService === 'ollama'
+            selectedService === 'openrouter'
               ? 'bg-[#7C89FF] text-white'
               : 'bg-[#2A344D] text-gray-400 hover:bg-[#35415E]'
           }`}
         >
-          Ollama (Local)
+          OpenRouter
         </button>
       </div>
 
-      {/* Dynamic Configuration Container */}
       <div className="bg-[#171C2B] border border-[#2D364D] rounded-lg p-5 relative z-10">
         <h4 className="text-sm font-semibold text-white mb-4">
-          {selectedService === 'gemini' ? 'Gemini Configuration' : 'Ollama Configuration'}
+          {selectedService === 'gemini' ? 'Gemini Configuration' : 'OpenRouter Configuration'}
         </h4>
 
         <div className="space-y-4">
           <div>
-            <label className="block text-xs font-medium text-gray-400 mb-2">Select a Model</label>
+            <label className="block text-xs font-medium text-gray-400 mb-2">Model</label>
             <select
-              value={selectedService === 'gemini' ? geminiModel : ollamaModel}
+              value={selectedService === 'gemini' ? geminiModel : openrouterModel}
               onChange={(e) => onModelChange(e.target.value)}
               className="w-full bg-[#2A344D] border border-[#3E4A6D] text-white text-sm rounded-md px-3 py-2.5 focus:outline-none focus:ring-1 focus:ring-[#7C89FF] appearance-none"
               style={{
@@ -76,73 +76,32 @@ export function LLMConfigSection({
                 backgroundSize: '1.5em 1.5em',
               }}
             >
-              {selectedService === 'gemini' ? (
-                GEMINI_MODELS.map((m) => (
-                  <option key={m.id} value={m.id}>
-                    {m.name}
-                  </option>
-                ))
-              ) : (
-                <>
-                  <option value="">
-                    {loadingModels
-                      ? 'Loading models...'
-                      : ollamaModels.length === 0
-                        ? 'No models found'
-                        : 'Select a model'}
-                  </option>
-                  {ollamaModels.map((m) => (
-                    <option key={m} value={m}>
-                      {m}
+              {selectedService === 'gemini'
+                ? GEMINI_MODELS.map((m) => (
+                    <option key={m.id} value={m.id}>
+                      {m.name}
+                    </option>
+                  ))
+                : OPENROUTER_MODELS.map((m) => (
+                    <option key={m.id} value={m.id}>
+                      {m.name}
                     </option>
                   ))}
-                </>
-              )}
             </select>
           </div>
 
-          {selectedService === 'gemini' && (
-            <div>
-              <label className="block text-xs font-medium text-gray-400 mb-2">API Key</label>
-              <input
-                type="password"
-                value={geminiApiKey}
-                onChange={(e) => onApiKeyChange(e.target.value)}
-                placeholder="Enter Gemini API Key"
-                className="w-full bg-[#2A344D] border border-[#3E4A6D] text-white text-sm rounded-md px-3 py-2.5 focus:outline-none focus:ring-1 focus:ring-[#7C89FF]"
-              />
-            </div>
-          )}
-
-          {selectedService === 'ollama' && (
-            <div className="relative z-10">
-              <label className="block text-xs font-medium text-gray-400 mb-2">Ollama URL</label>
-              <input
-                type="text"
-                value={ollamaUrl}
-                onChange={(e) => {
-                  onOllamaUrlChange(e.target.value);
-                }}
-                placeholder="http://localhost:11434"
-                className="w-full bg-[#2A344D] border border-[#3E4A6D] text-white text-sm rounded-md px-3 py-2.5 focus:outline-none focus:ring-1 focus:ring-[#7C89FF] cursor-text"
-                style={{ minWidth: '200px' }}
-              />
-              <div className="mt-2 flex items-center gap-2">
-                <button
-                  onClick={() => {
-                    onRefreshOllamaModels();
-                  }}
-                  disabled={loadingModels}
-                  className="text-xs text-[#7C89FF] hover:underline cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {loadingModels ? 'Loading models...' : 'Refresh Models'}
-                </button>
-                {loadingModels && (
-                  <span className="text-xs text-gray-400">Fetching from: {ollamaUrl}...</span>
-                )}
-              </div>
-            </div>
-          )}
+          <div>
+            <label className="block text-xs font-medium text-gray-400 mb-2">API Key</label>
+            <input
+              type="password"
+              value={selectedService === 'gemini' ? geminiApiKey : openrouterApiKey}
+              onChange={(e) => onApiKeyChange(e.target.value)}
+              placeholder={
+                selectedService === 'gemini' ? 'Enter Gemini API Key' : 'Enter OpenRouter API Key'
+              }
+              className="w-full bg-[#2A344D] border border-[#3E4A6D] text-white text-sm rounded-md px-3 py-2.5 focus:outline-none focus:ring-1 focus:ring-[#7C89FF]"
+            />
+          </div>
         </div>
       </div>
     </section>

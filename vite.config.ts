@@ -17,6 +17,19 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api\/ollama/, '/api'),
       },
+      // Sync backend endpoints — proxy to FastAPI so dev mode also works
+      '/progress': {
+        target: 'http://localhost:9001',
+        changeOrigin: true,
+      },
+      '/config': {
+        target: 'http://localhost:9001',
+        changeOrigin: true,
+      },
+      '/health': {
+        target: 'http://localhost:9001',
+        changeOrigin: true,
+      },
     },
   },
   preview: {

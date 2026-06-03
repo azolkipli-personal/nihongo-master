@@ -121,10 +121,11 @@ function parseNotes(
 
 async function aiExtract(
   text: string,
-  apiKey: string
+  apiKey: string,
+  model: string = 'gemini-2.5-flash'
 ): Promise<{ word: string; reading: string; meaning: string; context: string }[]> {
   const response = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
+    `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`,
     {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -310,7 +311,7 @@ function CaptureView({ onAdd }: { onAdd: () => void }) {
     }
     setAiLoading(true);
     try {
-      const words = await aiExtract(text, apiKey);
+      const words = await aiExtract(text, apiKey, config.geminiModel);
       setParsed(words);
       const e: Record<number, any> = {};
       words.forEach((w, i) => {

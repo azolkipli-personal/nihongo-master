@@ -3450,5 +3450,73 @@
     "hub": "Building Sentences and Clauses",
     "detailedExplanation": "**〜っぽい** means \"has a strong tendency or characteristic of\" — like adding \"-ish\" or \"-y\" in English. Use it with nouns (子供っぽい = childish), verb stems (忘れっぽい = forgetful), or i-adjective stems (安っぽい = cheap-looking). It's casual and very common in daily conversation.\n\n**Usage Tips:** っぽい often carries a mildly negative judgment. 子供っぽい means \"childish\" (immature) not \"childlike\" (which would be 子供らしい). 怒りっぽい means \"short-tempered\" — it's a character flaw. If you want a neutral or positive observation, use らしい instead. っぽい can also attach to colors: 黒っぽい (blackish) — this is neutral.\n\n**N4 Connection:** You know 〜そう (seems like). The difference: 美味しそう = \"looks delicious\" (appearance-based judgment), while 子供っぽい = \"childish\" (tendency/characteristic). っぽい is about inherent quality, not surface appearance.\n\n**Tokyo life tip:** You'll hear っぽい constantly in casual Japanese. 疲れたっぽい (seems tired), 雨っぽい (looks like rain), 彼女いるっぽいよ (seems like he has a girlfriend). It's versatile and very natural.",
     "blankTarget": "っぽい"
+  },
+  {
+    "id": "g-b2-01",
+    "pattern": "〜べく",
+    "patternWithFurigana": "〜べく",
+    "reading": "beku",
+    "meaning": "In order to, for the purpose of (formal written)",
+    "cefr": "B2",
+    "category": "Purpose",
+    "formality": "formal",
+    "examples": [
+      {
+        "japanese": "問題を解決すべく、対策を検討しています。",
+        "japaneseWithFurigana": "問題[もんだい]を解決[かいけつ]すべく、対策[たいさく]を検討[けんとう]しています。",
+        "romaji": "Mondai o kaiketsu subeku, taisaku o kentou shiteimasu.",
+        "english": "In order to solve the problem, we are considering countermeasures."
+      },
+      {
+        "japanese": "Phase2を進めるべく、しっかりと対応してまいります。",
+        "japaneseWithFurigana": "Phase2を進[すす]めるべく、しっかりと対応[たいおう]してまいります。",
+        "romaji": "Phase2 o susumeru beku, shikkari to taiou shite mairimasu.",
+        "english": "In order to proceed with Phase 2, we will respond thoroughly."
+      },
+      {
+        "japanese": "新商品を来月発売すべく、最終調整中です。",
+        "japaneseWithFurigana": "新商品[しんしょうひん]を来月[らいげつ]発売[はつばい]すべく、最終[さいしゅう]調整[ちょうせい]中[ちゅう]です。",
+        "romaji": "Shinshouhin o raigetsu hatsubai subeku, saishuu chousei-chuu desu.",
+        "english": "We are in final adjustments to launch the new product next month."
+      }
+    ],
+    "mastered": false,
+    "hub": "Formal/Written Expression",
+    "detailedExplanation": "**〜べく** is a formal, written expression meaning 'in order to' or 'for the purpose of'. It attaches to the dictionary form of verbs: する → すべく (irregular), 進める → 進めるべく.\n\n**Usage Tips:** This is primarily written/formal Japanese — you'll find it in business emails, reports, and news articles, not casual conversation. It's interchangeable with 〜ために in many contexts, but べく is more formal and implies intention + effort.\n\n**Key note:** するべく becomes すべく (not するべく). This is a classical Japanese remnant.\n\n**Real-world context:** You saw this in a real business email from ADK's Takato-san: 'Phase2を進めるべく、しっかりと対応してまいります' — a perfect example of べく used in formal client communication.",
+    "blankTarget": "を進めるべく"
+  },
+  {
+    "id": "g-b1-52",
+    "pattern": "〜てまいります",
+    "patternWithFurigana": "〜てまいります",
+    "reading": "te mairimasu",
+    "meaning": "Humble form of 〜ます / to do (humbly)",
+    "cefr": "B1",
+    "category": "Keigo",
+    "formality": "formal",
+    "examples": [
+      {
+        "japanese": "ご連絡をお待ちしてまいります。",
+        "japaneseWithFurigana": "ご連絡[れんらく]をお待[ま]ちしてまいります。",
+        "romaji": "Go-renraku o machi shite mairimasu.",
+        "english": "I will be waiting for your contact."
+      },
+      {
+        "japanese": "Phase2を進めるべく、しっかりと対応してまいります。",
+        "japaneseWithFurigana": "Phase2を進[すす]めるべく、しっかりと対応[たいおう]してまいります。",
+        "romaji": "Phase2 o susumeru beku, shikkari to taiou shite mairimasu.",
+        "english": "In order to proceed with Phase 2, we will respond thoroughly."
+      },
+      {
+        "japanese": "今後ともよろしくお願いいたします。",
+        "japaneseWithFurigana": "今後[こんご]ともよろしくお願[ねが]いいたします。",
+        "romaji": "Kongo tomo yoroshiku onegai itashimasu.",
+        "english": "We look forward to your continued support."
+      }
+    ],
+    "mastered": false,
+    "hub": "Formal/Written Expression",
+    "detailedExplanation": "**〜てまいります** is the humble (kenjougo) form of 〜ていきます and 〜てきます, as well as a humble way to say 〜ます. It's used to describe your own actions humbly when speaking to a client or senior.\n\n**Usage Tips:** Replace 〜ます with 〜てまいります to sound more formal and humble. 対応します → 対応してまいります. 待ちます → 待ってまいります. It shows deference to the listener.\n\n**Key note:** まいる (参る) is the humble form of 行く (go) and 来る (come). When used as 〜てまいる, it humbly expresses that the speaker will perform an action for the benefit of the listener/client. Very common in business Japanese — you'll hear and see it daily.\n\n**Real-world context:** Takato-san used this in his thank-you email: 'しっかりと対応してまいります' — humbly expressing that ADK will respond thoroughly and handle next steps.",
+    "blankTarget": "対応してまいります"
   }
 ]

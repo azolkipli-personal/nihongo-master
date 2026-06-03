@@ -4,6 +4,7 @@ export interface AppConfig {
   openrouterApiKey: string;
   selectedService: 'gemini' | 'openrouter' | 'ollama';
   geminiModel: string;
+  openrouterModel?: string;
   ollamaModel: string;
   ollamaUrl: string;
   appearance: 'light' | 'dark';

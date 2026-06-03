@@ -8,6 +8,7 @@ const DEFAULT_CONFIG: AppConfig = {
   openrouterApiKey: '',
   selectedService: 'gemini',
   geminiModel: 'gemini-2.5-flash',
+  openrouterModel: 'google/gemini-2.5-flash',
   ollamaModel: '',
   ollamaUrl: 'http://100.102.113.83:11434',
   appearance: 'dark',
@@ -18,8 +19,11 @@ const DEFAULT_CONFIG: AppConfig = {
   showEnglish: true,
   userLevel: null,
   syncBackend: 'none',
-  syncNucUrl: 'http://localhost:9001',
+  syncNucUrl: 'https://fedora-nuc.tailc24d36.ts.net:9001',
 };
+
+/** The default sync URL used as fallback when no URL is stored in localStorage */
+export const DEFAULT_SYNC_NUC_URL = 'https://fedora-nuc.tailc24d36.ts.net:9001';
 
 export function getConfigPath(): string {
   return CONFIG_FILE;

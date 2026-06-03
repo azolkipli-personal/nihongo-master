@@ -30,7 +30,13 @@ export function useAutoSync(backend: SyncBackend | null, intervalMs = 15_000) {
       const config = gatherConfig();
       await backend.putConfig(config);
     } catch (err) {
-      console.warn('[sync] push failed:', err);
+      if (err instanceof Error && err.message === 'CONFLICT') {
+        console.info(
+          '[sync] server has newer data — skipping push (use Force Push in Settings to override)'
+        );
+      } else {
+        console.warn('[sync] push failed:', err);
+      }
     }
   }, [backend]);
 

@@ -9,6 +9,8 @@
 
 // ── Type for the sync payload ──────────────────────────────────────────────
 
+import { DEFAULT_SYNC_NUC_URL } from '../utils/configManager';
+
 export interface SyncPayload {
   data: Record<string, unknown>;
   lastUpdated: string | null;
@@ -28,7 +30,7 @@ export interface SyncBackend {
 // ── Backend URL helpers ────────────────────────────────────────────────────
 
 function baseUrl(): string {
-  // Configurable via AppConfig (settings UI)
+  // Configurable via AppConfig (settings UI) — check stored value first
   if (typeof window !== 'undefined') {
     const stored = localStorage.getItem('nihongo-master-config');
     if (stored) {
@@ -40,8 +42,8 @@ function baseUrl(): string {
       }
     }
   }
-  // Use same-origin relative URL — the proxy server handles routing
-  return '';
+  // Fall back to the default from config — Tailscale URL works everywhere
+  return DEFAULT_SYNC_NUC_URL;
 }
 
 // ── NUC Backend (FastAPI + SQLite) ─────────────────────────────────────────
@@ -56,13 +58,25 @@ class NucBackend implements SyncBackend {
   }
 
   async getProgress(): Promise<SyncPayload> {
-    const res = await fetch(`${this.url}/progress`);
+    const url = `${this.url}/progress`;
+    if (!this.url) throw new Error('Sync URL not configured — set "NUC Server URL" in Settings');
+    const res = await fetch(url);
     if (!res.ok) throw new Error(`GET progress failed: ${res.status}`);
-    return res.json();
+    try {
+      return await res.json();
+    } catch (parseErr) {
+      const text = await res.text().catch(() => '(unreadable)');
+      throw new Error(
+        `Server returned non-JSON (got HTML/plain text). URL: ${url}. ` +
+          `Response starts with: ${text.slice(0, 80)}. ` +
+          `Check your sync URL or ensure the backend is running.`
+      );
+    }
   }
 
   async putProgress(payload: SyncPayload, force?: boolean): Promise<{ lastUpdated: string }> {
     const url = force ? `${this.url}/progress?force=1` : `${this.url}/progress`;
+    if (!this.url) throw new Error('Sync URL not configured — set "NUC Server URL" in Settings');
     const res = await fetch(url, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
@@ -72,17 +86,38 @@ class NucBackend implements SyncBackend {
       throw new Error('CONFLICT');
     }
     if (!res.ok) throw new Error(`PUT progress failed: ${res.status}`);
-    return res.json();
+    try {
+      return await res.json();
+    } catch (parseErr) {
+      const text = await res.text().catch(() => '(unreadable)');
+      throw new Error(
+        `Server returned non-JSON (got HTML/plain text). URL: ${url}. ` +
+          `Response starts with: ${text.slice(0, 80)}. ` +
+          `Check your sync URL or ensure the backend is running.`
+      );
+    }
   }
 
   async getConfig(): Promise<SyncPayload> {
-    const res = await fetch(`${this.url}/config`);
+    const url = `${this.url}/config`;
+    if (!this.url) throw new Error('Sync URL not configured — set "NUC Server URL" in Settings');
+    const res = await fetch(url);
     if (!res.ok) throw new Error(`GET config failed: ${res.status}`);
-    return res.json();
+    try {
+      return await res.json();
+    } catch (parseErr) {
+      const text = await res.text().catch(() => '(unreadable)');
+      throw new Error(
+        `Server returned non-JSON (got HTML/plain text). URL: ${url}. ` +
+          `Response starts with: ${text.slice(0, 80)}. ` +
+          `Check your sync URL or ensure the backend is running.`
+      );
+    }
   }
 
   async putConfig(payload: SyncPayload, force?: boolean): Promise<{ lastUpdated: string }> {
     const url = force ? `${this.url}/config?force=1` : `${this.url}/config`;
+    if (!this.url) throw new Error('Sync URL not configured — set "NUC Server URL" in Settings');
     const res = await fetch(url, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
@@ -92,7 +127,16 @@ class NucBackend implements SyncBackend {
       throw new Error('CONFLICT');
     }
     if (!res.ok) throw new Error(`PUT config failed: ${res.status}`);
-    return res.json();
+    try {
+      return await res.json();
+    } catch (parseErr) {
+      const text = await res.text().catch(() => '(unreadable)');
+      throw new Error(
+        `Server returned non-JSON (got HTML/plain text). URL: ${url}. ` +
+          `Response starts with: ${text.slice(0, 80)}. ` +
+          `Check your sync URL or ensure the backend is running.`
+      );
+    }
   }
 }
 

@@ -1,40 +1,16 @@
 import { useState, useEffect, useCallback } from 'react';
 import { AppConfig } from '../../types';
 import { loadConfig, saveConfig } from '../../utils/configManager';
-import { getOllamaModels } from '../../services/llm';
 
 export function useSettingsState(isOpen: boolean, onClose: () => void) {
   const [config, setConfig] = useState<AppConfig>(loadConfig());
   const [saved, setSaved] = useState(false);
-  const [ollamaModels, setOllamaModels] = useState<string[]>([]);
-  const [loadingModels, setLoadingModels] = useState(false);
-
-  const fetchOllamaModels = useCallback(
-    async (url?: string) => {
-      const targetUrl = url || config.ollamaUrl;
-      setLoadingModels(true);
-      try {
-        const models = await getOllamaModels(targetUrl);
-        setOllamaModels(models);
-      } catch (error) {
-        console.error('Failed to fetch Ollama models:', error);
-        setOllamaModels([]);
-      } finally {
-        setLoadingModels(false);
-      }
-    },
-    [config.ollamaUrl]
-  );
 
   useEffect(() => {
     if (isOpen) {
       const currentConfig = loadConfig();
       setConfig(currentConfig);
-      if (currentConfig.selectedService === 'ollama') {
-        fetchOllamaModels(currentConfig.ollamaUrl);
-      }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
 
   const handleSave = useCallback(() => {
@@ -91,12 +67,9 @@ export function useSettingsState(isOpen: boolean, onClose: () => void) {
   return {
     config,
     saved,
-    ollamaModels,
-    loadingModels,
     updateConfig,
     handleSave,
     handleExportSettings,
     handleImportSettings,
-    fetchOllamaModels,
   };
 }

@@ -87,9 +87,9 @@ export async function generateConversation(
 
   switch (service) {
     case 'gemini':
-      return callGemini(prompt, apiKey, model || 'gemini-3-flash-preview');
+      return callGemini(prompt, apiKey, model || 'gemini-2.5-flash');
     case 'openrouter':
-      return callOpenRouter(prompt, apiKey);
+      return callOpenRouter(prompt, apiKey, model);
     case 'ollama':
       return callOllama(prompt, ollamaUrl || 'http://localhost:11434', model);
     default:
@@ -109,9 +109,9 @@ export async function generateSentenceUpgrade(
 
   switch (service) {
     case 'gemini':
-      return callGeminiForUpgrade(prompt, apiKey, model || 'gemini-3-flash-preview');
+      return callGeminiForUpgrade(prompt, apiKey, model || 'gemini-2.5-flash');
     case 'openrouter':
-      return callOpenRouterForUpgrade(prompt, apiKey);
+      return callOpenRouterForUpgrade(prompt, apiKey, model);
     case 'ollama':
       return callOllamaForUpgrade(prompt, ollamaUrl || 'http://localhost:11434', model);
     default:
@@ -148,7 +148,7 @@ Requirements for EACH word/phrase results entry:
     - English meaning on the FIRST line.
     - Detailed context/scenario explanation in a subsequent paragraph (use \\n\\n).
 - "conversations":
-    - Generate 5 different conversations focusing on this specific word.
+    - Generate 3 different conversations focusing on this specific word.
     - Each conversation should have 6-8 exchanges.
     - Use the vocabulary word naturally in context.
     - Use ONLY 漢字[ふりがな] format for furigana (e.g. 日本[にほん]).
@@ -241,7 +241,11 @@ async function callGemini(prompt: string, apiKey: string, model: string): Promis
   return parseLLMResponse(text);
 }
 
-async function callOpenRouter(prompt: string, apiKey: string): Promise<LLMResponse> {
+async function callOpenRouter(
+  prompt: string,
+  apiKey: string,
+  model: string = 'google/gemini-2.5-flash'
+): Promise<LLMResponse> {
   const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
     method: 'POST',
     headers: {
@@ -251,7 +255,7 @@ async function callOpenRouter(prompt: string, apiKey: string): Promise<LLMRespon
       'X-Title': 'Nihongo Master',
     },
     body: JSON.stringify({
-      model: 'anthropic/claude-3.5-sonnet',
+      model,
       messages: [{ role: 'user', content: prompt }],
       temperature: 0.7,
     }),
@@ -321,7 +325,8 @@ async function callGeminiForUpgrade(
 
 async function callOpenRouterForUpgrade(
   prompt: string,
-  apiKey: string
+  apiKey: string,
+  model: string = 'google/gemini-2.5-flash'
 ): Promise<{ upgraded: string; explanation: string }> {
   const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
     method: 'POST',
@@ -330,7 +335,7 @@ async function callOpenRouterForUpgrade(
       Authorization: `Bearer ${apiKey}`,
     },
     body: JSON.stringify({
-      model: 'anthropic/claude-3.5-sonnet',
+      model,
       messages: [{ role: 'user', content: prompt }],
       temperature: 0.5,
     }),
@@ -454,7 +459,7 @@ Rules:
     case 'gemini':
       return callGeminiForChallenge(prompt, apiKey, model || 'gemini-2.5-flash');
     case 'openrouter':
-      return callOpenRouterForChallenge(prompt, apiKey);
+      return callOpenRouterForChallenge(prompt, apiKey, model);
     case 'ollama':
       return callOllamaForChallenge(prompt, ollamaUrl || 'http://localhost:11434', model);
     default:
@@ -491,7 +496,8 @@ async function callGeminiForChallenge(
 
 async function callOpenRouterForChallenge(
   prompt: string,
-  apiKey: string
+  apiKey: string,
+  model: string = 'google/gemini-2.5-flash'
 ): Promise<ChallengeQuestionData[]> {
   const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
     method: 'POST',
@@ -500,7 +506,7 @@ async function callOpenRouterForChallenge(
       Authorization: `Bearer ${apiKey}`,
     },
     body: JSON.stringify({
-      model: 'google/gemini-2.5-flash',
+      model,
       messages: [{ role: 'user', content: prompt }],
       temperature: 0.4,
     }),
