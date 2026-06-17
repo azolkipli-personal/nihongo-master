@@ -326,6 +326,12 @@ export function BunpoTab() {
             masteredPatternIds={new Set(patterns.filter((p) => p.mastered).map((p) => p.id))}
             challengeLevel="all"
             onSrsUpdate={handleSrsUpdate}
+            maxQuestions={(() => {
+              const dueCount = patterns.filter(
+                (p) => isDueForReview(p.nextReviewDate) && REVIEW_LEVELS.includes(p.cefr)
+              ).length;
+              return dueCount > 0 ? dueCount : 5;
+            })()}
           />
 
           {patterns.filter(
@@ -1127,6 +1133,7 @@ function ChallengeMode({
   onSrsUpdate,
   weekPatternIds,
   weekLabel,
+  maxQuestions = 5,
 }: {
   patterns: GrammarPattern[];
   masteredPatternIds: Set<string>;
@@ -1134,6 +1141,7 @@ function ChallengeMode({
   onSrsUpdate?: (id: string, isCorrect: boolean) => void;
   weekPatternIds?: string[] | null;
   weekLabel?: string | null;
+  maxQuestions?: number;
 }) {
   const [questions, setQuestions] = useState<ChallengeQuestion[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -1228,7 +1236,7 @@ function ChallengeMode({
 
     // Sort randomly (shuffle the ordered pool)
     pool.sort(() => Math.random() - 0.5);
-    const selectedPatterns = pool.slice(0, Math.min(5, pool.length)); // up to 5 questions per quiz
+    const selectedPatterns = pool.slice(0, Math.min(maxQuestions, pool.length));
 
     const newQuestions = selectedPatterns.map((pattern) => {
       // Create fill-in-the-blank from first example

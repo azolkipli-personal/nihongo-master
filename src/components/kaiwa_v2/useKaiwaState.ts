@@ -1,8 +1,9 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Conversation } from '../../types';
+import { Conversation, GrammarPattern } from '../../types';
 import { generateConversation } from '../../services/llm';
 import { loadConfig } from '../../utils/configManager';
 import { saveSession } from '../../utils/sessionStorage';
+import grammarPatterns from '../../data/grammar-patterns.json';
 
 // LocalStorage keys for persisting kaiwa state
 const STORAGE_KEYS = {
@@ -196,6 +197,11 @@ export function useKaiwaState() {
             ? config.openrouterModel
             : config.ollamaModel;
 
+      // Resolve pattern IDs to actual grammar pattern strings for the LLM
+      const focusGrammarStrings = focusPatternIds
+        .map((id) => (grammarPatterns as GrammarPattern[]).find((p) => p.id === id)?.pattern)
+        .filter(Boolean) as string[];
+
       const result = await generateConversation(
         wordList,
         scenario,
@@ -204,7 +210,7 @@ export function useKaiwaState() {
         config.ollamaUrl,
         model,
         cefrLevel,
-        focusPatternIds.length > 0 ? focusPatternIds : undefined
+        focusGrammarStrings.length > 0 ? focusGrammarStrings : undefined
       );
 
       const newConversations: Conversation[] = [];

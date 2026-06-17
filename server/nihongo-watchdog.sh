@@ -74,15 +74,23 @@ while true; do
         exit 1
     fi
 
-    # Check web app
+    # Check web app (port-based — catches hung/dead processes)
     if ! kill -0 $APP_PID 2>/dev/null; then
-        echo "❌ Web app died! Restarting..."
+        echo "❌ Web app died (PID gone)! Restarting..."
+        exit 1
+    fi
+    if ! curl -sf "http://localhost:$APP_PORT/" > /dev/null 2>&1; then
+        echo "❌ Web app unresponsive on port $APP_PORT! Restarting..."
         exit 1
     fi
 
     # Check backend
     if ! kill -0 $BACKEND_PID 2>/dev/null; then
         echo "❌ Sync backend died! Restarting..."
+        exit 1
+    fi
+    if ! curl -sf "http://localhost:$BACKEND_PORT/" > /dev/null 2>&1; then
+        echo "❌ Sync backend unresponsive on port $BACKEND_PORT! Restarting..."
         exit 1
     fi
 done
