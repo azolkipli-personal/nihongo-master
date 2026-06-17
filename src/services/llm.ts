@@ -127,7 +127,7 @@ export function buildConversationPrompt(
 ): string {
   const focusGrammarLine =
     focusGrammar && focusGrammar.length > 0
-      ? `Focus on using these grammar patterns naturally in the conversations: ${focusGrammar.join(', ')}
+      ? `You MUST incorporate the following grammar patterns in every conversation: ${focusGrammar.join(', ')}
 `
       : '';
   return `Act as a professional Japanese language instructor.
