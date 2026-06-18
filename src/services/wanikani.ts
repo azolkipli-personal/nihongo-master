@@ -123,7 +123,7 @@ export async function syncVocabulary(apiKey: string): Promise<WaniKaniItem[]> {
   // Get all started assignments
   const assignments = await getAssignments(apiKey, true);
 
-  // Filter to vocabulary only and get subject IDs
+  // Get subject IDs from assignments
   const subjectIds = assignments.map((a) => a.subjectId);
 
   if (subjectIds.length === 0) return [];

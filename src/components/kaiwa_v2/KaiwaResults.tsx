@@ -122,7 +122,7 @@ function FinalCard({
 
     try {
       const cleanText = stripFurigana(text);
-      const response = await fetch('https://fedora-nuc.tailc24d36.ts.net:10443/tts', {
+      const response = await fetch('/tts', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text: cleanText }),
@@ -131,7 +131,7 @@ function FinalCard({
       if (!response.ok) throw new Error('TTS request failed');
 
       const data = await response.json();
-      const audioUrl = `https://fedora-nuc.tailc24d36.ts.net:10443${data.audio_url}`;
+      const audioUrl = `${window.location.origin}${data.audio_url}`;
       const newAudio = new Audio(audioUrl);
       newAudio.play();
 
